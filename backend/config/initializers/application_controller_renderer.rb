@@ -1,3 +1,5 @@
+
+
 # Be sure to restart your server when you modify this file.
 
 # ActiveSupport::Reloader.to_prepare do
@@ -6,3 +8,5 @@
 #     https: false
 #   )
 # end
+
+DataFetchJob.set(wait: 10.seconds).perform_later []
