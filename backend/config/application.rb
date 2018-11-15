@@ -22,3 +22,4 @@ module Yabs
     config.generators.system_tests = nil
   end
 end
+
