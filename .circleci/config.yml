@@ -44,6 +44,7 @@ jobs:
       # run tests!
       - run:
           name: run tests
+          path: ~/Yabs/tests
           command: |
             
-            ../tests/bundle exec cucumber
+            bundle exec cucumber
