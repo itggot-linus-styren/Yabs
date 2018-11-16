@@ -6,7 +6,14 @@ class DataFetchJob < ApplicationJob
   def perform(*fetch)
     url = "https://jsonplaceholder.typicode.com/users"
     data = JSON.parse(open(url).read)
-    puts data
+    data.each do |person|
+      #Phone is placeholder for Google Token until we plug in real Google Directory Api
+      if @user = User.find_by(google_token: person["phone"])
+        @user.update(name: person["name"], email: person["email"], google_token: person["phone"])
+      else 
+        User.create(name: person["name"], email: person["email"], google_token: person["phone"])
+      end
+    end
     DataFetchJob.set(wait: 10.minutes).perform_later []
   end
 end
