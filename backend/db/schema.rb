@@ -23,6 +23,7 @@ ActiveRecord::Schema.define(version: 2018_11_13_120534) do
   create_table "users", force: :cascade do |t|
     t.integer "uid"
     t.string "name"
+    t.string "email"
     t.string "google_token"
     t.string "photo_path"
     t.datetime "created_at", null: false
