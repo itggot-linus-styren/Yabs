@@ -46,5 +46,5 @@ jobs:
           name: run tests
           path: ~/Yabs/tests
           command: |
-            
+            bundle install
             bundle exec cucumber
