@@ -6,4 +6,5 @@ group :test do
     gem 'minitest'
     gem 'selenium-webdriver'
     gem 'chromedriver-helper'
+    gem 'byebug'
  end
