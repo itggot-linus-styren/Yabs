@@ -17,7 +17,8 @@ jobs:
     working_directory: ~/Yabs/backend
 
     steps:
-      - checkout
+      - checkout:
+          path: ~/Yabs
 
       # Download and cache dependencies
       - restore_cache:
