@@ -1,29 +1,35 @@
-<template>
-  <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
-  </div>
+<template lang="pug">
+
+<div>
+  <b-navbar type="dark" variant="primary" toggleable>
+    <b-navbar-toggle target="nav_dropdown_collapse"></b-navbar-toggle>
+    <b-collapse is-nav id="nav_dropdown_collapse">
+      <b-navbar-nav>
+        <b-nav-item href="#">Start</b-nav-item>
+        <b-nav-item href="#">Profil</b-nav-item>
+        <b-nav-item href="#">Lägg till</b-nav-item>
+        <b-nav-item href="#">Hitta</b-nav-item>
+      </b-navbar-nav>
+    </b-collapse>
+    <b-navbar-brand>Yabs</b-navbar-brand>
+    <b-navbar-brand class="material-icons">account_circle</b-navbar-brand>
+  </b-navbar>
+</div>
+
+
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
+<style lang="sass">
 </style>
+
+<script lang="ts">
+import Vue from 'vue';
+export default Vue.extend({
+  data: function () {
+    return {
+    }
+  },
+  methods: {
+  }
+});
+</script>
