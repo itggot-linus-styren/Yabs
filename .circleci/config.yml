@@ -6,17 +6,17 @@ version: 2
 commit:
     jobs:
       - run-tests
-  nightly:
-    triggers:
-      - schedule:
-          cron: "0 0 * * *"
-          filters:
-            branches:
-              only:
-                - develop
-    jobs:
-      - run-tests:
-          context: coverage
+nightly:
+  triggers:
+    - schedule:
+        cron: "0 0 * * *"
+        filters:
+          branches:
+            only:
+              - develop
+  jobs:
+    - run-tests:
+        context: coverage
 jobs:
   run-tests:
     docker:
