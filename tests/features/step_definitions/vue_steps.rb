@@ -10,4 +10,4 @@ end
 
 Then("I should find {string}") do |string|
     page.has_content? string
-  end
+end
