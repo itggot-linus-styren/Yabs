@@ -7,17 +7,17 @@ jobs:
   build:
     docker:
       # specify the version you desire here
-       - image: circleci/ruby:2.4.1-node-browsers
-      
+       - image: circleci/ruby:2.5.1-node-browsers
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
       # documented at https://circleci.com/docs/2.0/circleci-images/
       # - image: circleci/postgres:9.4
 
-    working_directory: ~/repo
+    working_directory: ~/Yabs/backend
 
     steps:
-      - checkout
+      - checkout:
+          path: ~/Yabs
 
       # Download and cache dependencies
       - restore_cache:
@@ -37,19 +37,28 @@ jobs:
           key: v1-dependencies-{{ checksum "Gemfile.lock" }}
         
       # Database setup
-      - run: bundle exec rake db:create
-      - run: bundle exec rake db:schema:load
+      - run: bundle exec bin/rails db:create
+      - run: bundle exec bin/rails db:schema:load
+
+      - run: #build frontend
+          path: ~/Yabs/frontend
+          command: |
+            npm install
+            npm run build
+      
+      - run: #run rails server
+          path: ~/Yabs/backend
+          background: true
+          environment:
+            RAILS_ENV: test
+          command: |
+            bin/rails s
+
 
       # run tests!
       - run:
           name: run tests
+          path: ~/Yabs/tests
           command: |
-            
+            bundle install
             bundle exec cucumber
-
-      # collect reports
-      - store_test_results:
-          path: /tmp/test-results
-      - store_artifacts:
-          path: /tmp/test-results
-          destination: test-results
