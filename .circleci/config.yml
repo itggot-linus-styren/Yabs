@@ -8,6 +8,8 @@ jobs:
     docker:
       # specify the version you desire here
        - image: circleci/ruby:2.5.1-node-browsers
+        environment:
+          RAILS_ENV: test
       
       # Specify service dependencies here if necessary
       # CircleCI maintains a library of pre-built images
@@ -41,12 +43,25 @@ jobs:
       - run: bundle exec bin/rails db:create
       - run: bundle exec bin/rails db:schema:load
 
+      - run: #build frontend
+          path: ~/Yabs/frontend
+          command: |
+            npm install
+            npm run build
+      
+      - run: #run rails server
+          path: ~/Yabs/backend
+          background: true
+          environment:
+            RAILS_ENV: test
+          command: |
+            rails s
+
+
       # run tests!
       - run:
           name: run tests
           path: ~/Yabs/tests
           command: |
-            (cd ../frontend && npm install && npm run serve) &
-            (cd ../backend && bin/rails s) &
             bundle install
             bundle exec cucumber
