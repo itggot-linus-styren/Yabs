@@ -52,7 +52,7 @@ jobs:
           environment:
             RAILS_ENV: test
           command: |
-            rails s
+            bin/rails s
 
 
       # run tests!
