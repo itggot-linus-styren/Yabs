@@ -3,20 +3,21 @@
 # Check https://circleci.com/docs/2.0/language-ruby/ for more details
 #
 version: 2
-commit:
+workflows:
+  commit:
+      jobs:
+        - run-tests
+  nightly:
+    triggers:
+      - schedule:
+          cron: "0 0 * * *"
+          filters:
+            branches:
+              only:
+                - develop
     jobs:
-      - run-tests
-nightly:
-  triggers:
-    - schedule:
-        cron: "0 0 * * *"
-        filters:
-          branches:
-            only:
-              - develop
-  jobs:
-    - run-tests:
-        context: coverage
+      - run-tests:
+          context: coverage
 jobs:
   run-tests:
     docker:
