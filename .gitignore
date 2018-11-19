@@ -5,7 +5,7 @@ backend/log
 backend/tmp
 backend/db/*.sqlite3
 backend/db/*.sqlite3-journal
-backend/public/system
+backend/public/
 backend/coverage/
 backend/spec/tmp
 *.orig
