@@ -1,10 +1,10 @@
 <template>
-  <HeaderNav/>
+  <HeaderNav/> 
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HeaderNav from '@/components/HeaderNav.vue'; // @ is an alias to /src
+import HeaderNav from '@/components/HeaderNav.vue';
 
 @Component({
   components: {
