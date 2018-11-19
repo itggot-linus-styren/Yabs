@@ -4,7 +4,7 @@
 [![CircleCI](https://circleci.com/gh/Yabs-Team/Yabs/tree/develop.svg?style=svg)](https://circleci.com/gh/Yabs-Team/Yabs/tree/develop)
 
 ## What's Yabs?
-Yabs or yet another booking system is a collection of tools for creating card id generation and loans for literature.
+Yabs or yet another booking system is a collection of tools for creating card id generation and loans of literature.
 
 ## License
 
