@@ -16,17 +16,17 @@ export default new Router({
       component: Start,
     },
     {
-      path: '/profile',
+      path: '/user/:id',
       name: 'profile',
       component: Profile,
     },
     {
-      path: '/add',
+      path: '/loan/add',
       name: 'add',
       component: Add,
     },
     {
-      path: '/find',
+      path: '/loan/find',
       name: 'find',
       component: Find,
     },
