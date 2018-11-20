@@ -7,9 +7,5 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-user1 = User.create(uid: 19994523, name: "Rickard Svensson", google_token: "asfh3323jf")
-role1 = Role.create(user_id: 1, title: "Student")
-user2 = User.create(uid: 19683241, name: "Linnea Kristensson", google_token: "asasf1223jf")
-role2 = Role.create(user_id: 2, title: "Teacher")
 
 

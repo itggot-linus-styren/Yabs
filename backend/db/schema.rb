@@ -10,15 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_13_120534) do
-
-  create_table "roles", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_roles_on_user_id"
-  end
+ActiveRecord::Schema.define(version: 2018_11_13_120438) do
 
   create_table "users", force: :cascade do |t|
     t.integer "uid"
@@ -26,6 +18,7 @@ ActiveRecord::Schema.define(version: 2018_11_13_120534) do
     t.string "email"
     t.string "google_token"
     t.string "photo_path"
+    t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
