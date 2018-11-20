@@ -8,9 +8,11 @@ backend/db/*.sqlite3-journal
 backend/public/
 backend/coverage/
 backend/spec/tmp
+backend/config/secrets.yml
 *.orig
 rerun.txt
 pickle-email-*.html
+
 
 .DS_Store
 
