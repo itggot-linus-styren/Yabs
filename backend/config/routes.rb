@@ -1,11 +1,11 @@
 Rails.application.routes.draw do
-  resources :loans
-  resources :books
-  resources :titles
   namespace :api do
     namespace :v1 do
       resources :roles
       resources :users
+      resources :loans
+      resources :books
+      resources :titles
     end
   end
   root 'application#show'
