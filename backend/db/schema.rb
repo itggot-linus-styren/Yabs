@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_13_120534) do
+ActiveRecord::Schema.define(version: 2018_11_20_100040) do
 
   create_table "roles", force: :cascade do |t|
     t.integer "user_id"
@@ -20,7 +20,7 @@ ActiveRecord::Schema.define(version: 2018_11_13_120534) do
     t.index ["user_id"], name: "index_roles_on_user_id"
   end
 
-  create_table "users", force: :cascade do |t|
+  create_table "users", id: false, force: :cascade do |t|
     t.integer "uid"
     t.string "name"
     t.string "email"
@@ -28,6 +28,7 @@ ActiveRecord::Schema.define(version: 2018_11_13_120534) do
     t.string "photo_path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
 end
