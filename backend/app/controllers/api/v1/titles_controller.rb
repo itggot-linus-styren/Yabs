@@ -1,19 +1,19 @@
 class TitlesController < ApplicationController
   before_action :set_title, only: [:show, :update, :destroy]
 
-  # GET /title
-  # GET /title.json
+  # GET /titles
+  # GET /titles.json
   def index
     @title = Title.all
   end
 
-  # GET /title/1
-  # GET /title/1.json
+  # GET /titles/1
+  # GET /titles/1.json
   def show
   end
 
-  # POST /title
-  # POST /title.json
+  # POST /titles
+  # POST /titles.json
   def create
     @title = Title.new(title_params)
 
@@ -24,8 +24,8 @@ class TitlesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /title/1
-  # PATCH/PUT /title/1.json
+  # PATCH/PUT /titles/1
+  # PATCH/PUT /titles/1.json
   def update
     if @title.update(title_params)
       render :show, status: :ok, location: @title
@@ -34,8 +34,8 @@ class TitlesController < ApplicationController
     end
   end
 
-  # DELETE /title/1
-  # DELETE /title/1.json
+  # DELETE /titles/1
+  # DELETE /titles/1.json
   def destroy
     @title.destroy
   end
