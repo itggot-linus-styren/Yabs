@@ -16,9 +16,9 @@ ActiveRecord::Schema.define(version: 2018_11_13_120438) do
     t.integer "uid"
     t.string "name"
     t.string "email"
+    t.string "role"
     t.string "google_token"
     t.string "photo_path"
-    t.string "role"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
