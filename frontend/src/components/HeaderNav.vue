@@ -8,7 +8,7 @@
             <b-nav-item><router-link to="/loan/add">Lägg till</router-link></b-nav-item>
             <b-nav-item><router-link to="/loan/find">Hitta</router-link></b-nav-item>
         </b-navbar-nav>
-        
+
         </b-collapse>
         <b-navbar-brand>Yabs</b-navbar-brand>
         <b-navbar-brand class="material-icons">account_circle</b-navbar-brand>
@@ -17,7 +17,17 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Getter } from '../decorators';
 
 @Component
-export default class HeaderNav extends Vue {}
+export default class HeaderNav extends Vue {
+
+  @Getter('titles/all') titles : any
+
+  created() {
+    this.$store.dispatch('titles/create', {name: "A book about books"});
+    console.log(this.titles);
+  }
+
+}
 </script>
