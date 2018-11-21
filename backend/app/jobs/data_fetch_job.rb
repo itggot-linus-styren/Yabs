@@ -21,11 +21,7 @@ class DataFetchJob < ApplicationJob
   def insertdata(users)
      users.each do |person|
       uid = Time.new.year.to_s[2..-1] + person.id.to_str[13..-1]
-      if person.org_unit_path == "/Johanneberg/Personal"
-        role = "Lärare"
-      else
-        role = "Elev"
-      end
+      role = person.org_unit_path == "/Johanneberg/Personal" ? "Lärare" : "Elev" 
       if @user = User.find_by(google_token: person.id)
         @user.update(name: person.name.full_name, uid: uid, email: person.emails[0]["address"], role: role, google_token: person.id)
       else 

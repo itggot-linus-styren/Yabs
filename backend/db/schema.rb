@@ -10,9 +10,40 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2018_11_13_120438) do
 
-  create_table "users", force: :cascade do |t|
+ActiveRecord::Schema.define(version: 2018_11_20_115002) do
+
+  create_table "books", force: :cascade do |t|
+    t.integer "title_id"
+    t.string "barcode"
+    t.string "status"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["title_id"], name: "index_books_on_title_id"
+  end
+
+  create_table "loans", force: :cascade do |t|
+    t.integer "loaned_by_id"
+    t.integer "lent_by_id"
+    t.integer "book_id"
+    t.date "return_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["book_id"], name: "index_loans_on_book_id"
+    t.index ["lent_by_id"], name: "index_loans_on_lent_by_id"
+    t.index ["loaned_by_id"], name: "index_loans_on_loaned_by_id"
+  end
+
+  create_table "titles", force: :cascade do |t|
+    t.string "name"
+    t.string "isbn"
+    t.integer "cost"
+    t.string "type"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "users", id: false, force: :cascade do |t|
     t.integer "uid"
     t.string "name"
     t.string "email"
@@ -21,6 +52,7 @@ ActiveRecord::Schema.define(version: 2018_11_13_120438) do
     t.string "photo_path"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["uid"], name: "index_users_on_uid", unique: true
   end
 
 end
