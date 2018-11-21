@@ -7,6 +7,7 @@
 
 <style lang="sass">
 
+
   html, body
     width: 100vw
     height: 100vh
@@ -17,6 +18,7 @@
 
   .view
     position: absolute
+    z-index: 100
     top: 56px
     bottom: 0
     width: 100%
