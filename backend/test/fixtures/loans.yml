@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  user: one
+  user: one
+  return_at: 2018-11-20
+
+two:
+  user: two
+  user: two
+  return_at: 2018-11-20

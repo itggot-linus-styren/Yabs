@@ -1,3 +1,5 @@
 class User < ApplicationRecord
-    has_one :role
+  self.primary_key = 'uid'
+
+  has_one :role
 end

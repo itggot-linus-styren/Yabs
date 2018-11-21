@@ -8,8 +8,22 @@
 
 
 user1 = User.create(uid: 19994523, name: "Rickard Svensson", google_token: "asfh3323jf")
-role1 = Role.create(user_id: 1, title: "Student")
-user2 = User.create(uid: 19683241, name: "Linnea Kristensson", google_token: "asasf1223jf")
-role2 = Role.create(user_id: 2, title: "Teacher")
+Role.create(user_id: user1.id, title: "Student")
 
+user2 = User.create(uid: 19683241, name: "Linnea Kristensson", google_token: "asasf1223jf")
+Role.create(user_id: user2.id, title: "Teacher")
+
+title = Title.create(name: "A book", isbn: "123-123", cost: 200)
+title.type = "Skönlitteratur"
+title.save
+
+book = Book.create(barcode: "0000", status: "Broken")
+book.title = title
+book.save
+
+loan = Loan.create(return_at: Date.current)
+loan.lent_by = user2
+loan.loaned_by = user1
+loan.book = book
+loan.save
 
