@@ -3,6 +3,9 @@ Rails.application.routes.draw do
     namespace :v1 do
       resources :roles
       resources :users
+      resources :loans
+      resources :books
+      resources :titles
     end
   end
   root 'application#show'
