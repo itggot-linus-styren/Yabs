@@ -10,6 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
+
 ActiveRecord::Schema.define(version: 2018_11_20_115002) do
 
   create_table "books", force: :cascade do |t|
@@ -33,14 +34,6 @@ ActiveRecord::Schema.define(version: 2018_11_20_115002) do
     t.index ["loaned_by_id"], name: "index_loans_on_loaned_by_id"
   end
 
-  create_table "roles", force: :cascade do |t|
-    t.integer "user_id"
-    t.string "title"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_roles_on_user_id"
-  end
-
   create_table "titles", force: :cascade do |t|
     t.string "name"
     t.string "isbn"
@@ -54,6 +47,7 @@ ActiveRecord::Schema.define(version: 2018_11_20_115002) do
     t.integer "uid"
     t.string "name"
     t.string "email"
+    t.string "role"
     t.string "google_token"
     t.string "photo_path"
     t.datetime "created_at", null: false
