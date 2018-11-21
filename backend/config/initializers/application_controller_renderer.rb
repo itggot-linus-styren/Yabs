@@ -9,4 +9,4 @@
 #   )
 # end
 
-DataFetchJob.set(wait: 10.seconds).perform_later []
+DataFetchJob.set(wait: 10.seconds).perform_later

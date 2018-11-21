@@ -15,7 +15,7 @@ class DataFetchJob < ApplicationJob
       data = client.service.list_users(domain: 'elev.ga.ntig.se', page_token: data.next_page_token, query: "orgUnitPath='/Johanneberg'")
       insertdata(data.users)
     end
-    DataFetchJob.set(wait: 24.hours).perform_later []
+    DataFetchJob.set(wait: 24.hours).perform_later
   end
 
   def insertdata(users)
