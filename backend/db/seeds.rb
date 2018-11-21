@@ -8,7 +8,7 @@
 
 
 user1 = User.create(uid: 19994523, name: "Rickard Svensson", google_token: "asfh3323jf", role: "Elev")
-Role.create(user_id: user1.id, title: "Student")
+
 
 user2 = User.create(uid: 19683241, name: "Linnea Kristensson", google_token: "asasf1223jf", role: "Lärare")
 
