@@ -59,7 +59,7 @@ jobs:
           environment:
             RAILS_ENV: test
           command: |
-            bin/rails s
+            bundle exec bin/rails s
 
 
       # run tests!
