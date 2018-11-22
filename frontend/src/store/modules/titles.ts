@@ -1,14 +1,16 @@
+import Vue from 'vue';
+
 interface TitleState {
-  all: Array<any>
+  titles: {}
 }
 
 // initial state
-const state : TitleState = {all: []}
+const state : TitleState = {titles: []}
 
 // getters
 const getters = {
   all: (state : TitleState) => {
-    return state.all;
+    return state.titles;
   }
 }
 
@@ -16,13 +18,16 @@ const getters = {
 const actions = {
   create (context : any, title : any) {
     context.commit('createTitle', title);
+  },
+  update (context : any, title : any) {
+    context.commit('updateTitle', title);
   }
 }
 
 // mutations
 const mutations = {
   createTitle (state : TitleState, payload : any) {
-    state.all.push(payload);
+    Vue.set(state.titles, '0', {name: "goodies"});
   }
 }
 
