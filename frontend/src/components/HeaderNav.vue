@@ -12,6 +12,8 @@
         </b-collapse>
         <b-navbar-brand>Yabs</b-navbar-brand>
         <b-navbar-brand class="material-icons">account_circle</b-navbar-brand>
+
+        <b-btn @click="onClickMe">lol</b-btn>
     </b-navbar>
 </template>
 
@@ -24,7 +26,7 @@ export default class HeaderNav extends Vue {
 
   @Getter('titles/all') titles : any
 
-  created() {
+  onClickMe() {
     this.$store.dispatch('titles/create', {name: "A book about books"});
     console.log(this.titles);
   }
