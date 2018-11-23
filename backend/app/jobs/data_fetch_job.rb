@@ -15,21 +15,17 @@ class DataFetchJob < ApplicationJob
       data = client.service.list_users(domain: 'elev.ga.ntig.se', page_token: data.next_page_token, query: "orgUnitPath='/Johanneberg'")
       insertdata(data.users)
     end
-    DataFetchJob.set(wait: 24.hours).perform_later []
+    DataFetchJob.set(wait: 24.hours).perform_later
   end
 
   def insertdata(users)
      users.each do |person|
       uid = Time.new.year.to_s[2..-1] + person.id.to_str[13..-1]
+      role = person.org_unit_path == "/Johanneberg/Personal" ? "Lärare" : "Elev" 
       if @user = User.find_by(google_token: person.id)
-        @user.update(name: person.name.full_name, uid: uid, email: person.emails[0]["address"], google_token: person.id)
+        @user.update(name: person.name.full_name, uid: uid, email: person.emails[0]["address"], role: role, google_token: person.id)
       else 
-        User.create(name: person.name.full_name, uid: uid, email: person.emails[0]["address"], google_token: person.id)
-        if person.org_unit_path == "/Johanneberg/Personal"
-          Role.create(user_id: uid, title: "Lärare")
-        else
-          Role.create(user_id: uid, title: "Elev")
-        end
+        User.create(name: person.name.full_name, uid: uid, email: person.emails[0]["address"], role: role, google_token: person.id)
       end
     end
   end
