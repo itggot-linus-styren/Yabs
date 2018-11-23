@@ -26,6 +26,10 @@ export default class HeaderNav extends Vue {
 
   @Getter('titles/all') titles : any
 
+  created() {
+    this.$store.dispatch('titles/all');
+  }
+
   onClickMe() {
     this.$store.dispatch('titles/create', {name: "A book about books"});
     console.log(this.titles);

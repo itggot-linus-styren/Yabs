@@ -1,41 +1,32 @@
 class Api::V1::BooksController < ApplicationController
   before_action :set_book, only: [:show, :update, :destroy]
 
-  # GET /books
-  # GET /books.json
   def index
-    @books = Book.all
+    render json: Book.all
   end
 
-  # GET /books/1
-  # GET /books/1.json
   def show
+    render json: @book
   end
 
-  # POST /books
-  # POST /books.json
   def create
     @book = Book.new(book_params)
 
     if @book.save
-      render :show, status: :created, location: @book
+      render json: @book
     else
       render json: @book.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /books/1
-  # PATCH/PUT /books/1.json
   def update
     if @book.update(book_params)
-      render :show, status: :ok, location: @book
+      render json: @book
     else
       render json: @book.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /books/1
-  # DELETE /books/1.json
   def destroy
     @book.destroy
   end

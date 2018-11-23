@@ -1,6 +1,5 @@
 import Vue from 'vue';
 import TitlesAPI from '../../api/titles';
-import titles from '../../api/titles';
 
 interface TitleState {
   titles: {},
@@ -13,14 +12,17 @@ const state : TitleState = {titles: {}, failure: null}
 // getters
 const getters = {
   all: (state : TitleState) => {
-    TitlesAPI.all()
-             .then((response : any) => state.titles = response)
-             .then((error : any) => state.failure = error);
+    return state.titles;
   }
 }
 
 // actions
 const actions = {
+  all (context : any, request : any) {
+    TitlesAPI.all()
+             .then((response : any) => response.forEach((title : any) => context.commit('setTitle', title)))
+             .then((error : any) => context.commit('failure', error));
+  },
   create (context : any, request : any) {
     TitlesAPI.create(request)
              .then((response : any) => context.commit('setTitle', response))
