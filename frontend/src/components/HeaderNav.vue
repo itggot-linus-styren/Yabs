@@ -24,15 +24,25 @@ import { Getter } from '../decorators';
 @Component
 export default class HeaderNav extends Vue {
 
-  @Getter('titles/all') titles : any
+  @Getter('titles/all') titles : any;
+  @Getter('books/all') books : any;
+  @Getter('loans/all') loans : any;
+  @Getter('users/all') users : any;
 
   created() {
     this.$store.dispatch('titles/all');
+    this.$store.dispatch('books/all');
+    this.$store.dispatch('loans/all');
+    this.$store.dispatch('users/all');
   }
 
   onClickMe() {
     this.$store.dispatch('titles/create', {name: "A book about books"});
-    console.log(this.titles);
+    console.log(JSON.parse(JSON.stringify(this.titles)));
+    this.$store.dispatch('books/create', {barcode: "123123"});
+    console.log(JSON.parse(JSON.stringify(this.books)));
+    this.$store.dispatch('loans/create', {return_at: Date.now()});
+    console.log(JSON.parse(JSON.stringify(this.loans)));
   }
 
 }
