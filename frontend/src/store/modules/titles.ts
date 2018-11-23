@@ -1,33 +1,53 @@
 import Vue from 'vue';
+import TitlesAPI from '../../api/titles';
+import titles from '../../api/titles';
 
 interface TitleState {
-  titles: {}
+  titles: {},
+  failure: any
 }
 
 // initial state
-const state : TitleState = {titles: []}
+const state : TitleState = {titles: {}, failure: null}
 
 // getters
 const getters = {
   all: (state : TitleState) => {
-    return state.titles;
+    TitlesAPI.all()
+             .then((response : any) => state.titles = response)
+             .then((error : any) => state.failure = error);
   }
 }
 
 // actions
 const actions = {
-  create (context : any, title : any) {
-    context.commit('createTitle', title);
+  create (context : any, request : any) {
+    TitlesAPI.create(request)
+             .then((response : any) => context.commit('setTitle', response))
+             .catch((error : any) => context.commit('failure', error));
   },
-  update (context : any, title : any) {
-    context.commit('updateTitle', title);
+  update (context : any, request : any) {
+    TitlesAPI.update(request)
+             .then((response : any) => context.commit('setTitle', response))
+             .catch((error : any) => context.commit('failure', error));
+  },
+  delete (context : any, request : any) {
+    TitlesAPI.delete(request)
+             .then((response : any) => context.commit('removeTitle', response))
+             .catch((error : any) => context.commit('failure', error));
   }
 }
 
 // mutations
 const mutations = {
-  createTitle (state : TitleState, payload : any) {
-    Vue.set(state.titles, '0', {name: "goodies"});
+  setTitle (state : TitleState, payload : any) {
+    Vue.set(state.titles, payload.id, payload);
+  },
+  removeTitle (state : TitleState, titleId : string) {
+    Vue.delete(state.titles, titleId);
+  },
+  failure (state : TitleState, payload : any) {
+    state.failure = payload;
   }
 }
 
