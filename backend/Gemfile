@@ -59,6 +59,8 @@ group :test do
   gem 'minitest'
   gem 'selenium-webdriver'
   gem 'chromedriver-helper'
+  gem 'simplecov'
+  gem 'codacy-coverage'
 end
 
 # Windows does not include zoneinfo files, so bundle the tzinfo-data gem

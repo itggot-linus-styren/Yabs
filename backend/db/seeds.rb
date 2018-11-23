@@ -7,11 +7,11 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-user1 = User.create(uid: 19994523, name: "Rickard Svensson", google_token: "asfh3323jf")
-Role.create(user_id: user1.id, title: "Student")
+user1 = User.create(uid: 19994523, name: "Rickard Svensson", google_token: "asfh3323jf", role: "Elev")
 
-user2 = User.create(uid: 19683241, name: "Linnea Kristensson", google_token: "asasf1223jf")
-Role.create(user_id: user2.id, title: "Teacher")
+
+user2 = User.create(uid: 19683241, name: "Linnea Kristensson", google_token: "asasf1223jf", role: "Lärare")
+
 
 title = Title.create(name: "A book", isbn: "123-123", cost: 200)
 title.title_type = "Skönlitteratur"

@@ -1,4 +1,10 @@
 #!/usr/bin/env ruby
+if ENV['RAILS_ENV'] == 'test' && ENV['COVERAGE'] == 'true'
+  require 'codacy-coverage'
+  Codacy::Reporter.start
+  puts "required codacy coverage"
+end
+
 begin
   load File.expand_path('../spring', __FILE__)
 rescue LoadError => e
