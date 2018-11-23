@@ -1,43 +1,35 @@
 class Api::V1::LoansController < ApplicationController
   before_action :set_loan, only: [:show, :update, :destroy]
 
-  # GET /loans
-  # GET /loans.json
   def index
-    @loans = Loan.all
+    render json: Loan.all
   end
 
-  # GET /loans/1
-  # GET /loans/1.json
   def show
+    render json: @loan
   end
 
-  # POST /loans
-  # POST /loans.json
   def create
     @loan = Loan.new(loan_params)
 
     if @loan.save
-      render :show, status: :created, location: @loan
+      render json: @loan
     else
       render json: @loan.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /loans/1
-  # PATCH/PUT /loans/1.json
   def update
     if @loan.update(loan_params)
-      render :show, status: :ok, location: @loan
+      render json: @loan
     else
       render json: @loan.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /loans/1
-  # DELETE /loans/1.json
   def destroy
     @loan.destroy
+    render json: @loan
   end
 
   private

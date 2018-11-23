@@ -9,7 +9,7 @@ export default {
   async all() {
 
     try {
-      const response = await axios.get(`api/v1/titles`, {headers: headers});
+      const response = await axios.get(`api/v1/loans`, {headers: headers});
       return Promise.resolve(response.data);
     }
     catch (error) {
@@ -20,7 +20,7 @@ export default {
   async create(request : any) {
 
     try {
-      const response = await axios.post(`api/v1/titles`, request, {headers: headers});
+      const response = await axios.post(`api/v1/loans`, request, {headers: headers});
       return Promise.resolve(response.data);
     }
     catch (error) {
@@ -31,7 +31,7 @@ export default {
   async update(request : any) {
 
     try {
-      const response = await axios.patch(`api/v1/titles/${request.id}`, request, {headers: headers});
+      const response = await axios.patch(`api/v1/loans/${request.id}`, request, {headers: headers});
       return Promise.resolve(response.data);
     }
     catch (error) {
@@ -42,7 +42,7 @@ export default {
   async delete(request : any) {
 
     try {
-      const response = await axios.delete(`api/v1/titles/${request.id}`, {headers: headers});
+      const response = await axios.delete(`api/v1/loans/${request.id}`, {headers: headers});
       return Promise.resolve(response.data.id);
     }
     catch (error) {

@@ -29,6 +29,7 @@ class Api::V1::TitlesController < ApplicationController
 
   def destroy
     @title.destroy
+    render json: @title
   end
 
   private
