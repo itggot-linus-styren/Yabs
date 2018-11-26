@@ -1,43 +1,35 @@
-class TitlesController < ApplicationController
+class Api::V1::TitlesController < ApplicationController
   before_action :set_title, only: [:show, :update, :destroy]
 
-  # GET /title
-  # GET /title.json
   def index
-    @title = Title.all
+    render json: Title.all
   end
 
-  # GET /title/1
-  # GET /title/1.json
   def show
+    render json: @title
   end
 
-  # POST /title
-  # POST /title.json
   def create
     @title = Title.new(title_params)
 
     if @title.save
-      render :show, status: :created, location: @title
+      render json: @title
     else
       render json: @title.errors, status: :unprocessable_entity
     end
   end
 
-  # PATCH/PUT /title/1
-  # PATCH/PUT /title/1.json
   def update
     if @title.update(title_params)
-      render :show, status: :ok, location: @title
+      render json: @title
     else
       render json: @title.errors, status: :unprocessable_entity
     end
   end
 
-  # DELETE /title/1
-  # DELETE /title/1.json
   def destroy
     @title.destroy
+    render json: @title
   end
 
   private
