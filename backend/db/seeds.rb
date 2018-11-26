@@ -14,7 +14,7 @@ user2 = User.create(uid: 19683241, name: "Linnea Kristensson", google_token: "as
 
 
 title = Title.create(name: "A book", isbn: "123-123", cost: 200)
-title.type = "Skönlitteratur"
+title.title_type = "Skönlitteratur"
 title.save
 
 book = Book.create(barcode: "0000", status: "Broken")
