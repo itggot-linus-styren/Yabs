@@ -4,20 +4,20 @@
 
 </template>
 
-<script>
+<script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class ReacentLoan extends Vue {
-      sortBy = 'utgångsdatum';
-      sortDesc = false;
-      fields = [
+      public sortBy = 'utgångsdatum';
+      public sortDesc = false;
+      public fields = [
         { key: 'elevnamn', sortable: false },
         { key: 'lärarnamn', sortable: false },
         { key: 'utgångdatum', sortable: false },
       ];
 
-      items = [
+      public items = [
         {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
         {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
         {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},

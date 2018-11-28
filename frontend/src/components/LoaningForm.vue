@@ -16,18 +16,18 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class LoaningForm extends Vue {
-    form = {
+    public form = {
         uId: '',
         bId: '',
     };
-    show = true;
+    public show = true;
 
-    onSubmit (evt : Event) {
+    public onSubmit(evt: Event) {
         evt.preventDefault();
         alert(JSON.stringify(this.form));
     }
 
-    onReset (evt : Event) {
+    public onReset(evt: Event) {
         evt.preventDefault();
         this.form.uId = '';
         this.form.bId = '';
