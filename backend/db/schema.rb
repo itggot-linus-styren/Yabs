@@ -63,7 +63,7 @@ ActiveRecord::Schema.define(version: 2018_11_23_094414) do
     t.string "name"
     t.string "isbn"
     t.integer "cost"
-    t.string "type"
+    t.string "title_type"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
