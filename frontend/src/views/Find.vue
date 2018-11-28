@@ -92,61 +92,59 @@
 </div>
 </template>
 
-<script>
-const items = [  
-    {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-    {elevnamn: 'Eric Persson', lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'},
-    {elevnamn: 'Filip Gustavsson', lärarnamn: 'Fredrik Kronhamn', utgångsdatum: '01-01-2019'},
-    {elevnamn: 'Alex henryz', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-    {elevnamn: 'Linus Styrén' , lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'},
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
-]
+@Component
+export default class Find extends Vue {
+    public items = [{elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Eric Persson', lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Filip Gustavsson', lärarnamn: 'Fredrik Kronhamn', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Alex henryz', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Linus Styrén' , lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'}];
 
-export default {
-  data () {
-    return {
-      items: items,
-      fields: [
-          { key: 'elevnamn', label: 'Elevnamn', sortable: true, 'class': 'text-center' },
-          { key: 'lärarnamn', label: 'Lärarnamn', sortable: true, 'class': 'text-center'},
-          { key: 'Klass', label: 'Klass', sortable: true, 'class': 'text-center'},
-          { key: 'utgångsdatum', label: 'Utgångsdatum', sortable: true, 'class': 'text-center'},
-      ],
-      currentPage: 1,
-      perPage: 5,
-      totalRows: items.length,
-      pageOptions: [ 5, 10, 15 ],
-      sortBy: null,
-      sortDesc: true,
-      sortDirection: 'asc',
-      filter: null,
-      modalInfo: { title: '', content: '' }
-    }
-  },
-  computed: {
-    sortOptions () {
+    public fields = [
+        { key: 'elevnamn', label: 'Elevnamn', sortable: true, class: 'text-center' },
+        { key: 'lärarnamn', label: 'Lärarnamn', sortable: true, class: 'text-center'},
+        { key: 'Klass', label: 'Klass', sortable: true, class: 'text-center'},
+        { key: 'utgångsdatum', label: 'Utgångsdatum', sortable: true, class: 'text-center'},
+    ];
+
+    public currentPage = 1;
+
+    public perPage = 5;
+    public totalRows = this.items.length;
+    public pageOptions = [ 5, 10, 15 ];
+    public sortBy = null;
+    public sortDesc = true;
+    public sortDirection = 'asc';
+    public filter = null;
+    public modalInfo = { title: '', content: '' };
+
+    get sortOptions() {
       // Create an options list from our fields
       return this.fields
-        .filter(f => f.sortable)
-        .map(f => { return { text: f.label, value: f.key } })
+        .filter((f: any) => f.sortable)
+        .map((f: any) => Object({ text: f.label,
+                    value: f.key }) );
     }
-  },
-  methods: {
-    info (item, index, button) {
-      this.modalInfo.title = `Row index: ${index}`
-      this.modalInfo.content = JSON.stringify(item, null, 2)
-      this.$root.$emit('bv::show::modal', 'modalInfo', button)
-    },
-    resetModal () {
-      this.modalInfo.title = ''
-      this.modalInfo.content = ''
-    },
-    onFiltered (filteredItems) {
+
+    public info(item: any, index: number, button: any) {
+      this.modalInfo.title = `Row index: ${index}`;
+      this.modalInfo.content = JSON.stringify(item, null, 2);
+      this.$root.$emit('bv::show::modal', 'modalInfo', button);
+    }
+
+    public resetModal() {
+      this.modalInfo.title = '';
+      this.modalInfo.content = '';
+    }
+
+    public onFiltered(filteredItems: any) {
       // Trigger pagination to update the number of buttons/pages due to filtering
-      this.totalRows = filteredItems.length
-      this.currentPage = 1
+      this.totalRows = filteredItems.length;
+      this.currentPage = 1;
     }
-  }
 }
 </script>
 
