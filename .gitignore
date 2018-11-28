@@ -8,11 +8,13 @@ backend/db/*.sqlite3-journal
 backend/public/
 backend/coverage/
 backend/spec/tmp
+backend/config/secrets.yml
 *.orig
 rerun.txt
 pickle-email-*.html
 
-.DS_store
+
+.DS_Store
 
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo
 #config/initializers/secret_token.rb
