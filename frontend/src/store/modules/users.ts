@@ -21,7 +21,7 @@ const actions = {
   all (context : any, request : any) {
     UsersAPI.all()
              .then((response : any) => response.forEach((user : any) => context.commit('setUser', user)))
-             .then((error : any) => context.commit('failure', error));
+             .catch((error : any) => context.commit('failure', error));
   }
 }
 
