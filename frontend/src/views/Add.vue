@@ -31,17 +31,15 @@ import CanvasContainer from '@/components/CanvasContainer.vue';
 })
 
 export default class Add extends Vue {
-    
-    type = 'Lån';
+    public type = 'Lån';
+    public displayLoan = 'block';
+    public displayCig = 'none';
 
-    displayLoan = 'block'
-    displayCig = 'none'
-
-    onChangeType(type : string) {
+    public onChangeType(type: string) {
         this.type = type;
-        if(this.type == 'Lån'){
+        if (this.type === 'Lån') {
             this.displayLoan = 'block';
-            this.displayCig = 'none';   
+            this.displayCig = 'none';
         } else {
             this.displayLoan = 'none';
             this.displayCig = 'flex';

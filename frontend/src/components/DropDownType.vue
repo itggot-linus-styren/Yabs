@@ -13,21 +13,20 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class DropDownType extends Vue {
 
-    @Prop({default: ''})
-    selectedType: string;
+    @Prop({default: ''}) public selectedType!: string;
 
-    type = this.selectedType;
+    public type = this.selectedType;
 
-    changeType () {
-        this.$emit('change-type', this.type)
+    public changeType() {
+        this.$emit('change-type', this.type);
     }
 
-    changeToLoan () {
-        this.type = "Lån"
+    public changeToLoan() {
+        this.type = 'Lån';
     }
 
-    changeToCig () {
-        this.type = "ID Kort"
+    public changeToCig() {
+        this.type = 'ID Kort';
     }
 
 }
