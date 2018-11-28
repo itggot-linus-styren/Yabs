@@ -21,7 +21,7 @@ const actions = {
   all (context : any, request : any) {
     LoansAPI.all()
              .then((response : any) => response.forEach((loan : any) => context.commit('setLoan', loan)))
-             .then((error : any) => context.commit('failure', error));
+             .catch((error : any) => context.commit('failure', error));
   },
   create (context : any, request : any) {
     LoansAPI.create(request)

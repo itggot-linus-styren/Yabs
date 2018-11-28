@@ -21,7 +21,7 @@ const actions = {
   all (context : any, request : any) {
     TitlesAPI.all()
              .then((response : any) => response.forEach((title : any) => context.commit('setTitle', title)))
-             .then((error : any) => context.commit('failure', error));
+             .catch((error : any) => context.commit('failure', error));
   },
   create (context : any, request : any) {
     TitlesAPI.create(request)
