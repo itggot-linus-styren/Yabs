@@ -20,10 +20,10 @@ const getters = {
 const actions = {
   all(context: any, request: any) {
     UsersAPI.all()
-             .then((response : any) => response.forEach((user : any) => context.commit('setUser', user)))
-             .catch((error : any) => context.commit('failure', error));
-  }
-}
+             .then((response: any) => response.forEach((user: any) => context.commit('setUser', user)))
+             .catch((error: any) => context.commit('failure', error));
+  },
+};
 
 // mutations
 const mutations = {
