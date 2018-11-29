@@ -7,15 +7,15 @@ class Api::V1::UsersController < ApplicationController
 
   def show
     render json: @user
-  end
+  end 
 
-  # def update
-  #   if @user.update(user_params)
-  #     render json: @user
-  #   else
-  #     render json: @user.errors, status: :unprocessable_entity
-  #   end
-  # end
+  def update
+    if @user.update(user_params)
+      render json: @user
+    else
+      render json: @user.errors, status: :unprocessable_entity
+    end
+  end
 
   private
     # Use callbacks to share common setup or constraints between actions.
@@ -24,7 +24,7 @@ class Api::V1::UsersController < ApplicationController
     end
 
     # # Never trust parameters from the scary internet, only allow the white list through.
-    # def user_params
-    #   params.require(:user).permit(:name)
-    # end
+    def user_params
+      params.require(:user).permit(:profile_image)
+    end
 end

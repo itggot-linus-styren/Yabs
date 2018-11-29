@@ -20,8 +20,8 @@ const getters = {
 const actions = {
   all(context: any, request: any) {
     BooksAPI.all()
-             .then((response: any) => response.forEach((book: any) => context.commit('setBook', book)))
-             .then((error: any) => context.commit('failure', error));
+             .then((response : any) => response.forEach((book : any) => context.commit('setBook', book)))
+             .catch((error : any) => context.commit('failure', error));
   },
   create(context: any, request: any) {
     BooksAPI.create(request)
