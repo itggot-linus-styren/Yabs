@@ -20,8 +20,8 @@ const getters = {
 const actions = {
   all(context: any, request: any) {
     LoansAPI.all()
-             .then((response : any) => response.forEach((loan : any) => context.commit('setLoan', loan)))
-             .catch((error : any) => context.commit('failure', error));
+             .then((response: any) => response.forEach((loan: any) => context.commit('setLoan', loan)))
+             .catch((error: any) => context.commit('failure', error));
   },
   create(context: any, request: any) {
     LoansAPI.create(request)
