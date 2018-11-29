@@ -1,9 +1,20 @@
 <template lang="pug">
     #wrapper
         #left
-            b-button(href="#" :size="size" id="left-button") Profil
-            b-button(href="#" :size="size" id="left-button") Lägg Till
-            b-button(href="#" :size="size" id="left-button") Hitta
+        b-container
+            b-row
+                b-col(class="d-flex justify-content-center" cols="4")
+                    b-button 1 of 2
+                b-col(class="d-flex justify-content-center" cols="4")
+                b-col(class="d-flex justify-content-center" cols="4")
+                    b-button 2 of 2
+                
+            b-row
+                b-col
+                b-col(class="d-flex justify-content-center" cols="6")
+                    b-button.w-100 2 of 3
+                b-col
+
         #right
             b-table(:sory-by.sync='sortBy', :sort-desc.sync='sortDesc', :items='items', :fields='fields')
 
