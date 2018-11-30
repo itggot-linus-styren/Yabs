@@ -24,7 +24,7 @@ export default class CigForm extends Vue {
         const fileList = event.srcElement.files;
 
         for (let i = 0; i < fileList.length; i++) {
-            if (fileList[i].type == 'application/zip') {
+            if (fileList[i].type === 'application/zip') {
                 this.extractFiles(fileList[i]);
             } else {
                 this.files.push(URL.createObjectURL(fileList[i]));
