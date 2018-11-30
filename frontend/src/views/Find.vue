@@ -1,5 +1,5 @@
 <template>
-<div class='allt'>
+<div class='view'>
     <b-container fluid>
         <!-- User Interface controls -->
         <b-row>
@@ -151,4 +151,5 @@ export default class Find extends Vue {
 <style lang="sass">
     .card
         margin: 25px
+
 </style>
