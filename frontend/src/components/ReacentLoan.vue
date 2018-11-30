@@ -14,7 +14,7 @@ export default class ReacentLoan extends Vue {
       public fields = [
         { key: 'elevnamn', sortable: false },
         { key: 'lärarnamn', sortable: false },
-        { key: 'utgångdatum', sortable: false },
+        { key: 'utgångsdatum', sortable: false },
       ];
 
       public items = [
