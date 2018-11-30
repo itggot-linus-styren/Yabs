@@ -1,5 +1,5 @@
 <template>
-<div class='view'>
+<div class='view find'>
     <b-container fluid>
         <!-- User Interface controls -->
         <b-row>
@@ -97,17 +97,17 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Find extends Vue {
-    public items = [{elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-            {elevnamn: 'Eric Persson', lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'},
-            {elevnamn: 'Filip Gustavsson', lärarnamn: 'Fredrik Kronhamn', utgångsdatum: '01-01-2019'},
-            {elevnamn: 'Alex henryz', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-            {elevnamn: 'Linus Styrén' , lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'}];
+    public items = [{elevnamn: 'Simon Johannesson',klass: 'TE4', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Eric Persson',klass: 'TE4', lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Filip Gustavsson',klass: 'TE4', lärarnamn: 'Fredrik Kronhamn', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Alex henryz',klass: 'TE4', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Linus Styrén' ,klass: 'TE4', lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'}];
 
     public fields = [
-        { key: 'elevnamn', label: 'Elevnamn', sortable: true, class: 'text-center' },
-        { key: 'lärarnamn', label: 'Lärarnamn', sortable: true, class: 'text-center'},
-        { key: 'Klass', label: 'Klass', sortable: true, class: 'text-center'},
-        { key: 'utgångsdatum', label: 'Utgångsdatum', sortable: true, class: 'text-center'},
+        { key: 'elevnamn', label: 'Elevnamn', sortable: true, class: 'text-left' },
+        { key: 'lärarnamn', label: 'Lärarnamn', class: 'text-left'},
+        { key: 'klass', label: 'Klass', sortable: true, class: 'text-left'},
+        { key: 'utgångsdatum', label: 'Utgångsdatum', sortable: true, class: 'text-left'},
     ];
 
     public currentPage = 1;
@@ -152,4 +152,8 @@ export default class Find extends Vue {
     .card
         margin: 25px
 
+    .find
+        margin-left: 25% 
+        width: 50vw
+        margin-top: 70px    
 </style>
