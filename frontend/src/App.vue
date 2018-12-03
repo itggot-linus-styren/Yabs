@@ -1,14 +1,29 @@
-<template>
-  <div class="app">
-    <HeaderNav/>
-    <router-view/>
-  </div>
+<template lang="pug">
+  .app
+    HeaderNav
+    router-view
+
 </template>
 
 <style lang="sass">
+  
   .app
     width: 100vw
     height: 100vh
+
+  .view
+    position: absolute
+    z-index: 100
+    top: 56px
+    bottom: 0
+    width: 100%
+    display: flex
+    flex-direction: row
+
+  @media only screen and (max-width: 808px)
+    .view
+      flex-direction: column
+    
 </style>
 
 <script lang="ts">

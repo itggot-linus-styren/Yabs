@@ -3,18 +3,15 @@
         #left
         b-container
             b-row
-                b-col(class="d-flex justify-content-center" cols="4")
-                    b-button 1 of 2
-                b-col(class="d-flex justify-content-center" cols="4")
-                b-col(class="d-flex justify-content-center" cols="4")
-                    b-button 2 of 2
-                
+                b-col
+                    b-button(class="row-btn" :size="size" :variant="primary") Profil
             b-row
                 b-col
-                b-col(class="d-flex justify-content-center" cols="6")
-                    b-button.w-100 2 of 3
+                    b-button(class="row-btn" :size="size" :variant="primary") Hitta
+            b-row
                 b-col
-
+                    b-button(class="row-btn" :size="size" :variant="primary") Lägg Till
+                    
         #right
             b-table(:sory-by.sync='sortBy', :sort-desc.sync='sortDesc', :items='items', :fields='fields')
 
@@ -28,6 +25,7 @@ export default class Start extends Vue {
     sortBy = 'utgångsdatum'
     sortDesc = false
     size = "lg"
+    primary = "primary"
     fields = [
         {key:'elevnamn', sortable:false},
         {key:'lärarnamn', sortable:false},
@@ -46,26 +44,25 @@ export default class Start extends Vue {
     display:flex;
     flex-direction: row;
     justify-content: space-between;
-    
 }
 
 #left{
-    display: grid;
-    margin: 80px;
-    grid-template-columns: inherit inherit inherit;
-    grid-template-rows: auto;
-    grid-template-areas: 
-     "header header header"
-     "main main main"
-     ". . .";
-}
-
-#left-button{
-    margin: 20px;
+    display: flex;
+    flex-direction: column;
+    margin: 100px;
 }
 
 #right{
     margin: 100px;
+}
+
+.container{
+    margin-top: 100px;
+}
+
+.row-btn{
+    width: inherit;
+    margin-bottom: 10px;
 }
 
 </style>
