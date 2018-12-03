@@ -21,8 +21,8 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import CigCanvas from '@/components/CigCanvas.vue';
 
 @Component({
-    components:{
-        CigCanvas
+    components: {
+        CigCanvas,
     },
 })
 export default class CanvasContainer extends Vue {

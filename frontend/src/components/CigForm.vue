@@ -10,35 +10,35 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import JSZip from "jszip";
+import JSZip from 'jszip';
 
 @Component
 export default class CigForm extends Vue {
-    public files: Array<string> = [];
+    public files: string[] = [];
 
     public submit() {
         console.log(this.files);
     }
 
     public onFileSelect(event: any) {
-        let fileList = event.srcElement.files
+        const fileList = event.srcElement.files;
 
-        for (let i = 0; i < fileList.length; i++) {
-            if (fileList[i].type == 'application/zip') {
-                this.extractFiles(fileList[i])
+        for (const fileObject of fileList) {
+            if (fileObject.type === 'application/zip') {
+                this.extractFiles(fileObject);
             } else {
-                this.files.push(URL.createObjectURL(fileList[i]));
+                this.files.push(URL.createObjectURL(fileObject));
             }
         }
     }
 
-    public loadFileData(files: Array<any>, fileIndex: number, fileData: any) {
-        let file = new File([fileData], files[fileIndex].name, { type: 'image/jpeg' });
+    public loadFileData(files: any[], fileIndex: number, fileData: any) {
+        const file = new File([fileData], files[fileIndex].name, { type: 'image/jpeg' });
         this.files.push(URL.createObjectURL(file));
     }
 
     public loadFiles(extZip: any) {
-        let files: any = Object.values(extZip.files)
+        const files: any = Object.values(extZip.files);
         for (let i = 0; i < files.length; i++) {
             if (files[i].name.includes('__MACOSX/') === false) {
                 extZip.files[files[i].name].async('blob')
