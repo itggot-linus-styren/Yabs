@@ -12,34 +12,14 @@ export default class ReacentLoan extends Vue {
       public sortBy = 'utgångsdatum';
       public sortDesc = false;
       public fields = [
-        { key: 'elevnamn', sortable: false },
-        { key: 'lärarnamn', sortable: false },
-        { key: 'utgångsdatum', sortable: false },
+        { key: 'Låntagare', sortable: false },
+        { key: 'Utlånare', sortable: false },
+        { key: 'Bok', sortable: false },
+        { key: 'Utgångsdatum', sortable: false },
       ];
 
       public items = [
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
       ];
     }
 </script>
