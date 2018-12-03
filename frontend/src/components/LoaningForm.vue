@@ -25,7 +25,8 @@ export default class LoaningForm extends Vue {
 
     public onSubmit(evt: Event) {
         evt.preventDefault();
-        alert(JSON.stringify(this.form));
+        console.log(this.$store.dispatch('loans/create', this.form));
+        //alert(JSON.stringify(this.form));
     }
 
     public onReset(evt: Event) {
