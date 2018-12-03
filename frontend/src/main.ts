@@ -9,7 +9,7 @@ import 'bootstrap-vue/dist/bootstrap-vue.css';
 Vue.config.productionTip = false;
 Vue.use(BootstrapVue);
 
-new Vue({
+const app = new Vue({
   el: '#app',
   router,
   store,
