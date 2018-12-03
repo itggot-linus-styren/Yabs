@@ -1,0 +1,52 @@
+<template lang="pug">
+    b-card.card(bg-variant='light')
+        b-table(:sort-by.sync='sortBy', :sort-desc.sync='sortDesc', :items='items', :fields='fields')
+
+</template>
+
+<script lang="ts">
+import { Component, Prop, Vue } from 'vue-property-decorator';
+
+@Component
+export default class ReacentLoan extends Vue {
+      public sortBy = 'utgångsdatum';
+      public sortDesc = false;
+      public fields = [
+        { key: 'elevnamn', sortable: false },
+        { key: 'lärarnamn', sortable: false },
+        { key: 'utgångsdatum', sortable: false },
+      ];
+
+      public items = [
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+        {elevnamn: 'Simon Johannesson', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+      ];
+    }
+</script>
+
+<style lang="sass" scoped>
+    .card
+        width: 100%
+        height: 100%
+        overflow-y: auto
+</style>

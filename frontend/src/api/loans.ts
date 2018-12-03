@@ -1,53 +1,49 @@
 import axios from 'axios';
 
 const headers = {
-  'Content-Type': 'application/json'
-}
+  'Content-Type': 'application/json',
+};
 
 export default {
 
   async all() {
 
     try {
-      const response = await axios.get(`api/v1/loans`, {headers: headers});
+      const response = await axios.get(`api/v1/loans`, {headers});
       return Promise.resolve(response.data);
-    }
-    catch (error) {
+    } catch (error) {
       return Promise.reject(error);
     }
 
   },
-  async create(request : any) {
+  async create(request: any) {
 
     try {
-      const response = await axios.post(`api/v1/loans`, request, {headers: headers});
+      const response = await axios.post(`api/v1/loans`, request, {headers});
       return Promise.resolve(response.data);
-    }
-    catch (error) {
+    } catch (error) {
       return Promise.reject(error);
     }
 
   },
-  async update(request : any) {
+  async update(request: any) {
 
     try {
-      const response = await axios.patch(`api/v1/loans/${request.id}`, request, {headers: headers});
+      const response = await axios.patch(`api/v1/loans/${request.id}`, request, {headers});
       return Promise.resolve(response.data);
-    }
-    catch (error) {
+    } catch (error) {
       return Promise.reject(error);
     }
 
   },
-  async delete(request : any) {
+  async delete(request: any) {
 
     try {
-      const response = await axios.delete(`api/v1/loans/${request.id}`, {headers: headers});
+      const response = await axios.delete(`api/v1/loans/${request.id}`, {headers});
       return Promise.resolve(response.data.id);
-    }
-    catch (error) {
+    } catch (error) {
       return Promise.reject(error);
     }
 
   },
-}
+};
