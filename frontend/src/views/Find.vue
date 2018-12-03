@@ -97,16 +97,16 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Find extends Vue {
-    public items = [{elevnamn: 'Simon Johannesson',klass: 'TE4', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-            {elevnamn: 'Eric Persson',klass: 'TE4', lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'},
-            {elevnamn: 'Filip Gustavsson',klass: 'TE4', lärarnamn: 'Fredrik Kronhamn', utgångsdatum: '01-01-2019'},
-            {elevnamn: 'Alex henryz',klass: 'TE4', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-            {elevnamn: 'Linus Styrén' ,klass: 'TE4', lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'}];
+    public items = [{elevnamn: 'Simon Johannesson',lån:'The Hobbit', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Eric Persson',lån:'Lord of the flies', lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Filip Gustavsson',lån: 'The hitchhiker\'s guide to the galaxy', lärarnamn: 'Fredrik Kronhamn', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Alex henryz',lån: 'Moby Dick', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Linus Styrén' ,lån: 'Harry Potter 3', lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'}];
 
     public fields = [
-        { key: 'elevnamn', label: 'Elevnamn', sortable: true, class: 'text-left' },
-        { key: 'lärarnamn', label: 'Lärarnamn', class: 'text-left'},
-        { key: 'klass', label: 'Klass', sortable: true, class: 'text-left'},
+        { key: 'elevnamn', label: 'Utlånad till', sortable: true, class: 'text-left' },
+        { key: 'lärarnamn', label: 'Utlånad av', class: 'text-left'},
+        { key: 'lån', label: 'Lån', sortable: true, class: 'text-left'},
         { key: 'utgångsdatum', label: 'Utgångsdatum', sortable: true, class: 'text-left'},
     ];
 
