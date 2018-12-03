@@ -7,28 +7,32 @@
             CigCanvas
                 // antingen bild eller kortet i canvas
         .right
-            h1 hej
+            .header
+                AddLoan
+                .loanText
+                    h1 Lån
+                
             .card
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import CigCanvas from '@/components/CigCanvas.vue';
+import AddLoan from '@/components/AddLoan.vue';
 
 @Component({
-    components:{
-        CigCanvas
+    components: {
+        CigCanvas,
+        AddLoan,
     },
 })
-export default class App extends Vue {
-    
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="sass" scoped>
     .card
         width: 100%
-        height: 95%
+        height: 90%
         overflow-y: auto
         position: relative
         min-width: 0
@@ -39,4 +43,25 @@ export default class App extends Vue {
         display: flex
         flex-direction: row
         justify-content: center
+
+    .header
+        display: flex
+        flex-direction: row
+        justify-content: flex-end
+        margin-bottom: 10px
+
+    .header h1
+        margin: 0
+
+    .loanText
+        height: inherit
+        width: auto
+        display: flex
+        flex-direction: column
+        justify-content: center
+        margin-left: 5%
+        margin-right: 5%
+
+    .right
+        padding-top: 2%
 </style>
