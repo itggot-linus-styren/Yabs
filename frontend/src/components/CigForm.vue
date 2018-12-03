@@ -23,11 +23,11 @@ export default class CigForm extends Vue {
     public onFileSelect(event: any) {
         const fileList = event.srcElement.files;
 
-        for (let i = 0; i < fileList.length; i++) {
-            if (fileList[i].type === 'application/zip') {
-                this.extractFiles(fileList[i]);
+        for (const fileObject of fileList) {
+            if (fileObject.type === 'application/zip') {
+                this.extractFiles(fileObject);
             } else {
-                this.files.push(URL.createObjectURL(fileList[i]));
+                this.files.push(URL.createObjectURL(fileObject));
             }
         }
     }
