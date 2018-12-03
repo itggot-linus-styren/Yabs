@@ -7,7 +7,7 @@ interface UserState {
 }
 
 // initial state
-const state: UserState = {users: {}, failure: null};
+const userState: UserState = {users: {}, failure: null};
 
 // getters
 const getters = {
@@ -37,7 +37,7 @@ const mutations = {
 
 export default {
   namespaced: true,
-  state,
+  userState,
   getters,
   actions,
   mutations,

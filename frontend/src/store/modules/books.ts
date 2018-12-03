@@ -7,7 +7,7 @@ interface BookState {
 }
 
 // initial state
-const state: BookState = {books: {}, failure: null};
+const booksState: BookState = {books: {}, failure: null};
 
 // getters
 const getters = {
@@ -55,7 +55,7 @@ const mutations = {
 
 export default {
   namespaced: true,
-  state,
+  booksState,
   getters,
   actions,
   mutations,
