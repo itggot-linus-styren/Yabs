@@ -11,26 +11,28 @@
                 AddLoan
                 .loanText
                     h1 Lån
-                
-            .card
+            .myCard
+                ReacentLoan
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import CigCanvas from '@/components/CigCanvas.vue';
 import AddLoan from '@/components/AddLoan.vue';
+import ReacentLoan from '@/components/ReacentLoan.vue';
 
 @Component({
     components: {
         CigCanvas,
         AddLoan,
+        ReacentLoan,
     },
 })
 export default class App extends Vue {}
 </script>
 
 <style lang="sass" scoped>
-    .card
+    .myCard
         width: 100%
         height: 90%
         overflow-y: auto
