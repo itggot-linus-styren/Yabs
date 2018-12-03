@@ -7,7 +7,7 @@ interface LoanState {
 }
 
 // initial state
-const state: LoanState = {loans: {}, failure: null};
+const loanState: LoanState = {loans: {}, failure: null};
 
 // getters
 const getters = {
@@ -55,7 +55,7 @@ const mutations = {
 
 export default {
   namespaced: true,
-  state,
+  loanState,
   getters,
   actions,
   mutations,

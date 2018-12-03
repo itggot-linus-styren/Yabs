@@ -7,7 +7,7 @@ interface TitleState {
 }
 
 // initial state
-const state: TitleState = {titles: {}, failure: null};
+const titleState: TitleState = {titles: {}, failure: null};
 
 // getters
 const getters = {
@@ -55,7 +55,7 @@ const mutations = {
 
 export default {
   namespaced: true,
-  state,
+  titleState,
   getters,
   actions,
   mutations,
