@@ -20,7 +20,7 @@ import { Component, Watch, Prop, Vue } from 'vue-property-decorator';
 export default class AddLoan extends Vue {
 
   public input = '';
-  public inputState : boolean | null = null;
+  public inputState: boolean | null = null;
   public options = [{text: '- Choose 1 -', value: ''}, 'Red', 'Green', 'Blue'];
   public inputReturn = '';
   public popoverShow = false;
@@ -58,7 +58,7 @@ export default class AddLoan extends Vue {
       this.focusRef(this.$refs.button);
   }
 
-  public focusRef(ref : any) {
+  public focusRef(ref: any) {
       /* Some references may be a component, functional component, or plain element */
       /* This handles that check before focusing, assuming a focus() method exists */
       /* We do this in a double nextTick to ensure components have updated & popover positioned first */
@@ -68,12 +68,12 @@ export default class AddLoan extends Vue {
     }
 
 
-    @Watch('input')
-  public onInputChange(val: any, old_val: any) {
-    if (val) {
-      this.inputState = true;
+  @Watch('input')
+    public onInputChange(val: any, oldVal: any) {
+        if (val) {
+        this.inputState = true;
+        }
     }
-  }
 
 }
 </script>
