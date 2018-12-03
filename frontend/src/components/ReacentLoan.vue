@@ -9,7 +9,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class ReacentLoan extends Vue {
-      public sortBy = 'utgångsdatum';
+      public sortBy = 'Utgångsdatum';
       public sortDesc = false;
       public fields = [
         { key: 'Låntagare', sortable: false },
@@ -19,6 +19,24 @@ export default class ReacentLoan extends Vue {
       ];
 
       public items = [
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
+        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
         {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
       ];
     }
