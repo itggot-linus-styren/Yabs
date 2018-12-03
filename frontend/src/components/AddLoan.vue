@@ -68,12 +68,12 @@ export default class AddLoan extends Vue {
     }
 
 
-  @Watch('input')
-    public onInputChange(val: any, oldVal: any) {
-        if (val) {
-        this.inputState = true;
-        }
+    @Watch('input')
+  public onInputChange(val: any, oldVal: any) {
+    if (val) {
+      this.inputState = true;
     }
+  }
 
 }
 </script>
