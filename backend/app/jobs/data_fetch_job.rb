@@ -9,18 +9,18 @@ class DataFetchJob < ApplicationJob
     scopes =  ['https://www.googleapis.com/auth/admin.directory.group.readonly','https://www.googleapis.com/auth/admin.directory.user.readonly']
     client = GoogleApiClient.new(Google::Apis::AdminDirectoryV1::DirectoryService, scopes, Rails.application.secrets.google_client_secrets, 'johanneberg.laneservice@ga.ntig.se')
     data = client.service.list_users(domain: 'ga.ntig.se', query: "orgUnitPath='/Johanneberg'", max_results: 500)
-    insertdata(data.users, token)
+    insert_data(data.users, token)
     data = client.service.list_users(domain: 'elev.ga.ntig.se', query: "orgUnitPath='/Johanneberg'", max_results: 500)
-    insertdata(data.users, token)
+    insert_data(data.users, token)
     while data.next_page_token != nil
       data = client.service.list_users(domain: 'elev.ga.ntig.se', page_token: data.next_page_token, query: "orgUnitPath='/Johanneberg'")
-      insertdata(data.users, token)
+      insert_data(data.users, token)
     end
     delete_users(token)
     DataFetchJob.set(wait: 24.hours).perform_later
   end
 
-  def insertdata(users, token)
+  def insert_data(users, token)
     users.each do |person|
       token << person.id
       uid = Time.new.year.to_s[2..-1] + person.id.to_str[13..-1]
