@@ -1,10 +1,10 @@
 <template lang="pug">
     .root
-        #canvasContainer()
+        #canvasContainer
             canvas#canvas(ref='canvas')
             img#barcode(hidden='' ref='barcode')
             //- button(@click='downloadCanvas') Download
-            img#profile(hidden='' ref='profile' src='@/assets/profil.jpg')
+            //- img#profile(hidden='' ref='profile' src='@/assets/profil.jpg')
 
 
 </template>
@@ -22,63 +22,74 @@ export default class CigCanvas extends Vue {
 
     @Prop({default: false}) public updated!: boolean;
 
-    canvasWidth: number = 0;
+    public width: number = 0;
+    public height: number = 0;
+    public size: number = 1;
+    public context: any = null;
 
-    public canvas() {
-        const size = 1;
-        const x: HTMLCanvasElement | any  = this.$refs.canvas;
-        const ctx = x.getContext('2d');
-        const width = x.width;
-        const height = x.height;
-        const img = this.$refs.profile;
-        // console.log(width)
-        // console.log(height)
-        ctx.drawImage(img, width/2, 0, width/1.5, height/2);
-        ctx.font = '15px Arial';
-        ctx.textAlign = 'center';
-        ctx.fillText('Namn Namnsson', width/2, 100);
-        ctx.fillText('Elev', width/2, 200 * size);
-        ctx.font = '10px Arial';
-        ctx.fillText('namn.namnsson@elev.ga.ntig.se', width/2, 240 * size);
+    @Watch('updated')
+    public generateCanvas() {
+
+        this.getCanvasContainerSize();
+        this.setCanvasSize();
+        this.drawText();
+        this.drawImages();
+
         const element = this.$refs.barcode;
         JsBarcode(element, '1853563462');
 
         setTimeout(() => {
             const brdcode = this.$refs.barcode;
-            ctx.drawImage(brdcode, 25 * size, 250 * size, 150 * size, 50 * size);
+            this.context.drawImage(brdcode, 25 * this.size, 250 * this.size, 150 * this.size, 50 * this.size);
         }, 100);
     }
 
+    public getCanvasContainerSize() {
+        this.width = document.getElementById('canvasContainer').offsetWidth;
+        this.height = this.width * 1.56;
+    }
+
+    public setCanvasSize() {
+        const htmlCanvasElement: HTMLCanvasElement | any = this.$refs.canvas;
+        this.context = htmlCanvasElement.getContext('2d');
+
+        this.context.canvas.width = this.width;
+        this.context.canvas.height = this.height;
+    }
+
+    public drawImages() {
+        let profileImage = new Image;
+        profileImage.src = '@/assets/profil.jpg';
+
+        this.context.drawImage(profileImage, this.width / 2, 0, this.width / 1.5, this.width / 2);
+    }
+
+    public drawText() {
+        this.context.font = '15px Arial';
+        this.context.textAlign = 'center';
+        this.context.fillText('Namn Namnsson', this.width / 2, 100);
+        this.context.fillText('Elev', this.width / 2, 200 * this.size);
+        this.context.font = '10px Arial';
+        this.context.fillText('namn.namnsson@elev.ga.ntig.se', this.width / 2, 240 * this.size);
+    }
+
     public downloadCanvas() {
-        const zip = new JSZip();
-        const canvas: HTMLCanvasElement | any = this.$refs.canvas;
-        canvas.toBlob(function(blob: any) {
-        zip.file('name.png', blob);
-        zip.generateAsync({type: 'blob'}).then(function(blob) {
-            // window.location = "data:application/zip;base64," + base64;
-            FileSaver.saveAs(blob, 'cards.zip');
-        });
-        });
+    const zip = new JSZip();
+    const canvas: HTMLCanvasElement | any = this.$refs.canvas;
+    canvas.toBlob(function(blob: any) {
+    zip.file('name.png', blob);
+    zip.generateAsync({type: 'blob'}).then(function(blob) {
+        // window.location = "data:application/zip;base64," + base64;
+        FileSaver.saveAs(blob, 'cards.zip');
+    });
+    });
 
     }
 
-    @Watch('updated')
-    public getCanvasWidth() {
-        console.log("IM IN CANVAS")
-        this.canvasWidth = document.getElementById("canvasContainer").offsetWidth
-        console.log(this.canvasWidth)
+    public mounted() {
+        this.generateCanvas();
     }
 
-    mounted() {
-
- 
-        // this.$nextTick(function () {
-        //     this.getCanvasWidth()
-        // })
-        // this.getCanvasWidth();
-
-        setTimeout(this.canvas, 100);
-    }
 }
 </script>
 
@@ -90,8 +101,9 @@ export default class CigCanvas extends Vue {
         margin-bottom: 1%
         margin-right: 1%
         justify-self: center
+        border: lightgrey solid
     
-    #canvasContainer, #canvas
+    #canvasContainer
         width: inherit
         height: inherit
 
