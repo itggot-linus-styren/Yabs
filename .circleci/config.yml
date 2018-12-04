@@ -17,6 +17,8 @@ workflows:
           context: coverage
 jobs:
   lint:
+    docker:
+      - image: circleci/node:8-stretch
     working_directory: ~/Yabs/frontend
     steps:
       - run:
