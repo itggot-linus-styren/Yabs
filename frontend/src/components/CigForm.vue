@@ -3,8 +3,8 @@
         b-card(bg-variant='light')
             //- lable(for="file", name="file") Välj en eller flera billder/zipfiler
             input.input-file(multiple type="file" id="file" name="file" accept="image/*, .zip" @change="onFileSelect")
-            
-            b-button(@click='submit' variant='primary') Lägg till     
+
+            b-button(@click='submit' variant='primary') Lägg till
 
 </template>
 
@@ -15,15 +15,20 @@ import JSZip from 'jszip';
 @Component
 export default class CigForm extends Vue {
     public files: string[] = [];
+    public fileList: File[] = [];
 
     public submit() {
         console.log(this.files);
+        let formData = new FormData();
+        formData.append("id", "1804583927");
+        formData.append("image", this.fileList[0]);
+        console.log(this.$store.dispatch('users/update', formData));
     }
 
     public onFileSelect(event: any) {
-        const fileList = event.srcElement.files;
+        this.fileList = event.srcElement.files;
 
-        for (const fileObject of fileList) {
+        for (const fileObject of this.fileList) {
             if (fileObject.type === 'application/zip') {
                 this.extractFiles(fileObject);
             } else {
@@ -67,5 +72,5 @@ export default class CigForm extends Vue {
 <style lang="sass">
     img
         height: 200px
- 
+
 </style>
