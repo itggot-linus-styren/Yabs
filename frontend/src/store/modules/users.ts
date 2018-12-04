@@ -23,6 +23,11 @@ const actions = {
              .then((response: any) => response.forEach((user: any) => context.commit('setUser', user)))
              .catch((error: any) => context.commit('failure', error));
   },
+  update(context: any, request: any) {
+    UsersAPI.update(request)
+             .then((response: any) => context.commit('setUser', response))
+             .catch((error: any) => context.commit('failure', error));
+  }
 };
 
 // mutations

@@ -27,3 +27,5 @@ loan.loaned_by = user1
 loan.book = book
 loan.save
 
+Book.create(barcode: "0001", status: "OK", title: title)
+Book.create(barcode: "0002", status: "OK", title: title)

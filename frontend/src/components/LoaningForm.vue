@@ -17,26 +17,22 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 @Component
 export default class LoaningForm extends Vue {
     public form = {
-        lent_by_id: '1804583927',
-        loaned_by_id: '',
-        book_id: '',
+        lent_by_id: "1804583927",
+        loaned_by_id: "",
+        book_id: "",
     };
     public show = true;
 
     public onSubmit(evt: Event) {
         evt.preventDefault();
-        console.log(this.$store.dispatch('loans/create', {
-            lent_by_id: '1804583927',
-            loaned_by_id: '1854282603',
-            book_id: '1',
-        }));
+        console.log(this.$store.dispatch('loans/create', this.form));
         // alert(JSON.stringify(this.form));
     }
 
     public onReset(evt: Event) {
         evt.preventDefault();
-        this.form.loaned_by_id = '';
-        this.form.book_id = '';
+        this.form.loaned_by_id = "";
+        this.form.book_id = "";
         this.show = false;
         this.$nextTick(() => { this.show = true; });
     }
