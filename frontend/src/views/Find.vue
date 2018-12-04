@@ -97,11 +97,17 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
 export default class Find extends Vue {
-    public items = [{elevnamn: 'Simon Johannesson',lån:'The Hobbit', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-            {elevnamn: 'Eric Persson',lån:'Lord of the flies', lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'},
-            {elevnamn: 'Filip Gustavsson',lån: 'The hitchhiker\'s guide to the galaxy', lärarnamn: 'Fredrik Kronhamn', utgångsdatum: '01-01-2019'},
-            {elevnamn: 'Alex henryz',lån: 'Moby Dick', lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
-            {elevnamn: 'Linus Styrén' ,lån: 'Harry Potter 3', lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'}];
+    public items = [ // Mockup
+            {elevnamn: 'Simon Johannesson', lån: 'The Hobbit',
+            lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Eric Persson', lån: 'Lord of the flies',
+            lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Filip Gustavsson', lån: 'The hitchhiker\'s guide to the galaxy',
+            lärarnamn: 'Fredrik Kronhamn', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Alex henryz', lån: 'Moby Dick',
+            lärarnamn: 'Daniel Berg', utgångsdatum: '01-01-2019'},
+            {elevnamn: 'Linus Styrén' , lån: 'Harry Potter 3',
+            lärarnamn: 'David Lundholm', utgångsdatum: '01-01-2019'}];
 
     public fields = [
         { key: 'elevnamn', label: 'Utlånad till', sortable: true, class: 'text-left' },
