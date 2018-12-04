@@ -1,18 +1,8 @@
 <template lang="pug">
     .card
         .grid-container
-            CigCanvas
-            CigCanvas
-            CigCanvas
-            CigCanvas
-            CigCanvas
-            CigCanvas
-            CigCanvas
-            CigCanvas
-            CigCanvas
-            CigCanvas
-            CigCanvas
-            CigCanvas
+            CigCanvas(v-for="canvas in container")
+            
 </template>
 
 
@@ -26,6 +16,9 @@ import CigCanvas from '@/components/CigCanvas.vue';
     },
 })
 export default class CanvasContainer extends Vue {
+
+    public container: number = 10;
+
 }
 </script>
 
