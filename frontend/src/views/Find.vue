@@ -106,7 +106,7 @@ export default class Find extends Vue {
     public fields = [
         { key: 'elevnamn', label: 'Utlånad till', sortable: true, class: 'text-left' },
         { key: 'lärarnamn', label: 'Utlånad av', class: 'text-left'},
-        { key: 'lån', label: 'Lån', sortable: true, class: 'text-left'},
+        { key: 'lån', label: 'Material', sortable: true, class: 'text-left'},
         { key: 'utgångsdatum', label: 'Utgångsdatum', sortable: true, class: 'text-left'},
     ];
 
