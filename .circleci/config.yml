@@ -2,6 +2,7 @@ workflows:
   version: 2
   commit:
     jobs:
+      - lint
       - run-tests
   nightly:
     triggers:
@@ -15,6 +16,17 @@ workflows:
       - run-tests:
           context: coverage
 jobs:
+  lint:
+    working_directory: ~/Yabs/frontend
+    steps:
+      - run:
+        name: install dependencies
+        command: |
+          npm install
+      - run:
+        name: Lint
+        command: |
+          npm run serve lintnf
   run-tests:
     docker:
        - image: circleci/ruby:2.5.1-node-browsers
