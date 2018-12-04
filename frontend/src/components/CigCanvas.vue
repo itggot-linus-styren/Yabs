@@ -20,6 +20,8 @@ import { setTimeout } from 'timers';
 @Component
 export default class CigCanvas extends Vue {
 
+    canvasWidth: number = 0;
+
     public canvas() {
         const size = 1;
         const x: HTMLCanvasElement | any  = this.$refs.canvas;
@@ -56,6 +58,10 @@ export default class CigCanvas extends Vue {
         });
         });
 
+    }
+
+    public getCanvasWidth() {
+        this.canvasWidth = this.$refs.canvasContainer.clientWidth;
     }
 
     mounted() {
