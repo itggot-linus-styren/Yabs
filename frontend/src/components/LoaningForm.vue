@@ -19,14 +19,18 @@ export default class LoaningForm extends Vue {
     public form = {
         lent_by_id: '1804583927',
         loaned_by_id: '',
-        book_id: ''
+        book_id: '',
     };
     public show = true;
 
     public onSubmit(evt: Event) {
         evt.preventDefault();
-        console.log(this.$store.dispatch('loans/create', this.form));
-        //alert(JSON.stringify(this.form));
+        console.log(this.$store.dispatch('loans/create', {
+            lent_by_id: '1804583927',
+            loaned_by_id: '1854282603',
+            book_id: '1',
+        }));
+        // alert(JSON.stringify(this.form));
     }
 
     public onReset(evt: Event) {
