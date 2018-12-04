@@ -49,26 +49,7 @@ export default class Add extends Vue {
 </script>
 
 <style lang="sass" scoped>
-    .left
-        width: 50%
-        height: 100%
-        padding: 10%
-        padding-top: 5%
-
-    .right
-        width: 50%
-        height: 100%
-        padding: 5%
-        padding-left: 0px
-
     @media only screen and (max-width: 808px)
-        .right, .left
-            width: 100%
-            display: flex
-            flex-direction: row
-            justify-content: center
-            padding: 0px
-
         .left
             height: 43%
     
