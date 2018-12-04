@@ -21,6 +21,8 @@ jobs:
       - image: circleci/node:8-stretch
     working_directory: ~/Yabs/frontend
     steps:
+      - checkout:
+          path: ~/Yabs
       - run:
           path: ~/Yabs/frontend
           name: install dependencies
