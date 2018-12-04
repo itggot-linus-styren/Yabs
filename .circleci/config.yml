@@ -32,7 +32,7 @@ jobs:
           path: ~/Yabs/frontend
           name: Lint
           command: |
-            npm run serve lintnf
+            npm run lintnf
   run-tests:
     docker:
        - image: circleci/ruby:2.5.1-node-browsers
