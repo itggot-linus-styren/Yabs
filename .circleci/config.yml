@@ -22,13 +22,13 @@ jobs:
     working_directory: ~/Yabs/frontend
     steps:
       - run:
-        name: install dependencies
-        command: |
-          npm install
+          name: install dependencies
+          command: |
+            npm install
       - run:
-        name: Lint
-        command: |
-          npm run serve lintnf
+          name: Lint
+          command: |
+            npm run serve lintnf
   run-tests:
     docker:
        - image: circleci/ruby:2.5.1-node-browsers
