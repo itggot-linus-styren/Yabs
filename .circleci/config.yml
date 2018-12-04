@@ -22,10 +22,12 @@ jobs:
     working_directory: ~/Yabs/frontend
     steps:
       - run:
+          path: ~/Yabs/frontend
           name: install dependencies
           command: |
             npm install
       - run:
+          path: ~/Yabs/frontend
           name: Lint
           command: |
             npm run serve lintnf
