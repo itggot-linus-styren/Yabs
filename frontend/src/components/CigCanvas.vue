@@ -3,9 +3,8 @@
         #canvasContainer
             canvas#canvas(ref='canvas')
             img#barcode(hidden='' ref='barcode')
+            img#profile(hidden='' ref='profile' src='@/assets/profil.jpg')
             //- button(@click='downloadCanvas') Download
-            //- img#profile(hidden='' ref='profile' src='@/assets/profil.jpg')
-
 
 </template>
 
@@ -33,15 +32,8 @@ export default class CigCanvas extends Vue {
         this.getCanvasContainerSize();
         this.setCanvasSize();
         this.drawText();
-        this.drawImages();
-
-        const element = this.$refs.barcode;
-        JsBarcode(element, '1853563462');
-
-        setTimeout(() => {
-            const brdcode = this.$refs.barcode;
-            this.context.drawImage(brdcode, 25 * this.size, 250 * this.size, 150 * this.size, 50 * this.size);
-        }, 100);
+        setTimeout(() => this.drawImages(), 100)
+        
     }
 
     public getCanvasContainerSize() {
@@ -58,19 +50,25 @@ export default class CigCanvas extends Vue {
     }
 
     public drawImages() {
-        let profileImage = new Image;
-        profileImage.src = '@/assets/profil.jpg';
+        // let profileImage = new Image;
+        // profileImage.src = '@/assets/profil.jpg';
+        let profileImage = this.$refs.profile;
+        let brdcode = this.$refs.barcode;
 
-        this.context.drawImage(profileImage, this.width / 2, 0, this.width / 1.5, this.width / 2);
+        let element = this.$refs.barcode;
+        JsBarcode(element, '1853563462');
+
+        this.context.drawImage(profileImage, this.width/4, 0, this.width/2, this.width/1.5);
+        this.context.drawImage(brdcode, this.width/4, this.width*1.1, this.width/2, this.width/4);
     }
 
     public drawText() {
         this.context.font = '15px Arial';
         this.context.textAlign = 'center';
-        this.context.fillText('Namn Namnsson', this.width / 2, 100);
-        this.context.fillText('Elev', this.width / 2, 200 * this.size);
+        this.context.fillText('Namn Namnsson', this.width/2, this.height/2);
+        this.context.fillText('Elev', this.width/2, this.height/1.7);
         this.context.font = '10px Arial';
-        this.context.fillText('namn.namnsson@elev.ga.ntig.se', this.width / 2, 240 * this.size);
+        this.context.fillText('namn.namnsson@elev.ga.ntig.se', this.width/2, this.height/1.5);
     }
 
     public downloadCanvas() {
