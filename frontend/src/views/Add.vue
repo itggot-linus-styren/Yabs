@@ -8,7 +8,7 @@
                 CigForm(v-bind:style='{ display: displayCig }')
         .right
             ReacentLoan(v-bind:style='{ display: displayLoan }')
-            CanvasContainer(v-bind:style='{ display: displayCig }')
+            CanvasContainer(v-bind:style='{ display: displayCig }' v-bind:updated='updated')
 
 </template>
 
@@ -34,9 +34,12 @@ export default class Add extends Vue {
     public type = 'Lån';
     public displayLoan = 'block';
     public displayCig = 'none';
+    public updated = false;
 
     public onChangeType(type: string) {
         this.type = type;
+        this.updated = true;
+
         if (this.type === 'Lån') {
             this.displayLoan = 'block';
             this.displayCig = 'none';
@@ -45,11 +48,31 @@ export default class Add extends Vue {
             this.displayCig = 'flex';
         }
     }
+
 }
 </script>
 
 <style lang="sass" scoped>
+    .left
+        width: 50%
+        height: 100%
+        padding: 10%
+        padding-top: 5%
+
+    .right
+        width: 50%
+        height: 100%
+        padding: 5%
+        padding-left: 0px
+
     @media only screen and (max-width: 808px)
+        .right, .left
+            width: 100%
+            display: flex
+            flex-direction: row
+            justify-content: center
+            padding: 0px
+
         .left
             height: 43%
     

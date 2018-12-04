@@ -1,13 +1,11 @@
 <template lang="pug">
     .card
         .grid-container
-            CigCanvas(v-for="canvas in container")
-            
+            CigCanvas(v-for="canvas in container" v-bind:updated='updated')
 </template>
 
-
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import CigCanvas from '@/components/CigCanvas.vue';
 
 @Component({
@@ -16,6 +14,8 @@ import CigCanvas from '@/components/CigCanvas.vue';
     },
 })
 export default class CanvasContainer extends Vue {
+
+    @Prop({default: false}) public updated!: boolean;
 
     public container: number = 10;
 
@@ -37,7 +37,6 @@ export default class CanvasContainer extends Vue {
         flex-direction: row
         justify-content: center
         
-
     .grid-container
         margin-top: 10px
         margin-bottom: 10px
@@ -49,8 +48,5 @@ export default class CanvasContainer extends Vue {
         grid-column-gap: 10px
         grid-row-gap: 10px
         
-
-
-
 </style>
 

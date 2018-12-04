@@ -1,6 +1,6 @@
 <template lang="pug">
     .root
-        .canvasContainer(ref="")
+        #canvasContainer()
             canvas#canvas(ref='canvas')
             img#barcode(hidden='' ref='barcode')
             //- button(@click='downloadCanvas') Download
@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import JsBarcode from 'jsbarcode';
 import JSZip from 'jszip';
 import JQuery from 'jquery';
@@ -19,6 +19,8 @@ import { setTimeout } from 'timers';
 
 @Component
 export default class CigCanvas extends Vue {
+
+    @Prop({default: false}) public updated!: boolean;
 
     canvasWidth: number = 0;
 
@@ -29,9 +31,9 @@ export default class CigCanvas extends Vue {
         const width = x.width;
         const height = x.height;
         const img = this.$refs.profile;
+        // console.log(width)
+        // console.log(height)
         ctx.drawImage(img, width/2, 0, width/1.5, height/2);
-        console.log(width)
-        console.log(height)
         ctx.font = '15px Arial';
         ctx.textAlign = 'center';
         ctx.fillText('Namn Namnsson', width/2, 100);
@@ -60,17 +62,20 @@ export default class CigCanvas extends Vue {
 
     }
 
+    @Watch('updated')
     public getCanvasWidth() {
-        this.canvasWidth = this.$refs.canvasContainer.clientWidth;
+        console.log("IM IN CANVAS")
+        this.canvasWidth = document.getElementById("canvasContainer").offsetWidth
+        console.log(this.canvasWidth)
     }
 
     mounted() {
 
-        const that = this
-        that.showDiv = true
-        that.$nextTick(function () {
-        that.getWindowWidth()
-        })
+ 
+        // this.$nextTick(function () {
+        //     this.getCanvasWidth()
+        // })
+        // this.getCanvasWidth();
 
         setTimeout(this.canvas, 100);
     }
@@ -86,7 +91,7 @@ export default class CigCanvas extends Vue {
         margin-right: 1%
         justify-self: center
     
-    .canvasContainer, #canvas
+    #canvasContainer, #canvas
         width: inherit
         height: inherit
 
