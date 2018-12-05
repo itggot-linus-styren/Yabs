@@ -51,7 +51,7 @@ export default class Add extends Vue {
     }
 
     public onSendUserData(userData) {
-        this.userData = userData
+        this.userData = userData;
     }
 
 }
