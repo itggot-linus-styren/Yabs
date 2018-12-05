@@ -8,7 +8,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component
-export default class ReacentLoan extends Vue {
+export default class RecentLoan extends Vue {
       public sortBy = 'Utgångsdatum';
       public sortDesc = false;
       public fields = [
