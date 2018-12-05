@@ -12,20 +12,20 @@
                 .loanText
                     h1 Lån
             .myCard
-                ReacentLoan
+                RecentLoan
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import CigCanvas from '@/components/CigCanvas.vue';
 import AddLoan from '@/components/AddLoan.vue';
-import ReacentLoan from '@/components/ReacentLoan.vue';
+import RecentLoan from '@/components/RecentLoan.vue';
 
 @Component({
     components: {
         CigCanvas,
         AddLoan,
-        ReacentLoan,
+        RecentLoan,
     },
 })
 export default class App extends Vue {}
