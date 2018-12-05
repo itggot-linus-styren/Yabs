@@ -55,7 +55,7 @@ const mutations = {
 
 export default {
   namespaced: true,
-  loanState,
+  state: loanState,
   getters,
   actions,
   mutations,

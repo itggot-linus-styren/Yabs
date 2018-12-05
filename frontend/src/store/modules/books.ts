@@ -7,7 +7,7 @@ interface BookState {
 }
 
 // initial state
-const booksState: BookState = {books: {}, failure: null};
+const bookState: BookState = {books: {}, failure: null};
 
 // getters
 const getters = {
@@ -43,7 +43,7 @@ const actions = {
 // mutations
 const mutations = {
   setBook(state: BookState, payload: any) {
-    Vue.set(state.books, payload.id, payload);
+    Vue.set(state.books, payload.barcode, payload);
   },
   removeBook(state: BookState, bookId: string) {
     Vue.delete(state.books, bookId);
@@ -55,7 +55,7 @@ const mutations = {
 
 export default {
   namespaced: true,
-  booksState,
+  state: bookState,
   getters,
   actions,
   mutations,
