@@ -1,10 +1,11 @@
 <template lang="pug">
-    .root
-        #canvasContainer
+    div
+        #canvasContainer(ref="canvasContainer")
             canvas#canvas(ref='canvas')
             img#barcode(hidden='' ref='barcode')
             img#profile(hidden='' ref='profile' src='@/assets/profil.jpg')
             //- button(@click='downloadCanvas') Download
+        vue-bootstrap-typeahead(v-model="name" :data="['Canada', 'USA', 'Mexico']")
 
 </template>
 
@@ -21,6 +22,7 @@ export default class CigCanvas extends Vue {
 
     @Prop({default: false}) public updated!: boolean;
 
+    public name: string = '';
     public width: number = 0;
     public height: number = 0;
     public size: number = 1;
@@ -28,6 +30,10 @@ export default class CigCanvas extends Vue {
 
     @Watch('updated')
     public generateCanvas() {
+
+        if (this.context !== null) {
+            this.context.clearRect(0, 0, this.width, this.height);
+        }
 
         this.getCanvasContainerSize();
         this.setCanvasSize();
@@ -37,12 +43,13 @@ export default class CigCanvas extends Vue {
     }
 
     public getCanvasContainerSize() {
-        this.width = document.getElementById('canvasContainer').offsetWidth;
-        this.height = this.width * 1.56;
+        let canvasContainer: any = this.$refs.canvasContainer;
+        this.width = canvasContainer.clientWidth
+        this.height = canvasContainer.clientHeight
     }
 
     public setCanvasSize() {
-        const htmlCanvasElement: HTMLCanvasElement | any = this.$refs.canvas;
+        let htmlCanvasElement: HTMLCanvasElement | any = this.$refs.canvas;
         this.context = htmlCanvasElement.getContext('2d');
 
         this.context.canvas.width = this.width;
@@ -50,8 +57,6 @@ export default class CigCanvas extends Vue {
     }
 
     public drawImages() {
-        // let profileImage = new Image;
-        // profileImage.src = '@/assets/profil.jpg';
         const profileImage = this.$refs.profile;
         const brdcode = this.$refs.barcode;
 
@@ -62,13 +67,15 @@ export default class CigCanvas extends Vue {
         this.context.drawImage(brdcode, this.width / 4, this.width * 1.15, this.width / 2, this.width / 3);
     }
 
+    @Watch('name')
     public drawText() {
+        // this.context.clearRect(0, 0, this.width, this.height);
         const firstFontSize = this.width / 10;
         const secondFontSize = this.width / 20;
 
         this.context.font = firstFontSize + 'px Arial';
         this.context.textAlign = 'center';
-        this.context.fillText('Namn Namnsson', this.width / 2, this.height / 2);
+        this.context.fillText(this.name, this.width / 2, this.height / 2, this.width);
         this.context.fillText('Elev', this.width / 2, this.height / 1.7);
         this.context.font = secondFontSize + 'px Arial';
         this.context.fillText('namn.namnsson@elev.ga.ntig.se', this.width / 2, this.height / 1.5);
@@ -83,8 +90,12 @@ export default class CigCanvas extends Vue {
             // window.location = "data:application/zip;base64," + base64;
             FileSaver.saveAs(blob, 'cards.zip');
         });
-    });
+        });
+    }
 
+    @Watch('name')
+    function() {
+        this.generateCanvas();
     }
 
     public mounted() {
@@ -95,7 +106,7 @@ export default class CigCanvas extends Vue {
 </script>
 
 <style lang="sass" scoped>
-    .root
+    #canvasContainer
         width: 19vw
         height: 29.64vw
         display: flex !important
@@ -103,13 +114,9 @@ export default class CigCanvas extends Vue {
         margin-right: 1%
         justify-self: center
         border: lightgrey solid
-    
-    #canvasContainer
-        width: inherit
-        height: inherit
 
     @media only screen and (max-width: 808px)
-        .root
+        #canvasContainer
             width: 38vw
             height: 59.28vw
 
