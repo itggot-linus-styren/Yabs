@@ -22,6 +22,7 @@ export default class CigForm extends Vue {
 
     public created() {
       this.$store.dispatch('users/all');
+      this.$emit('sendUserData', this.users)
 
       console.log(this.users);
       console.log('----');

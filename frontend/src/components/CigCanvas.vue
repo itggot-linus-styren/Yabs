@@ -5,7 +5,7 @@
             img#barcode(hidden='' ref='barcode')
             img#profile(hidden='' ref='profile' src='@/assets/profil.jpg')
             //- button(@click='downloadCanvas') Download
-        vue-bootstrap-typeahead(v-model="name" :data="['Canada', 'USA', 'Mexico']")
+        vue-bootstrap-typeahead(v-model="name" :data="userNames")
 
 </template>
 
@@ -21,18 +21,33 @@ import { setTimeout } from 'timers';
 export default class CigCanvas extends Vue {
 
     @Prop({default: false}) public updated!: boolean;
+    @Prop({default: {}}) public userData!: object;
 
+    public userNames: Array<string> = [];
     public name: string = '';
+    public barcode: string = '123456789';
+    public role: string = '';
+    public email: string = '';
     public width: number = 0;
     public height: number = 0;
     public size: number = 1;
     public context: any = null;
 
+    public makeUsersList() {
+        for (const user in this.userData) {
+            if (this.userData[user].name.includes("Deleted User") === false) {
+                this.userNames.push(this.userData[user].name);
+            }
+        }
+    }
+
+    public checkUserData
+
     @Watch('updated')
     public generateCanvas() {
 
         if (this.context !== null) {
-            this.context.clearRect(0, 0, this.width, this.height);
+            this.context.clearRect(this.width/1.5, 0, this.width, this.width/1.5);
         }
 
         this.getCanvasContainerSize();
@@ -61,7 +76,7 @@ export default class CigCanvas extends Vue {
         const brdcode = this.$refs.barcode;
 
         const element = this.$refs.barcode;
-        JsBarcode(element, '1853563462');
+        JsBarcode(element, this.barcode);
 
         this.context.drawImage(profileImage, this.width / 4, 0, this.width / 2, this.width / 1.5);
         this.context.drawImage(brdcode, this.width / 4, this.width * 1.15, this.width / 2, this.width / 3);
@@ -76,9 +91,9 @@ export default class CigCanvas extends Vue {
         this.context.font = firstFontSize + 'px Arial';
         this.context.textAlign = 'center';
         this.context.fillText(this.name, this.width / 2, this.height / 2, this.width);
-        this.context.fillText('Elev', this.width / 2, this.height / 1.7);
+        this.context.fillText(this.role, this.width / 2, this.height / 1.7, this.width);
         this.context.font = secondFontSize + 'px Arial';
-        this.context.fillText('namn.namnsson@elev.ga.ntig.se', this.width / 2, this.height / 1.5);
+        this.context.fillText(this.email, this.width / 2, this.height / 1.5, this.width);
     }
 
     public downloadCanvas() {
@@ -96,10 +111,12 @@ export default class CigCanvas extends Vue {
     @Watch('name')
     function() {
         this.generateCanvas();
+        this.makeUsersList();
+        this.checkUserData();
     }
 
     public mounted() {
-        this.generateCanvas();
+        this.generateCanvas();  
     }
 
 }
