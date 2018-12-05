@@ -23,7 +23,7 @@ export default class CigCanvas extends Vue {
     @Prop({default: false}) public updated!: boolean;
     @Prop({default: {}}) public userData!: object;
 
-    public userNames: Array<string> = [];
+    public userNames: string[] = [];
     public name: string = '';
     public barcode: string = '123456789';
     public role: string = '';
@@ -36,7 +36,7 @@ export default class CigCanvas extends Vue {
     public makeUsersList() {
         this.userNames = [];
         for (const user in this.userData) {
-            if (this.userData[user].name.includes("Deleted User") === false) {
+            if (this.userData[user].name.includes('Deleted User') === false) {
                 this.userNames.push(this.userData[user].name);
             }
         }
@@ -56,7 +56,7 @@ export default class CigCanvas extends Vue {
     public generateCanvas() {
 
         if (this.context !== null) {
-            this.context.clearRect(this.width/1.5, 0, this.width, this.width/1.5);
+            this.context.clearRect(this.width / 1.5, 0, this.width, this.width / 1.5);
         }
 
         this.getCanvasContainerSize();
@@ -68,13 +68,13 @@ export default class CigCanvas extends Vue {
     }
 
     public getCanvasContainerSize() {
-        let canvasContainer: any = this.$refs.canvasContainer;
-        this.width = canvasContainer.clientWidth
-        this.height = canvasContainer.clientHeight
+        const canvasContainer: any = this.$refs.canvasContainer;
+        this.width = canvasContainer.clientWidth;
+        this.height = canvasContainer.clientHeight;
     }
 
     public setCanvasSize() {
-        let htmlCanvasElement: HTMLCanvasElement | any = this.$refs.canvas;
+        const htmlCanvasElement: HTMLCanvasElement | any = this.$refs.canvas;
         this.context = htmlCanvasElement.getContext('2d');
 
         this.context.canvas.width = this.width;
@@ -125,7 +125,7 @@ export default class CigCanvas extends Vue {
     }
 
     public mounted() {
-        this.generateCanvas();  
+        this.generateCanvas();
     }
 
 }
