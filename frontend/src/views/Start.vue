@@ -27,15 +27,19 @@
         #right
             h5 Böcker som ska inlämnas snart:
             br
-            b-table(:sory-by.sync='sortBy', :sort-desc.sync='sortDesc', :items='items', :fields='fields')
+            ReacentLoan
 
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { Getter } from '../decorators';
+import ReacentLoan from '@/components/ReacentLoan.vue';
 
-@Component({})
+@Component({
+    components: {
+        ReacentLoan,
+    },
+})
 export default class Start extends Vue {
     public sortBy = 'utgångsdatum';
     public sortDesc = false;
