@@ -17,7 +17,10 @@ export default class CigForm extends Vue {
     public files: string[] = [];
 
     public submit() {
-        console.log(this.files);
+        
+        
+
+
     }
 
     public onFileSelect(event: any) {
