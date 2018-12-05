@@ -27,17 +27,17 @@
         #right
             h5 Böcker som ska inlämnas snart:
             br
-            ReacentLoan
+            RecentLoan
 
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import ReacentLoan from '@/components/ReacentLoan.vue';
+import RecentLoan from '@/components/RecentLoan.vue';
 
 @Component({
     components: {
-        ReacentLoan,
+        RecentLoan,
     },
 })
 export default class Start extends Vue {
