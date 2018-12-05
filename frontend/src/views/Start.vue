@@ -33,6 +33,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { Getter } from '../decorators';
 
 @Component({})
 export default class Start extends Vue {
