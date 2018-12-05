@@ -44,7 +44,7 @@ export default class RecentLoan extends Vue {
 
 <style lang="sass" scoped>
     .card
-        width: auto
-        height: auto
+        width: 100%
+        height: 100%
         overflow-y: auto
 </style>
