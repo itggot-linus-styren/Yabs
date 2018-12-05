@@ -4,7 +4,7 @@
         b-container
             h1 Välkommen till YABS! 
             br
-            p.info Denna applikation kommer att användas för att underlätta hantering/utlåningen av olika sorters litteratur och utskrivning av Passerkort.
+            p.info Denna applikation kommer att användas för att underlätta hantering/utlåningen av olika sorters litteratur och utskrivning av passerkort.
             br
             b-row
                 b-col
