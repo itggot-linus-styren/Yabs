@@ -1,7 +1,7 @@
 <template lang="pug">
     .card
         .grid-container
-            CigCanvas(v-for="canvas in container" v-bind:updated='updated')
+            CigCanvas(v-for="canvas in container" v-bind:updated='updated' v-bind:userData="userData")
 </template>
 
 <script lang="ts">
@@ -16,6 +16,7 @@ import CigCanvas from '@/components/CigCanvas.vue';
 export default class CanvasContainer extends Vue {
 
     @Prop({default: false}) public updated!: boolean;
+    @Prop({default: {}}) public userData!: object;
 
     public container: number = 10;
 

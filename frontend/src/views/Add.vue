@@ -3,12 +3,12 @@
         .left
             .container
                 h1 Lägg till {{this.type}}
-                DropDownType(@change-type='onChangeType($event)', v-bind:selectedType='this.type')
+                DropDownType(@changeType='onChangeType($event)' v-bind:selectedType='this.type')
                 LoaningForm(v-bind:style='{ display: displayLoan }')
-                CigForm(v-bind:style='{ display: displayCig }')
+                CigForm(@sendUserData='onSendUserData($event)' v-bind:style='{ display: displayCig }')
         .right
             RecentLoan(v-bind:style='{ display: displayLoan }')
-            CanvasContainer(v-bind:style='{ display: displayCig }'  v-bind:updated='updated')
+            CanvasContainer(v-bind:style='{ display: displayCig }'  v-bind:updated='updated' v-bind:userData='userData')
 
 </template>
 
@@ -35,6 +35,7 @@ export default class Add extends Vue {
     public displayLoan = 'block';
     public displayCig = 'none';
     public updated = false;
+    public userData = {};
 
     public onChangeType(type: string) {
         this.type = type;
@@ -47,6 +48,10 @@ export default class Add extends Vue {
             this.displayLoan = 'none';
             this.displayCig = 'flex';
         }
+    }
+
+    public onSendUserData(userData) {
+        this.userData = userData
     }
 
 }
