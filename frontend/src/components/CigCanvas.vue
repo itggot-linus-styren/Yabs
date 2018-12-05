@@ -34,6 +34,7 @@ export default class CigCanvas extends Vue {
     public context: any = null;
 
     public makeUsersList() {
+        this.userNames = [];
         for (const user in this.userData) {
             if (this.userData[user].name.includes("Deleted User") === false) {
                 this.userNames.push(this.userData[user].name);
@@ -41,7 +42,15 @@ export default class CigCanvas extends Vue {
         }
     }
 
-    public checkUserData
+    public checkUserData() {
+        for (const user in this.userData) {
+            if (this.name === this.userData[user].name) {
+                this.barcode = user;
+                this.email = this.userData[user].email;
+                this.role = this.userData[user].role;
+            }
+        }
+    }
 
     @Watch('updated')
     public generateCanvas() {
@@ -53,7 +62,8 @@ export default class CigCanvas extends Vue {
         this.getCanvasContainerSize();
         this.setCanvasSize();
         this.drawText();
-        setTimeout(() => this.drawImages(), 100);
+        this.drawImages();
+        // setTimeout(() => this.drawImages(), 100);
 
     }
 
@@ -84,7 +94,6 @@ export default class CigCanvas extends Vue {
 
     @Watch('name')
     public drawText() {
-        // this.context.clearRect(0, 0, this.width, this.height);
         const firstFontSize = this.width / 10;
         const secondFontSize = this.width / 20;
 
@@ -109,10 +118,10 @@ export default class CigCanvas extends Vue {
     }
 
     @Watch('name')
-    function() {
-        this.generateCanvas();
+    public function() {
         this.makeUsersList();
         this.checkUserData();
+        this.generateCanvas();
     }
 
     public mounted() {
