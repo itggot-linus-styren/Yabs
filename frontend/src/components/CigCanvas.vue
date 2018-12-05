@@ -63,8 +63,8 @@ export default class CigCanvas extends Vue {
     }
 
     public drawText() {
-        const firstFontSize = this.width / 10;
-        const secondFontSize = this.width / 20;
+        let firstFontSize = this.width/10;
+        let secondFontSize = this.width/20;
 
         this.context.font = firstFontSize + 'px Arial';
         this.context.textAlign = 'center';
