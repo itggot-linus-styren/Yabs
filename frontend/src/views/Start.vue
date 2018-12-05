@@ -10,13 +10,13 @@
                 b-col
                     router-link.link.row-btn(to='/users')
                         b-button.row-btn(:size="size" :variant="primary") Profil
-            p.info På profil sidan så ser du all relevant information agngående din profil tex antal aktiva lån från dig.
+            p.info På profil sidan så ser du all relevant information angående din profil tex antal aktiva lån från dig.
             br
             b-row
                 b-col
                     router-link.link.row-btn(to='/add')
                         b-button.row-btn(:size="size" :variant="primary") Lägg till
-            p.info Lägg till delen används för att skapa nya Passerkort, registera nya lån och lägga till nya böcker.
+            p.info Lägg till delen används för att skapa nya passerkort, registera nya lån och lägga till nya böcker.
             br
             b-row
                 b-col
