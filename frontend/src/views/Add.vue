@@ -7,7 +7,7 @@
                 LoaningForm(v-bind:style='{ display: displayLoan }')
                 CigForm(v-bind:style='{ display: displayCig }')
         .right
-            ReacentLoan(v-bind:style='{ display: displayLoan }')
+            RecentLoan(v-bind:style='{ display: displayLoan }')
             CanvasContainer(v-bind:style='{ display: displayCig }')
 
 </template>
@@ -17,7 +17,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import LoaningForm from '@/components/LoaningForm.vue';
 import CigForm from '@/components/CigForm.vue';
 import DropDownType from '@/components/DropDownType.vue';
-import ReacentLoan from '@/components/ReacentLoan.vue';
+import RecentLoan from '@/components/RecentLoan.vue';
 import CanvasContainer from '@/components/CanvasContainer.vue';
 
 @Component({
@@ -25,7 +25,7 @@ import CanvasContainer from '@/components/CanvasContainer.vue';
     LoaningForm,
     CigForm,
     DropDownType,
-    ReacentLoan,
+    RecentLoan,
     CanvasContainer,
   },
 })
