@@ -59,15 +59,18 @@ export default class CigCanvas extends Vue {
         JsBarcode(element, '1853563462');
 
         this.context.drawImage(profileImage, this.width / 4, 0, this.width / 2, this.width / 1.5);
-        this.context.drawImage(brdcode, this.width / 4, this.width * 1.1, this.width / 2, this.width / 4);
+        this.context.drawImage(brdcode, this.width / 4, this.width * 1.15, this.width / 2, this.width / 3);
     }
 
     public drawText() {
-        this.context.font = '15px Arial';
+        let firstFontSize = this.width/10;
+        let secondFontSize = this.width/20;
+
+        this.context.font = firstFontSize + 'px Arial';
         this.context.textAlign = 'center';
         this.context.fillText('Namn Namnsson', this.width / 2, this.height / 2);
         this.context.fillText('Elev', this.width / 2, this.height / 1.7);
-        this.context.font = '10px Arial';
+        this.context.font = secondFontSize + 'px Arial';
         this.context.fillText('namn.namnsson@elev.ga.ntig.se', this.width / 2, this.height / 1.5);
     }
 
