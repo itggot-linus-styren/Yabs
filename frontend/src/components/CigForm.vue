@@ -10,7 +10,7 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Watch, Prop, Vue } from 'vue-property-decorator';
 import { Getter } from '../decorators';
 import JSZip from 'jszip';
 
@@ -24,9 +24,6 @@ export default class CigForm extends Vue {
     public created() {
       this.$store.dispatch('users/all');
 
-      console.log(this.users);
-      console.log('----');
-      console.log(this.$store.state);
     }
 
     public submit() {
