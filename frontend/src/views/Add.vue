@@ -42,28 +42,28 @@ export default class Add extends Vue {
     public hasAddedLoan: boolean = false;
 
     @Watch('$store.state.loans.failure')
-    onFailureChanged(val : any, old_val : any) {
+    public onFailureChanged(val: any) {
         this.failure = Object.entries(this.$store.state.loans.failure.response.data)
             .map(([k, v]) => {
                 // @ts-ignore: v is array
-                return k + " " + v.join(", ");
-            }).join(" and ");
+                return k + ' ' + v.join(', ');
+            }).join(' and ');
         this.showDismissibleDangerAlert = true;
         this.showDismissibleSuccessAlert = false;
     }
     @Watch('$store.state.loans.loans')
-    onLoansChanged(val: any, old_val: any) {
-        if(this.hasAddedLoan){
+    public onLoansChanged(val: any) {
+        if (this.hasAddedLoan) {
             this.hasAddedLoan = false;
             this.showDismissibleSuccessAlert = true;
             this.showDismissibleDangerAlert = false;
         }
     }
 
-    public onLoanAdded(payload: any){
+    public onLoanAdded(payload: any) {
         this.hasAddedLoan = true;
     }
-        
+
 
     public onChangeType(type: string) {
         this.type = type;

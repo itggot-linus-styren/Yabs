@@ -10,7 +10,7 @@ import { Getter } from '../decorators';
 
 @Component
 export default class RecentLoan extends Vue {
-      @Getter('loans/all') loans : any;
+      @Getter('loans/all') public loans: any;
       public sortBy = 'Utgångsdatum';
       public sortDesc = false;
       public fields = [
