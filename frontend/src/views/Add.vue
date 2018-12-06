@@ -51,6 +51,9 @@ export default class Add extends Vue {
     public failure: any = '';
     public hasAddedLoan: boolean = false;
 
+    public displayAdd = 'none';
+    public displayTitel = 'none';
+
     @Watch('$store.state.loans.failure')
     public onFailureChanged(val: any) {
         this.failure = Object.entries(this.$store.state.loans.failure.response.data)
@@ -73,9 +76,6 @@ export default class Add extends Vue {
     public onLoanAdded(payload: any) {
         this.hasAddedLoan = true;
     }
-    
-    public displayAdd = 'none';
-    public displayTitel = 'none';
 
     public onChangeType(type: string) {
         this.type = type;
