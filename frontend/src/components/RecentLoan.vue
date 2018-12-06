@@ -14,14 +14,17 @@ export default class RecentLoan extends Vue {
       public sortBy = 'Utgångsdatum';
       public sortDesc = false;
       public fields = [
-        { key: 'loaned_by.name', sortable: false },
-        { key: 'lent_by.name', sortable: false },
-        { key: 'book.title.name', sortable: false },
-       // { key: 'Utgångsdatum', sortable: false },
+        { key: 'loaned_by.name', sortable: false, label: 'Lånad av'},
+        { key: 'lent_by.name', sortable: false, label: 'Utlånad av'},
+        { key: 'book.title.name', sortable: false, label: 'Boktitel'},
+        { key: 'expiration_date', sortable: false, label: 'Utgångsdatum'},
       ];
 
       get items() {
-        return Object.entries(this.loans).map(([k, v]) => Object.assign(v, {'.key': k}));
+        return Object.entries(this.loans).filter(([k, v]) => {
+          // @ts-ignore: returned at
+          return !v.returned_at;
+        }).map(([k, v]) => Object.assign(v, {'.key': k}));
       }
 
       public created() {
