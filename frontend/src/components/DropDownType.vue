@@ -3,6 +3,8 @@
         b-dropdown#ddown1.m-md-2(text='Ändra Typ')
             b-dropdown-item(@click='changeToLoan') Lån
             b-dropdown-item(@click='changeToCig') ID Kort
+            b-dropdown-item(@click='changeToBook') Bok
+            b-dropdown-item(@click='changeToTitel') Titel
 
 </template>
 
@@ -27,6 +29,14 @@ export default class DropDownType extends Vue {
 
     public changeToCig() {
         this.type = 'ID Kort';
+    }
+
+    public changeToBook() {
+        this.type = 'Bok';
+    }
+
+    public changeToTitel() {
+        this.type = 'Titel';
     }
 
 }
