@@ -3,7 +3,6 @@
         #canvasContainer(ref="canvasContainer")
             canvas#canvas(ref='canvas')
             img#barcode(hidden='' ref='barcode')
-            img#profile(hidden='' ref='profile' src='@/assets/profil.jpg')
             //- button(@click='downloadCanvas') Download
         vue-bootstrap-typeahead(v-model="name" :data="userNames")
 
@@ -22,6 +21,7 @@ export default class CigCanvas extends Vue {
 
     @Prop({default: false}) public updated!: boolean;
     @Prop({default: {}}) public userData!: object;
+    @Prop({default: ''}) public image!: string;
 
     public userNames: string[] = [];
     public name: string = '';
@@ -82,14 +82,14 @@ export default class CigCanvas extends Vue {
     }
 
     public drawImages() {
-        const profileImage = this.$refs.profile;
-        const brdcode = this.$refs.barcode;
+        let barcode = new Image;
+        let profileImage = new Image();
+        profileImage.src = this.image;
 
-        const element = this.$refs.barcode;
-        JsBarcode(element, this.barcode);
+        JsBarcode(barcode, this.barcode);
 
         this.context.drawImage(profileImage, this.width / 4, 0, this.width / 2, this.width / 1.5);
-        this.context.drawImage(brdcode, this.width / 4, this.width * 1.15, this.width / 2, this.width / 3);
+        this.context.drawImage(barcode, this.width / 4, this.width * 1.15, this.width / 2, this.width / 3);
     }
 
     @Watch('name')
