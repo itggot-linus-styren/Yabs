@@ -2,8 +2,11 @@
     div
         #canvasContainer(ref="canvasContainer")
             canvas#canvas(ref='canvas')
-        vue-bootstrap-typeahead(v-model="name" :data="userNames" @hit="onNameInput")
-
+        b-form
+            b-form-group
+                vue-bootstrap-typeahead(v-model="name" :data="userNames" @hit="onNameInput")
+                b-button(@click="savePicture") Spara Bild
+                b-button(@click="downloadCanvas") Ladda ned kort
 </template>
 
 <script lang="ts">
@@ -73,13 +76,13 @@ export default class CigCanvas extends Vue {
     }
 
     public drawImages() {
-        let barcode = new Image;
-        let profileImage = new Image();
+        const barcode = new Image();
+        const profileImage = new Image();
         profileImage.src = this.image;
 
-        if (this.barcode !== "") {
+        if (this.barcode !== '') {
             JsBarcode(barcode, this.barcode);
-        } 
+        }
 
         setTimeout(() => {
             this.context.drawImage(profileImage, this.width / 4, 0, this.width / 2, this.width / 1.5);
@@ -102,13 +105,18 @@ export default class CigCanvas extends Vue {
     public downloadCanvas() {
         const zip = new JSZip();
         const canvas: HTMLCanvasElement | any = this.$refs.canvas;
+        console.log(canvas);
         canvas.toBlob((blob: any) => {
-        zip.file('name.png', blob);
+        zip.file(this.name + '.png', blob);
         zip.generateAsync({type: 'blob'}).then((blob) => {
             // window.location = "data:application/zip;base64," + base64;
             FileSaver.saveAs(blob, 'cards.zip');
         });
         });
+    }
+
+    public savePicture() {
+        // save to database
     }
 
     public onNameInput() {
