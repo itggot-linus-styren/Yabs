@@ -2,9 +2,7 @@
     div
         #canvasContainer(ref="canvasContainer")
             canvas#canvas(ref='canvas')
-            img#barcode(hidden='' ref='barcode')
-            //- button(@click='downloadCanvas') Download
-        vue-bootstrap-typeahead(v-model="name" :data="userNames")
+        vue-bootstrap-typeahead(v-model="name" :data="userNames" @hit="onNameInput")
 
 </template>
 
@@ -23,9 +21,8 @@ export default class CigCanvas extends Vue {
     @Prop({default: {}}) public userData!: object;
     @Prop({default: ''}) public image!: string;
 
-    public userNames: string[] = [];
     public name: string = '';
-    public barcode: string = '123456789';
+    public barcode: string = '';
     public role: string = '';
     public email: string = '';
     public width: number = 0;
@@ -33,13 +30,10 @@ export default class CigCanvas extends Vue {
     public size: number = 1;
     public context: any = null;
 
-    public makeUsersList() {
-        this.userNames = [];
-        for (const user in this.userData) {
-            if (this.userData[user].name.includes('Deleted User') === false) {
-                this.userNames.push(this.userData[user].name);
-            }
-        }
+    public get userNames() {
+        return Object.entries(this.userData)
+                // .filter((user: any) => !user.name.includes("Deleted User"))
+                .map(([k, user]) => user.name);
     }
 
     public checkUserData() {
@@ -52,7 +46,6 @@ export default class CigCanvas extends Vue {
         }
     }
 
-    @Watch('updated')
     public generateCanvas() {
 
         if (this.context !== null) {
@@ -63,8 +56,6 @@ export default class CigCanvas extends Vue {
         this.setCanvasSize();
         this.drawText();
         this.drawImages();
-        // setTimeout(() => this.drawImages(), 100);
-
     }
 
     public getCanvasContainerSize() {
@@ -86,13 +77,16 @@ export default class CigCanvas extends Vue {
         let profileImage = new Image();
         profileImage.src = this.image;
 
-        JsBarcode(barcode, this.barcode);
+        if (this.barcode !== "") {
+            JsBarcode(barcode, this.barcode);
+        } 
 
-        this.context.drawImage(profileImage, this.width / 4, 0, this.width / 2, this.width / 1.5);
-        this.context.drawImage(barcode, this.width / 4, this.width * 1.15, this.width / 2, this.width / 3);
+        setTimeout(() => {
+            this.context.drawImage(profileImage, this.width / 4, 0, this.width / 2, this.width / 1.5);
+            this.context.drawImage(barcode, this.width / 4, this.width * 1.15, this.width / 2, this.width / 3);
+        }, 200);
     }
 
-    @Watch('name')
     public drawText() {
         const firstFontSize = this.width / 10;
         const secondFontSize = this.width / 20;
@@ -117,9 +111,7 @@ export default class CigCanvas extends Vue {
         });
     }
 
-    @Watch('name')
-    public function() {
-        this.makeUsersList();
+    public onNameInput() {
         this.checkUserData();
         this.generateCanvas();
     }
