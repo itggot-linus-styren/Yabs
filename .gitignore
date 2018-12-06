@@ -1,6 +1,7 @@
 *.rbc
 capybara-*.html
 .rspec
+backend/storage
 backend/log
 backend/tmp
 backend/db/*.sqlite3
