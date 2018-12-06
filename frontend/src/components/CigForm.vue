@@ -26,11 +26,12 @@ export default class CigForm extends Vue {
     }
 
     public submit() {
-      const formData = new FormData();
       this.$emit('sendImages', this.files);
+      /*
+      const formData = new FormData();
       formData.append('uid', '1804583927');
       formData.append('image', this.fileList[0]);
-      console.log(this.$store.dispatch('users/update', formData));
+      console.log(this.$store.dispatch('users/update', formData));*/
     }
 
     public onFileSelect(event: any) {
