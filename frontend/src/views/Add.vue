@@ -5,10 +5,10 @@
                 h1 Lägg till {{this.type}}
                 DropDownType(@changeType='onChangeType($event)' v-bind:selectedType='this.type')
                 LoaningForm(v-bind:style='{ display: displayLoan }')
-                CigForm(@sendUserData='onSendUserData($event)' v-bind:style='{ display: displayCig }')
+                CigForm(@sendUserData='onSendUserData($event)' @sendImages='onSendImages($event)' v-bind:style='{ display: displayCig }')
         .right
             RecentLoan(v-bind:style='{ display: displayLoan }')
-            CanvasContainer(v-bind:style='{ display: displayCig }'  v-bind:updated='updated' v-bind:userData='userData')
+            CanvasContainer(v-bind:style='{ display: displayCig }' v-bind:updated='updated' v-bind:userData='userData' v-bind:images='images')
 
 </template>
 
@@ -36,6 +36,7 @@ export default class Add extends Vue {
     public displayCig = 'none';
     public updated = false;
     public userData = {};
+    public images = [];
 
     public onChangeType(type: string) {
         this.type = type;
@@ -52,6 +53,10 @@ export default class Add extends Vue {
 
     public onSendUserData(userData) {
         this.userData = userData;
+    }
+
+    public onSendImages(images) {
+        this.images = images;
     }
 
 }
