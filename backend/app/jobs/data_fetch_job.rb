@@ -24,7 +24,13 @@ class DataFetchJob < ApplicationJob
     users.each do |person|
       token << person.id
       uid = Time.new.year.to_s[2..-1] + person.id.to_str[13..-1]
-      role = person.org_unit_path == "/Johanneberg/Personal" ? "Lärare" : "Elev" 
+      if person.org_unit_path == "/Johanneberg/Personal"
+        role = "Lärare"
+        klass = "Lärare"
+      else 
+        role = "Elev"
+        klass = person.org_unit_path[20..-1]
+      end
       if @user = User.find_by(google_token: person.id)
         @user.update(name: person.name.full_name, uid: uid, email: person.emails[0]["address"], role: role, google_token: person.id)
       else 

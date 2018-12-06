@@ -6,13 +6,6 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-
-user1 = User.create(uid: 19994523, name: "Rickard Svensson", google_token: "asfh3323jf", role: "Elev")
-
-
-user2 = User.create(uid: 19683241, name: "Linnea Kristensson", google_token: "asasf1223jf", role: "Lärare")
-
-
 title = Title.create(name: "A book", isbn: "123-123", cost: 200)
 title.title_type = "Skönlitteratur"
 title.save
@@ -21,9 +14,11 @@ book = Book.create(barcode: "0000", status: "Broken")
 book.title = title
 book.save
 
-loan = Loan.create(return_at: Date.current)
-loan.lent_by = user2
-loan.loaned_by = user1
+loan = Loan.create(expiration_date: Date.current)
+loan.lent_by = User.find_by_name('Daniel Berg')
+loan.loaned_by = User.find_by_name('Alex Henryz')
 loan.book = book
 loan.save
 
+Book.create(barcode: "0001", status: "OK", title: title)
+Book.create(barcode: "0002", status: "OK", title: title)

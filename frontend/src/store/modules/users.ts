@@ -23,12 +23,17 @@ const actions = {
              .then((response: any) => response.forEach((user: any) => context.commit('setUser', user)))
              .catch((error: any) => context.commit('failure', error));
   },
+  update(context: any, request: any) {
+    UsersAPI.update(request)
+             .then((response: any) => context.commit('setUser', response))
+             .catch((error: any) => context.commit('failure', error));
+  },
 };
 
 // mutations
 const mutations = {
   setUser(state: UserState, payload: any) {
-    Vue.set(state.users, payload.id, payload);
+    Vue.set(state.users, payload.uid, payload);
   },
   failure(state: UserState, payload: any) {
     state.failure = payload;
@@ -37,7 +42,7 @@ const mutations = {
 
 export default {
   namespaced: true,
-  userState,
+  state: userState,
   getters,
   actions,
   mutations,

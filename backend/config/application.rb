@@ -11,6 +11,7 @@ module Yabs
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.2
 
+    #config.active_storage.routes_prefix = '/api/v1'
     config.action_controller.allow_forgery_protection = false
     config.debug_exception_response_format = :default
     config.api_only = true
