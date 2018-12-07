@@ -17,7 +17,7 @@ export default class CanvasContainer extends Vue {
 
     @Prop({default: false}) public updated!: boolean;
     @Prop({default: {}}) public userData!: object;
-    @Prop({default: []}) public images!: Array<string>;
+    @Prop({default: []}) public images!: string[];
 
     public container: number = 10;
 
