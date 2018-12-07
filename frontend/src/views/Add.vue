@@ -8,7 +8,7 @@
                 CigForm(@sendUserData='onSendUserData($event)' @sendImages='onSendImages($event)' v-bind:style='{ display: displayCig }')
         .right
             RecentLoan(v-bind:style='{ display: displayLoan }')
-            CanvasContainer(v-bind:style='{ display: displayCig }' v-bind:updated='updated' v-bind:userData='userData' v-bind:images='images')
+            CanvasContainer(v-bind:style='{ display: displayCig }' v-bind:userData='userData' v-bind:images='images')
 
 </template>
 
@@ -40,7 +40,6 @@ export default class Add extends Vue {
 
     public onChangeType(type: string) {
         this.type = type;
-        this.updated = true;
 
         if (this.type === 'Lån') {
             this.displayLoan = 'block';

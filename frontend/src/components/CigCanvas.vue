@@ -20,7 +20,6 @@ import { setTimeout } from 'timers';
 @Component
 export default class CigCanvas extends Vue {
 
-    @Prop({default: false}) public updated!: boolean;
     @Prop({default: {}}) public userData!: object;
     @Prop({default: ''}) public image!: string;
 
