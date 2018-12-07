@@ -1,7 +1,9 @@
 <template lang="pug">
-    .card
-        .grid-container
-            CigCanvas.canvas(v-for="image in images" v-bind:updated='updated' v-bind:userData="userData" v-bind:image="image")
+    .root
+        b-button skriv ut
+        .card
+            .grid-container
+                CigCanvas.canvas(v-for="image in images" v-bind:userData="userData" v-bind:image="image")
 </template>
 
 <script lang="ts">
@@ -14,17 +16,18 @@ import CigCanvas from '@/components/CigCanvas.vue';
     },
 })
 export default class CanvasContainer extends Vue {
-
-    @Prop({default: false}) public updated!: boolean;
     @Prop({default: {}}) public userData!: object;
     @Prop({default: []}) public images!: string[];
-
-    public container: number = 10;
-
 }
 </script>
 
 <style lang="sass" scoped>
+    .root
+        display: flex
+        flex-direction: column
+        height: 100%
+        width: 100%
+
     .card
         width: 100%
         height: 100%
