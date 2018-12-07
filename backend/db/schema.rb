@@ -68,7 +68,6 @@ ActiveRecord::Schema.define(version: 2018_12_05_140850) do
   create_table "users", id: false, force: :cascade do |t|
     t.integer "uid"
     t.string "name"
-    t.string "klass"
     t.string "email"
     t.string "role"
     t.string "google_token"
