@@ -1,10 +1,14 @@
 <template lang="pug">
     div
-        #canvasContainer(ref="canvasContainer" v-resize="generateCanvas")
-          canvas#canvas(ref='canvas')
-        vue-bootstrap-typeahead(v-model="name" :data="userNames" @hit="onNameInput")
+        #canvasContainer(ref="canvasContainer")
+            canvas#canvas(ref='canvas')
+        b-form
+            b-form-group
+                vue-bootstrap-typeahead(v-model="name" :data="userNames" @hit="onNameInput")
+                b-button(@click="savePicture") Spara Bild
+                b-button(@click="downloadCanvas") Ladda ned kort
         img(src="../assets/background.png" hidden ref="bg")
-        img(src="../assets/logo.png" ref="logo")
+        img(src="../assets/logo.png" hidden ref="logo")
 </template>
 
 <script lang="ts">
@@ -140,13 +144,18 @@ export default class CigCanvas extends Vue {
     public downloadCanvas() {
         const zip = new JSZip();
         const canvas: HTMLCanvasElement | any = this.$refs.canvas;
+        console.log(canvas);
         canvas.toBlob((blob: any) => {
-          zip.file('name.png', blob);
+          zip.file(this.name + '.png', blob);
           zip.generateAsync({type: 'blob'}).then((zipBlob: any) => {
               // window.location = "data:application/zip;base64," + base64;
               FileSaver.saveAs(zipBlob, 'cards.zip');
           });
         });
+    }
+
+    public savePicture() {
+        // save to database
     }
 
     public onNameInput() {
