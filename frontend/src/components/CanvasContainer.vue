@@ -1,7 +1,7 @@
 <template lang="pug">
     .card
         .grid-container
-            CigCanvas(v-for="image in images" v-bind:updated='updated' v-bind:userData="userData" v-bind:image="image")
+            CigCanvas.canvas(v-for="image in images" v-bind:updated='updated' v-bind:userData="userData" v-bind:image="image")
 </template>
 
 <script lang="ts">
@@ -49,6 +49,9 @@ export default class CanvasContainer extends Vue {
         grid-template-rows: auto
         grid-column-gap: 10px
         grid-row-gap: 10px
+
+    .canvas
+        place-self: center
         
 </style>
 
