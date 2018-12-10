@@ -19,6 +19,7 @@ import JQuery from 'jquery';
 import FileSaver from 'file-saver';
 import resize from 'vue-resize-directive';
 import { setTimeout } from 'timers';
+import { UserObject } from '../store/modules/users';
 
 @Component({
   directives: {
@@ -27,8 +28,9 @@ import { setTimeout } from 'timers';
 })
 export default class CigCanvas extends Vue {
 
-    @Prop({default: {}}) public userData!: object;
+    @Prop({default: {}}) public userData!: UserObject;
     @Prop({default: ''}) public image!: string;
+    @Prop({default: false}) public sendCanvas!: boolean;
 
     public name: string = '';
     public barcode: string = '';
@@ -41,7 +43,7 @@ export default class CigCanvas extends Vue {
 
     public get userNames() {
         return Object.entries(this.userData)
-                // .filter((user: any) => !user.name.includes("Deleted User"))
+                // .filter((user: any) => !user.name.includes('Deleted User'))
                 .map(([k, user]) => user.name);
     }
 
@@ -140,14 +142,21 @@ export default class CigCanvas extends Vue {
         // this.context.fillText(this.email, this.width / 2, this.height / 1.5, this.width);
     }
 
+    @Watch('sendCanvas')
+    public sendThisCanvas() {
+        const zip = new JSZip();
+        const canvas: HTMLCanvasElement | any = this.$refs.canvas;
+        canvas.toBlob((blob: any) => {
+            this.$emit('imageSent', blob);
+        });
+    }
+
     public downloadCanvas() {
         const zip = new JSZip();
         const canvas: HTMLCanvasElement | any = this.$refs.canvas;
-        console.log(canvas);
         canvas.toBlob((blob: any) => {
           zip.file(this.name + '.png', blob);
           zip.generateAsync({type: 'blob'}).then((zipBlob: any) => {
-              // window.location = "data:application/zip;base64," + base64;
               FileSaver.saveAs(zipBlob, 'cards.zip');
           });
         });
@@ -177,7 +186,6 @@ export default class CigCanvas extends Vue {
         margin-bottom: 1%
         margin-right: 1%
         justify-self: center
-        border: lightgrey solid
 
     @media only screen and (max-width: 808px)
         #canvasContainer
