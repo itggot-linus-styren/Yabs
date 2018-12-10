@@ -16,9 +16,11 @@
     z-index: 100
     top: 56px
     bottom: 0
-    width: 100%
+    width: 100vw
     display: flex
     flex-direction: row
+    margin: 5000
+
 
   .view .left
     width: 50%

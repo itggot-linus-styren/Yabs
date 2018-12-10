@@ -28,7 +28,7 @@ class DataFetchJob < ApplicationJob
         role = "Lärare"
         klass = "Lärare"
       else 
-        role = "Elever"
+        role = "Elev"
         klass = person.org_unit_path[20..-1]
       end
       if @user = User.find_by(google_token: person.id)

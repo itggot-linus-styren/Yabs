@@ -6,39 +6,30 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Getter } from '../decorators';
 
 @Component
 export default class RecentLoan extends Vue {
+      @Getter('loans/all') public loans: any;
       public sortBy = 'Utgångsdatum';
       public sortDesc = false;
       public fields = [
-        { key: 'Låntagare', sortable: false },
-        { key: 'Utlånare', sortable: false },
-        { key: 'Bok', sortable: false },
-        { key: 'Utgångsdatum', sortable: false },
+        { key: 'loaned_by.name', sortable: false, label: 'Lånad av'},
+        { key: 'lent_by.name', sortable: false, label: 'Utlånad av'},
+        { key: 'book.title.name', sortable: false, label: 'Boktitel'},
+        { key: 'expiration_date', sortable: false, label: 'Utgångsdatum'},
       ];
 
-      public items = [
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-        {Låntagare: 'Simon Johannesson', Utlånare: 'Daniel Berg', Bok: 'Bibeln', Utgångsdatum: '01-01-2019'},
-      ];
+      get items() {
+        return Object.entries(this.loans).filter(([k, v]) => {
+          // @ts-ignore: returned at
+          return !v.returned_at;
+        }).map(([k, v]) => Object.assign(v, {'.key': k}));
+      }
+
+      public created() {
+        this.$store.dispatch('loans/all');
+      }
     }
 </script>
 

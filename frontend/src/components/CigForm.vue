@@ -3,13 +3,14 @@
         b-card(bg-variant='light')
             //- lable(for="file", name="file") Välj en eller flera billder/zipfiler
             input.input-file(multiple type="file" id="file" name="file" accept="image/*, .zip" @change="onFileSelect")
-
+            br
+            br
             b-button(@click='submit' variant='primary') Lägg till
 
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { Component, Watch, Prop, Vue } from 'vue-property-decorator';
 import { Getter } from '../decorators';
 import JSZip from 'jszip';
 
@@ -27,7 +28,6 @@ export default class CigForm extends Vue {
 
     public submit() {
       this.$emit('sendImages', this.files);
-      /*
       const formData = new FormData();
       formData.append('uid', '1804583927');
       formData.append('image', this.fileList[0]);
