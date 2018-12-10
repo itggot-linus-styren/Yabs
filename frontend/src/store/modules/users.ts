@@ -1,13 +1,27 @@
 import Vue from 'vue';
 import UsersAPI from '../../api/users';
 
-interface UserState {
-  users: {};
+export interface User {
+  created_at: string;
+  email: string;
+  google_token: string;
+  klass: string;
+  name: string;
+  photo_path: string;
+  role: string;
+  uid: number;
+  updated_at: string;
+}
+
+export interface UserObject { [uid: number]: User; }
+
+export interface UserState {
+  users: UserObject;
   failure: any;
 }
 
 // initial state
-const userState: UserState = {users: {}, failure: null};
+export const userState: UserState = {users: {}, failure: null};
 
 // getters
 const getters = {

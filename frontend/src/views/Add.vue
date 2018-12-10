@@ -7,15 +7,14 @@
                 h1 Lägg till {{this.type}}
                 DropDownType(@change-type='onChangeType($event)', v-bind:selectedType='this.type')
                 LoaningForm(v-bind:style='{ display: displayLoan }' v-on:loan-added="onLoanAdded")
-                CigForm(v-bind:style='{ display: displayCig }')
+                CigForm(@sendUserData='onSendUserData($event)' @sendImages='onSendImages($event)' v-bind:style='{ display: displayCig }')
                 AddingForm(v-bind:style='{ display: displayAdd }')
                 TitelForm(v-bind:style='{ display: displayTitel }')
         .right
             RecentLoan(v-bind:style='{ display: displayLoan }')
-            CanvasContainer(v-bind:style='{ display: displayCig }')
+            CanvasContainer(v-bind:style='{ display: displayCig }' v-bind:userData='userData' v-bind:images='images')
             RecentLoan(v-bind:style='{ display: displayAdd }')
             RecentTitel(v-bind:style='{ display: displayTitel }')
-
 </template>
 
 <script lang="ts">
@@ -46,6 +45,9 @@ export default class Add extends Vue {
     public type = 'Lån';
     public displayLoan = 'block';
     public displayCig = 'none';
+    public updated = false;
+    public userData = {};
+    public images: any[] = [];
     public showDismissibleDangerAlert = false;
     public showDismissibleSuccessAlert = false;
     public failure: any = '';
@@ -79,6 +81,7 @@ export default class Add extends Vue {
 
     public onChangeType(type: string) {
         this.type = type;
+
         if (this.type === 'Lån') {
             this.displayLoan = 'block';
             this.displayCig = 'none';
@@ -101,11 +104,39 @@ export default class Add extends Vue {
             this.displayTitel = 'block';
         }
     }
+
+    public onSendUserData(userData: any) {
+        this.userData = userData;
+    }
+
+    public onSendImages(images: any[]) {
+        this.images = images;
+    }
+
 }
 </script>
 
 <style lang="sass" scoped>
+    .left
+        width: 50%
+        height: 100%
+        padding: 10%
+        padding-top: 5%
+
+    .right
+        width: 50%
+        height: 100%
+        padding: 5%
+        padding-left: 0px
+
     @media only screen and (max-width: 808px)
+        .right, .left
+            width: 100%
+            display: flex
+            flex-direction: row
+            justify-content: center
+            padding: 0px
+
         .left
             height: 43%
     
