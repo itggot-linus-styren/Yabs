@@ -3,7 +3,7 @@
         b-button(@click="getAllCanvases") Ladda ned alla kort
         .card
             .grid-container
-                CigCanvas.canvas(@imageSent='onImageRecived($event)' v-for="(image, index) in images" :key="index" v-bind:userData="userData" v-bind:image="image" v-bind:sendCanvas="sendCanvas")
+                CigCanvas.canvas(@imageSent='onImageReceived($event)' v-for="(image, index) in images" :key="index" v-bind:userData="userData" v-bind:image="image" v-bind:sendCanvas="sendCanvas")
 </template>
 
 <script lang="ts">
@@ -11,6 +11,7 @@ import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
 import CigCanvas from '@/components/CigCanvas.vue';
 import FileSaver from 'file-saver';
 import JSZip from 'jszip';
+import { UserObject } from '../store/modules/users';
 
 @Component({
     components: {
@@ -19,7 +20,7 @@ import JSZip from 'jszip';
 })
 export default class CanvasContainer extends Vue {
 
-    @Prop({default: {}}) public userData!: object;
+    @Prop({default: null}) public userData!: UserObject;
     @Prop({default: []}) public images!: string[];
 
     public sendCanvas: boolean = false;
@@ -29,7 +30,7 @@ export default class CanvasContainer extends Vue {
         this.sendCanvas = !this.sendCanvas;
     }
 
-    public onImageRecived(image: any) {
+    public onImageReceived(image: any) {
         this.imageBlobs.push(image);
         if (this.images.length === this.imageBlobs.length) {
             this.downloadAll();

@@ -43,7 +43,7 @@ export default class CigCanvas extends Vue {
 
     public get userNames() {
         return Object.entries(this.userData)
-                // .filter((user: any) => !user.name.includes('Deleted User'))
+                .filter(([k, user]) => !user.name.includes('Deleted User'))
                 .map(([k, user]) => user.name);
     }
 
@@ -70,12 +70,8 @@ export default class CigCanvas extends Vue {
 
               const logo: any = this.$refs.logo;
               this.context.drawImage(logo, this.width / 2 - 75, 25);
-              // this.drawImageProp(this.context, img, -this.width / 4, 0, this.width, this.height, 0, 0);
-              // his.context.fillRect(0, 0, this.width, this.height);
               this.drawText();
               this.drawImages();
-
-              // this.drawImageProp(this.context, bg, 0, 0, this.width, this.height, 0, 0);
             }, 200);
 
         }
@@ -85,8 +81,6 @@ export default class CigCanvas extends Vue {
         const canvasContainer: any = this.$refs.canvasContainer;
         this.width = canvasContainer.clientWidth;
         this.height = canvasContainer.clientHeight;
-        /*this.width = 150;
-        this.height = 300;*/
     }
 
     public setCanvasSize() {
@@ -103,10 +97,7 @@ export default class CigCanvas extends Vue {
         profileImage.src = this.image;
 
         if (this.barcode !== '') {
-            JsBarcode(barcode, this.barcode, {
-              // background: "#ffffff7f",
-              /*lineColor: "#ffffff",*/
-            });
+            JsBarcode(barcode, this.barcode);
         }
 
         setTimeout(() => {
