@@ -3,7 +3,7 @@
         b-button(@click="getAllCanvases") Ladda ned alla kort
         .card
             .grid-container
-                CigCanvas.canvas(@imageSent='onImageRecived($event)' v-for="image in images" v-bind:userData="userData" v-bind:image="image" v-bind:sendCanvas="sendCanvas")
+                CigCanvas.canvas(@imageSent='onImageRecived($event)' v-for="(image, index) in images" :key="index" v-bind:userData="userData" v-bind:image="image" v-bind:sendCanvas="sendCanvas")
 </template>
 
 <script lang="ts">
