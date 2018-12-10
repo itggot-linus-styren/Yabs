@@ -20,7 +20,7 @@ export default class DropDownType extends Vue {
     public type = this.selectedType;
 
     public changeType() {
-        this.$emit('change-type', this.type);
+        this.$emit('changeType', this.type);
     }
 
     public changeToLoan() {
