@@ -129,8 +129,6 @@ export default class CigCanvas extends Vue {
         this.context.fillStyle = '#ffffff';
         this.context.fillText(this.name, this.width / 2, this.height / 2 + this.height / 8, this.width);
         this.context.fillText(this.role, this.width / 2, this.height / 1.7 + this.height / 8, this.width);
-        // this.context.font = secondFontSize + 'px Arial';
-        // this.context.fillText(this.email, this.width / 2, this.height / 1.5, this.width);
     }
 
     @Watch('sendCanvas')
