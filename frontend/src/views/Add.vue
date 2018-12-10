@@ -36,7 +36,7 @@ export default class Add extends Vue {
     public displayCig = 'none';
     public updated = false;
     public userData = {};
-    public images = [];
+    public images: any[] = [];
 
     public onChangeType(type: string) {
         this.type = type;
@@ -50,11 +50,11 @@ export default class Add extends Vue {
         }
     }
 
-    public onSendUserData(userData) {
+    public onSendUserData(userData: any) {
         this.userData = userData;
     }
 
-    public onSendImages(images) {
+    public onSendImages(images: any[]) {
         this.images = images;
     }
 
