@@ -8,7 +8,7 @@
                 b-form-input#nestedBid(placeholder='Kostnad' v-model="form.titel_cost")
             b-form-group(vertical='' label-class='text-sm-right' label-for='nestedBid')
                 b-form-input#nestedBid(placeholder='ISBN' v-model="form.isbn")
-            b-form-select(v-model="selected" :options="options" class="mb-3")
+            b-form-select(:options="options" class="mb-3")
             b-button(type='submit', variant='primary') Lägg till
             b-button(type='reset', variant='danger') Rensa Fältet
 
