@@ -30,7 +30,7 @@ export default class HeaderNav extends Vue {}
 
     .base
         position: absolute
-        z-index: 1000
+        z-index: 100
         left: 0px
         right: 0px
 

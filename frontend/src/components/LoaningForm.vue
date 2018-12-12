@@ -10,13 +10,19 @@
                 b-form-input#nestedDate(v-model="form.date" :disabled="disabled" type='date')
                 b-form-checkbox(id="checkbox" v-model="checked" value="true" unchecked-value="false") Använd flera gånger
             b-button(type='submit', variant='primary') Låna Ut
+            AddMultipleLoans
 
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
- 
-@Component
+import AddMultipleLoans from '@/components/AddMultipleLoans.vue';
+
+@Component({
+    components: {
+        AddMultipleLoans,
+    },
+})
 export default class LoaningForm extends Vue {
     public checked: string = 'false';
     public disabled: boolean = false;
