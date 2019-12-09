@@ -25,10 +25,10 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
 import { Getter } from '../decorators';
+import BooksModule from '../store/modules/BooksModule';
 
 @Component
 export default class AllBooks extends Vue {
-  @Getter('books/all') public books: any;
 
   @Prop({ default: 5 }) public perPage!: number;
   @Prop({ default: 0 }) public pageOptions!: number;
@@ -48,8 +48,8 @@ export default class AllBooks extends Vue {
   ];
 
   get items() {
-    const items = Object.entries(this.books).map(([k, v]) =>
-      Object.assign(v, { '.key': k }),
+    const items = Object.entries(BooksModule.all).map(([key, value]) =>
+      Object.assign(value, { '.key': key }),
     );
     this.totalRows = items.length;
 
@@ -70,9 +70,8 @@ export default class AllBooks extends Vue {
   }
 
   public created() {
-    this.$store
-      .dispatch('books/all')
-      .then((books: any) => this.$emit('books-loaded', books))
+    BooksModule.fetchAll()
+      .then(() => this.$emit('books-loaded', BooksModule.all))
       .catch((failure: any) => console.log(failure));
   }
 

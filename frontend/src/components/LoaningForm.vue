@@ -13,6 +13,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import LoansModule from "../store/modules/LoansModule";
 import { Getter } from '../decorators';
 
 @Component
@@ -29,11 +30,9 @@ export default class LoaningForm extends Vue {
   public onSubmit(evt: Event) {
     evt.preventDefault();
     this.form.lent_by_id = this.currentUser ? this.currentUser.uid : '';
-    this.$store
-      .dispatch('loans/create', this.form)
+    LoansModule.create(this.form)
       .then((loan: any) => this.$emit('loan-added', loan))
       .catch((failure: any) => console.log(failure));
-    // alert(JSON.stringify(this.form));
   }
 
   public onReset(evt: Event) {
