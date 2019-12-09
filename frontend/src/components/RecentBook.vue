@@ -6,7 +6,6 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Getter } from '../decorators';
 import BooksModule from '../store/modules/BooksModule';
 
 @Component

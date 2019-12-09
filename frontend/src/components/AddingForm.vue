@@ -15,7 +15,6 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Getter } from '../decorators';
 import TitlesModule from '../store/modules/TitlesModule';
 import BooksModule from '../store/modules/BooksModule';
 
