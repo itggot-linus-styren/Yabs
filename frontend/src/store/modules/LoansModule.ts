@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import {VuexModule, Module, getModule, Action, Mutation} from '@bartvanvliet/vuex-module-decorators';
-import store from '../new';
+import store from '..';
 import LoansAPI from '../../api/loans';
 
 export interface Loan {
@@ -16,10 +16,10 @@ export interface Loan {
   returned_at: string|null;
   updated_at: string;
 }
-export interface LoanObject {[id: number]: Loan; }
+export interface LoanCollection {[id: number]: Loan; }
 
 export interface LoanState {
-  loans: LoanObject;
+  loans: LoanCollection;
   failure: any;
 }
 

@@ -21,7 +21,7 @@ import CigCanvas from '@/components/CigCanvas.vue';
 import AddLoan from '@/components/AddLoan.vue';
 import RecentLoan from '@/components/RecentLoan.vue';
 import { User, UserObject } from '../store/modules/users';
-import { Getter } from '../decorators';
+import UsersModule from '../store/modules/UsersModule';
 
 @Component({
     components: {
@@ -31,14 +31,12 @@ import { Getter } from '../decorators';
     },
 })
 export default class Profile extends Vue {
-  @Getter('users/all') public users!: UserObject;
-
   public currentUser: User | null = null;
 
   public created() {
-    this.$store.dispatch('users/all').then(() => {
-      const users: any[] = Object.entries(this.users);
-      if (users) { this.currentUser = users.find(([k, user]) => user.uid === +this.$route.params.id)[1]; }
+    UsersModule.fetchAll().then(() => {
+      const users: any[] = Object.entries(UsersModule.all);
+      if (users) { this.currentUser = users.find(([key, user]) => user.uid === +this.$route.params.id)[1]; }
     });
   }
 }

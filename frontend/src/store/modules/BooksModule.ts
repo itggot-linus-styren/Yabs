@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import { VuexModule, Module, Action, Mutation, getModule } from '@bartvanvliet/vuex-module-decorators';
-import store from '../new';
+import store from '..';
 import BooksAPI from '../../api/books';
 
 interface BookState {

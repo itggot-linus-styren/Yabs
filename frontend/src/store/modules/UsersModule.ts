@@ -7,69 +7,61 @@ import {
     Mutation,
 } from '@bartvanvliet/vuex-module-decorators';
 import store from '..';
-import TitlesAPI from '../../api/titles';
+import UsersAPI from '../../api/users';
 
-export interface Title {
-    cost: number;
+export interface User {
     created_at: string;
-    id: number;
-    isbn: string;
+    email: string;
+    google_token: string;
+    klass: string;
     name: string;
-    title_type: string;
+    photo_path: string;
+    role: string;
+    uid: number;
     updated_at: string;
 }
 
-export interface TitleCollection { [id: number]: Title; }
+export interface UserCollection { [uid: number]: User; }
 
-export interface TitleState {
-    titles: TitleCollection;
+export interface UserState {
+    users: UserCollection;
+    current_user: User | null;
     failure: any;
 }
 
-@Module({dynamic: true, namespaced: true, name: 'TitlesModule', store})
-class TitlesModule extends VuexModule {
-    private titleState: TitleState = {titles: {}, failure: null};
+@Module({dynamic: true, namespaced: true, name: 'UsersModule', store})
+class UsersModule extends VuexModule {
+    private userState: UserState = {users: {}, current_user: null, failure: null};
 
     get all() {
-        return this.titleState.titles;
+        return this.userState.users;
+    }
+
+    get currentUser() {
+        return this.userState.current_user;
     }
 
     @Action({rawError: true})
     public fetchAll() {
         return new Promise((resolve, reject) => {
-        TitlesAPI.all()
-            .then((response: any) => {
-            response.forEach((title: any) => this.setTitle(title));
-            resolve();
-            })
-            .catch((error: any) => {
+            UsersAPI.all()
+              .then((response: any) => {
+                response.forEach((user: any) => this.setUser(user));
+                resolve();
+              })
+              .catch((error: any) => {
                 this.setFailure(error);
                 reject(error);
-            });
-        });
-    }
-
-    @Action({rawError: true})
-    public create(request: any) {
-        return new Promise((resolve, reject) => {
-          TitlesAPI.create(request)
-            .then((response: any) => {
-              this.setTitle(response);
-              resolve(response);
-            })
-            .catch((error: any) => {
-              this.setFailure(error);
-              reject(error);
-            });
-        });
+              });
+          });
     }
 
     @Action({rawError: true})
     public update(request: any) {
         return new Promise((resolve, reject) => {
-          TitlesAPI.update(request)
+          UsersAPI.update(request)
             .then((response: any) => {
-              this.setTitle(response);
+              this.setUser(response);
               resolve(response);
             })
             .catch((error: any) => {
@@ -80,11 +72,11 @@ class TitlesModule extends VuexModule {
     }
 
     @Action({rawError: true})
-    public delete(request: any) {
+    public signIn(request: any) {
         return new Promise((resolve, reject) => {
-          TitlesAPI.delete(request)
+          UsersAPI.signIn(request)
             .then((response: any) => {
-              this.removeTitle(response);
+              this.setCurrentUser(response);
               resolve(response);
             })
             .catch((error: any) => {
@@ -92,22 +84,38 @@ class TitlesModule extends VuexModule {
               reject(error);
             });
         });
-      }
+    }
 
-    @Mutation
-    private setTitle(payload: any) {
-        Vue.set(this.titleState.titles, payload.id, payload);
+    @Action({rawError: true})
+    public signOut() {
+        return new Promise((resolve, reject) => {
+          UsersAPI.signOut()
+            .then((response: any) => {
+              this.setCurrentUser(response);
+              resolve(response);
+            })
+            .catch((error: any) => {
+              this.setFailure(error);
+              reject(error);
+            });
+        });
     }
 
     @Mutation
-    private removeTitle(titleId: string) {
-        Vue.delete(this.titleState.titles, titleId);
+    private setUser(payload: any) {
+        Vue.set(this.userState.users, payload.uid, payload);
+    }
+
+    @Mutation
+    private setCurrentUser(payload: any) {
+        this.userState.current_user = payload;
     }
 
     @Mutation
     private setFailure(payload: any) {
-        this.titleState.failure = payload;
+        this.userState.failure = payload;
     }
+
 }
 
-export default getModule(TitlesModule);
+export default getModule(UsersModule);

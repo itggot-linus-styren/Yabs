@@ -1,16 +1,16 @@
 <template lang="pug">
   div
-    a.text-warning(v-if="currentUser" href="#" @click="signOut();") SIGN OUT
+    a.text-warning(v-if="usersModule.currentUser" href="#" @click="signOut();") SIGN OUT
     div#signin2
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Getter } from '../decorators';
+import UsersModule from '../store/modules/UsersModule';
 
 @Component
 export default class GoogleLogin extends Vue {
-  @Getter('users/currentUser') public currentUser!: any;
+  public usersModule = UsersModule;
 
   public mounted() {
     // @ts-ignore: gapi
@@ -32,8 +32,7 @@ export default class GoogleLogin extends Vue {
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    this.$store
-      .dispatch('users/signIn', id_token)
+    UsersModule.signIn(id_token)
       .then((response: any) => {
         console.log(response);
       })
@@ -48,11 +47,10 @@ export default class GoogleLogin extends Vue {
   }
 
   public signOut() {
-    const that = this;
     // @ts-ignore: gapi
     const auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(() => {
-      that.$store.dispatch('users/signOut');
+      UsersModule.signOut();
     });
   }
 }
