@@ -8,10 +8,10 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Getter } from '../decorators';
 import { TitleObject } from '../store/modules/titles';
+import TitlesModule from '../store/modules/TitlesModule';
 
 @Component
 export default class RecentTitel extends Vue {
-  @Getter('titles/all') public titles!: TitleObject;
   public sortBy = 'Title';
   public sortDesc = false;
   public fields = [
@@ -22,15 +22,15 @@ export default class RecentTitel extends Vue {
   ];
 
   get items() {
-    return Object.entries(this.titles)
-      .filter(([k, v]) => {
-        return !v.returned_at;
+    return Object.entries(TitlesModule.all)
+      .filter(([key, value]) => {
+        return !value.returned_at;
       })
-      .map(([k, v]) => Object.assign(v, { '.key': k }));
+      .map(([key, value]) => Object.assign(value, { '.key': key }));
   }
 
   public created() {
-    this.$store.dispatch('titles/all');
+    TitlesModule.fetchAll();
   }
 }
 </script>
