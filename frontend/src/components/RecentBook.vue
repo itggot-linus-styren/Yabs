@@ -7,7 +7,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Getter } from '../decorators';
-import BooksModule from "../store/modules/BooksModule";
+import BooksModule from '../store/modules/BooksModule';
 
 @Component
 export default class RecentTitel extends Vue {

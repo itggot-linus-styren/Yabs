@@ -16,7 +16,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import TitlesModule from "../store/modules/TitlesModule";
+import TitlesModule from '../store/modules/TitlesModule';
 
 @Component
 export default class TitleForm extends Vue {

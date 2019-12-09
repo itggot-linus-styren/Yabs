@@ -20,8 +20,7 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 import CigCanvas from '@/components/CigCanvas.vue';
 import AddLoan from '@/components/AddLoan.vue';
 import RecentLoan from '@/components/RecentLoan.vue';
-import { User, UserObject } from '../store/modules/users';
-import UsersModule from '../store/modules/UsersModule';
+import UsersModule, { User } from '../store/modules/UsersModule';
 
 @Component({
     components: {

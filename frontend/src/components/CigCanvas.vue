@@ -19,8 +19,7 @@ import JQuery from 'jquery';
 import FileSaver from 'file-saver';
 import resize from 'vue-resize-directive';
 import { setTimeout } from 'timers';
-import { UserObject } from '../store/modules/users';
-import UsersModule from "../store/modules/UsersModule";
+import UsersModule from '../store/modules/UsersModule';
 
 @Component({
   directives: {

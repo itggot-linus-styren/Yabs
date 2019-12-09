@@ -16,9 +16,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { Getter } from '../decorators';
-import { TitleObject } from '../store/modules/titles';
-import TitlesModule from "../store/modules/TitlesModule";
-import BooksModule from "../store/modules/BooksModule";
+import TitlesModule from '../store/modules/TitlesModule';
+import BooksModule from '../store/modules/BooksModule';
 
 @Component
 export default class AddingForm extends Vue {

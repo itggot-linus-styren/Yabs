@@ -17,9 +17,9 @@ import LoansModule from '../store/modules/LoansModule';
 import UsersModule from '../store/modules/UsersModule';
 
 interface Form {
-  lent_by_id: any,
-  loaned_by_id: '',
-  book_id: '',
+  lent_by_id: any;
+  loaned_by_id: '';
+  book_id: '';
 }
 
 @Component

@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Component, Watch, Prop, Vue } from 'vue-property-decorator';
-import UsersModule from "../store/modules/UsersModule";
+import UsersModule from '../store/modules/UsersModule';
 import JSZip from 'jszip';
 
 @Component

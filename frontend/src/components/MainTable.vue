@@ -26,8 +26,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { LoanObject } from '../store/modules/loans';
-import LoansModule from "../store/modules/LoansModule";
+import LoansModule from '../store/modules/LoansModule';
 
 @Component
 export default class MainTable extends Vue {
