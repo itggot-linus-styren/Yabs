@@ -14,8 +14,6 @@ backend/config/secrets.yml
 rerun.txt
 pickle-email-*.html
 coverage/
-Gemfile.lock
-Yarn.lock
 .vscode/
 **/*.DS_Store
 
