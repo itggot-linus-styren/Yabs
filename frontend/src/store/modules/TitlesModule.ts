@@ -31,7 +31,8 @@ class TitlesModule extends VuexModule {
     private titleState: TitleState = {titles: {}, failure: null};
 
     get all() {
-        return this.titleState.titles;
+      console.log(this.titleState.titles);
+      return this.titleState.titles;
     }
 
     @Action({rawError: true})
