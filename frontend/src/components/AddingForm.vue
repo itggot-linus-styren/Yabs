@@ -15,13 +15,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Getter } from '../decorators';
-import { TitleObject } from '../store/modules/titles';
+import TitlesModule from '../store/modules/TitlesModule';
+import BooksModule from '../store/modules/BooksModule';
 
 @Component
 export default class AddingForm extends Vue {
-  @Getter('titles/all') public titles!: TitleObject;
-
   public form = {
     barcode: '',
     title_id: 0,
@@ -31,21 +29,20 @@ export default class AddingForm extends Vue {
   public show = true;
 
   get titleNames() {
-    return Object.entries(this.titles).map(([k, title]) => title.name);
+    return Object.entries(TitlesModule.all).map(([key, title]) => title.name);
   }
 
   public toId() {
-    for (const title in this.titles) {
-      if (this.name === this.titles[title].name) {
-        this.form.title_id = this.titles[title].id;
+    for (const title in TitlesModule.all) {
+      if (this.name === TitlesModule.all[title].name) {
+        this.form.title_id = TitlesModule.all[title].id;
       }
     }
   }
 
   public onSubmit(evt: Event) {
     evt.preventDefault();
-    console.log(this.$store.dispatch('books/create', this.form));
-    // alert(JSON.stringify(this.form));
+    BooksModule.create(this.form);
   }
 
   public onReset(evt: Event) {

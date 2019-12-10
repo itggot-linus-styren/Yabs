@@ -6,11 +6,10 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Getter } from '../decorators';
+import BooksModule from '../store/modules/BooksModule';
 
 @Component
 export default class RecentTitel extends Vue {
-  @Getter('books/all') public books: any;
   public sortBy = 'Title';
   public sortDesc = false;
   public fields = [
@@ -20,16 +19,16 @@ export default class RecentTitel extends Vue {
   ];
 
   get items() {
-    return Object.entries(this.books)
-      .filter(([k, v]) => {
+    return Object.entries(BooksModule.all)
+      .filter(([key, value]) => {
         // @ts-ignore: returned at
-        return !v.returned_at;
+        return !value.returned_at;
       })
-      .map(([k, v]) => Object.assign(v, { '.key': k }));
+      .map(([key, value]) => Object.assign(value, { '.key': key }));
   }
 
   public created() {
-    this.$store.dispatch('books/all');
+    BooksModule.fetchAll();
   }
 }
 </script>
