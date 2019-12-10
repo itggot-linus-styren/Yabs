@@ -5,7 +5,7 @@ import {
     getModule,
     Action,
     Mutation,
-} from '@bartvanvliet/vuex-module-decorators';
+} from 'vuex-module-decorators';
 import store from '..';
 import UsersAPI from '../../api/users';
 
@@ -102,17 +102,17 @@ class UsersModule extends VuexModule {
     }
 
     @Mutation
-    private setUser(payload: any) {
+    public setUser(payload: any) {
         Vue.set(this.userState.users, payload.uid, payload);
     }
 
     @Mutation
-    private setCurrentUser(payload: any) {
+    public setCurrentUser(payload: any) {
         this.userState.current_user = payload;
     }
 
     @Mutation
-    private setFailure(payload: any) {
+    public setFailure(payload: any) {
         this.userState.failure = payload;
     }
 

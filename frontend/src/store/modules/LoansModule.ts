@@ -1,5 +1,5 @@
 import Vue from 'vue';
-import {VuexModule, Module, getModule, Action, Mutation} from '@bartvanvliet/vuex-module-decorators';
+import {VuexModule, Module, getModule, Action, Mutation} from 'vuex-module-decorators';
 import store from '..';
 import LoansAPI from '../../api/loans';
 

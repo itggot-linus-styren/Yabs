@@ -5,7 +5,7 @@ import {
     getModule,
     Action,
     Mutation,
-} from '@bartvanvliet/vuex-module-decorators';
+} from 'vuex-module-decorators';
 import store from '..';
 import TitlesAPI from '../../api/titles';
 
