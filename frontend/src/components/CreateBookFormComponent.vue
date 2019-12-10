@@ -47,7 +47,6 @@ export default class CreateBookFormComponent extends Vue {
 
   public onSubmit(evt: Event) {
     evt.preventDefault();
-    console.log(this.form.title_id);
     BooksModule.create(this.form);
   }
 
