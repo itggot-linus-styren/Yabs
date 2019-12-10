@@ -6,8 +6,8 @@
                 b-navbar-nav
                     b-nav-item
                         router-link.link(to='/') Start
-                    b-nav-item(v-if="currentUser")
-                        router-link.link(:to="`/users/${currentUser.uid}`") Profil
+                    b-nav-item(v-if="usersModule.currentUser")
+                        router-link.link(:to="`/users/${usersModule.currentUser.uid}`") Profil
                     b-nav-item
                         router-link.link(to='/add') Lägg till
                     b-nav-item
@@ -21,7 +21,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import GoogleLogin from '@/components/GoogleLogin.vue';
-import { Getter } from '../decorators';
+import UsersModule from '../store/modules/UsersModule';
 
 @Component({
   components: {
@@ -29,7 +29,7 @@ import { Getter } from '../decorators';
   },
 })
 export default class HeaderNav extends Vue {
-  @Getter('users/currentUser') public currentUser!: any;
+  public usersModule = UsersModule;
 }
 </script>
 

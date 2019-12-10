@@ -11,7 +11,7 @@
 
 <script lang="ts">
 import { Component, Watch, Prop, Vue } from 'vue-property-decorator';
-import { Getter } from '../decorators';
+import UsersModule from '../store/modules/UsersModule';
 import JSZip from 'jszip';
 
 @Component
@@ -19,7 +19,7 @@ export default class CigForm extends Vue {
   public files: File[] = [];
 
   public created() {
-    this.$store.dispatch('users/all');
+    UsersModule.fetchAll();
   }
 
   public submit() {
