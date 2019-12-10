@@ -1,18 +1,28 @@
-<template lang="pug">
-    div
-      p(v-if="!currentUser") Du är inte inloggad
+<template>
+    <!-- div
+      p(v-if="!usersModule.currentUser") Du är inte inloggad
       .view(v-else)
           .left
-              h1 {{currentUser.name}}
-              h1 {{currentUser.role}} - {{currentUser.klass}}
-              img(:src="`http://localhost:3000/${currentUser.photo_path}`")
+              h1 {{usersModule.currentUser}}
+              h1 {{usersModule.currentUser}} - {{usersModule.currentUser}}
+              img(:src="`http://localhost:3000/${usersModule.currentUser.photo_path}`")
           .right
               .header
                   AddLoan
                   .loanText
                       h1 Lån
               .myCard
-                  RecentLoan
+                  RecentLoan -->
+    <v-container>
+        <h1>{{usersModule.currentUser.name}} - {{usersModule.currentUser.klass}}</h1>
+        <img v-if="usersModule.currentUser.photo_path" 
+            :src="'http://localhost:3000/'+usersModule.currentUser.photo_path" 
+            alt="Profile Picture"
+        >
+        <div v-else>
+            <p>Du har ingen profilbild, det var tråkigt.</p>
+        </div>
+    </v-container>
 </template>
 
 <script lang="ts">
@@ -30,13 +40,9 @@ import UsersModule, { User } from '../store/modules/UsersModule';
     },
 })
 export default class Profile extends Vue {
-  public currentUser: User | null = null;
-
+  private usersModule = UsersModule;
   public created() {
-    UsersModule.fetchAll().then(() => {
-      const users: any[] = Object.entries(UsersModule.all);
-      if (users) { this.currentUser = users.find(([key, user]) => user.uid === +this.$route.params.id)[1]; }
-    });
+    UsersModule.getUser(this.$route.params.id)
   }
 }
 </script>

@@ -29,9 +29,7 @@ export default class RecentLoan extends Vue {
   }
 
   public created() {
-    LoansModule.fetchAll()
-      .then(() => this.$emit('loans-loaded', LoansModule.all))
-      .catch((failure: any) => console.log(failure));
+    LoansModule.fetchAll();
   }
 }
 </script>

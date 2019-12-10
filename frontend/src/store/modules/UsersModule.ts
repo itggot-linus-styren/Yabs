@@ -32,7 +32,6 @@ export interface UserState {
 @Module({dynamic: true, namespaced: true, name: 'UsersModule', store})
 class UsersModule extends VuexModule {
     private userState: UserState = {users: {}, current_user: null, failure: null};
-
     get all() {
         return this.userState.users;
     }
@@ -45,7 +44,8 @@ class UsersModule extends VuexModule {
     public fetchAll() {
         return new Promise((resolve, reject) => {
             UsersAPI.all()
-              .then((response: any) => {
+              .then((response: User[]) => {
+                console.log(response);
                 response.forEach((user: any) => this.setUser(user));
                 resolve();
               })
@@ -56,6 +56,20 @@ class UsersModule extends VuexModule {
           });
     }
 
+    @Action({rawError: true})
+    public getUser(id: string) {
+      return new Promise((resolve, reject) => {
+        UsersAPI.get(id)
+          .then((response: User) => {
+            this.setUser(response);
+            resolve();
+          })
+          .catch((error: any) => {
+            this.setFailure(error);
+            reject(error);
+          });
+      });
+    }
     @Action({rawError: true})
     public update(request: any) {
         return new Promise((resolve, reject) => {
@@ -91,7 +105,7 @@ class UsersModule extends VuexModule {
         return new Promise((resolve, reject) => {
           UsersAPI.signOut()
             .then((response: any) => {
-              this.setCurrentUser(response);
+              this.setCurrentUser(null);
               resolve(response);
             })
             .catch((error: any) => {

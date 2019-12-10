@@ -34,6 +34,8 @@
   padding: 5%
   padding-left: 0px
 
+
+
 @media only screen and (max-width: 808px)
   .app .view
     flex-direction: column
@@ -44,6 +46,7 @@
     flex-direction: row
     justify-content: center
     padding: 0px
+  
 </style>
 
 <script lang="ts">

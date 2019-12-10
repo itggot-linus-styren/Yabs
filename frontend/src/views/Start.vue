@@ -1,5 +1,5 @@
-<template lang="pug">
-    .view
+<template>
+    <!-- .view
         #left
         b-container
             h1.text-center Välkommen till YABS!
@@ -29,8 +29,12 @@
             br
             LoadingIcon(v-show='loading')
             .myCard(v-show='!loading')
-                RecentLoan(@loans-loaded='onLoaded')
-
+                RecentLoan(@loans-loaded='onLoaded') -->
+    <div>
+        <v-container>
+            <v-title>Hej</v-title>
+        </v-container>
+    </div>
 </template>
 
 <script lang="ts">

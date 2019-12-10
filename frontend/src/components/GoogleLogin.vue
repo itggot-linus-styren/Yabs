@@ -1,7 +1,10 @@
-<template lang="pug">
-  div
-    a.text-warning(v-if="usersModule.currentUser" href="#" @click="signOut();") SIGN OUT
-    div#signin2
+<template>
+    <v-btn v-if="usersModule.userState.current_user === null" class="ml-2" text color="grey">
+      <div id="signin2"></div>
+    </v-btn>
+
+    <!-- div#signin2(v-else="usersModule.currentUser") -->
+
 </template>
 
 <script lang="ts">
@@ -13,16 +16,24 @@ export default class GoogleLogin extends Vue {
   public usersModule = UsersModule;
 
   public mounted() {
+    this.renderLoginButton()
+  }
+
+  public renderLoginButton() {
+
     // @ts-ignore: gapi
     gapi.signin2.render('signin2', {
       scope: 'profile email',
-      width: 240,
+      width: 200,
       height: 50,
-      longtitle: true,
+      longtitle: false,
       theme: 'dark',
       onsuccess: this.onSignIn,
       onfailure: this.onFailure,
     });
+  }
+  updated() {
+    this.renderLoginButton()
   }
 
   public onSignIn(googleUser: any) {
@@ -43,16 +54,16 @@ export default class GoogleLogin extends Vue {
 
   public onFailure(error: any) {
     // TODO: show this in a notification
-    console.error(error);
+    console.error(error, 'hej');
   }
-
-  public signOut() {
+  signOut() {
     // @ts-ignore: gapi
     const auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(() => {
       UsersModule.signOut();
     });
   }
+
 }
 </script>
 
