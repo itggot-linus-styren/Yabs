@@ -19,8 +19,7 @@ import JQuery from 'jquery';
 import FileSaver from 'file-saver';
 import resize from 'vue-resize-directive';
 import { setTimeout } from 'timers';
-import { UserObject } from '../store/modules/users';
-import { Getter } from '../decorators';
+import UsersModule from '../store/modules/UsersModule';
 
 @Component({
   directives: {
@@ -28,8 +27,6 @@ import { Getter } from '../decorators';
   },
 })
 export default class CigCanvas extends Vue {
-  @Getter('users/all') public users!: UserObject;
-
   @Prop({ default: null }) public image!: File | null;
   @Prop({ default: false }) public sendCanvas!: boolean;
 
@@ -43,17 +40,17 @@ export default class CigCanvas extends Vue {
   public context: any = null;
 
   public get userNames() {
-    return Object.entries(this.users)
-      .filter(([k, user]) => !user.name.includes('Deleted User'))
-      .map(([k, user]) => user.name);
+    return Object.entries(UsersModule.all)
+      .filter(([key, user]) => !user.name.includes('Deleted User'))
+      .map(([key, user]) => user.name);
   }
 
   public checkUserData() { // TODO: don't compare name to find the user. Instead compare the uid.
-    for (const user in this.users) {
-      if (this.name === this.users[user].name) {
+    for (const user in UsersModule.all) {
+      if (this.name === UsersModule.all[user].name) {
         this.barcode = user;
-        this.email = this.users[user].email;
-        this.role = this.users[user].role;
+        this.email = UsersModule.all[user].email;
+        this.role = UsersModule.all[user].role;
       }
     }
   }
@@ -192,7 +189,7 @@ export default class CigCanvas extends Vue {
     const formData = new FormData();
     formData.append('uid', this.barcode);
     formData.append('image', this.image as Blob);
-    this.$store.dispatch('users/update', formData).then((response: any) => {
+    UsersModule.update(formData).then((response: any) => {
       console.log('user updated profile!');
     }).catch((error: any) => {
       // TODO: show in notification to user

@@ -16,6 +16,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import TitlesModule from '../store/modules/TitlesModule';
 
 @Component
 export default class TitleForm extends Vue {
@@ -36,11 +37,9 @@ export default class TitleForm extends Vue {
 
   public onSubmit(evt: Event) {
     evt.preventDefault();
-    this.$store
-      .dispatch('titles/create', this.form)
-      .then((title: any) => this.$emit('title-added', title))
-      .catch((failure: any) => console.log(failure));
-    // alert(JSON.stringify(this.form));
+    TitlesModule.create(this.form)
+    .then((title: any) => this.$emit('title-added', title))
+    .catch((failure: any) => console.log(failure));
   }
 
   public onReset(evt: Event) {

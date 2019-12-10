@@ -2,6 +2,7 @@ import HeaderNav from '../HeaderNav.vue';
 
 import { Wrapper } from '@vue/test-utils';
 import { shallowFactory } from '@/helpers/testFactoryHelpers';
+import UsersModule from '@/store/modules/UsersModule';
 
 describe('HeaderNav.vue', () => {
 
@@ -18,7 +19,7 @@ describe('HeaderNav.vue', () => {
 
     expect(wrapper.html()).not.toMatch('Profile');
 
-    wrapper.vm.$store.commit('users/setCurrentUser', {uid: 1});
+    UsersModule.setCurrentUser({uid: 1});
 
     expect(wrapper.html()).toMatch('Profil');
   });
