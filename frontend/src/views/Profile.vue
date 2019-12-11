@@ -41,9 +41,22 @@ import UsersModule, { User } from '../store/modules/UsersModule';
 })
 export default class Profile extends Vue {
   private usersModule = UsersModule;
+//   private image: Blob;
   public created() {
-    UsersModule.getUser(this.$route.params.id)
+    UsersModule.getUser(this.$route.params.id);
   }
+
+//   public newPicture() {
+//     const formData = new FormData();
+//     formData.append('uid', UsersModule.currentUser.uid);
+//     formData.append('image', this.image as Blob);
+//     UsersModule.update(formData).then((response: any) => {
+//       console.log('user updated profile!');
+//     }).catch((error: any) => {
+//       // TODO: show in notification to user
+//       console.error(error);
+//     });
+//   }
 }
 </script>
 

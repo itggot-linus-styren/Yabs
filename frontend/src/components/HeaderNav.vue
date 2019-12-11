@@ -15,7 +15,6 @@
         <v-btn class="ml-2 mr-5" v-if="usersModule.currentUser" text color="grey" @click="signOut">
           <v-icon>mdi-logout-variant</v-icon>
         </v-btn>
-
         <GoogleLogin></GoogleLogin>
       </v-toolbar-items>
     </v-app-bar>
@@ -39,18 +38,36 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import GoogleLogin from "@/components/GoogleLogin.vue";
-import UsersModule from "../store/modules/UsersModule";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import GoogleLogin from '@/components/GoogleLogin.vue';
+import UsersModule from '../store/modules/UsersModule';
 
 @Component({
   components: {
-    GoogleLogin
-  }
+    GoogleLogin,
+  },
 })
 export default class HeaderNav extends Vue {
   public usersModule = UsersModule;
-   signOut() {
+  // private links = [
+  //   {
+  //     title: 'Hem',
+  //     link: '/home',
+  //   },
+  //   {
+  //     title: 'Profil',
+  //     link: `/users/${UsersModule.currentUser.uid}`,
+  //   },
+  //   {
+  //     title: 'Lägg till',
+  //     link: `/add`,
+  //   },
+  //   {
+  //     title: 'Hitta',
+  //     link: `/find`,
+  //   },
+  // ];
+   public signOut() {
        try {
         // @ts-ignore: gapi
         const auth2 = gapi.auth2.getAuthInstance();

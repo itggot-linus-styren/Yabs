@@ -17,7 +17,7 @@ export interface User {
     name: string;
     photo_path: string;
     role: string;
-    uid: number;
+    uid: string;
     updated_at: string;
 }
 
