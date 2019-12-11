@@ -43,23 +43,22 @@ import LoansModule from '../store/modules/LoansModule';
 import BooksModule from '../store/modules/BooksModule';
 
 @Component({
-    components: {
-        RecentLoan,
-        LoadingIcon,
-    },
+  components: {
+    RecentLoan,
+    LoadingIcon,
+  },
 })
 export default class Start extends Vue {
-    public size = 'lg';
-    public primary = 'primary';
-    public loading = true;
+  public size = 'lg';
+  public primary = 'primary';
+  public loading = true;
 
-
-    public onLoaded() {
-        this.loading = false;
-    }
-    public created() {
-        UsersModule.fetchAll();
-    }
+  public onLoaded() {
+    this.loading = false;
+  }
+  public created() {
+    UsersModule.fetchAll();
+  }
 }
 </script>
 
@@ -83,7 +82,6 @@ export default class Start extends Vue {
     display: flex
     flex-direction: row
     justify-content: center
-
 
 
 #wrapper

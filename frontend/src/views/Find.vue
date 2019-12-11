@@ -32,8 +32,6 @@ div
 </template>
 
 
-
-
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import DropdownFind from '@/components/DropdownFind.vue';
@@ -42,43 +40,43 @@ import AllBooks from '@/components/AllBooks.vue';
 import LoadingIcon from '@/components/LoadingIcon.vue';
 
 @Component({
-    components: {
-        DropdownFind,
-        MainTable,
-        AllBooks,
-        LoadingIcon,
-    },
+  components: {
+    DropdownFind,
+    MainTable,
+    AllBooks,
+    LoadingIcon,
+  },
 })
 
 export default class Find extends Vue {
-    public type = 'Utlånade';
-    public displayTable = 'block';
-    public displayCig = 'none';
+  public type = 'Utlånade';
+  public displayTable = 'block';
+  public displayCig = 'none';
+  
+  public perPage: number = 5;
+  public pageOptions: number[] = [ 5, 10, 15 ];
+  public sortBy = null;
+  public sortDesc = true;
+  public filter = null;
+  public modalInfo = { title: '', content: '' };
+  public loading = true;
 
-    public perPage: number = 5;
-    public pageOptions: number[] = [ 5, 10, 15 ];
-    public sortBy = null;
-    public sortDesc = true;
-    public filter = null;
-    public modalInfo = { title: '', content: '' };
-    public loading = true;
+  private sortTypes = [{text: 'Asc', value: false}, {text: 'Desc', value: true}];
 
-    private sortTypes = [{text: 'Asc', value: false}, {text: 'Desc', value: true}];
-
-    public onChangeType(type: string) {
-        this.type = type;
-        if (this.type === 'Utlånade') {
-            this.displayTable = 'block';
-            this.displayCig = 'none';
-        } else {
-            this.displayTable = 'none';
-            this.displayCig = 'block';
-        }
+  public onChangeType(type: string) {
+    this.type = type;
+    if (this.type === 'Utlånade') {
+        this.displayTable = 'block';
+        this.displayCig = 'none';
+    } else {
+        this.displayTable = 'none';
+        this.displayCig = 'block';
     }
+  }
 
-    public onLoaded() {
-        this.loading = false;
-    }
+  public onLoaded() {
+    this.loading = false;
+  }
 
 }
 </script>
