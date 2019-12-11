@@ -1,11 +1,12 @@
-<template lang="pug">
-    div
-        b-dropdown#ddown1.m-md-2(text='Ändra Typ')
-            b-dropdown-item(@click='changeToLoan' data-cy='loan') Lån
-            b-dropdown-item(@click='changeToCig' data-cy='cardID') ID Kort
-            b-dropdown-item(@click='changeToBook') Bok
-            b-dropdown-item(@click='changeToTitel') Titel
-
+<template>
+  <div>
+    <b-dropdown class="m-md-2" id="ddown1" text="Ändra Typ">
+      <b-dropdown-item @click="changeToLoan" data-cy='loan'>Lån</b-dropdown-item>
+      <b-dropdown-item @click="changeToCig" data-cy='cardID'>ID Kort</b-dropdown-item>
+      <b-dropdown-item @click="changeToBook">Bok</b-dropdown-item>
+      <b-dropdown-item @click="changeToTitel">Titel</b-dropdown-item>
+    </b-dropdown>
+  </div>
 </template>
 
 
