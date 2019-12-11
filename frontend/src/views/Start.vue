@@ -32,7 +32,7 @@
                 RecentLoan(@loans-loaded='onLoaded') -->
     <div>
         <v-container>
-            <v-title>Hej</v-title>
+            <h1>Welcome</h1>
         </v-container>
     </div>
 </template>
@@ -41,6 +41,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import RecentLoan from '@/components/RecentLoan.vue';
 import LoadingIcon from '@/components/LoadingIcon.vue';
+import UsersModule from '../store/modules/UsersModule';
 
 @Component({
     components: {
@@ -53,7 +54,9 @@ export default class Start extends Vue {
     public primary = 'primary';
     public loading = true;
 
-
+    public created() {
+        UsersModule.fetchAll();
+    }
     public onLoaded() {
         this.loading = false;
     }

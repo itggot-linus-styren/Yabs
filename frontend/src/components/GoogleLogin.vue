@@ -16,7 +16,7 @@ export default class GoogleLogin extends Vue {
   public usersModule = UsersModule;
 
   public mounted() {
-    this.renderLoginButton()
+    this.renderLoginButton();
   }
 
   public renderLoginButton() {
@@ -32,8 +32,8 @@ export default class GoogleLogin extends Vue {
       onfailure: this.onFailure,
     });
   }
-  updated() {
-    this.renderLoginButton()
+  public updated() {
+    this.renderLoginButton();
   }
 
   public onSignIn(googleUser: any) {
@@ -56,7 +56,7 @@ export default class GoogleLogin extends Vue {
     // TODO: show this in a notification
     console.error(error, 'hej');
   }
-  signOut() {
+  public signOut() {
     // @ts-ignore: gapi
     const auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(() => {

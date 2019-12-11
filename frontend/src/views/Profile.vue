@@ -17,11 +17,13 @@
         <h1>{{usersModule.currentUser.name}} - {{usersModule.currentUser.klass}}</h1>
         <img v-if="usersModule.currentUser.photo_path" 
             :src="'http://localhost:3000/'+usersModule.currentUser.photo_path" 
-            alt="Profile Picture"
+            alt="Profile Picture" @click="uploadButton" class="mt-5"
         >
-        <div v-else>
+        <div v-else> 
             <p>Du har ingen profilbild, det var tråkigt.</p>
+            <v-btn color="primary" @click="uploadButton">Ladda upp en bild</v-btn>
         </div>
+        <input type="file" id="upload-button" name="myfile" hidden @change="onFileChanged"/>
     </v-container>
 </template>
 
@@ -41,58 +43,51 @@ import UsersModule, { User } from '../store/modules/UsersModule';
 })
 export default class Profile extends Vue {
   private usersModule = UsersModule;
-//   private image: Blob;
+  private image!: Blob;
   public created() {
-    UsersModule.getUser(this.$route.params.id);
+
+
   }
 
-//   public newPicture() {
-//     const formData = new FormData();
-//     formData.append('uid', UsersModule.currentUser.uid);
-//     formData.append('image', this.image as Blob);
-//     UsersModule.update(formData).then((response: any) => {
-//       console.log('user updated profile!');
-//     }).catch((error: any) => {
-//       // TODO: show in notification to user
-//       console.error(error);
-//     });
-//   }
+  public newPicture() {
+    const formData = new FormData();
+    formData.append('uid', UsersModule.currentUser!.uid);
+    formData.append('image', this.image as Blob);
+    UsersModule.update(formData).then((response: any) => {
+        console.log(UsersModule.all['1935798971']);
+    }).catch((error: any) => {
+      // TODO: show in notification to user
+      console.error(error);
+    });
+  }
+
+  public uploadButton() {
+      const input: any = document.querySelector('#upload-button');
+      input.click();
+  }
+  public onFileChanged(event: any) {
+    this.image = event.target.files[0];
+    this.newPicture();
+  }
 }
 </script>
 
-<style lang="sass" scoped>
-    .myCard
-        width: 100%
-        height: 90%
-        overflow-y: auto
-        position: relative
-        min-width: 0
-        background-color: #fff
-        background-clip: border-box
-        border: 1px solid rgba(0, 0, 0, 0.125)
-        border-radius: 0.25rem
-        display: flex
-        flex-direction: row
-        justify-content: center
+<style  scoped>
+   .btn {
+  border: 2px solid gray;
+  color: gray;
+  background-color: white;
+  padding: 8px 20px;
+  border-radius: 8px;
+  font-size: 20px;
+  font-weight: bold;
+}
 
-    .header
-        display: flex
-        flex-direction: row
-        justify-content: flex-end
-        margin-bottom: 10px
-
-    .header h1
-        margin: 0
-
-    .loanText
-        height: inherit
-        width: auto
-        display: flex
-        flex-direction: column
-        justify-content: center
-        margin-left: 5%
-        margin-right: 5%
-
-    .right
-        padding-top: 2%
+.upload-btn-wrapper input[type=file] {
+  font-size: 100px;
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: 0;
+}
 </style>

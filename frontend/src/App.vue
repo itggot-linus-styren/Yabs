@@ -1,5 +1,5 @@
 <template lang="pug">
-  .app
+  v-app
     HeaderNav
     router-view
 
