@@ -1,36 +1,36 @@
 
-user_1904583927:
-  uid: 1904583927
-  name: Daniel Berg
-  email: daniel.berg@ga.ntig.se
-  klass: Lärare
-  role: Lärare
-  google_token: '101296211137404583927'
+user_1954282603:
+  uid: 1954282603
+  name: Låneservice Johanneberg
+  email: johanneberg.laneservice@ga.ntig.se
+  klass: ej
+  role: Elev
+  google_token: '101173758873354282603'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-11 09:05:02.817709000 Z
+    utc: &1 2019-12-11 09:27:09.603944000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-11 09:05:02.817709000 Z
+    utc: &3 2019-12-11 09:27:09.603944000 Z
     zone: *2
     time: *3
 
-user_1916174379:
-  uid: 1916174379
-  name: Emil Babayev
-  email: emil.babayev@elev.ga.ntig.se
-  klass: 3B
+user_1968097915:
+  uid: 1968097915
+  name: Alex Henryz
+  email: alex.henryz@elev.ga.ntig.se
+  klass: TE4
   role: Elev
-  google_token: '103298981762316174379'
+  google_token: '101834530373768097915'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-11 09:05:06.595371000 Z
+    utc: &1 2019-12-11 09:27:12.422834000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-11 09:05:06.595371000 Z
+    utc: &3 2019-12-11 09:27:12.422834000 Z
     zone: *2
     time: *3
