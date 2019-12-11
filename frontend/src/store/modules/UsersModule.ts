@@ -38,7 +38,7 @@ class UsersModule extends VuexModule {
     }
 
     get currentUser() {
-      if (this.userState.current_user) {
+      if (this.userState && this.userState.current_user) {
         return this.all[this.userState.current_user];
       } else {
         return {};
