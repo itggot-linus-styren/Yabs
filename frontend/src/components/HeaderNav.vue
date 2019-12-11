@@ -9,7 +9,7 @@
       <v-spacer></v-spacer>
       <v-toolbar-items>
 
-        <v-btn v-if="usersModule.currentUser" :to="'/users/'+ usersModule.currentUser.uid" text>
+        <v-btn v-if="usersModule.currentUser !== null" :to="'/users/'+ usersModule.currentUser.uid" text>
           <v-icon class="px-3">mdi-settings</v-icon>Profil
         </v-btn>
         <v-btn class="ml-2 mr-5" v-if="usersModule.currentUser" text color="grey" @click="signOut">

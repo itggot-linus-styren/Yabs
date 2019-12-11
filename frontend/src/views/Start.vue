@@ -60,6 +60,7 @@ export default class Start extends Vue {
     public onLoaded() {
         this.loading = false;
     }
+
 }
 </script>
 

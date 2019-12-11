@@ -18,7 +18,7 @@ import UsersModule from '../store/modules/UsersModule';
 
 interface Form {
   lent_by_id: any;
-  loaned_by_id: '';
+  loaned_by_id: any;
   book_id: '';
 }
 
@@ -34,6 +34,8 @@ export default class LoaningForm extends Vue {
   public onSubmit(evt: Event) {
     evt.preventDefault();
     this.form.lent_by_id = UsersModule.currentUser ? UsersModule.currentUser.uid : '';
+    this.form.loaned_by_id = parseInt(this.form.loaned_by_id, 10);
+    console.log(this.form.loaned_by_id);
     LoansModule.create(this.form)
       .then((loan: any) => this.$emit('loan-added', loan))
       .catch((failure: any) => console.log(failure));

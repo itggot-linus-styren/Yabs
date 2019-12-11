@@ -10,16 +10,17 @@ import store from '..';
 import UsersAPI from '../../api/users';
 import convertList from '../../helpers/convertArrayToNested';
 export interface User {
-  created_at: string;
-  email: string;
-  google_token: string;
-  klass: string;
-  name: string;
-  photo_path: string;
-  role: string;
-  uid: number;
-  updated_at: string;
+    created_at: string;
+    email: string;
+    google_token: string;
+    klass: string;
+    name: string;
+    photo_path: string;
+    role: string;
+    uid: number;
+    updated_at: string;
 }
+
 export interface UserCollection { [uid: number]: User; }
 
 export interface UserState {
@@ -31,6 +32,7 @@ export interface UserState {
 @Module({dynamic: true, namespaced: true, name: 'UsersModule', store, preserveState: true})
 class UsersModule extends VuexModule {
     private userState: UserState = {users: {}, current_user: null, failure: null};
+
     get all() {
         return this.userState.users;
     }
@@ -58,20 +60,6 @@ class UsersModule extends VuexModule {
           });
     }
 
-    @Action({rawError: true})
-    public getUser(id: string) {
-      return new Promise((resolve, reject) => {
-        UsersAPI.get(id)
-          .then((response: User) => {
-            this.setUser(response);
-            resolve();
-          })
-          .catch((error: any) => {
-            this.setFailure(error);
-            reject(error);
-          });
-      });
-    }
     @Action({rawError: true})
     public update(request: any) {
         return new Promise((resolve, reject) => {
@@ -108,7 +96,7 @@ class UsersModule extends VuexModule {
         return new Promise((resolve, reject) => {
           UsersAPI.signOut()
             .then((response: any) => {
-              this.setCurrentUser(null);
+              this.setCurrentUser(response);
               resolve(response);
             })
             .catch((error: any) => {
@@ -125,7 +113,11 @@ class UsersModule extends VuexModule {
 
     @Mutation
     public setCurrentUser(payload: any) {
-        this.userState.current_user = payload.uid;
+        if (payload && payload.uid) {
+          this.userState.current_user = payload.uid;
+        } else {
+          this.userState.current_user = null;
+        }
     }
 
     @Mutation
