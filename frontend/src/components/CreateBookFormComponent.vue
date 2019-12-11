@@ -1,5 +1,5 @@
 <template>
-  <v-form @submit="onSubmit" v-if="show">
+  <v-form @submit="onSubmit">
     <v-card>
       <v-text-field
         v-model="form.barcode"
