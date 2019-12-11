@@ -64,14 +64,13 @@ export default class Find extends Vue {
   private sortTypes = [{text: 'Asc', value: false}, {text: 'Desc', value: true}];
 
   public onChangeType(type: string) {
-      this.type = type;
-      if (this.type === 'Utlånade') {
-          this.displayTable = 'block';
-          this.displayCig = 'none';
-      } else {
-          this.displayTable = 'none';
-          this.displayCig = 'block';
-      }
+    this.type = type;
+    if (this.type === 'Utlånade') {
+        this.displayTable = 'block';
+        this.displayCig = 'none';
+    } else {
+        this.displayTable = 'none';
+        this.displayCig = 'block';
     }
   }
 
