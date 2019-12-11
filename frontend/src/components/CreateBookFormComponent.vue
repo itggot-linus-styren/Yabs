@@ -6,7 +6,7 @@
         label="Barcode"
         autocomplete="off"
         required
-      ></v-text-field>
+      />
       <v-autocomplete    
         v-model="form.title_id"
         :items="titlesModule.allAsArray"
@@ -14,13 +14,13 @@
         item-value="id"
         label="Select a favorite activity or create a new one"
         autocomplete="off"
-      ></v-autocomplete>
+      />
       <v-text-field
         v-model="form.status"
         label="Status: tex 'ok', 'framsida saknas'"
         autocomplete="off"
         required
-      ></v-text-field>
+      />
       <v-btn class="mr-4" type="submit" color="primary">Lägg till</v-btn>
       <v-btn @click.prevent="onReset" color="error">Rensa fält</v-btn>
     </v-card>
