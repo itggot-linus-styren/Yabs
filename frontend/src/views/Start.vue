@@ -15,7 +15,7 @@
             v-row
                 v-col
                     router-link.link.row-btn(to='/add')
-                        v-btn.row-btn(:size="size" :color="primary") Lägg till
+                        v-btn.row-btn(:size="size" :color="primary" data-cy='addPage') Lägg till
             p.info Lägg till delen används för att skapa nya passerkort, registera nya lån och lägga till nya böcker.
             br
             v-row

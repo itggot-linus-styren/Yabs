@@ -5,8 +5,8 @@
             v-item-group(vertical='' label-class='text-sm-right' label-for='nestedUid')
                 v-text-field#nestedUid(placeholder='Elevens Streckkod' v-model="form.loaned_by_id")
             v-item-group(vertical='' label-class='text-sm-right' label-for='nestedBid')
-                v-text-field#nestedBid(placeholder='Bokens Streckkod' v-model="form.book_id")
-            v-btn(type='submit', variant='primary') Låna Ut
+                v-text-field#nestedBid(data-cy='book_barcode' placeholder='Bokens Streckkod' v-model="form.book_id")
+            v-btn(data-cy='loanOutBook' type='submit', variant='primary') Låna Ut
             v-btn(type='reset', variant='danger') Rensa Fälten
 
 </template>
