@@ -97,64 +97,64 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import dropdownFind from "@/components/dropdownFind.vue";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import dropdownFind from '@/components/dropdownFind.vue';
 
 @Component({
   components: {
-    dropdownFind
-  }
+    dropdownFind,
+  },
 })
 export default class Find extends Vue {
   public items = [
     // Mockup
     {
-      elevnamn: "Simon Johannesson",
-      lån: "The Hobbit",
-      lärarnamn: "Daniel Berg",
-      utgångsdatum: "01-01-2019"
+      elevnamn: 'Simon Johannesson',
+      lån: 'The Hobbit',
+      lärarnamn: 'Daniel Berg',
+      utgångsdatum: '01-01-2019',
     },
     {
-      elevnamn: "Eric Persson",
-      lån: "Lord of the flies",
-      lärarnamn: "David Lundholm",
-      utgångsdatum: "01-01-2019"
+      elevnamn: 'Eric Persson',
+      lån: 'Lord of the flies',
+      lärarnamn: 'David Lundholm',
+      utgångsdatum: '01-01-2019',
     },
     {
-      elevnamn: "Filip Gustavsson",
-      lån: "The hitchhiker's guide to the galaxy",
-      lärarnamn: "Fredrik Kronhamn",
-      utgångsdatum: "01-01-2019"
+      elevnamn: 'Filip Gustavsson',
+      lån: 'The hitchhiker\'s guide to the galaxy',
+      lärarnamn: 'Fredrik Kronhamn',
+      utgångsdatum: '01-01-2019',
     },
     {
-      elevnamn: "Alex henryz",
-      lån: "Moby Dick",
-      lärarnamn: "Daniel Berg",
-      utgångsdatum: "01-01-2019"
+      elevnamn: 'Alex henryz',
+      lån: 'Moby Dick',
+      lärarnamn: 'Daniel Berg',
+      utgångsdatum: '01-01-2019',
     },
     {
-      elevnamn: "Linus Styrén",
-      lån: "Harry Potter 3",
-      lärarnamn: "David Lundholm",
-      utgångsdatum: "01-01-2019"
-    }
+      elevnamn: 'Linus Styrén',
+      lån: 'Harry Potter 3',
+      lärarnamn: 'David Lundholm',
+      utgångsdatum: '01-01-2019',
+    },
   ];
 
   public fields = [
     {
-      key: "elevnamn",
-      label: "Utlånad till",
+      key: 'elevnamn',
+      label: 'Utlånad till',
       sortable: true,
-      class: "text-left"
+      class: 'text-left',
     },
-    { key: "lärarnamn", label: "Utlånad av", class: "text-left" },
-    { key: "lån", label: "Material", sortable: true, class: "text-left" },
+    { key: 'lärarnamn', label: 'Utlånad av', class: 'text-left' },
+    { key: 'lån', label: 'Material', sortable: true, class: 'text-left' },
     {
-      key: "utgångsdatum",
-      label: "Utgångsdatum",
+      key: 'utgångsdatum',
+      label: 'Utgångsdatum',
       sortable: true,
-      class: "text-left"
-    }
+      class: 'text-left',
+    },
   ];
 
   public currentPage = 1;
@@ -164,9 +164,9 @@ export default class Find extends Vue {
   public pageOptions = [5, 10, 15];
   public sortBy = null;
   public sortDesc = true;
-  public sortDirection = "asc";
+  public sortDirection = 'asc';
   public filter = null;
-  public modalInfo = { title: "", content: "" };
+  public modalInfo = { title: '', content: '' };
 
   get sortOptions() {
     // Create an options list from our fields
@@ -178,12 +178,12 @@ export default class Find extends Vue {
   public info(item: any, index: number, button: any) {
     this.modalInfo.title = `Row index: ${index}`;
     this.modalInfo.content = JSON.stringify(item, null, 2);
-    this.$root.$emit("bv::show::modal", "modalInfo", button);
+    this.$root.$emit('bv::show::modal', 'modalInfo', button);
   }
 
   public resetModal() {
-    this.modalInfo.title = "";
-    this.modalInfo.content = "";
+    this.modalInfo.title = '';
+    this.modalInfo.content = '';
   }
 
   public onFiltered(filteredItems: any) {

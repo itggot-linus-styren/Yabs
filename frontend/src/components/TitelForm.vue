@@ -19,37 +19,37 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import TitlesModule from "../store/modules/TitlesModule";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import TitlesModule from '../store/modules/TitlesModule';
 
 @Component
 export default class TitleForm extends Vue {
   public form = {
-    name: "",
-    cost: "",
-    isbn: "",
-    title_type: ""
+    name: '',
+    cost: '',
+    isbn: '',
+    title_type: '',
   };
   public show = true;
 
   public options = [
-    { value: "Kurslitteratur", text: "Kurslitteratur" },
-    { value: "Bibloteksbok", text: "Bibloteksbok" },
-    { value: "Skönlitteratur", text: "Skönlitteratur" }
+    { value: 'Kurslitteratur', text: 'Kurslitteratur' },
+    { value: 'Bibloteksbok', text: 'Bibloteksbok' },
+    { value: 'Skönlitteratur', text: 'Skönlitteratur' },
   ];
 
   public onSubmit(evt: Event) {
     evt.preventDefault();
     TitlesModule.create(this.form)
-      .then((title: any) => this.$emit("title-added", title))
+      .then((title: any) => this.$emit('title-added', title))
       .catch((failure: any) => console.log(failure));
   }
 
   public onReset(evt: Event) {
     evt.preventDefault();
-    this.form.name = "";
-    this.form.cost = "";
-    this.form.isbn = "";
+    this.form.name = '';
+    this.form.cost = '';
+    this.form.isbn = '';
     this.show = false;
     this.$nextTick(() => {
       this.show = true;

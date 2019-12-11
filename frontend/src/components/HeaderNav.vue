@@ -25,14 +25,14 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import GoogleLogin from "@/components/GoogleLogin.vue";
-import UsersModule from "../store/modules/UsersModule";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import GoogleLogin from '@/components/GoogleLogin.vue';
+import UsersModule from '../store/modules/UsersModule';
 
 @Component({
   components: {
-    GoogleLogin
-  }
+    GoogleLogin,
+  },
 })
 export default class HeaderNav extends Vue {
   public usersModule = UsersModule;

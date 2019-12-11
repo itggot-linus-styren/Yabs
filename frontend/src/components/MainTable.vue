@@ -56,8 +56,8 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
-import LoansModule from "../store/modules/LoansModule";
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import LoansModule from '../store/modules/LoansModule';
 
 @Component
 export default class MainTable extends Vue {
@@ -71,10 +71,10 @@ export default class MainTable extends Vue {
   public loansLoading: boolean = true;
 
   public fields = [
-    { key: "loaned_by.name", sortable: false, label: "Lånad av" },
-    { key: "lent_by.name", sortable: false, label: "Utlånad av" },
-    { key: "book.title.name", sortable: false, label: "Boktitel" },
-    { key: "expiration_date", sortable: false, label: "Utgångsdatum" }
+    { key: 'loaned_by.name', sortable: false, label: 'Lånad av' },
+    { key: 'lent_by.name', sortable: false, label: 'Utlånad av' },
+    { key: 'book.title.name', sortable: false, label: 'Boktitel' },
+    { key: 'expiration_date', sortable: false, label: 'Utgångsdatum' },
   ];
 
   public currentPage = 1;
@@ -86,7 +86,7 @@ export default class MainTable extends Vue {
       .filter(([key, value]) => {
         return !value.returned_at;
       })
-      .map(([key, value]) => Object.assign(value, { ".key": key }));
+      .map(([key, value]) => Object.assign(value, { '.key': key }));
     this.totalRows = items.length;
 
     return items;
@@ -108,12 +108,12 @@ export default class MainTable extends Vue {
   public info(item: any, index: number, button: any) {
     this.modalInfo.title = `Row index: ${index}`;
     this.modalInfo.content = JSON.stringify(item, null, 2);
-    this.$root.$emit("bv::show::modal", "modalInfo", button);
+    this.$root.$emit('bv::show::modal', 'modalInfo', button);
   }
 
   public resetModal() {
-    this.modalInfo.title = "";
-    this.modalInfo.content = "";
+    this.modalInfo.title = '';
+    this.modalInfo.content = '';
   }
 
   public onFiltered(filteredItems: any) {

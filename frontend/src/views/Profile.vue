@@ -23,18 +23,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Vue, Watch } from "vue-property-decorator";
-import CigCanvas from "@/components/CigCanvas.vue";
-import AddLoan from "@/components/AddLoan.vue";
-import RecentLoan from "@/components/RecentLoan.vue";
-import UsersModule, { User } from "../store/modules/UsersModule";
+import { Component, Vue, Watch } from 'vue-property-decorator';
+import CigCanvas from '@/components/CigCanvas.vue';
+import AddLoan from '@/components/AddLoan.vue';
+import RecentLoan from '@/components/RecentLoan.vue';
+import UsersModule, { User } from '../store/modules/UsersModule';
 
 @Component({
   components: {
     CigCanvas,
     AddLoan,
-    RecentLoan
-  }
+    RecentLoan,
+  },
 })
 export default class Profile extends Vue {
   private usersModule = UsersModule;
