@@ -18,7 +18,6 @@ class Api::V1::UsersController < ApplicationController
 
   def update
     authorize @user
-    p "passed authorization"
     if params[:image]
       @user.profile_image.attach(params[:image])
       @user.photo_path = rails_blob_path(@user.profile_image, disposition: "inline")

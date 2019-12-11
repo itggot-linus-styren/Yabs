@@ -9,7 +9,6 @@ class ApplicationController < ActionController::Base
   return User.first if Rails.env.test?
     @_current_user ||= session[:current_user_id] &&
     User.find_by(uid: session[:current_user_id])
-    @_current_user
   end
 
   def show
