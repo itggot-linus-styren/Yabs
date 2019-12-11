@@ -37,6 +37,10 @@
 import { Component, Vue } from 'vue-property-decorator';
 import RecentLoan from '@/components/RecentLoan.vue';
 import LoadingIcon from '@/components/LoadingIcon.vue';
+import UsersModule from '../store/modules/UsersModule';
+import TitlesModule from '../store/modules/TitlesModule';
+import LoansModule from '../store/modules/LoansModule';
+import BooksModule from '../store/modules/BooksModule';
 
 @Component({
     components: {
@@ -52,6 +56,9 @@ export default class Start extends Vue {
 
     public onLoaded() {
         this.loading = false;
+    }
+    public created() {
+        BooksModule.fetchAll();
     }
 }
 </script>
