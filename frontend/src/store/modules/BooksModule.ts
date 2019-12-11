@@ -3,6 +3,7 @@ import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-dec
 import store from '..';
 import BooksAPI from '../../api/books';
 import { ITitle } from './TitlesModule';
+import convertList from '../../helpers/convertArrayToNested';
 
 interface BookState {
   books: IBookCollection;
@@ -34,7 +35,7 @@ class BooksModule extends VuexModule {
     return new Promise((resolve, reject) => {
       BooksAPI.all()
         .then((response: any) => {
-          response.forEach((book: any) => this.setBook(book));
+          this.convertBookList(response);
           resolve();
         })
         .catch((error: any) => {
@@ -102,6 +103,12 @@ class BooksModule extends VuexModule {
   @Mutation
   private setfailure(payload: any) {
     this.bookState.failure = payload;
+  }
+  @Mutation
+  private convertBookList(payload: any) {
+    const list = convertList(payload, 'barcode');
+    console.log(list);
+    this.bookState.books = list;
   }
 }
 

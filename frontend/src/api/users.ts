@@ -48,7 +48,6 @@ export default {
 
   },
   async signOut() {
-
     try {
       const response = await axios.delete(`http://localhost:3000/api/v1/auth/0`, {
         withCredentials: true,
@@ -57,6 +56,5 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
 };
