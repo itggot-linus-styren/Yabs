@@ -48,8 +48,6 @@ div
 </template>
 
 
-
-
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import DropdownFind from '@/components/DropdownFind.vue';
@@ -58,42 +56,42 @@ import AllBooks from '@/components/AllBooks.vue';
 import LoadingIcon from '@/components/LoadingIcon.vue';
 
 @Component({
-    components: {
-        DropdownFind,
-        MainTable,
-        AllBooks,
-        LoadingIcon,
-    },
+  components: {
+    DropdownFind,
+    MainTable,
+    AllBooks,
+    LoadingIcon,
+  },
 })
 
 export default class Find extends Vue {
-    public type = 'Utlånade';
-    public displayTable = 'block';
-    public displayCig = 'none';
+  public type = 'Utlånade';
+  public displayTable = 'block';
+  public displayCig = 'none';
 
-    public perPage = 5;
-    public pageOptions = [ 5, 10, 15 ];
-    public sortBy = null;
-    public sortDesc = true;
-    public sortDirection = 'asc';
-    public filter = null;
-    public modalInfo = { title: '', content: '' };
-    public loading = true;
+  public perPage = 5;
+  public pageOptions = [ 5, 10, 15 ];
+  public sortBy = null;
+  public sortDesc = true;
+  public sortDirection = 'asc';
+  public filter = null;
+  public modalInfo = { title: '', content: '' };
+  public loading = true;
 
-    public onChangeType(type: string) {
-        this.type = type;
-        if (this.type === 'Utlånade') {
-            this.displayTable = 'block';
-            this.displayCig = 'none';
-        } else {
-            this.displayTable = 'none';
-            this.displayCig = 'block';
-        }
+  public onChangeType(type: string) {
+    this.type = type;
+    if (this.type === 'Utlånade') {
+      this.displayTable = 'block';
+      this.displayCig = 'none';
+    } else {
+      this.displayTable = 'none';
+      this.displayCig = 'block';
     }
+  }
 
-    public onLoaded() {
-        this.loading = false;
-    }
+  public onLoaded() {
+    this.loading = false;
+  }
 
 }
 </script>

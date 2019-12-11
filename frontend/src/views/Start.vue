@@ -39,20 +39,20 @@ import RecentLoan from '@/components/RecentLoan.vue';
 import LoadingIcon from '@/components/LoadingIcon.vue';
 
 @Component({
-    components: {
-        RecentLoan,
-        LoadingIcon,
-    },
+  components: {
+    RecentLoan,
+    LoadingIcon,
+  },
 })
 export default class Start extends Vue {
-    public size = 'lg';
-    public primary = 'primary';
-    public loading = true;
+  public size = 'lg';
+  public primary = 'primary';
+  public loading = true;
 
 
-    public onLoaded() {
-        this.loading = false;
-    }
+  public onLoaded() {
+    this.loading = false;
+  }
 }
 </script>
 
@@ -76,7 +76,6 @@ export default class Start extends Vue {
     display: flex
     flex-direction: row
     justify-content: center
-
 
 
 #wrapper

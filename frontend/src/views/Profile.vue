@@ -23,11 +23,11 @@ import RecentLoan from '@/components/RecentLoan.vue';
 import UsersModule, { User } from '../store/modules/UsersModule';
 
 @Component({
-    components: {
-        CigCanvas,
-        AddLoan,
-        RecentLoan,
-    },
+  components: {
+    CigCanvas,
+    AddLoan,
+    RecentLoan,
+  },
 })
 export default class Profile extends Vue {
   public currentUser: User | null = null;
