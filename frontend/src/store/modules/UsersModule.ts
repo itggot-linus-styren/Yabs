@@ -47,32 +47,31 @@ class UsersModule extends VuexModule {
 
   @Action({rawError: true})
   public fetchAll() {
-      return new Promise((resolve, reject) => {
-          UsersAPI.all()
-            .then((response: User[]) => {
-              this.convertUserList(response);
-              resolve();
-            })
-            .catch((error: any) => {
-              this.setFailure(error);
-              reject(error);
-            });
+    return new Promise((resolve, reject) => {
+      UsersAPI.all()
+        .then((response: User[]) => {
+          this.convertUserList(response);
+          resolve();
+        })
+        .catch((error: any) => {
+          this.setFailure(error);
+          reject(error);
         });
+    });
   }
 
   @Action({rawError: true})
   public update(request: any) {
-      return new Promise((resolve, reject) => {
-        UsersAPI.update(request)
-          .then((response: any) => {
-            this.setUser(response);
-            this.setCurrentUser(response);
-            resolve(response);
-          })
-          .catch((error: any) => {
-            this.setFailure(error);
-            reject(error);
-          });
+    return new Promise((resolve, reject) => {
+      UsersAPI.update(request)
+        .then((response: any) => {
+          this.setUser(response);
+          this.setCurrentUser(response);
+          resolve(response);
+        })
+        .catch((error: any) => {
+          this.setFailure(error);
+          reject(error);
         });
     });
   }
@@ -114,7 +113,7 @@ class UsersModule extends VuexModule {
 
   @Mutation
   public setCurrentUser(payload: any) {
-      this.userState.current_user = payload.uid;
+    this.userState.current_user = payload.uid;
   }
 
   @Mutation
@@ -122,11 +121,11 @@ class UsersModule extends VuexModule {
     this.userState.failure = payload;
   }
 
-    @Mutation
-    public convertUserList(payload: User[]) {
-      const list = convertList(payload, 'uid');
-      this.userState.users = list;
-    }
+  @Mutation
+  public convertUserList(payload: User[]) {
+    const list = convertList(payload, 'uid');
+    this.userState.users = list;
+  }
 }
 
 export default getModule(UsersModule);

@@ -54,10 +54,10 @@ export default class Start extends Vue {
   public loading = true;
 
   public onLoaded() {
-      this.loading = false;
+    this.loading = false;
   }
   public created() {
-      UsersModule.fetchAll();
+    UsersModule.fetchAll();
   }
 }
 </script>

@@ -30,7 +30,7 @@ import UsersModule, { User } from '../store/modules/UsersModule';
   },
 })
 export default class Profile extends Vue {
-    private usersModule = UsersModule;
+  private usersModule = UsersModule;
 }
 </script>
 

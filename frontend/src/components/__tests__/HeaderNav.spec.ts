@@ -15,7 +15,6 @@ describe('HeaderNav.vue', () => {
   });
 
 
-
   it('renders correctly', () => {
     const wrapper: Wrapper<HeaderNav> = shallowFactory(HeaderNav, injectRouterStubs);
 

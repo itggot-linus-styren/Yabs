@@ -107,10 +107,10 @@ class LoansModule extends VuexModule {
     Vue.delete(this.loanState.loans, loanId);
   }
   @Mutation
-    private convertLoanList(payload: Loan[]) {
-      const list = convertList(payload, 'id');
-      this.loanState.loans = list;
-    }
+  private convertLoanList(payload: Loan[]) {
+    const list = convertList(payload, 'id');
+    this.loanState.loans = list;
+  }
 }
 
 export default getModule(LoansModule);

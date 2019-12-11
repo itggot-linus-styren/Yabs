@@ -41,16 +41,15 @@ class TitlesModule extends VuexModule {
 
   @Action({rawError: true})
   public fetchAll() {
-      return new Promise((resolve, reject) => {
+    return new Promise((resolve, reject) => {
       TitlesAPI.all()
-          .then((response: any) => {
-            this.convertTitleList(response);
-            resolve();
-          })
-          .catch((error: any) => {
-              this.setFailure(error);
-              reject(error);
-          });
+        .then((response: any) => {
+          this.convertTitleList(response);
+          resolve();
+        })
+        .catch((error: any) => {
+          this.setFailure(error);
+          reject(error);
         });
     });
   }
@@ -112,7 +111,7 @@ class TitlesModule extends VuexModule {
 
   @Mutation
   private setFailure(payload: any) {
-      this.titleState.failure = payload;
+    this.titleState.failure = payload;
   }
 
   @Mutation
