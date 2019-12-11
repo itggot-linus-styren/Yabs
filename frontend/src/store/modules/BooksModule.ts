@@ -2,29 +2,29 @@ import Vue from 'vue';
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators';
 import store from '..';
 import BooksAPI from '../../api/books';
-import { ITitle } from './TitlesModule';
+import { Title } from './TitlesModule';
 import convertList from '../../helpers/convertArrayToNested';
 
-interface IBookState {
-  books: IBookCollection;
+interface BookState {
+  books: BookCollection;
   failure: any;
 }
 
-interface IBookCollection {
-  [id: number]: IBook;
+interface BookCollection {
+  [id: number]: Book;
 }
-interface IBook {
+interface Book {
   barcode: number;
   created_at: string;
   status: string;
   title_id: number;
   updated_at: string;
-  title: ITitle;
+  title: Title;
 }
 
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})
 class BooksModule extends VuexModule {
-  private bookState: IBookState = {books: {}, failure: null};
+  private bookState: BookState = {books: {}, failure: null};
 
   get all() {
     return this.bookState.books;

@@ -10,7 +10,7 @@ import store from '..';
 import TitlesAPI from '../../api/titles';
 import convertList from '../../helpers/convertArrayToNested';
 
-export interface ITitle {
+export interface Title {
     cost: number;
     created_at: string;
     id: number;
@@ -20,10 +20,10 @@ export interface ITitle {
     updated_at: string;
 }
 
-export interface ITitleCollection { [id: number]: ITitle; }
+export interface TitleCollection { [id: number]: Title; }
 
 export interface TitleState {
-    titles: ITitleCollection;
+    titles: TitleCollection;
     failure: any;
 }
 
