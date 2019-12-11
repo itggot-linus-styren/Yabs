@@ -1,6 +1,6 @@
 <template>
     <v-app>
-        <SearchList :items="loans" :headers="headers"/>
+        <SearchList :items="mockupLoans" :headers="headers"/>
     </v-app>
 </template>
 
@@ -19,7 +19,7 @@ export default class Test extends Vue {
     { text: "Material", value: "lån" },
     { text: "Utgångsdatum", value: "utgångsdatum" }
   ];
-  loans: object[] = [
+  mockupLoans: object[] = [
     // Consider changing object[] to an interface array of type Loan. (example: Loan[])
     // Mockup
     {
