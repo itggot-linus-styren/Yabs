@@ -1,7 +1,9 @@
-<template lang="pug">
-  v-app
-    HeaderNav
-    router-view
+<template>
+  <v-app>
+    <HeaderNav />
+    <router-view />
+
+  </v-app>
 
 </template>
 
