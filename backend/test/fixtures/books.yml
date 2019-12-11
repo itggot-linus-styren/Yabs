@@ -1,38 +1,10 @@
 
-book_4052:
-  title_id: 1
-  barcode: '4052'
-  status: Broken
-  created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-11 08:27:30.300869000 Z
-    zone: &2 !ruby/object:ActiveSupport::TimeZone
-      name: Etc/UTC
-    time: *1
-  updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
-    zone: *2
-    time: *1
-
-book_3028:
-  title_id: 1
-  barcode: '3028'
+book_3443:
+  title_id: 3
+  barcode: '3443'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-11 08:27:30.332860000 Z
-    zone: &2 !ruby/object:ActiveSupport::TimeZone
-      name: Etc/UTC
-    time: *1
-  updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
-    zone: *2
-    time: *1
-
-book_5637:
-  title_id: 1
-  barcode: '5637'
-  status: OK
-  created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-11 08:27:30.337713000 Z
+    utc: &1 2019-12-11 09:05:37.376534000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1

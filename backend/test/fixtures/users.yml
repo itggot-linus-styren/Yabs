@@ -8,29 +8,29 @@ user_1904583927:
   google_token: '101296211137404583927'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-11 08:26:44.295244000 Z
+    utc: &1 2019-12-11 09:05:02.817709000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-11 08:26:44.295244000 Z
+    utc: &3 2019-12-11 09:05:02.817709000 Z
     zone: *2
     time: *3
 
-user_1968097915:
-  uid: 1968097915
-  name: Alex Henryz
-  email: alex.henryz@elev.ga.ntig.se
-  klass: TE4
+user_1916174379:
+  uid: 1916174379
+  name: Emil Babayev
+  email: emil.babayev@elev.ga.ntig.se
+  klass: 3B
   role: Elev
-  google_token: '101834530373768097915'
+  google_token: '103298981762316174379'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-11 08:26:48.147300000 Z
+    utc: &1 2019-12-11 09:05:06.595371000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-11 08:26:48.147300000 Z
+    utc: &3 2019-12-11 09:05:06.595371000 Z
     zone: *2
     time: *3
