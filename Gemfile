@@ -7,4 +7,5 @@ group :test do
     gem 'selenium-webdriver'
     gem 'chromedriver-helper'
     gem 'byebug'
+    gem 'faker'
  end

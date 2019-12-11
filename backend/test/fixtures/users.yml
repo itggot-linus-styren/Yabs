@@ -8,12 +8,12 @@ user_1904583927:
   google_token: '101296211137404583927'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-03 22:22:51.788387000 Z
+    utc: &1 2019-12-11 08:26:44.295244000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-03 22:22:51.788387000 Z
+    utc: &3 2019-12-11 08:26:44.295244000 Z
     zone: *2
     time: *3
 
@@ -26,11 +26,11 @@ user_1968097915:
   google_token: '101834530373768097915'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-03 22:22:54.965793000 Z
+    utc: &1 2019-12-11 08:26:48.147300000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-03 22:22:54.965793000 Z
+    utc: &3 2019-12-11 08:26:48.147300000 Z
     zone: *2
     time: *3
