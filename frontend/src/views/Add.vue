@@ -1,8 +1,8 @@
 <template lang="pug">
     .view
         .left
-            b-alert(variant="danger" :show="showDismissibleDangerAlert" dismissible) {{failure}}
-            b-alert(variant="success" :show="showDismissibleSuccessAlert" dismissible) Loan added
+            v-alert(type="error" :show="showDismissibleDangerAlert" dismissible) {{failure}}
+            v-alert(type="success" :show="showDismissibleSuccessAlert" dismissible) Loan added
             .container
                 h1 Lägg till {{this.type}}
                 DropDownType(@changeType='onChangeType($event)', v-bind:selectedType='this.type')

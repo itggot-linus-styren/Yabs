@@ -1,15 +1,15 @@
 <template lang="pug">
    div
-    b-form(@submit='onSubmit', @reset='onReset', v-if='show')
-        b-card(bg-variant='light')
-            b-form-group(vertical='' label-class='text-sm-right' label-for='nestedBid')
-                b-form-input#nestedBid(placeholder='Bokens Streckkod' v-model="form.barcode")
-            b-form-group(vertical='' label-class='text-sm-right' label-for='nestedBid')
-                vue-bootstrap-typeahead(v-model="name" :data="titleNames" @hit="toId()" placeholder='Titel namn')
-            b-form-group(vertical='' label-class='text-sm-right' label-for='nestedBid')
-                b-form-input#nestedBid(placeholder='Status: tex "ok", "framsida saknas"' v-model="form.status")
-            b-button(type='submit', variant='primary') Lägg till
-            b-button(type='reset', variant='danger') Rensa Fältet
+    v-form(@submit='onSubmit', @reset='onReset', v-if='show')
+        v-card(color='light')
+            v-item-group(vertical='' label-class='text-sm-right' label-for='nestedBid')
+                v-text-field#nestedBid(placeholder='Bokens Streckkod' v-model="form.barcode")
+            v-item-group(vertical='' label-class='text-sm-right' label-for='nestedBid')
+                v-autocomplete(v-model="name" :items="titleNames" placeholder='Titel namn')
+            v-item-group(vertical='' label-class='text-sm-right' label-for='nestedBid')
+                v-text-field#nestedBid(placeholder='Status: tex "ok", "framsida saknas"' v-model="form.status")
+            v-btn(type='submit', color='primary') Lägg till
+            v-btn(type='reset', color='error') Rensa Fältet
 
 </template>
 
@@ -25,6 +25,7 @@ export default class AddingForm extends Vue {
     title_id: 0,
     status: '',
   };
+
   public name: string = '';
   public show = true;
 
