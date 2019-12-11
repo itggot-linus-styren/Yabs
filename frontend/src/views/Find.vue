@@ -2,47 +2,31 @@
 div
     .view.find()
         dropdownFind(@change-type='onChangeType($event)', v-bind:selectedType='this.type')
-        b-container(fluid='')
+        v-container(fluid='')
             // User Interface controls
-            b-row
-                b-col.my-1(md='6')
-                    b-form-group.mb-0(horizontal='', label='Filter')
-                        b-input-group
-                            b-form-input(v-model='filter', placeholder='Type to Search')
-                                b-input-group-append
-                                    b-btn(:disabled='!filter', @click="filter = ''") Clear
-                b-col.my-1(md='6')
-                    b-form-group.mb-0(horizontal='', label='Sort')
-                        b-input-group
-                            //- b-form-select(v-model='sortBy', :options='sortOptions')
-                            b-form-select(v-model='sortBy')
-                                option(slot='first', :value='null') -- none --
-                            b-form-select(:disabled='!sortBy', v-model='sortDesc', slot='append')
-                                option(:value='false') Asc
-                                option(:value='true') Desc
-                b-col.my-1(md='6')
-                    b-form-group.mb-0(horizontal='', label='Sort direction')
-                        b-input-group
-                            b-form-select(v-model='sortDirection', slot='append')
-                                option(value='asc') Asc
-                                option(value='desc') Desc
-                                option(value='last') Last
-                b-col.my-1(md='6')
-                    b-form-group.mb-0(horizontal='', label='Per page')
-                        b-form-select(:options='pageOptions', v-model='perPage')
+            v-row
+                v-col(md='6')
+                    v-text-field(v-model='filter', label='Type to Search')
+                        //- v-input-group-append
+                        //-     v-btn(:disabled='!filter', @click="filter = ''") Clear
+                v-col(md='6')
+                    //- b-form-select(v-model='sortBy', :options='sortOptions')
+                    v-select(v-model='sortDesc', :items="sortTypes", item-text="text", item-value="value", label='Sort')
+                v-col(md='6')
+                    v-select(:items='pageOptions', v-model='perPage', label='Per page')
             // Main table element
             LoadingIcon(v-show='loading')
             #info(v-show='!loading')
                 #loan(v-bind:style="{display: displayTable}")
                     MainTable(:perPage="perPage", :pageOptions="pageOptions",
                     :sortBy="sortBy", :sortDesc="sortDesc",
-                    :sortDirection="sortDirection",:filter="filter",
+                    :filter="filter",
                     :modalInfo="modalInfo")
 
                 #all(v-bind:style="{display: displayCig}")
                     AllBooks(:perPage="perPage", :pageOptions="pageOptions",
                     :sortBy="sortBy", :sortDesc="sortDesc",
-                    :sortDirection="sortDirection",:filter="filter",
+                    :filter="filter",
                     :modalInfo="modalInfo", @books-loaded="onLoaded")
 
 </template>
@@ -68,24 +52,26 @@ export default class Find extends Vue {
   public type = 'Utlånade';
   public displayTable = 'block';
   public displayCig = 'none';
-
-  public perPage = 5;
-  public pageOptions = [ 5, 10, 15 ];
+  
+  public perPage: number = 5;
+  public pageOptions: number[] = [ 5, 10, 15 ];
   public sortBy = null;
   public sortDesc = true;
-  public sortDirection = 'asc';
   public filter = null;
   public modalInfo = { title: '', content: '' };
   public loading = true;
 
+  private sortTypes = [{text: 'Asc', value: false}, {text: 'Desc', value: true}];
+
   public onChangeType(type: string) {
-    this.type = type;
-    if (this.type === 'Utlånade') {
-      this.displayTable = 'block';
-      this.displayCig = 'none';
-    } else {
-      this.displayTable = 'none';
-      this.displayCig = 'block';
+      this.type = type;
+      if (this.type === 'Utlånade') {
+          this.displayTable = 'block';
+          this.displayCig = 'none';
+      } else {
+          this.displayTable = 'none';
+          this.displayCig = 'block';
+      }
     }
   }
 
