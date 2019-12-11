@@ -39,7 +39,6 @@
       title_id: 0,
       status: '',
     };
-    private show = true;
     private titlesModule = TitlesModule;
 
     private onSubmit(evt: Event) {
