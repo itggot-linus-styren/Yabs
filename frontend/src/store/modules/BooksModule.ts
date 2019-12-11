@@ -2,10 +2,23 @@ import Vue from 'vue';
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators';
 import store from '..';
 import BooksAPI from '../../api/books';
+import { ITitle } from './TitlesModule';
 
 interface BookState {
-  books: {};
+  books: IBookCollection;
   failure: any;
+}
+
+interface IBookCollection {
+  [id: number]: IBook;
+}
+interface IBook {
+  barcode: number;
+  created_at: string;
+  status: string;
+  title_id: number;
+  updated_at: string;
+  title: ITitle;
 }
 
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})

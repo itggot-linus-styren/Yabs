@@ -9,7 +9,7 @@ import {
 import store from '..';
 import TitlesAPI from '../../api/titles';
 
-export interface Title {
+export interface ITitle {
     cost: number;
     created_at: string;
     id: number;
@@ -19,10 +19,10 @@ export interface Title {
     updated_at: string;
 }
 
-export interface TitleCollection { [id: number]: Title; }
+export interface ITitleCollection { [id: number]: ITitle; }
 
 export interface TitleState {
-    titles: TitleCollection;
+    titles: ITitleCollection;
     failure: any;
 }
 

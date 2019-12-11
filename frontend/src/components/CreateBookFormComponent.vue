@@ -43,7 +43,9 @@
 
     private onSubmit(evt: Event) {
       evt.preventDefault();
-      BooksModule.create(this.form);
+      if (!!this.form.barcode && !!this.form.title_id && !!this.form.status) {
+        BooksModule.create(this.form);
+      }
       this.onReset();
     }
 
