@@ -10,22 +10,21 @@ import store from '..';
 import UsersAPI from '../../api/users';
 
 export interface User {
-    created_at: string;
-    email: string;
-    google_token: string;
-    klass: string;
-    name: string;
-    photo_path: string;
-    role: string;
-    uid: string;
-    updated_at: string;
+  created_at: string;
+  email: string;
+  google_token: string;
+  klass: string;
+  name: string;
+  photo_path: string;
+  role: string;
+  uid: number;
+  updated_at: string;
 }
-
 export interface UserCollection { [uid: number]: User; }
 
 export interface UserState {
     users: UserCollection;
-    current_user: User | null;
+    current_user: any;
     failure: any;
 }
 
@@ -37,7 +36,11 @@ class UsersModule extends VuexModule {
     }
 
     get currentUser() {
-        return this.userState.current_user;
+      if (this.userState && this.userState.current_user) {
+        return this.all[this.userState.current_user];
+      } else {
+        return {};
+      }
     }
 
     @Action({rawError: true})
