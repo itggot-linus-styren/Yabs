@@ -28,10 +28,5 @@ export default new Router({
       name: 'find',
       component: views.Find,
     },
-    {
-      path: '/test',
-      name: 'test',
-      component: Test,
-    },
   ],
 });
