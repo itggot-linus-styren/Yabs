@@ -1,12 +1,12 @@
 
-title_25:
-  id: 25
+title_1:
+  id: 1
   name: Alice in Wonderland
   isbn: '97161949222'
   cost: 70
   title_type: Skönlitteratur
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-11 09:31:32.589894000 Z
+    utc: &1 2019-12-11 11:37:36.124956000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
