@@ -45,8 +45,8 @@
       evt.preventDefault();
       if (!!this.form.barcode && !!this.form.title_id && !!this.form.status) {
         BooksModule.create(this.form);
+        this.onReset();
       }
-      this.onReset();
     }
 
     private onReset() {

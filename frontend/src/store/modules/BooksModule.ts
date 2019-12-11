@@ -4,7 +4,7 @@ import store from '..';
 import BooksAPI from '../../api/books';
 import { ITitle } from './TitlesModule';
 
-interface BookState {
+interface IBookState {
   books: IBookCollection;
   failure: any;
 }
@@ -23,7 +23,7 @@ interface IBook {
 
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})
 class BooksModule extends VuexModule {
-  private bookState: BookState = {books: {}, failure: null};
+  private bookState: IBookState = {books: {}, failure: null};
 
   get all() {
     return this.bookState.books;
