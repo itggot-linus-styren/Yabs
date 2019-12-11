@@ -21,19 +21,8 @@
         autocomplete="off"
         required
       />
-      <v-btn
-        class="mr-4"
-        type="submit"
-        color="primary"
-      >
-        Lägg till
-      </v-btn>
-      <v-btn
-        color="error"
-        @click.prevent="onReset"
-      >
-        Rensa fält
-      </v-btn>
+      <v-btn class="mr-4" type="submit" color="primary">Lägg till</v-btn>
+      <v-btn @click.prevent="onReset" color="error">Rensa fält</v-btn>
     </v-card>
   </v-form>
 </template>
