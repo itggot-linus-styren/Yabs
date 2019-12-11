@@ -8,6 +8,7 @@ import {
 } from 'vuex-module-decorators';
 import store from '..';
 import TitlesAPI from '../../api/titles';
+import convertList from '../../helpers/convertArrayToNested';
 
 export interface Title {
     cost: number;
@@ -43,8 +44,8 @@ class TitlesModule extends VuexModule {
         return new Promise((resolve, reject) => {
         TitlesAPI.all()
             .then((response: any) => {
-            response.forEach((title: any) => this.setTitle(title));
-            resolve();
+              this.convertTitleList(response);
+              resolve();
             })
             .catch((error: any) => {
                 this.setFailure(error);
@@ -111,6 +112,12 @@ class TitlesModule extends VuexModule {
     @Mutation
     private setFailure(payload: any) {
         this.titleState.failure = payload;
+    }
+
+    @Mutation
+    private convertTitleList(payload: Title[]) {
+      const list = convertList(payload, 'id');
+      this.titleState.titles = list;
     }
 }
 
