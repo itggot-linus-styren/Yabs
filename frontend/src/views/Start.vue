@@ -58,7 +58,7 @@ export default class Start extends Vue {
         this.loading = false;
     }
     public created() {
-        BooksModule.fetchAll();
+        UsersModule.fetchAll();
     }
 }
 </script>
