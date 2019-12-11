@@ -8,7 +8,7 @@ import {
 } from 'vuex-module-decorators';
 import store from '..';
 import UsersAPI from '../../api/users';
-
+import convertList from '../../helpers/convertArrayToNested';
 export interface User {
   created_at: string;
   email: string;
@@ -48,8 +48,7 @@ class UsersModule extends VuexModule {
         return new Promise((resolve, reject) => {
             UsersAPI.all()
               .then((response: User[]) => {
-                console.log(response);
-                response.forEach((user: any) => this.setUser(user));
+                this.convertUserList(response);
                 resolve();
               })
               .catch((error: any) => {
@@ -79,6 +78,7 @@ class UsersModule extends VuexModule {
           UsersAPI.update(request)
             .then((response: any) => {
               this.setUser(response);
+              this.setCurrentUser(response);
               resolve(response);
             })
             .catch((error: any) => {
@@ -125,7 +125,7 @@ class UsersModule extends VuexModule {
 
     @Mutation
     public setCurrentUser(payload: any) {
-        this.userState.current_user = payload;
+        this.userState.current_user = payload.uid;
     }
 
     @Mutation
@@ -133,6 +133,11 @@ class UsersModule extends VuexModule {
         this.userState.failure = payload;
     }
 
+    @Mutation
+    public convertUserList(payload: User[]) {
+      const list = convertList(payload, 'uid');
+      this.userState.users = list;
+    }
 }
 
 export default getModule(UsersModule);
