@@ -103,7 +103,6 @@ export default class Start extends Vue {
     justify-content: center
 
 
-
 #wrapper
     display: flex
     flex-direction: row

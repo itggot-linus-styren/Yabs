@@ -52,8 +52,6 @@
 </template>
 
 
-
-
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import DropdownFind from '@/components/DropdownFind.vue';
@@ -76,6 +74,7 @@ export default class Find extends Vue {
 
   public perPage: number = 5;
   public pageOptions: number[] = [5, 10, 15];
+
   public sortBy = null;
   public sortDesc = true;
   public filter = null;

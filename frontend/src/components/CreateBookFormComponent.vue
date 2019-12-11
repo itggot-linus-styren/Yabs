@@ -28,31 +28,31 @@
 </template>
 
 <script lang="ts">
-  import { Component, Prop, Vue } from 'vue-property-decorator';
-  import TitlesModule from '../store/modules/TitlesModule';
-  import BooksModule from '../store/modules/BooksModule';
+import { Component, Prop, Vue } from 'vue-property-decorator';
+import TitlesModule from '../store/modules/TitlesModule';
+import BooksModule from '../store/modules/BooksModule';
 
-  @Component
-  export default class CreateBookFormComponent extends Vue {
-    private form = {
+@Component
+export default class CreateBookFormComponent extends Vue {
+  private form = {
+    barcode: '',
+    title_id: 0,
+    status: '',
+  };
+  private titlesModule = TitlesModule;
+
+  private onSubmit(evt: Event) {
+    evt.preventDefault();
+    BooksModule.create(this.form);
+    this.onReset();
+  }
+
+  private onReset() {
+    this.form = {
       barcode: '',
       title_id: 0,
       status: '',
     };
-    private titlesModule = TitlesModule;
-
-    private onSubmit(evt: Event) {
-      evt.preventDefault();
-      BooksModule.create(this.form);
-      this.onReset();
-    }
-
-    private onReset() {
-      this.form = {
-        barcode: '',
-        title_id: 0,
-        status: '',
-      };
-    }
   }
+}
 </script>

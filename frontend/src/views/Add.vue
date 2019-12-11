@@ -125,6 +125,10 @@ export default class Add extends Vue {
   public onSendImages(images: any[]) {
     this.images = images;
   }
+
+  public onSendImages(images: any[]) {
+    this.images = images;
+  }
 }
 </script>
 
