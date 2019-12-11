@@ -60,6 +60,9 @@ export default class Start extends Vue {
     public onLoaded() {
         this.loading = false;
     }
+    public created() {
+        UsersModule.fetchAll();
+    }
 }
 </script>
 

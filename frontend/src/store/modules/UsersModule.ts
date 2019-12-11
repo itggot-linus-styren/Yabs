@@ -28,7 +28,7 @@ export interface UserState {
     failure: any;
 }
 
-@Module({dynamic: true, namespaced: true, name: 'UsersModule', store})
+@Module({dynamic: true, namespaced: true, name: 'UsersModule', store, preserveState: true})
 class UsersModule extends VuexModule {
     private userState: UserState = {users: {}, current_user: null, failure: null};
     get all() {
