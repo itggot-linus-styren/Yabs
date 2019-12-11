@@ -8,7 +8,7 @@ import {
 } from 'vuex-module-decorators';
 import store from '..';
 import UsersAPI from '../../api/users';
-
+import convertList from '../../helpers/convertArrayToNested';
 export interface User {
   created_at: string;
   email: string;
@@ -25,11 +25,11 @@ export interface UserCollection { [uid: number]: User; }
 
 export interface UserState {
   users: UserCollection;
-  current_user: User | null;
+  current_user: any;
   failure: any;
 }
 
-@Module({dynamic: true, namespaced: true, name: 'UsersModule', store})
+@Module({dynamic: true, namespaced: true, name: 'UsersModule', store, preserveState: true})
 class UsersModule extends VuexModule {
   private userState: UserState = {users: {}, current_user: null, failure: null};
 
@@ -38,35 +38,41 @@ class UsersModule extends VuexModule {
   }
 
   get currentUser() {
-    return this.userState.current_user;
+    if (this.userState && this.userState.current_user) {
+      return this.all[this.userState.current_user];
+    } else {
+      return {};
+    }
   }
 
   @Action({rawError: true})
   public fetchAll() {
-    return new Promise((resolve, reject) => {
-      UsersAPI.all()
-        .then((response: any) => {
-          response.forEach((user: any) => this.setUser(user));
-          resolve();
-        })
-        .catch((error: any) => {
-          this.setFailure(error);
-          reject(error);
+      return new Promise((resolve, reject) => {
+          UsersAPI.all()
+            .then((response: User[]) => {
+              this.convertUserList(response);
+              resolve();
+            })
+            .catch((error: any) => {
+              this.setFailure(error);
+              reject(error);
+            });
         });
-    });
   }
 
   @Action({rawError: true})
   public update(request: any) {
-    return new Promise((resolve, reject) => {
-      UsersAPI.update(request)
-        .then((response: any) => {
-          this.setUser(response);
-          resolve(response);
-        })
-        .catch((error: any) => {
-          this.setFailure(error);
-          reject(error);
+      return new Promise((resolve, reject) => {
+        UsersAPI.update(request)
+          .then((response: any) => {
+            this.setUser(response);
+            this.setCurrentUser(response);
+            resolve(response);
+          })
+          .catch((error: any) => {
+            this.setFailure(error);
+            reject(error);
+          });
         });
     });
   }
@@ -108,7 +114,7 @@ class UsersModule extends VuexModule {
 
   @Mutation
   public setCurrentUser(payload: any) {
-    this.userState.current_user = payload;
+      this.userState.current_user = payload.uid;
   }
 
   @Mutation
@@ -116,6 +122,11 @@ class UsersModule extends VuexModule {
     this.userState.failure = payload;
   }
 
+    @Mutation
+    public convertUserList(payload: User[]) {
+      const list = convertList(payload, 'uid');
+      this.userState.users = list;
+    }
 }
 
 export default getModule(UsersModule);
