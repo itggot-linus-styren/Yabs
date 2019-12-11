@@ -55,8 +55,6 @@ export default class Find extends Vue {
     public displayTable = 'block';
     public displayCig = 'none';
 
-    private sortTypes = [{text: "Asc", value: false}, {text: "Desc", value: true}];
-
     public perPage: number = 5;
     public pageOptions: number[] = [ 5, 10, 15 ];
     public sortBy = null;
@@ -64,6 +62,8 @@ export default class Find extends Vue {
     public filter = null;
     public modalInfo = { title: '', content: '' };
     public loading = true;
+
+    private sortTypes = [{text: 'Asc', value: false}, {text: 'Desc', value: true}];
 
     public onChangeType(type: string) {
         this.type = type;
