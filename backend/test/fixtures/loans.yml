@@ -1,12 +1,12 @@
 
-loan_2:
-  id: 2
+loan_8:
+  id: 8
   loaned_by_id: 1916174379
   lent_by_id: 1904583927
-  book_id: '3443'
+  book_id: '3165'
   returned_at: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-11 09:05:37.418547000 Z
+    utc: &1 2019-12-11 09:09:36.294328000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1

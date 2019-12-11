@@ -1,10 +1,10 @@
 
-book_3443:
-  title_id: 3
-  barcode: '3443'
+book_3165:
+  title_id: 15
+  barcode: '3165'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-11 09:05:37.376534000 Z
+    utc: &1 2019-12-11 09:09:36.265465000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
