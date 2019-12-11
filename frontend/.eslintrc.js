@@ -18,8 +18,8 @@ module.exports = {
     '@typescript-eslint/semi': ['error', 'always'],
     '@typescript-eslint/no-empty-function': 'warn',
     '@typescript-eslint/no-empty-interface': 'warn',
-    '@typescript-eslint/no-explicit-any': 'error',
-    '@typescript-eslint/explicit-function-return-type': 'error',
+    '@typescript-eslint/no-explicit-any': 'warn',
+    '@typescript-eslint/explicit-function-return-type': 'warn',
     '@typescript-eslint/typedef': [
       'error',
       {
@@ -31,4 +31,4 @@ module.exports = {
   parserOptions: {
     parser: '@typescript-eslint/parser'
   }
-}
+};
