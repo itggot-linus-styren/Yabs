@@ -9,7 +9,7 @@
       ></v-text-field>
       <v-autocomplete    
         v-model="form.title_id"
-        :items="titleNames"
+        :items="titlesModule.allAsArray"
         item-text="name"
         item-value="id"
         label="Select a favorite activity or create a new one"
@@ -22,45 +22,38 @@
         required
       ></v-text-field>
       <v-btn class="mr-4" type="submit" color="primary">Lägg till</v-btn>
-      <v-btn @click="onReset" color="error">Rensa fält</v-btn>
+      <v-btn @click.prevent="onReset" color="error">Rensa fält</v-btn>
     </v-card>
   </v-form>
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
-import TitlesModule from '../store/modules/TitlesModule';
-import BooksModule from '../store/modules/BooksModule';
+  import { Component, Prop, Vue } from 'vue-property-decorator';
+  import TitlesModule from '../store/modules/TitlesModule';
+  import BooksModule from '../store/modules/BooksModule';
 
-@Component
-export default class CreateBookFormComponent extends Vue {
-  public form = {
-    barcode: '',
-    title_id: 0,
-    status: '',
-  };
-  public show = true;
-
-  get titleNames() {
-    return Object.entries(TitlesModule.all).map(([key, title]) => ({name: title.name, id: title.id}));
-  }
-
-  public onSubmit(evt: Event) {
-    evt.preventDefault();
-    BooksModule.create(this.form);
-  }
-
-  public onReset(evt: Event) {
-    evt.preventDefault();
-    this.form = {
+  @Component
+  export default class CreateBookFormComponent extends Vue {
+    private form = {
       barcode: '',
       title_id: 0,
       status: '',
     };
-    this.show = false;
-    this.$nextTick(() => {
-      this.show = true;
-    });
+    private show = true;
+    private titlesModule = TitlesModule;
+
+    private onSubmit(evt: Event) {
+      evt.preventDefault();
+      BooksModule.create(this.form);
+      this.onReset();
+    }
+
+    private onReset() {
+      this.form = {
+        barcode: '',
+        title_id: 0,
+        status: '',
+      };
+    }
   }
-}
 </script>

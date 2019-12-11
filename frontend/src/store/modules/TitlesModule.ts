@@ -34,6 +34,10 @@ class TitlesModule extends VuexModule {
       return this.titleState.titles;
     }
 
+    get allAsArray() {
+      return Object.keys(this.titleState.titles).map( (id) => this.titleState.titles[parseInt(id, 10)]);
+    }
+
     @Action({rawError: true})
     public fetchAll() {
         return new Promise((resolve, reject) => {
