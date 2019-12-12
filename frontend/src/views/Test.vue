@@ -1,16 +1,64 @@
 <template>
-  <div id="root">
-    <Find />
-    <v-divider />
-    <SearchList 
-      :items="mockupLoans" 
-      :headers="headers"
-    />
-    <SearchList 
-      :items="mockupLoans" 
-      :headers="headers"
-    />
-  </div>
+  <v-container>
+    <v-row>
+      <v-col>
+        <v-card>
+          <v-chip-group mandatory>
+            <v-chip
+              v-model="users"
+              class="ma-2"
+              color="success"
+              outlined
+            >
+              <v-icon left>
+                mdi-account-outline
+              </v-icon>
+              Users
+            </v-chip>
+
+            <v-chip
+              v-model="loans"
+              class="ma-2"
+              color="deep-purple"
+              outlined
+            >
+              <v-icon left>
+                mdi-handshake
+              </v-icon>
+              Loans
+            </v-chip>
+            <v-chip
+              v-model="books"
+              class="ma-2"
+              color="light-blue"
+              outlined
+            >
+              <v-icon left>
+                mdi-library
+              </v-icon>
+              Books
+            </v-chip>
+          </v-chip-group>
+
+          <SearchList 
+            v-if="loans"
+            :items="mockupLoans" 
+            :headers="loanHeaders"
+          />
+          <SearchList 
+            v-if="books"
+            :items="mockupBooks" 
+            :headers="bookHeaders"
+          />
+          <SearchList 
+            v-if="users"
+            :items="mockupUsers" 
+            :headers="userHeaders"
+          />
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -25,15 +73,30 @@ import Find from '@/views/Find.vue';
   },
 })
 export default class Test extends Vue {
-  headers: object[] = [
-    { text: 'Utlånad till', align: 'start', value: 'elevnamn' },
+  users:boolean = false;
+  loans:boolean = false;
+  books:boolean = false;
+
+  // MOCKUP DATA
+  loanHeaders: object[] = [
+    { text: 'Utlånad till', value: 'elevnamn' },
     { text: 'Utlånad av', value: 'lärarnamn' },
     { text: 'Material', value: 'lån' },
     { text: 'Utgångsdatum', value: 'utgångsdatum' }
   ];
+  bookHeaders: object[] = [
+    { text: 'titel', value: 'elevnamn' },
+    { text: 'desc', value: 'lärarnamn' },
+    { text: 'Bla', value: 'lån' },
+    { text: 'bla', value: 'utgångsdatum' }
+  ];
+  userHeaders: object[] = [
+    { text: 'Namn', value: 'elevnamn' },
+    { text: 'behörighet', value: 'lärarnamn' },
+    { text: 'Stuffs', value: 'lån' },
+    { text: 'moar stuffs', value: 'utgångsdatum' }
+  ];
   mockupLoans: object[] = [
-    // Consider changing object[] to an interface array of type Loan. (example: Loan[])
-    // Mockup
     {
       elevnamn: 'Simon Johannesson',
       lån: 'The Hobbit',
@@ -127,9 +190,3 @@ export default class Test extends Vue {
   ];
 }
 </script>
-
-<style scoped>
-#root {
-    padding-top: 100px;
-}
-</style>
