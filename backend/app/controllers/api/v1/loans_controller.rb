@@ -16,7 +16,6 @@ class Api::V1::LoansController < ApplicationController
     if @loan.save
       render json: @loan
     else
-      pp loan_params
       render json: @loan.errors, status: :unprocessable_entity
     end
   end
