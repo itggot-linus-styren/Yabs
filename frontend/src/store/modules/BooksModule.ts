@@ -9,6 +9,12 @@ interface BookState {
   failure: any;
 }
 
+export interface IBook {
+  barcode: string,
+  title_id: number,
+  status: string
+}
+
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})
 class BooksModule extends VuexModule {
   private bookState: BookState = {books: {}, failure: null};
@@ -48,7 +54,7 @@ class BooksModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public update(request: any) {
+  public update(request: IBook) {
     return new Promise((resolve, reject) => {
       BooksAPI.update(request)
         .then((response: any) => {
