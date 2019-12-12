@@ -1,19 +1,18 @@
 <template>
-    <v-btn class="ml-2" text color="grey">
-      <div id="signin2"></div>
-    </v-btn>
-
-    <!-- div#signin2(v-else="usersModule.currentUser") -->
-
+  <v-btn class="ml-2" text color="grey">
+    <div id="signin2"></div>
+  </v-btn>
+  <!-- div#signin2(v-else="usersModule.currentUser") -->
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import UsersModule from '../store/modules/UsersModule';
+import { VuexModule } from 'vuex-module-decorators';
 
 @Component
 export default class GoogleLogin extends Vue {
-  public usersModule = UsersModule;
+  public usersModule: VuexModule = UsersModule;
 
   public mounted() {
     this.renderLoginButton();

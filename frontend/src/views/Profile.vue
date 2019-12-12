@@ -1,30 +1,16 @@
 <template>
-    <!-- div
-      p(v-if="!usersModule.currentUser") Du är inte inloggad
-      .view(v-else)
-          .left
-              h1 {{usersModule.currentUser}}
-              h1 {{usersModule.currentUser}} - {{usersModule.currentUser}}
-              img(:src="`http://localhost:3000/${usersModule.currentUser.photo_path}`")
-          .right
-              .header
-                  AddLoan
-                  .loanText
-                      h1 Lån
-              .myCard
-                  RecentLoan -->
-    <v-container>
-        <h1>{{usersModule.currentUser.name}} - {{usersModule.currentUser.klass}}</h1>
-        <img v-if="usersModule.currentUser.photo_path" 
-            :src="'http://localhost:3000/'+usersModule.currentUser.photo_path" 
-            alt="Profile Picture" @click="uploadButton" class="mt-5"
-        >
-        <div v-else> 
-            <p>Du har ingen profilbild, det var tråkigt.</p>
-            <v-btn color="primary" @click="uploadButton">Ladda upp en bild</v-btn>
-        </div>
-        <input type="file" id="upload-button" name="myfile" hidden @change="onFileChanged"/>
-    </v-container>
+  <v-container>
+    <h1>{{usersModule.currentUser.name}} - {{usersModule.currentUser.klass}}</h1>
+    <img v-if="usersModule.currentUser.photo_path" 
+      :src="'http://localhost:3000/'+usersModule.currentUser.photo_path" 
+      alt="Profile Picture" @click="uploadButton" class="mt-5"
+    >
+    <div v-else> 
+      <p>Du har ingen profilbild, det var tråkigt.</p>
+      <v-btn color="primary" @click="uploadButton">Ladda upp en bild</v-btn>
+    </div>
+    <input type="file" id="upload-button" name="myfile" hidden @change="onFileChanged"/>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -33,13 +19,14 @@ import CigCanvas from '@/components/CigCanvas.vue';
 import AddLoan from '@/components/AddLoan.vue';
 import RecentLoan from '@/components/RecentLoan.vue';
 import UsersModule, { User } from '../store/modules/UsersModule';
+import { VuexModule } from 'vuex-module-decorators';
 
 @Component({
-    components: {
-        CigCanvas,
-        AddLoan,
-        RecentLoan,
-    },
+  components: {
+    CigCanvas,
+    AddLoan,
+    RecentLoan,
+  },
 })
 export default class Profile extends Vue {
   private usersModule = UsersModule;
@@ -72,7 +59,7 @@ export default class Profile extends Vue {
 }
 </script>
 
-<style  scoped>
+<style scoped>
    .btn {
   border: 2px solid gray;
   color: gray;
