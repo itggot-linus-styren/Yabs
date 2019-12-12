@@ -33,23 +33,28 @@ export interface UserState {
 class UsersModule extends VuexModule {
   private userState: UserState = {users: {}, current_user: null, failure: null};
 
-  get all() {
+  get currentUserID(): number {
+    return this.userState.current_user;
+  }
+
+  get all(): UserCollection {
     return this.userState.users;
   }
 
-  get currentUser() {
-    if (this.userState && this.userState.current_user) {
-      return this.all[this.userState.current_user];
-    } else {
-      return {};
-    }
+  get currentUser(): User {
+    // if (this.userState && this.userState.current_user) {
+    return this.all[this.userState.current_user];
+    // } else {
+    //   return null;
+    // }
   }
 
   @Action({rawError: true})
-  public fetchAll() {
+  public fetchAll(): Promise<object> {
     return new Promise((resolve, reject) => {
       UsersAPI.all()
         .then((response: User[]) => {
+          console.log(response);
           this.convertUserList(response);
           resolve();
         })
