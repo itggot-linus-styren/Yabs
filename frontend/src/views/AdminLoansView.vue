@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>loan view</h1>
+    <h1 class="display-2">Loans</h1>
     <LoaningForm @loan-added="onLoanAdded" />
     <RecentLoan @loans-loaded="onLoaded" />
   </div>

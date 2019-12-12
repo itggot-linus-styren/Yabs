@@ -1,19 +1,19 @@
 <template>
   <div>
-    <h1>ya like   T I T L E S   ?   ;)))</h1>
-    <TitelForm />
+    <h1 class="display-2">Titles</h1>
+    <TitelFormComponent />
     <RecentTitel />
   </div>
 </template>
 
 <script lang="ts">
 import { Vue, Component, Prop } from 'vue-property-decorator';
-import TitelForm from '@/components/TitelForm.vue';
+import TitelFormComponent from '@/components/TitelFormComponent.vue';
 import RecentTitel from '@/components/RecentTitel.vue';
 
 @Component({
   components: {
-    TitelForm,
+    TitelFormComponent,
     RecentTitel
   }
 })

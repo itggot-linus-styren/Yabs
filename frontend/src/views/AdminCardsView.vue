@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>pick a card, any card. not that one. pick that one.</h1>
+    <h1 class="display-2">Cards</h1>
     <CigForm @sendImages="onSendImages($event)" />  
     <CanvasContainer :images="images" />
   </div>

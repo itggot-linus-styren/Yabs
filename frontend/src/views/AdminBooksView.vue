@@ -1,6 +1,6 @@
 <template>
   <div>
-    <h1>ya like books?</h1>
+    <h1 class="display-2">Books</h1>
     <CreateBookFormComponent />
     <RecentBook />
   </div>
