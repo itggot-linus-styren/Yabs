@@ -1,8 +1,6 @@
 name: Integration
 
-on:
-  schedule:
-  - cron: "0 0 * * *"
+on: [push]
 
 jobs:
   cc:
@@ -78,6 +76,10 @@ jobs:
       run: |
         cd backend
         bundle exec bin/rails db:schema:load
+    - name: Load fixtures to database
+      run: |
+        cd backend
+        bundle exec bin/rails db:fixtures:load
     - name: Run rails backend
       env:
         RAILS_ENV: test
@@ -86,7 +88,6 @@ jobs:
         bundle exec bin/rails s &
     - name: Run e2e tests
       run: |
-        sudo apt-get -yqq install chromium-chromedriver
-        cd tests
-        bundle install
-        bundle exec cucumber
+        cd frontend
+        yarn install
+        yarn cypress run

@@ -16,22 +16,32 @@
             v-model="form.loaned_by_id"
             placeholder="Elevens Streckkod"
           />
-        <v-item-group vertical="" label-class="text-sm-right" label-for="nestedBid">
-          <v-text-field id="nestedBid" data-cy='book_barcode' placeholder="Bokens Streckkod" v-model="form.book_id" />
+          <v-item-group
+            vertical=""
+            label-class="text-sm-right"
+            label-for="nestedBid"
+          >
+            <v-text-field
+              id="nestedBid"
+              v-model="form.book_id"
+              data-cy="book_barcode"
+              placeholder="Bokens Streckkod"
+            />
+          </v-item-group>
+          <v-btn
+            data-cy="loanOutBook"
+            type="submit"
+            variant="primary"
+          >
+            Låna Ut
+          </v-btn>
+          <v-btn
+            type="reset"
+            variant="danger"
+          >
+            Rensa Fälten
+          </v-btn>
         </v-item-group>
-        <v-btn
-          data-cy="loanOutBook"
-          type="submit"
-          variant="primary"
-        >
-          Låna Ut
-        </v-btn>
-        <v-btn
-          type="reset"
-          variant="danger"
-        >
-          Rensa Fälten
-        </v-btn>
       </v-card>
     </v-form>
   </div>
