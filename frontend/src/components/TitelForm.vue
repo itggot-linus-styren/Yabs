@@ -40,9 +40,11 @@ export default class TitleForm extends Vue {
 
   public onSubmit(evt: Event) {
     evt.preventDefault();
-    TitlesModule.create(this.form)
+    if (!!this.form.name && !!this.form.cost && !! this.form.isbn && !!this.form.title_type) {
+      TitlesModule.create(this.form)
       .then((title: any) => this.$emit('title-added', title))
       .catch((failure: any) => console.log(failure));
+    }
   }
 
   public onReset(evt: Event) {
