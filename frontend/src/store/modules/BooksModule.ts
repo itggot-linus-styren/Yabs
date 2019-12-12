@@ -2,10 +2,24 @@ import Vue from 'vue';
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators';
 import store from '..';
 import BooksAPI from '../../api/books';
+import { Title } from './TitlesModule';
+import convertList from '../../helpers/convertArrayToNested';
 
 interface BookState {
-  books: {};
+  books: BookCollection;
   failure: any;
+}
+
+interface BookCollection {
+  [id: number]: Book;
+}
+interface Book {
+  barcode: number;
+  created_at: string;
+  status: string;
+  title_id: number;
+  updated_at: string;
+  title: Title;
 }
 
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})
@@ -21,7 +35,7 @@ class BooksModule extends VuexModule {
     return new Promise((resolve, reject) => {
       BooksAPI.all()
         .then((response: any) => {
-          response.forEach((book: any) => this.setBook(book));
+          this.convertBookList(response);
           resolve();
         })
         .catch((error: any) => {
@@ -89,6 +103,11 @@ class BooksModule extends VuexModule {
   @Mutation
   private setfailure(payload: any) {
     this.bookState.failure = payload;
+  }
+  @Mutation
+  private convertBookList(payload: any) {
+    const list = convertList(payload, 'barcode');
+    this.bookState.books = list;
   }
 }
 
