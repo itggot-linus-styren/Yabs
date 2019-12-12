@@ -6,7 +6,55 @@ title_1:
   cost: 70
   title_type: Skönlitteratur
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-12 09:19:00.823620000 Z
+    utc: &1 2019-12-12 13:12:35.844461000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: *1
+    zone: *2
+    time: *1
+
+title_3:
+  id: 3
+  name: Clean Code
+  isbn: '9780132350884'
+  cost: 300
+  title_type: Kurslitteratur
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-12-12 13:12:35.851262000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: *1
+    zone: *2
+    time: *1
+
+title_2:
+  id: 2
+  name: The Fellowship of the Ring
+  isbn: '9780547928210'
+  cost: 100
+  title_type: Skönlitteratur
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-12-12 13:12:35.847785000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: *1
+    zone: *2
+    time: *1
+
+title_4:
+  id: 4
+  name: Tomtens jul
+  isbn: '9781999985462'
+  cost: 60
+  title_type: Kurslitteratur
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-12-12 13:12:35.854239000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1

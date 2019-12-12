@@ -6,6 +6,11 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
+# Import Users
+ActiveSupport.on_load(:active_job) do
+    ActiveJob::Base.queue_adapter = Rails.application.config.active_job.queue_adapter
+end
+DataFetchJob.perform_now
 
 # Create titles of both book types
 title_alice = Title.create(name: "Alice in Wonderland", isbn: "97161949222", cost: 70, title_type: "Skönlitteratur")
@@ -18,12 +23,25 @@ title_tomtens_jul = Title.create(name: "Tomtens jul", isbn: "9781999985462", cos
 book_alice = Book.create(barcode: "5000", status: "OK", title: title_alice)
 book_cc = Book.create(barcode: "1001", status: "OK", title: title_cc)
 
-# Create a loan
+# Create a loans
 loan_alice = Loan.new(expiration_date: Date.current)
 loan_alice.lent_by = User.find_by_name("Låneservice Johanneberg")
 loan_alice.loaned_by = User.find_by_name("Alex Henryz")
 loan_alice.book = book_alice
 loan_alice.save
+
+loan_cc = Loan.new(expiration_date: Date.current)
+loan_cc.lent_by = User.find_by_name("Låneservice Johanneberg")
+loan_cc.loaned_by = User.first
+loan_cc.book = book_cc
+loan_cc.returned_at = Date.current
+loan_cc.save
+
+book_alice.dump_fixture(append=false)
+title_alice.dump_fixture(append=false)
+title_cc.dump_fixture
+title_lotr.dump_fixture
+title_tomtens_jul.dump_fixture
 
 # Create the rest of the books
 Book.create(barcode: "5002", status: "Broken", title: title_alice).dump_fixture
@@ -34,12 +52,14 @@ Book.create(barcode: "5006", status: "OK", title: title_cc).dump_fixture
 Book.create(barcode: "5007", status: "OK", title: title_tomtens_jul).dump_fixture
 Book.create(barcode: "5008", status: "OK", title: title_tomtens_jul).dump_fixture
 
-# Create fixtures for testing 
-title_alice.dump_fixture(append=false)
-book_alice.dump_fixture(append=false)
+# Create fixtures
 loan_alice.dump_fixture(append=false)
 loan_alice.lent_by.dump_fixture(append=false)
 loan_alice.loaned_by.dump_fixture(append=true)
+
+loan_cc.dump_fixture
+loan_cc.loaned_by.dump_fixture
+
 
 
 
