@@ -65,15 +65,15 @@ import TitlesModule from '../store/modules/TitlesModule';
 
 @Component
 export default class TitleForm extends Vue {
-  public form = {
+  public form: object = {
     name: '',
     cost: '',
     isbn: '',
     title_type: '',
   };
-  public show = true;
+  public show: boolean = true;
 
-  public options = [
+  public options: object[] = [
     { value: 'Kurslitteratur', text: 'Kurslitteratur' },
     { value: 'Bibloteksbok', text: 'Bibloteksbok' },
     { value: 'Skönlitteratur', text: 'Skönlitteratur' },

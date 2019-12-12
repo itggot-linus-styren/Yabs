@@ -16,18 +16,8 @@
             v-model="form.loaned_by_id"
             placeholder="Elevens Streckkod"
           />
-        </v-item-group>
-        <v-item-group
-          vertical=""
-          label-class="text-sm-right"
-          label-for="nestedBid"
-        >
-          <v-text-field
-            id="nestedBid"
-            v-model="form.book_id"
-            data-cy="book_barcode"
-            placeholder="Bokens Streckkod"
-          />
+        <v-item-group vertical="" label-class="text-sm-right" label-for="nestedBid">
+          <v-text-field id="nestedBid" data-cy='book_barcode' placeholder="Bokens Streckkod" v-model="form.book_id" />
         </v-item-group>
         <v-btn
           data-cy="loanOutBook"
@@ -65,7 +55,7 @@ export default class LoaningForm extends Vue {
     loaned_by_id: '',
     book_id: '',
   };
-  public show = true;
+  public show: boolean = true;
 
   public onSubmit(evt: Event) {
     evt.preventDefault();
