@@ -11,10 +11,10 @@ class LoanPolicy < ApplicationPolicy
   end
 
   def create?
-    # unless user && user.admin? && user.uid == loan.lent_by_id
-    #   loan.errors.add(:lent_by, "authorization failed")
-    #   return false
-    # end
+    unless user && user.admin? && user.uid == loan.lent_by_id
+      loan.errors.add(:lent_by, "authorization failed")
+      return false
+    end
     return true
   end
 
