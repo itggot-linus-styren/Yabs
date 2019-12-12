@@ -9,13 +9,14 @@ class Api::V1::LoansController < ApplicationController
     authorize @loan
     render json: policy_scope(@loan)
   end
-
+  
   def create
     @loan = Loan.new(loan_params)
     authorize @loan
     if @loan.save
       render json: @loan
     else
+      pp loan_params
       render json: @loan.errors, status: :unprocessable_entity
     end
   end
@@ -43,6 +44,6 @@ class Api::V1::LoansController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def loan_params
-      pp params.require(:loan).permit(:loaned_by_id, :lent_by_id, :book_id, :returned_at, :expiration_date)
+      params.require(:loan).permit(:loaned_by_id, :lent_by_id, :book_id, :returned_at, :expiration_date)
     end
 end

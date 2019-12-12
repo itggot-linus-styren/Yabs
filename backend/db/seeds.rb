@@ -16,7 +16,7 @@ title_tomtens_jul = Title.create(name: "Tomtens jul", isbn: "9781999985462", cos
 
 # Create books to be loaned
 book_alice = Book.create(barcode: 5000, status: "OK", title: title_alice)
-book_cc = Book.create(barcode: 0001, status: "OK", title: title_cc)
+book_cc = Book.create(barcode: 1001, status: "OK", title: title_cc)
 
 loan_alice = Loan.new(expiration_date: Date.current)
 loan_alice.lent_by = User.find_by_name('Låneservice Johanneberg')
