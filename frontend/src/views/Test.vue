@@ -40,17 +40,17 @@
             </v-chip>
           </v-chip-group>
 
-          <SearchList 
+          <SearchListComponent 
             v-if="loans"
             :items="mockupLoans" 
             :headers="loanHeaders"
           />
-          <SearchList 
+          <SearchListComponent 
             v-if="books"
             :items="mockupBooks" 
             :headers="bookHeaders"
           />
-          <SearchList 
+          <SearchListComponent 
             v-if="users"
             :items="mockupUsers" 
             :headers="userHeaders"
@@ -63,13 +63,13 @@
 
 <script lang="ts">
 import {Vue, Component, Prop} from 'vue-property-decorator';
-import SearchList from '@/components/SearchList.vue';
-import Find from '@/views/Find.vue';
+
+import LoansModule from '../store/modules/LoansModule';
+import SearchListComponent from '@/components/SearchListComponent.vue';
 
 @Component({
   components: {
-    SearchList,
-    Find
+    SearchListComponent
   },
 })
 export default class Test extends Vue {
@@ -77,115 +77,115 @@ export default class Test extends Vue {
   loans:boolean = false;
   books:boolean = false;
 
-  // MOCKUP DATA
   loanHeaders: object[] = [
-    { text: 'Utlånad till', value: 'elevnamn' },
-    { text: 'Utlånad av', value: 'lärarnamn' },
-    { text: 'Material', value: 'lån' },
-    { text: 'Utgångsdatum', value: 'utgångsdatum' }
+    { text: 'Utlånad till', value: 'loanedBy' },
+    { text: 'Utlånad av', value: 'lentBy' },
+    { text: 'Material', value: 'book' },
+    { text: 'Utgångsdatum', value: 'expirationDate' }
   ];
   bookHeaders: object[] = [
-    { text: 'titel', value: 'elevnamn' },
-    { text: 'desc', value: 'lärarnamn' },
-    { text: 'Bla', value: 'lån' },
-    { text: 'bla', value: 'utgångsdatum' }
+    { text: 'Titel', value: 'title' },
+    { text: 'Status', value: 'status' },
+    { text: 'Barcode', value: 'barcode' }
   ];
   userHeaders: object[] = [
-    { text: 'Namn', value: 'elevnamn' },
-    { text: 'behörighet', value: 'lärarnamn' },
-    { text: 'Stuffs', value: 'lån' },
-    { text: 'moar stuffs', value: 'utgångsdatum' }
+    { text: 'Namn', value: 'name' },
+    { text: 'Email', value: 'email' },
+    { text: 'Klass', value: 'klass' }
   ];
+
+  // public created() {
+  //     LoansModule.fetchAll()
+  // }
+
+  // get items() {
+  //     const items = Object.entries(LoansModule.all)
+  //         .filter(([key, value]) => {
+  //             return !value.returned_at;
+  //         })
+  //         .map(([key, value]) => Object.assign(value, { '.key': key }));
+
+  //     return items;
+  // }
+
+
+  // MOCKUP DATA (Can be removed when fetch function in implemented)
   mockupLoans: object[] = [
     {
-      elevnamn: 'Simon Johannesson',
-      lån: 'The Hobbit',
-      lärarnamn: 'Daniel Berg',
-      utgångsdatum: '01-01-2019'
+      loanedBy: 'Simon Johannesson',
+      book: 'The Hobbit',
+      lentBy: 'Daniel Berg',
+      expirationDate: '01-01-2019'
     },
     {
-      elevnamn: 'Eric Persson',
-      lån: 'Lord of the flies',
-      lärarnamn: 'David Lundholm',
-      utgångsdatum: '01-01-2019'
+      loanedBy: 'Eric Persson',
+      book: 'Lord of the flies',
+      lentBy: 'David Lundholm',
+      expirationDate: '01-01-2019'
     },
     {
-      elevnamn: 'Filip Gustavsson',
-      lån: 'The hitchhiker\'s guide to the galaxy',
-      lärarnamn: 'Fredrik Kronhamn',
-      utgångsdatum: '01-01-2019'
+      loanedBy: 'Filip Gustavsson',
+      book: 'The hitchhiker\'s guide to the galaxy',
+      lentBy: 'Fredrik Kronhamn',
+      expirationDate: '01-01-2019'
     },
     {
-      elevnamn: 'Alex henryz',
-      lån: 'Moby Dick',
-      lärarnamn: 'Daniel Berg',
-      utgångsdatum: '01-01-2019'
+      loanedBy: 'Alex henryz',
+      book: 'Moby Dick',
+      lentBy: 'Daniel Berg',
+      expirationDate: '01-01-2019'
     },
     {
-      elevnamn: 'Linus Styrén',
-      lån: 'Harry Potter 3',
-      lärarnamn: 'David Lundholm',
-      utgångsdatum: '01-01-2019'
+      loanedBy: 'Linus Styrén',
+      book: 'Harry Potter 3',
+      lentBy: 'David Lundholm',
+      expirationDate: '01-01-2019'
+    }
+  ];
+
+  mockupUsers: object[] = [
+    {
+      name: 'Simon Johannesson',
+      email: 'The.Hobbit@gmail.ru',
+      klass: '1983',
     },
     {
-      elevnamn: '1 Johannesson',
-      lån: 'The Hobbit',
-      lärarnamn: 'Daniel Berg',
-      utgångsdatum: '01-01-2019'
+      name: 'Eric Persson',
+      email: 'The.Hobbit@gmail.su',
+      klass: 'TE212344',
     },
     {
-      elevnamn: '2 Persson',
-      lån: 'Lord of the flies',
-      lärarnamn: 'David Lundholm',
-      utgångsdatum: '01-01-2019'
+      name: 'Filip Gustavsson',
+      email: 'The.Hobbit@gmail.eu',
+      klass: 'DB',
     },
     {
-      elevnamn: '3 Gustavsson',
-      lån: 'The hitchhiker\'s guide to the galaxy',
-      lärarnamn: 'Fredrik Kronhamn',
-      utgångsdatum: '01-01-2019'
+      name: 'Alex henryz',
+      email: 'The.Hobbit@gmail.pu',
+      klass: '3cyanid',
     },
     {
-      elevnamn: '4 henryz',
-      lån: 'Moby Dick',
-      lärarnamn: 'Daniel Berg',
-      utgångsdatum: '01-01-2019'
+      name: 'Walter',
+      email: 'fire@trucklover.com',
+      klass: '28a',
+    },
+  ];
+
+  mockupBooks: object[] = [
+    {
+      title: 'The Hobbit',
+      barcode: '123123bleh31231',
+      status: 'One book to rule them all'
     },
     {
-      elevnamn: '5 Styrén',
-      lån: 'Harry Potter 3',
-      lärarnamn: 'David Lundholm',
-      utgångsdatum: '01-01-2019'
+      title: 'Lord of the flies',
+      barcode: '1337',
+      status: 'flew away'
     },
     {
-      elevnamn: '6 Johannesson',
-      lån: 'The Hobbit',
-      lärarnamn: 'Daniel Berg',
-      utgångsdatum: '01-01-2019'
-    },
-    {
-      elevnamn: '7 Persson',
-      lån: 'Lord of the flies',
-      lärarnamn: 'David Lundholm',
-      utgångsdatum: '01-01-2019'
-    },
-    {
-      elevnamn: '8 Gustavsson',
-      lån: 'The hitchhiker\'s guide to the galaxy',
-      lärarnamn: 'Fredrik Kronhamn',
-      utgångsdatum: '01-01-2019'
-    },
-    {
-      elevnamn: '9 henryz',
-      lån: 'Moby Dick',
-      lärarnamn: 'Daniel Berg',
-      utgångsdatum: '01-01-2019'
-    },
-    {
-      elevnamn: '10 Styrén',
-      lån: 'Harry Potter 3',
-      lärarnamn: 'David Lundholm',
-      utgångsdatum: '01-01-2019'
+      title: 'nallepuupupupup',
+      barcode: '80085',
+      status: 'Stroke'   
     }
   ];
 }

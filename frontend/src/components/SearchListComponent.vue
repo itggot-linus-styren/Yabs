@@ -30,6 +30,5 @@ export default class SearchListComponent extends Vue {
   public search: string = '';
   @Prop() public headers!: IHeader[];
   @Prop() public items!: any[]; // Please fix generic types.
-
 }
 </script>

@@ -86,7 +86,7 @@ import LoadingIcon from '@/components/LoadingIcon.vue';
     LoadingIcon,
   },
 })
-export default class Find extends Vue {
+export default class FindView extends Vue {
   public type: string = 'Utlånade';
   public displayTable: string = 'block';
   public displayCig: string = 'none';
