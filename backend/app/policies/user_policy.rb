@@ -11,18 +11,22 @@ class UserPolicy < ApplicationPolicy
     end
   
     def show?
-      user&.admin? || record&.uid == user&.uid
+      # user&.admin? || record&.uid == user&.uid
+      true
     end
 
     def create?
       unless user && user.admin?
         user.errors.add(:user, "Authorization failed")
-         false
+        false
       end
-       true
     end
 
     def update?
-        user&.admin?
+        if user&.admin?
+          true
+        else
+          
+        end
     end
   end

@@ -10,16 +10,10 @@ class Api::V1::UsersController < ApplicationController
     render json: @user
   end
 
-  def create
-    authorize @user
-    p @user
-    
-  end
-
   def update
     authorize @user
-    p "passed authorization"
     if params[:image]
+      p params[:image]
       @user.profile_image.attach(params[:image])
       @user.photo_path = rails_blob_path(@user.profile_image, disposition: "inline")
       @user.save
@@ -33,5 +27,7 @@ class Api::V1::UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+      p "This is the damn user"
+      p @user
     end
 end

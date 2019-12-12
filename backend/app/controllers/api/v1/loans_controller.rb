@@ -2,12 +2,12 @@ class Api::V1::LoansController < ApplicationController
   before_action :set_loan, only: [:show, :update, :destroy]
 
   def index
-    render json: policy_scope(Loan.all)
+    render json: Loan.all
   end
 
   def show
     authorize @loan
-    render json: policy_scope(@loan)
+    render json: @loan
   end
 
   def create
