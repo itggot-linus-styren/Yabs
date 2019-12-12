@@ -61,13 +61,11 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import TitlesModule, { TitleFormI } from '../store/modules/TitlesModule';
-
-
+import TitlesModule, { TitleForm } from '../store/modules/TitlesModule';
 
 @Component
-export default class TitleForm extends Vue {
-  public form: TitleFormI = {
+export default class TitleFormComponent extends Vue {
+  public form: TitleForm = {
     name: '',
     cost: '',
     isbn: '',
