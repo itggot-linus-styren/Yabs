@@ -192,7 +192,6 @@ export default class CigCanvas extends Vue {
 
   @Watch('sendCanvas')
   public sendThisCanvas() {
-    console.log('Whoo');
     const zip = new JSZip();
     const canvas: HTMLCanvasElement | any = this.$refs.canvas;
     canvas.toBlob((blob: any) => {
