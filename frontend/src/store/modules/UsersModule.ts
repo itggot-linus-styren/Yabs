@@ -118,7 +118,7 @@ class UsersModule extends VuexModule {
 
   @Mutation
   public setFailure(payload: any) {
-    //this.userState.failure = payload;
+    this.userState.failure = payload;
   }
 
   @Mutation
