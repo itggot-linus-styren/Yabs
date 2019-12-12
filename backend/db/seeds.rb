@@ -15,8 +15,8 @@ title_cc = Title.create(name: "Clean Code", isbn: "9780132350884", cost: 300, ti
 title_tomtens_jul = Title.create(name: "Tomtens jul", isbn: "9781999985462", cost: 60, title_type: "Kurslitteratur")
 
 # Create books to be loaned
-book_alice = Book.create(barcode: 5000, status: "OK", title: title_alice)
-book_cc = Book.create(barcode: 1001, status: "OK", title: title_cc)
+book_alice = Book.create(barcode: "5000", status: "OK", title: title_alice)
+book_cc = Book.create(barcode: "1001", status: "OK", title: title_cc)
 
 # Create a loan
 loan_alice = Loan.new(expiration_date: Date.current)
@@ -26,13 +26,13 @@ loan_alice.book = book_alice
 loan_alice.save
 
 # Create the rest of the books
-Book.create(barcode: 5002, status: "Broken", title: title_alice).dump_fixture
-Book.create(barcode: 5003, status: "OK", title: title_alice).dump_fixture
-Book.create(barcode: 5004, status: "OK", title: title_lotr).dump_fixture
-Book.create(barcode: 5005, status: "Broken", title: title_lotr).dump_fixture
-Book.create(barcode: 5006, status: "OK", title: title_cc).dump_fixture
-Book.create(barcode: 5007, status: "OK", title: title_tomtens_jul).dump_fixture
-Book.create(barcode: 5008, status: "OK", title: title_tomtens_jul).dump_fixture
+Book.create(barcode: "5002", status: "Broken", title: title_alice).dump_fixture
+Book.create(barcode: "5003", status: "OK", title: title_alice).dump_fixture
+Book.create(barcode: "5004", status: "OK", title: title_lotr).dump_fixture
+Book.create(barcode: "5005", status: "Broken", title: title_lotr).dump_fixture
+Book.create(barcode: "5006", status: "OK", title: title_cc).dump_fixture
+Book.create(barcode: "5007", status: "OK", title: title_tomtens_jul).dump_fixture
+Book.create(barcode: "5008", status: "OK", title: title_tomtens_jul).dump_fixture
 
 # Create fixtures for testing 
 title_alice.dump_fixture(append=false)
