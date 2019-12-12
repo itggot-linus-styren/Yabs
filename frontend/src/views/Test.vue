@@ -1,5 +1,7 @@
 <template>
   <div id="root">
+    <Find />
+    <v-divider />
     <SearchList 
       :items="mockupLoans" 
       :headers="headers"
@@ -14,9 +16,12 @@
 <script lang="ts">
 import {Vue, Component, Prop} from 'vue-property-decorator';
 import SearchList from '@/components/SearchList.vue';
+import Find from '@/views/Find.vue';
+
 @Component({
   components: {
     SearchList,
+    Find
   },
 })
 export default class Test extends Vue {
