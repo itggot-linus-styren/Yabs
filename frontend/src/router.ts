@@ -1,6 +1,8 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import * as views from '@/views';
+import FindView from '@/views/FindView.vue';
+import Test from '@/views/Test.vue'; // Debug
 
 Vue.use(Router);
 
@@ -25,7 +27,12 @@ export default new Router({
     {
       path: '/find',
       name: 'find',
-      component: views.Find,
+      component: FindView,
+    },
+    {
+      path: '/test',
+      name: 'test',
+      component: Test,
     },
   ],
 });
