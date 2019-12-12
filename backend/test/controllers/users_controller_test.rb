@@ -6,6 +6,7 @@ class UsersControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "should show user" do
+    pp @user
     get api_v1_user_url(@user), as: :json
     assert_response :success
   end

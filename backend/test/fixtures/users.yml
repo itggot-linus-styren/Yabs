@@ -8,12 +8,12 @@ user_1954282603:
   google_token: '101173758873354282603'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-12 13:12:28.572335000 Z
+    utc: &1 2019-12-12 13:16:34.077313000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-12 13:12:28.572335000 Z
+    utc: &3 2019-12-12 13:16:34.077313000 Z
     zone: *2
     time: *3
 
@@ -26,12 +26,12 @@ user_1968097915:
   google_token: '101834530373768097915'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-12 13:12:31.114030000 Z
+    utc: &1 2019-12-12 13:16:36.526248000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-12 13:12:31.114030000 Z
+    utc: &3 2019-12-12 13:16:36.526248000 Z
     zone: *2
     time: *3
 
@@ -44,11 +44,11 @@ user_1900009211:
   google_token: '113517219641300009211'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-12 13:12:33.117380000 Z
+    utc: &1 2019-12-12 13:16:38.413294000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-12 13:12:33.117380000 Z
+    utc: &3 2019-12-12 13:16:38.413294000 Z
     zone: *2
     time: *3
