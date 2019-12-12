@@ -31,15 +31,16 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import TitlesModule from '../store/modules/TitlesModule';
 import BooksModule from '../store/modules/BooksModule';
+import { VuexModule } from 'vuex-module-decorators';
 
 @Component
 export default class CreateBookFormComponent extends Vue {
-  private form = {
+  private form: {} = {
     barcode: '',
     title_id: 0,
     status: '',
   };
-  private titlesModule = TitlesModule;
+  private titlesModule: VuexModule = TitlesModule;
 
   private onSubmit(evt: Event) {
     evt.preventDefault();
@@ -53,23 +54,6 @@ export default class CreateBookFormComponent extends Vue {
       title_id: 0,
       status: '',
     };
-    private titlesModule = TitlesModule;
-
-    private onSubmit(evt: Event) {
-      evt.preventDefault();
-      if (!!this.form.barcode && !!this.form.title_id && !!this.form.status) {
-        BooksModule.create(this.form);
-        this.onReset();
-      }
-    }
-
-    private onReset() {
-      this.form = {
-        barcode: '',
-        title_id: 0,
-        status: '',
-      };
-    }
   }
 }
 </script>
