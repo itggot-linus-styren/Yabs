@@ -1,16 +1,20 @@
-<template lang="pug">
-    div
-        b-dropdown#ddown1.m-md-2(text='Ändra Typ')
-            b-dropdown-item(@click='changeToLoan') Lån
-            b-dropdown-item(@click='changeToCig') ID Kort
-            b-dropdown-item(@click='changeToBook') Bok
-            b-dropdown-item(@click='changeToTitel') Titel
-
+<template>
+  <div>
+    <b-dropdown class="m-md-2" id="ddown1" text="Ändra Typ">
+      <b-dropdown-item @click="changeToLoan">Lån</b-dropdown-item>
+      <b-dropdown-item @click="changeToCig">ID Kort</b-dropdown-item>
+      <b-dropdown-item @click="changeToBook">Bok</b-dropdown-item>
+      <b-dropdown-item @click="changeToTitel">Titel</b-dropdown-item>
+    </b-dropdown>
+  </div>
 </template>
 
 
 <script lang="ts">
 import { Component, Prop, Vue, Watch } from 'vue-property-decorator';
+
+// this will be routes instead
+
 
 @Component
 export default class DropDownType extends Vue {

@@ -1,18 +1,25 @@
-<template lang="pug">
-    div
-      p(v-if="!usersModule.currentUser") Du är inte inloggad
-      .view(v-else)
-          .left
-              h1 {{usersModule.currentUser.name}}
-              h1 {{usersModule.currentUser.role}} - {{usersModule.currentUser.klass}}
-              img(:src="`http://localhost:3000/${usersModule.currentUser.photo_path}`")
-          .right
-              .header
-                  AddLoan
-                  .loanText
-                      h1 Lån
-              .myCard
-                  RecentLoan
+<template>
+  <div>
+    <p v-if="!usersModule.currentUser">Du är inte inloggad</p>
+    <div class="view" v-else>
+      <div class="left">
+        <h1>{{usersModule.currentUser.name}}</h1>
+        <h1>{{usersModule.currentUser.role}} - {{usersModule.currentUser.klass}}</h1>
+        <img :src="`http://localhost:3000/${usersModule.currentUser.photo_path}`" />
+      </div>
+      <div class="right">
+        <div class="header">
+          <AddLoan />
+          <div class="loanText">
+            <h1>Lån</h1>
+          </div>
+        </div>
+        <div class="myCard">
+          <RecentLoan />
+        </div>
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -23,14 +30,14 @@ import RecentLoan from '@/components/RecentLoan.vue';
 import UsersModule, { User } from '../store/modules/UsersModule';
 
 @Component({
-    components: {
-        CigCanvas,
-        AddLoan,
-        RecentLoan,
-    },
+  components: {
+    CigCanvas,
+    AddLoan,
+    RecentLoan,
+  },
 })
 export default class Profile extends Vue {
-    private usersModule = UsersModule;
+  private usersModule = UsersModule;
 }
 </script>
 
