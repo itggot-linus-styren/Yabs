@@ -99,7 +99,7 @@ class LoansModule extends VuexModule {
 
   @Mutation
   private setFailure(payload: any) {
-    this.loanState.failure = payload;
+    // this.loanState.failure = payload;
   }
 
   @Mutation

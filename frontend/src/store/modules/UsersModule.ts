@@ -97,7 +97,7 @@ class UsersModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public signOut() {
+  public signOut(): Promise<object> {
     return new Promise((resolve, reject) => {
       UsersAPI.signOut()
         .then((response: any) => {
@@ -112,24 +112,25 @@ class UsersModule extends VuexModule {
   }
 
   @Mutation
-  public setUser(payload: any) {
+  public setUser(payload: any): void {
     Vue.set(this.userState.users, payload.uid, payload);
   }
 
   @Mutation
-  public setCurrentUser(payload: any) {
-    this.userState.current_user = payload.uid;
+  public setCurrentUser(payload: any): void {
+    Vue.set(this.userState, 'current_user', payload.uid);
   }
 
   @Mutation
-  public setFailure(payload: any) {
-    this.userState.failure = payload;
+  public setFailure(payload: any): void {
+    // console.log(payload);
+    // this.userState.failure = payload;
   }
 
   @Mutation
-  public convertUserList(payload: User[]) {
+  public convertUserList(payload: User[]): void {
     const list = convertList(payload, 'uid');
-    this.userState.users = list;
+    Vue.set(this.userState, 'users', list);
   }
 }
 
