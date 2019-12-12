@@ -1,5 +1,5 @@
 <template>
-    <v-btn v-if="usersModule.userState.current_user === null" class="ml-2" text color="grey">
+    <v-btn class="ml-2" text color="grey">
       <div id="signin2"></div>
     </v-btn>
 

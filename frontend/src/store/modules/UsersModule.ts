@@ -25,21 +25,21 @@ export interface UserCollection { [uid: number]: User; }
 
 export interface UserState {
     users: UserCollection;
-    current_user: any;
+    currentUser: any;
     failure: any;
 }
 
 @Module({dynamic: true, namespaced: true, name: 'UsersModule', store, preserveState: true})
 class UsersModule extends VuexModule {
-    private userState: UserState = {users: {}, current_user: null, failure: null};
+    private userState: UserState = {users: {}, currentUser: null, failure: null};
 
     get all() {
         return this.userState.users;
     }
 
     get currentUser() {
-      if (this.userState && this.userState.current_user) {
-        return this.all[this.userState.current_user];
+      if (this.userState && this.userState.currentUser) {
+        return this.all[this.userState.currentUser];
       } else {
         return {};
       }
@@ -114,9 +114,9 @@ class UsersModule extends VuexModule {
     @Mutation
     public setCurrentUser(payload: any) {
         if (payload && payload.uid) {
-          this.userState.current_user = payload.uid;
+          this.userState.currentUser = payload.uid;
         } else {
-          this.userState.current_user = null;
+          this.userState.currentUser = null;
         }
     }
 

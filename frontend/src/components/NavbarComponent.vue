@@ -6,35 +6,23 @@
           <v-icon class="px-3">mdi-home</v-icon>Yabs
         </v-btn>
       </v-toolbar-items>
-      <v-spacer></v-spacer>
-      <v-toolbar-items>
-
-        <v-btn v-if="usersModule.currentUser !== null" :to="'/users/'+ usersModule.currentUser.uid" text>
+      <v-spacer />
+      <v-toolbar-items v-if="usersModule.userState && usersModule.userState.currentUser">
+        <v-btn :to="'/users/'+ usersModule.currentUser.uid" text>
           <v-icon class="px-3">mdi-settings</v-icon>Profil
         </v-btn>
-        <v-btn class="ml-2 mr-5" v-if="usersModule.currentUser" text color="grey" @click="signOut">
+        <v-btn to="/add" text>
+          <v-icon class="px-3">add</v-icon>Add
+        </v-btn>
+        <v-btn class="ml-2 mr-5" text color="grey" @click="signOut">
           <v-icon>mdi-logout-variant</v-icon>
         </v-btn>
+      </v-toolbar-items>
+      <v-toolbar-items v-else>
         <GoogleLogin></GoogleLogin>
       </v-toolbar-items>
     </v-app-bar>
   </div>
-  <!-- //- .base
-    //-     b-navbar(type='dark', variant='primary', toggleable='')
-    //-         b-navbar-toggle(target='nav_dropdown_collapse')
-    //-         b-collapse#nav_dropdown_collapse(is-nav='')
-    //-             b-navbar-nav
-    //-                 b-nav-item
-    //-                     router-link.link(to='/') Start
-    //-                 b-nav-item(v-if="usersModule.currentUser")
-    //-                     router-link.link(:to="`/users/${usersModule.currentUser.uid}`") Profil
-    //-                 b-nav-item
-    //-                     router-link.link(to='/add') Lägg till
-    //-                 b-nav-item
-    //-                     router-link.link(to='/find') Hitta
-    //-         b-navbar-brand Yabs
-    //-         GoogleLogin
-  //- b-navbar-brand.material-icons account_circle-->
 </template>
 
 <script lang="ts">
@@ -47,7 +35,7 @@ import UsersModule from '../store/modules/UsersModule';
     GoogleLogin,
   },
 })
-export default class HeaderNav extends Vue {
+export default class NavbarComponent extends Vue {
   public usersModule = UsersModule;
   // private links = [
   //   {

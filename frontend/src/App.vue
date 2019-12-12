@@ -1,8 +1,8 @@
-<template lang="pug">
-  v-app
-    HeaderNav
-    router-view
-
+<template>
+  <v-app>
+    <NavbarComponent />
+    <router-view />
+  </v-app>
 </template>
 
 <style lang="sass">
@@ -51,11 +51,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HeaderNav from '@/components/HeaderNav.vue';
+import NavbarComponent from '@/components/NavbarComponent.vue';
 
 @Component({
   components: {
-    HeaderNav,
+    NavbarComponent,
   },
 })
 export default class App extends Vue {}
