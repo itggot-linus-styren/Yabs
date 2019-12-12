@@ -18,18 +18,18 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from "vue-property-decorator";
+import { Component, Prop, Vue } from 'vue-property-decorator';
 
 interface IHeader {
-  text: string,
-  value: string
+  text: string;
+  value: string;
 }
 
 @Component({})
-export default class SearchList extends Vue {
-  search: string = "";
-  @Prop() headers!: IHeader[];
-  @Prop() items!: any[]; // Please fix generic types. 
-  
+export default class SearchListComponent extends Vue {
+  public search: string = '';
+  @Prop() public headers!: IHeader[];
+  @Prop() public items!: any[]; // Please fix generic types.
+
 }
 </script>
