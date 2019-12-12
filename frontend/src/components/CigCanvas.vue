@@ -1,14 +1,39 @@
-<template lang="pug">
-    div
-        #canvasContainer(ref="canvasContainer")
-            canvas#canvas(ref='canvas')
-        b-form
-            b-form-group
-                vue-bootstrap-typeahead(v-model="name" :data="userNames" @hit="onNameInput")
-                b-button(@click="savePicture") Spara Bild
-                b-button(@click="downloadCanvas") Ladda ned kort
-        img(src="../assets/background.png" hidden ref="bg")
-        img(src="../assets/logo.png" hidden ref="logo")
+<template>
+  <div>
+    <div
+      id="canvasContainer"
+      ref="canvasContainer"
+    >
+      <canvas
+        id="canvas"
+        ref="canvas"
+      />
+    </div>
+    <v-form>
+      <v-item-group>
+        <v-autocomplete
+          v-model="name"
+          :data="userNames"
+        />
+        <v-btn @click="savePicture">
+          Spara Bild
+        </v-btn>
+        <v-btn @click="downloadCanvas">
+          Ladda ned kort
+        </v-btn>
+      </v-item-group>
+    </v-form>
+    <img
+      ref="bg"
+      src="../assets/background.png"
+      hidden="hidden"
+    >
+    <img
+      ref="logo"
+      src="../assets/logo.png"
+      hidden="hidden"
+    >
+  </div>
 </template>
 
 <script lang="ts">
