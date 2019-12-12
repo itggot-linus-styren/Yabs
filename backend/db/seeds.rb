@@ -7,7 +7,7 @@
 #   Character.create(name: 'Luke', movie: movies.first)
 
 
-# Create titles of both types
+# Create titles of both book types
 title_alice = Title.create(name: "Alice in Wonderland", isbn: "97161949222", cost: 70, title_type: "Skönlitteratur")
 title_lotr = Title.create(name: "The Fellowship of the Ring", isbn: "9780547928210", cost: 100, title_type: "Skönlitteratur")
 
@@ -16,19 +16,14 @@ title_tomtens_jul = Title.create(name: "Tomtens jul", isbn: "9781999985462", cos
 
 # Create books to be loaned
 book_alice = Book.create(barcode: 5000, status: "OK", title: title_alice)
-book_cc = Book.create(barcode: 0001, status: "OK", title: title_cc)
+book_cc = Book.create(barcode: 1001, status: "OK", title: title_cc)
 
+# Create a loan
 loan_alice = Loan.new(expiration_date: Date.current)
-loan_alice.lent_by = User.find_by_name('Låneservice Johanneberg')
-loan_alice.loaned_by = User.find_by_name('Alex Henryz')
+loan_alice.lent_by = User.find_by_name("Låneservice Johanneberg")
+loan_alice.loaned_by = User.find_by_name("Alex Henryz")
 loan_alice.book = book_alice
 loan_alice.save
-
-# loan_cc = Loan.new(expiration_date: Date.current)
-# loan_cc.lent_by = User.find_by_name('Daniel Berg')
-# loan_cc.loaned_by = User.find_by_name('Emil Babayev')
-# loan_cc.book = book_cc
-# loan_cc.save
 
 # Create the rest of the books
 Book.create(barcode: 5002, status: "Broken", title: title_alice).dump_fixture
