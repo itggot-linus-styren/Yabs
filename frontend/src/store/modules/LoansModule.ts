@@ -41,7 +41,6 @@ class LoansModule extends VuexModule {
           resolve();
         })
         .catch((error: any) => {
-          this.setFailure(error);
           reject(error);
         });
     });
@@ -56,7 +55,6 @@ class LoansModule extends VuexModule {
           resolve(response);
         })
         .catch((error: any) => {
-          this.setFailure(error);
           reject(error);
         });
     });
@@ -71,7 +69,6 @@ class LoansModule extends VuexModule {
           resolve(response);
         })
         .catch((error: any) => {
-          this.setFailure(error);
           reject(error);
         });
     });
@@ -86,7 +83,6 @@ class LoansModule extends VuexModule {
           resolve(response);
         })
         .catch((error: any) => {
-          this.setFailure(error);
           reject(error);
         });
     });

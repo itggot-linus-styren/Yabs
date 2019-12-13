@@ -1,6 +1,10 @@
 <template>
-    <b-table :sort-by.sync="sortBy" :sort-desc.sync="sortDesc"
-             :items="items" :fields="fields" />
+  <b-table
+    :sort-by.sync="sortBy"
+    :sort-desc.sync="sortDesc"
+    :items="items"
+    :fields="fields"
+  />
 </template>
 
 <script lang="ts">

@@ -21,7 +21,7 @@
           text
         >
           <v-icon class="px-3">
-            user-circle
+            account_circle
           </v-icon>Profil
         </v-btn>
         <v-btn
@@ -29,7 +29,7 @@
           text
         >
           <v-icon class="px-3">
-            cog
+            add_circle
           </v-icon>Admin
         </v-btn>
         <v-btn
