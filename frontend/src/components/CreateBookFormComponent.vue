@@ -3,11 +3,11 @@
     <v-card>
       <v-text-field v-model="form.barcode" label="Barcode" autocomplete="off" required />
       <v-autocomplete v-model="form.title_id" :items="titlesModule.allAsArray"
-        item-text="name" item-value="id"
-        label="Select a favorite activity or create a new one"
-        autocomplete="off" />
+                      item-text="name" item-value="id"
+                      label="Select a favorite activity or create a new one"
+                      autocomplete="off" />
       <v-text-field v-model="form.status" label="Status: tex 'ok', 'framsida saknas'"
-        autocomplete="off" required />
+                    autocomplete="off" required />
       <v-btn class="mr-4" type="submit" color="primary">
         Lägg till
       </v-btn>

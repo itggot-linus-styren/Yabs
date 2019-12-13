@@ -30,9 +30,9 @@
           <b-nav-item>
             <router-link
               class="link"
-              to="/add"
+              to="/admin"
             >
-              Lägg till
+              Admin
             </router-link>
           </b-nav-item>
           <b-nav-item>
