@@ -33,7 +33,10 @@
       </v-card>
     </div>
     <div class="right">
-      <v-card elevation="6" class="pa-10">
+      <v-card
+        elevation="6"
+        class="pa-10"
+      >
         <v-content>
           <router-view />
         </v-content>
