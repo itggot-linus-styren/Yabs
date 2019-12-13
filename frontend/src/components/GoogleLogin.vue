@@ -6,7 +6,7 @@
       href="#"
       @click="signOut"
     >SIGN OUT</a>
-    <div v-else id="signin2" />
+    <div id="signin2" />
   </div>
 </template>
 
