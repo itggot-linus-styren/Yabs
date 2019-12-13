@@ -49,6 +49,8 @@
             v-if="books"
             :items="mockupBooks" 
             :headers="bookHeaders"
+            :use-actions="true"
+            :route-path="'books'"
           />
           <SearchListComponent 
             v-if="users"
@@ -81,21 +83,23 @@ export default class Test extends Vue {
     { text: 'Utlånad till', value: 'loanedBy' },
     { text: 'Utlånad av', value: 'lentBy' },
     { text: 'Material', value: 'book' },
-    { text: 'Utgångsdatum', value: 'expirationDate' }
+    { text: 'Utgångsdatum', value: 'expirationDate' },
   ];
   bookHeaders: object[] = [
     { text: 'Titel', value: 'title' },
     { text: 'Status', value: 'status' },
-    { text: 'Barcode', value: 'barcode' }
+    { text: 'Barcode', value: 'barcode' },
   ];
   userHeaders: object[] = [
     { text: 'Namn', value: 'name' },
     { text: 'Email', value: 'email' },
-    { text: 'Klass', value: 'klass' }
+    { text: 'Klass', value: 'klass' },
   ];
 
+  // Todo: Implement backend
+
   // public created() {
-  //     LoansModule.fetchAll()
+  //     LoansModule.fetchAll();
   // }
 
   // get items() {
@@ -175,17 +179,20 @@ export default class Test extends Vue {
     {
       title: 'The Hobbit',
       barcode: '123123bleh31231',
-      status: 'One book to rule them all'
+      status: 'One book to rule them all',
+      routeSpecifier: '123123bleh31231'
     },
     {
       title: 'Lord of the flies',
       barcode: '1337',
-      status: 'flew away'
+      status: 'flew away',
+      routeSpecifier: '1337'
     },
     {
       title: 'nallepuupupupup',
       barcode: '80085',
-      status: 'Stroke'   
+      status: 'Stroke',
+      routeSpecifier: '80085'
     }
   ];
 }
