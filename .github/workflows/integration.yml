@@ -1,6 +1,8 @@
 name: Integration
 
-on: [push]
+on:
+  schedule:
+  - cron: "0 0 * * *"
 
 jobs:
   cc:
@@ -40,11 +42,11 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Checkout develop
-      run: git checkout develop
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
+    - name: Checkout develop
+      run: git checkout develop
     - name: Build frontend
       run: |
         cd frontend
@@ -90,3 +92,13 @@ jobs:
       run: |
         cd frontend
         yarn cypress run
+    - uses: actions/upload-artifact@v1
+      if: failure()
+      with:
+        name: cypress-screenshots
+        path: frontend/cypress/screenshots
+    - uses: actions/upload-artifact@v1
+      if: always()
+      with:
+        name: cypress-videos
+        path: frontend/cypress/videos

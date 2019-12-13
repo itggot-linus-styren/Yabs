@@ -30,9 +30,9 @@
           <b-nav-item>
             <router-link
               class="link"
-              to="/add"
+              to="/admin"
             >
-              Lägg till
+              Admin
             </router-link>
           </b-nav-item>
           <b-nav-item>
@@ -71,12 +71,5 @@ export default class HeaderNav extends Vue {
     .link
         color: white
         font-decoration: none
-
-    .base
-        position: absolute
-        z-index: 1000
-        left: 0px
-        right: 0px
-
 </style>
 
