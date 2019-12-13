@@ -1,6 +1,6 @@
 <template>
   <v-app>
-    <HeaderNav />
+    <NavbarComponent />
     <main>
       <router-view />
     </main>
@@ -9,11 +9,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HeaderNav from '@/components/HeaderNav.vue';
+import NavbarComponent from '@/components/NavbarComponent.vue';
 
 @Component({
   components: {
-    HeaderNav,
+    NavbarComponent,
   },
 })
 export default class App extends Vue {}
@@ -52,6 +52,7 @@ main
   padding: 5%
   padding-left: 0px
 
+
 @media only screen and (max-width: 808px)
   .app .view
     flex-direction: column
@@ -62,4 +63,17 @@ main
     flex-direction: row
     justify-content: center
     padding: 0px
+  
 </style>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import NavbarComponent from '@/components/NavbarComponent.vue';
+
+@Component({
+  components: {
+    NavbarComponent,
+  },
+})
+export default class App extends Vue {}
+</script>

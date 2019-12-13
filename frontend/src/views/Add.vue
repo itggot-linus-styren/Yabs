@@ -62,6 +62,7 @@ import RecentBook from '@/components/RecentBook.vue';
 import RecentLoan from '@/components/RecentLoan.vue';
 import RecentTitel from '@/components/RecentTitel.vue';
 import CanvasContainer from '@/components/CanvasContainer.vue';
+import TitelForm from '@/components/TitelForm.vue';
 import TitelFormComponent from '@/components/TitelFormComponent.vue';
 import LoadingIcon from '@/components/LoadingIcon.vue';
 
@@ -76,7 +77,6 @@ import LoadingIcon from '@/components/LoadingIcon.vue';
     RecentTitel,
     RecentBook,
     CanvasContainer,
-    LoadingIcon,
   },
 })
 export default class Add extends Vue {

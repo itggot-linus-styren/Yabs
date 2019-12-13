@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1 class="display-2">Titles</h1>
+    <h1 class="display-2">
+      Titles
+    </h1>
     <TitelFormComponent />
     <RecentTitel />
   </div>

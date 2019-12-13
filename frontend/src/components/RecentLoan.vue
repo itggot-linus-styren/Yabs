@@ -1,6 +1,10 @@
 <template>
-    <b-table :sort-by.sync="sortBy" :sort-desc.sync="sortDesc"
-             :items="items" :fields="fields" />
+  <b-table
+    :sort-by.sync="sortBy"
+    :sort-desc.sync="sortDesc"
+    :items="items"
+    :fields="fields"
+  />
 </template>
 
 <script lang="ts">
@@ -28,9 +32,7 @@ export default class RecentLoan extends Vue {
   }
 
   public created() {
-    LoansModule.fetchAll()
-      .then(() => this.$emit('loans-loaded', LoansModule.all))
-      .catch((failure: any) => console.log(failure));
+    LoansModule.fetchAll();
   }
 }
 </script>
