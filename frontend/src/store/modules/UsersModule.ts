@@ -54,7 +54,6 @@ class UsersModule extends VuexModule {
     return new Promise((resolve, reject) => {
       UsersAPI.all()
         .then((response: User[]) => {
-          console.log(response);
           this.convertUserList(response);
           resolve();
         })
