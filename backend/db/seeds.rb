@@ -6,22 +6,60 @@
 #   movies = Movie.create([{ name: 'Star Wars' }, { name: 'Lord of the Rings' }])
 #   Character.create(name: 'Luke', movie: movies.first)
 
-title = Title.create(name: "Programming for dummies", isbn: "420-420", cost: 200, title_type: "Skönlitteratur")
+# Import Users
+ActiveSupport.on_load(:active_job) do
+    ActiveJob::Base.queue_adapter = Rails.application.config.active_job.queue_adapter
+end
+DataFetchJob.perform_now
+
+# Create titles of both book types
+title_alice = Title.create(name: "Alice in Wonderland", isbn: "97161949222", cost: 70, title_type: "Skönlitteratur")
+title_lotr = Title.create(name: "The Fellowship of the Ring", isbn: "9780547928210", cost: 100, title_type: "Skönlitteratur")
+
+title_cc = Title.create(name: "Clean Code", isbn: "9780132350884", cost: 300, title_type: "Kurslitteratur")
+title_tomtens_jul = Title.create(name: "Tomtens jul", isbn: "9781999985462", cost: 60, title_type: "Kurslitteratur")
+
+# Create books to be loaned
+book_alice = Book.create(barcode: "5000", status: "OK", title: title_alice)
+book_cc = Book.create(barcode: "1001", status: "OK", title: title_cc)
+
+# Create a loans
+loan_alice = Loan.new(expiration_date: Date.current)
+loan_alice.lent_by = User.find_by_name("Låneservice Johanneberg")
+loan_alice.loaned_by = User.find_by_name("Alex Henryz")
+loan_alice.book = book_alice
+loan_alice.save
+
+loan_cc = Loan.new(expiration_date: Date.current)
+loan_cc.lent_by = User.find_by_name("Låneservice Johanneberg")
+loan_cc.loaned_by = User.first
+loan_cc.book = book_cc
+loan_cc.returned_at = Date.current
+loan_cc.save
+
+book_alice.dump_fixture(append=false)
+title_alice.dump_fixture(append=false)
+title_cc.dump_fixture
+title_lotr.dump_fixture
+title_tomtens_jul.dump_fixture
+
+# Create the rest of the books
+Book.create(barcode: "5002", status: "Broken", title: title_alice).dump_fixture
+Book.create(barcode: "5003", status: "OK", title: title_alice).dump_fixture
+Book.create(barcode: "5004", status: "OK", title: title_lotr).dump_fixture
+Book.create(barcode: "5005", status: "Broken", title: title_lotr).dump_fixture
+Book.create(barcode: "5006", status: "OK", title: title_cc).dump_fixture
+Book.create(barcode: "5007", status: "OK", title: title_tomtens_jul).dump_fixture
+Book.create(barcode: "5008", status: "OK", title: title_tomtens_jul).dump_fixture
+
+# Create fixtures
+loan_alice.dump_fixture(append=false)
+loan_alice.lent_by.dump_fixture(append=false)
+loan_alice.loaned_by.dump_fixture(append=true)
+
+loan_cc.dump_fixture
+loan_cc.loaned_by.dump_fixture
 
 
-book = Book.create(barcode: "5000", status: "Broken", title: title)
 
-loan = Loan.new(expiration_date: Date.current)
-loan.lent_by = User.find_by_name('Daniel Berg')
-loan.loaned_by = User.find_by_name('Alex Henryz')
-loan.book = book
-loan.save
 
-# title.dump_fixture(append=false)
-# book.dump_fixture(append=false)
-# loan.dump_fixture(append=false)
-# loan.lent_by.dump_fixture(append=false)
-# loan.loaned_by.dump_fixture(append=true)
-
-Book.create(barcode: "0001", status: "OK", title: title).dump_fixture
-Book.create(barcode: "0002", status: "OK", title: title).dump_fixture

@@ -21,8 +21,19 @@
         autocomplete="off"
         required
       />
-      <v-btn class="mr-4" type="submit" color="primary">Lägg till</v-btn>
-      <v-btn @click.prevent="onReset" color="error">Rensa fält</v-btn>
+      <v-btn
+        class="mr-4"
+        type="submit"
+        color="primary"
+      >
+        Lägg till
+      </v-btn>
+      <v-btn
+        color="error"
+        @click.prevent="onReset"
+      >
+        Rensa fält
+      </v-btn>
     </v-card>
   </v-form>
 </template>
@@ -31,15 +42,16 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import TitlesModule from '../store/modules/TitlesModule';
 import BooksModule from '../store/modules/BooksModule';
+import { VuexModule } from 'vuex-module-decorators';
 
 @Component
 export default class CreateBookFormComponent extends Vue {
-  private form = {
+  private form: {} = {
     barcode: '',
     title_id: 0,
     status: '',
   };
-  private titlesModule = TitlesModule;
+  private titlesModule: VuexModule = TitlesModule;
 
   private onSubmit(evt: Event) {
     evt.preventDefault();

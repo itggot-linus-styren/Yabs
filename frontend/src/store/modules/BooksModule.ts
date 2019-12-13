@@ -5,7 +5,7 @@ import BooksAPI from '../../api/books';
 import convertList from '../../helpers/convertArrayToNested';
 
 interface BookState {
-  books: {};
+  books: BookCollection;
   failure: any;
 }
 
@@ -14,6 +14,11 @@ export interface IBook {
   title_id: number,
   status: string
 }
+
+interface BookCollection {
+  [id: number]: IBook;
+}
+
 
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})
 class BooksModule extends VuexModule {

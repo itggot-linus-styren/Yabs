@@ -2,50 +2,79 @@
   <div class="view">
     <div id="left" />
     <v-container>
-      <h1 class="text-center">Välkommen till YABS!</h1>
-      <br />
-      <p class="info">
+      <h1 class="text-center display-3">
+        Välkommen till YABS!
+      </h1>
+      <br>
+      <p class="title">
         Denna applikation kommer att användas för att underlätta hantering/utlåningen av olika sorters litteratur och utskrivning av passerkort.
       </p>
-      <br />
       <v-row>
         <v-col>
-          <router-link class="link row-btn" to="/users">
-            <v-btn class="row-btn" :size="size" :color="primary">Profil</v-btn>
+          <router-link
+            class="link row-btn"
+            to="/users"
+          >
+            <v-btn
+              class="row-btn"
+              :size="size"
+              :color="primary"
+            >
+              Profil
+            </v-btn>
           </router-link>
         </v-col>
       </v-row>
-      <p class="info">
+      <p class="title">
         På profil sidan så ser du all relevant information angående din profil tex antal aktiva lån från dig.
       </p>
-      <br />
       <v-row>
         <v-col>
-          <router-link class="link row-btn" to="/add">
-            <v-btn class="row-btn" :size="size" :color="primary">Lägg till</v-btn>
+          <router-link
+            class="link row-btn"
+            to="/admin"
+          >
+            <v-btn
+              class="row-btn"
+              :size="size"
+              :color="primary"
+            >
+              Admin
+            </v-btn>
           </router-link>
         </v-col>
       </v-row>
-      <p class="info">
-        Lägg till delen används för att skapa nya passerkort, registera nya lån och lägga till nya böcker.
+      <p class="title">
+        Admin delen används för att skapa nya passerkort, registera nya lån och lägga till nya böcker.
       </p>
-      <br />
       <v-row>
         <v-col>
-          <router-link class="link row-btn" to="/find">
-            <v-btn class="row-btn" :size="size" :color="primary">Hitta</v-btn>
+          <router-link
+            class="link row-btn"
+            to="/find"
+          >
+            <v-btn
+              class="row-btn"
+              :size="size"
+              :color="primary"
+            >
+              Hitta
+            </v-btn>
           </router-link>
         </v-col>
       </v-row>
-      <p class="info">
+      <p class="title">
         På hitta delen så kan du söka på allting som denna sida hanterar, Tex Elever, specifika lån eller böcker.
       </p>
     </v-container>
     <div id="right">
       <h5>Böcker som ska inlämnas snart:</h5>
-      <br />
+      <br>
       <LoadingIcon v-show="loading" />
-      <div class="myCard" v-show="!loading">
+      <div
+        v-show="!loading"
+        class="myCard"
+      >
         <RecentLoan @loans-loaded="onLoaded" />
       </div>
     </div>
@@ -68,9 +97,9 @@ import BooksModule from '../store/modules/BooksModule';
   },
 })
 export default class Start extends Vue {
-  public size = 'lg';
-  public primary = 'primary';
-  public loading = true;
+  public size: string = 'lg';
+  public primary: string = 'primary';
+  public loading: boolean = true;
 
   public onLoaded() {
     this.loading = false;

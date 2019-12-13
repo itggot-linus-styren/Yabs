@@ -9,7 +9,7 @@ class Api::V1::LoansController < ApplicationController
     authorize @loan
     render json: policy_scope(@loan)
   end
-
+  
   def create
     @loan = Loan.new(loan_params)
     authorize @loan
