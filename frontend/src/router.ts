@@ -1,7 +1,6 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import * as views from '@/views';
-import Test from '@/views/Test.vue'; // Debug
 
 Vue.use(Router);
 
