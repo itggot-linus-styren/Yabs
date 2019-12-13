@@ -1,6 +1,8 @@
 name: Integration
 
-on: [push]
+on: 
+  schedule:
+  - cron: "0 0 * * *"
 
 jobs:
   cc:
@@ -40,8 +42,6 @@ jobs:
 
     steps:
     - uses: actions/checkout@v1
-    - name: Checkout develop
-      run: git checkout develop
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'

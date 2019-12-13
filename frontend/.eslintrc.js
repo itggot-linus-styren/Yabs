@@ -8,8 +8,8 @@ module.exports = {
     '@vue/typescript'
   ],
   rules: {
-    'no-console': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
-    'no-debugger': process.env.NODE_ENV === 'production' ? 'warn' : 'off',
+    'no-console': 'off',
+    'no-debugger': 'off',
     'quotes': ['warn', 'single'],
     'camelcase': 'warn',
     'no-multiple-empty-lines': 'warn',

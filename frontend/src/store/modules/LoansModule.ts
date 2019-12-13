@@ -93,23 +93,24 @@ class LoansModule extends VuexModule {
   }
 
   @Mutation
-  private setLoan(payload: any) {
+  private setLoan(payload: any):void {
     Vue.set(this.loanState.loans, payload.id, payload);
   }
 
   @Mutation
-  private setFailure(payload: any) {
-    this.loanState.failure = payload;
+  private removeLoan(loanId: string): void {
+    Vue.delete(this.loanState.loans, loanId);
   }
 
   @Mutation
-  private removeLoan(loanId: string) {
-    Vue.delete(this.loanState.loans, loanId);
-  }
-  @Mutation
-  private convertLoanList(payload: Loan[]) {
+  private convertLoanList(payload: Loan[]): void {
     const list = convertList(payload, 'id');
     this.loanState.loans = list;
+  }
+
+  @Mutation
+  private setFailure(payload: any): void {
+    //should enable e2e CI pipeline
   }
 }
 
