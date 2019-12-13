@@ -25,20 +25,20 @@ class UserPolicy < ApplicationPolicy
     # orde to create a loan
 
     def create?
-      user.admin?
+      user&.admin?
     end
 
     # This is the policy for updating users, you either have to be an admin or the person who
     # orignally created the loan in order to update it
 
     def update?
-      user.admin?
+      user&.admin?
     end
 
     # This is the destroy method for deleting users from the database and is only available 
     # to admins
 
     def destroy?
-      user.admin?
+      user&.admin?
     end
   end
