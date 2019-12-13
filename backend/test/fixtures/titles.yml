@@ -1,12 +1,60 @@
 
 title_1:
   id: 1
-  name: Programming for dummies
-  isbn: 420-420
-  cost: 200
+  name: Alice in Wonderland
+  isbn: '97161949222'
+  cost: 70
   title_type: Skönlitteratur
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-03 22:23:05.392128000 Z
+    utc: &1 2019-12-12 13:16:41.293235000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: *1
+    zone: *2
+    time: *1
+
+title_3:
+  id: 3
+  name: Clean Code
+  isbn: '9780132350884'
+  cost: 300
+  title_type: Kurslitteratur
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-12-12 13:16:41.299076000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: *1
+    zone: *2
+    time: *1
+
+title_2:
+  id: 2
+  name: The Fellowship of the Ring
+  isbn: '9780547928210'
+  cost: 100
+  title_type: Skönlitteratur
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-12-12 13:16:41.296232000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: *1
+    zone: *2
+    time: *1
+
+title_4:
+  id: 4
+  name: Tomtens jul
+  isbn: '9781999985462'
+  cost: 60
+  title_type: Kurslitteratur
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-12-12 13:16:41.302894000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1

@@ -1,15 +1,33 @@
 <template>
   <v-app>
-    <NavbarComponent />
-    <router-view />
+    <HeaderNav />
+    <main>
+      <router-view />
+    </main>
   </v-app>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import HeaderNav from '@/components/HeaderNav.vue';
+
+@Component({
+  components: {
+    HeaderNav,
+  },
+})
+export default class App extends Vue {}
+</script>
 
 <style lang="sass">
 
 .app
   width: 100vw
   height: 100vh
+
+main
+  margin-top: 90px
+  padding: 50px
 
 .app .view
   position: absolute
