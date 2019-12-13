@@ -16,6 +16,31 @@
             label="Elevens Streckkod"
             outlined
           />
+          <v-item-group
+            vertical=""
+            label-class="text-sm-right"
+            label-for="nestedBid"
+          >
+            <v-text-field
+              id="nestedBid"
+              v-model="form.book_id"
+              data-cy="book_barcode"
+              placeholder="Bokens Streckkod"
+            />
+          </v-item-group>
+          <v-btn
+            data-cy="loanOutBook"
+            type="submit"
+            variant="primary"
+          >
+            Låna Ut
+          </v-btn>
+          <v-btn
+            type="reset"
+            variant="danger"
+          >
+            Rensa Fälten
+          </v-btn>
         </v-item-group>
         <v-item-group
           vertical=""

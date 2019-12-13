@@ -13,7 +13,7 @@
           <img
             v-if="usersModule.currentUser.photo_path"
             :src="`http://localhost:3000/${usersModule.currentUser.photo_path}`"
-          >
+          />
         </v-card>
       </v-col>
     </v-row>
