@@ -1,15 +1,6 @@
 <template>
-  <b-card
-    class="card"
-    bg-variant="light"
-  >
-    <b-table
-      :sort-by.sync="sortBy"
-      :sort-desc.sync="sortDesc"
-      :items="items"
-      :fields="fields"
-    />
-  </b-card>
+    <b-table :sort-by.sync="sortBy" :sort-desc.sync="sortDesc"
+             :items="items" :fields="fields" />
 </template>
 
 <script lang="ts">
@@ -44,7 +35,5 @@ export default class RecentLoan extends Vue {
 
 <style lang="sass" scoped>
     .card
-        width: 100%
-        height: 100%
         overflow-y: auto
 </style>
