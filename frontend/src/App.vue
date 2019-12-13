@@ -1,9 +1,11 @@
 <template>
   <v-app>
     <NavbarComponent />
-    <main>
-      <router-view />
-    </main>
+    <div class="main">
+      <v-content>
+        <router-view />
+      </v-content>
+    </div>
   </v-app>
 </template>
 
@@ -25,9 +27,9 @@ export default class App extends Vue {}
   width: 100vw
   height: 100vh
 
-main
-  margin-top: 90px
-  padding: 50px
+.main
+  margin-top: 66px
+  padding: 50px !important
 
 .app .view
   position: absolute

@@ -25,7 +25,7 @@
             <v-spacer />
             <AddLoan />
           </v-card-actions>
-          <RecentLoan />
+          <LoanListComponent />
         </v-card>
       </v-col>
     </v-row>
@@ -36,18 +36,23 @@
 import { Component, Vue, Watch } from 'vue-property-decorator';
 import CigCanvas from '@/components/CigCanvas.vue';
 import AddLoan from '@/components/AddLoan.vue';
-import RecentLoan from '@/components/RecentLoan.vue';
+import LoanListComponent from '@/components/LoanListComponent.vue';
 import UsersModule, { User } from '../store/modules/UsersModule';
 import { VuexModule } from 'vuex-module-decorators';
+import LoansModule from '../store/modules/LoansModule';
 
 @Component({
   components: {
     CigCanvas,
     AddLoan,
-    RecentLoan,
+    LoanListComponent,
   },
 })
 export default class Profile extends Vue {
   private usersModule: VuexModule = UsersModule;
+
+  private created() {
+    LoansModule.fetchAll();
+  }
 }
 </script>

@@ -10,5 +10,5 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Admin extends Vue {}
+export default class AdminDashboardView extends Vue {}
 </script>
