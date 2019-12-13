@@ -1,25 +1,48 @@
 <template>
   <div class="pb-10">
-    <v-app-bar fixed class="nav">
+    <v-app-bar
+      fixed
+      class="nav"
+    >
       <v-toolbar-items>
-        <v-btn to="/" text>
-          <v-icon class="px-3">mdi-home</v-icon>Yabs
+        <v-btn
+          to="/"
+          text
+        >
+          <v-icon class="px-3">
+            mdi-home
+          </v-icon>Yabs
         </v-btn>
       </v-toolbar-items>
       <v-spacer />
       <v-toolbar-items v-if="usersModule.userState && usersModule.userState.currentUser">
-        <v-btn :to="'/users/'+ usersModule.currentUser.uid" text>
-          <v-icon class="px-3">mdi-settings</v-icon>Profil
+        <v-btn
+          :to="'/users/'+ usersModule.currentUser.currentUser"
+          text
+        >
+          <v-icon class="px-3">
+            user-circle
+          </v-icon>Profil
         </v-btn>
-        <v-btn to="/add" text>
-          <v-icon class="px-3">add</v-icon>Add
+        <v-btn
+          to="/admin"
+          text
+        >
+          <v-icon class="px-3">
+            cog
+          </v-icon>Admin
         </v-btn>
-        <v-btn class="ml-2 mr-5" text color="grey" @click="signOut">
+        <v-btn
+          class="ml-2 mr-5"
+          text
+          color="grey"
+          @click="signOut"
+        >
           <v-icon>mdi-logout-variant</v-icon>
         </v-btn>
       </v-toolbar-items>
       <v-toolbar-items v-else>
-        <GoogleLogin></GoogleLogin>
+        <GoogleLogin />
       </v-toolbar-items>
     </v-app-bar>
   </div>
@@ -37,33 +60,15 @@ import UsersModule from '../store/modules/UsersModule';
 })
 export default class NavbarComponent extends Vue {
   public usersModule = UsersModule;
-  // private links = [
-  //   {
-  //     title: 'Hem',
-  //     link: '/home',
-  //   },
-  //   {
-  //     title: 'Profil',
-  //     link: `/users/${UsersModule.currentUser.uid}`,
-  //   },
-  //   {
-  //     title: 'Lägg till',
-  //     link: `/add`,
-  //   },
-  //   {
-  //     title: 'Hitta',
-  //     link: `/find`,
-  //   },
-  // ];
-   public signOut() {
-       try {
-        // @ts-ignore: gapi
-        const auth2 = gapi.auth2.getAuthInstance();
-        auth2.signOut().then(() => {
-          UsersModule.signOut();
-        });
-    } catch (e) {
+  public signOut() {
+    try {
+      // @ts-ignore: gapi
+      const auth2 = gapi.auth2.getAuthInstance();
+      auth2.signOut().then(() => {
         UsersModule.signOut();
+      });
+    } catch (e) {
+      UsersModule.signOut();
     }
   }
 }

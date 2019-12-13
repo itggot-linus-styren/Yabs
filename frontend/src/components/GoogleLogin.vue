@@ -1,8 +1,11 @@
 <template>
-  <v-btn class="ml-2" text color="grey">
-    <div id="signin2"></div>
+  <v-btn
+    class="ml-2"
+    text
+    color="grey"
+  >
+    <div id="signin2" />
   </v-btn>
-  <!-- div#signin2(v-else="usersModule.currentUser") -->
 </template>
 
 <script lang="ts">
@@ -53,7 +56,7 @@ export default class GoogleLogin extends Vue {
 
   public onFailure(error: any) {
     // TODO: show this in a notification
-    console.error(error, 'hej');
+    console.error(error);
   }
   public signOut() {
     // @ts-ignore: gapi

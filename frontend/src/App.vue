@@ -35,7 +35,6 @@
   padding-left: 0px
 
 
-
 @media only screen and (max-width: 808px)
   .app .view
     flex-direction: column

@@ -1,15 +1,29 @@
 <template>
   <v-container>
-    <h1>{{usersModule.currentUser.name}} - {{usersModule.currentUser.klass}}</h1>
-    <img v-if="usersModule.currentUser.photo_path" 
+    <h1>{{ usersModule.currentUser.name }} - {{ usersModule.currentUser.klass }}</h1>
+    <img
+      v-if="usersModule.currentUser.photo_path" 
       :src="'http://localhost:3000/'+usersModule.currentUser.photo_path" 
-      alt="Profile Picture" @click="uploadButton" class="mt-5"
+      alt="Profile Picture"
+      class="mt-5"
+      @click="uploadButton"
     >
     <div v-else> 
       <p>Du har ingen profilbild, det var tråkigt.</p>
-      <v-btn color="primary" @click="uploadButton">Ladda upp en bild</v-btn>
+      <v-btn
+        color="primary"
+        @click="uploadButton"
+      >
+        Ladda upp en bild
+      </v-btn>
     </div>
-    <input type="file" id="upload-button" name="myfile" hidden @change="onFileChanged"/>
+    <input
+      id="upload-button"
+      type="file"
+      name="myfile"
+      hidden
+      @change="onFileChanged"
+    >
   </v-container>
 </template>
 
@@ -41,7 +55,7 @@ export default class Profile extends Vue {
     formData.append('uid', UsersModule.currentUser!.uid);
     formData.append('image', this.image as Blob);
     UsersModule.update(formData).then((response: any) => {
-        console.log(UsersModule.all['1935798971']);
+      console.log(UsersModule.all['1935798971']);
     }).catch((error: any) => {
       // TODO: show in notification to user
       console.error(error);
@@ -49,8 +63,8 @@ export default class Profile extends Vue {
   }
 
   public uploadButton() {
-      const input: any = document.querySelector('#upload-button');
-      input.click();
+    const input: any = document.querySelector('#upload-button');
+    input.click();
   }
   public onFileChanged(event: any) {
     this.image = event.target.files[0];

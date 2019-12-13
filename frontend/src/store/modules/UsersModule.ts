@@ -113,11 +113,11 @@ class UsersModule extends VuexModule {
 
   @Mutation
   public setCurrentUser(payload: any) {
-      if (payload && payload.uid) {
-        this.userState.currentUser = payload.uid;
-      } else {
-        this.userState.currentUser = null;
-      }
+    if (payload && payload.uid) {
+      this.userState.currentUser = payload.uid;
+    } else {
+      this.userState.currentUser = null;
+    }
   }
 
   @Mutation

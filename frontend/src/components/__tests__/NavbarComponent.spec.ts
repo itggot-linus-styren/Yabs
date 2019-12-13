@@ -15,7 +15,6 @@ describe('NavbarComponent.vue', () => {
   });
 
 
-
   it('renders correctly', () => {
     const wrapper: Wrapper<NavbarComponent> = shallowFactory(NavbarComponent, injectRouterStubs);
 
