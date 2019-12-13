@@ -96,23 +96,6 @@ export default class Test extends Vue {
     { text: 'Klass', value: 'klass' },
   ];
 
-  // Todo: Implement backend
-
-  // public created() {
-  //     LoansModule.fetchAll();
-  // }
-
-  // get items() {
-  //     const items = Object.entries(LoansModule.all)
-  //         .filter(([key, value]) => {
-  //             return !value.returned_at;
-  //         })
-  //         .map(([key, value]) => Object.assign(value, { '.key': key }));
-
-  //     return items;
-  // }
-
-
   // MOCKUP DATA (Can be removed when fetch function in implemented)
   mockupLoans: object[] = [
     {
