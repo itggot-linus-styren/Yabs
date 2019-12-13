@@ -12,7 +12,7 @@ class LoansControllerTest < ActionDispatch::IntegrationTest
 
   test "should create loan" do
     assert_difference('Loan.count') do
-      post api_v1_loans_url, params: { loan: { book_id: '0001', expiration_date: @loan.expiration_date, lent_by_id: @loan.lent_by_id, loaned_by_id: @loan.loaned_by_id, returned_at: @loan.returned_at } }, as: :json
+       post api_v1_loans_url, params: { loan: { book_id: '5003', expiration_date: @loan.expiration_date, lent_by_id: @loan.lent_by_id, loaned_by_id: @loan.loaned_by_id, returned_at: @loan.returned_at } }, as: :json
     end
 
     assert_response 200

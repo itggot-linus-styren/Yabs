@@ -10,7 +10,7 @@ import Vue from 'vue';
 import BootstrapVue from 'bootstrap-vue';
 import Vuex from 'vuex';
 import {cloneDeep} from 'lodash';
-import users from '@/store/modules/users';
+import users from '@/store/modules/UsersModule';
 
 export function factory<V extends Vue>(
   component: VueClass<V>,

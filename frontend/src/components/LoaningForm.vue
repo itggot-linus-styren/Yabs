@@ -1,39 +1,78 @@
-<template lang="pug">
-   div
-    b-form(@submit='onSubmit', @reset='onReset', v-if='show')
-        b-card(bg-variant='light')
-            b-form-group(vertical='' label-class='text-sm-right' label-for='nestedUid')
-                b-form-input#nestedUid(placeholder='Elevens Streckkod' v-model="form.loaned_by_id")
-            b-form-group(vertical='' label-class='text-sm-right' label-for='nestedBid')
-                b-form-input#nestedBid(placeholder='Bokens Streckkod' v-model="form.book_id")
-            b-button(type='submit', variant='primary') Låna Ut
-            b-button(type='reset', variant='danger') Rensa Fälten
-
+<template>
+  <div>
+    <v-form
+      v-if="show"
+      @submit="onSubmit"
+      @reset="onReset"
+    >
+      <v-card bg-variant="light">
+        <v-item-group
+          vertical=""
+          label-class="text-sm-right"
+          label-for="nestedUid"
+        >
+          <v-text-field
+            id="nestedUid"
+            v-model="form.loaned_by_id"
+            placeholder="Elevens Streckkod"
+          />
+        </v-item-group>
+        <v-item-group
+          vertical=""
+          label-class="text-sm-right"
+          label-for="nestedBid"
+        >
+          <v-text-field
+            id="nestedBid"
+            v-model="form.book_id"
+            placeholder="Bokens Streckkod"
+          />
+        </v-item-group>
+        <v-btn
+          type="submit"
+          variant="primary"
+        >
+          Låna Ut
+        </v-btn>
+        <v-btn
+          type="reset"
+          variant="danger"
+        >
+          Rensa Fälten
+        </v-btn>
+      </v-card>
+    </v-form>
+  </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Getter } from '../decorators';
+import LoansModule from '../store/modules/LoansModule';
+import UsersModule from '../store/modules/UsersModule';
+
+interface Form {
+  lent_by_id: any;
+  loaned_by_id: '';
+  book_id: '';
+}
 
 @Component
 export default class LoaningForm extends Vue {
-  @Getter('users/currentUser') public currentUser!: any;
-
-  public form = {
+  public form: Form = {
     lent_by_id: '',
     loaned_by_id: '',
     book_id: '',
   };
-  public show = true;
+  public show: boolean = true;
 
   public onSubmit(evt: Event) {
     evt.preventDefault();
-    this.form.lent_by_id = this.currentUser ? this.currentUser.uid : '';
-    this.$store
-      .dispatch('loans/create', this.form)
-      .then((loan: any) => this.$emit('loan-added', loan))
-      .catch((failure: any) => console.log(failure));
-    // alert(JSON.stringify(this.form));
+    this.form.lent_by_id = UsersModule.currentUserID;
+    if (!!this.form.lent_by_id && !!this.form.loaned_by_id && !!this.form.book_id) {
+      LoansModule.create(this.form)
+        .then((loan: any) => this.$emit('loan-added', loan))
+        .catch((failure: any) => console.log(failure));
+    }
   }
 
   public onReset(evt: Event) {
