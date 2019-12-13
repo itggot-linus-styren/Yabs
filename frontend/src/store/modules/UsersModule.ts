@@ -42,11 +42,7 @@ class UsersModule extends VuexModule {
   }
 
   get currentUser(): User {
-    // if (this.userState && this.userState.currentUser) {
     return this.all[this.userState.currentUser];
-    // } else {
-    //   return null;
-    // }
   }
 
   @Action({rawError: true})
@@ -118,12 +114,6 @@ class UsersModule extends VuexModule {
   @Mutation
   public setCurrentUser(payload: any): void {
     Vue.set(this.userState, 'currentUser', payload.uid);
-  }
-
-  @Mutation
-  public setFailure(payload: any): void {
-    // console.log(payload);
-    // this.userState.failure = payload;
   }
 
   @Mutation
