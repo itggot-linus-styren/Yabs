@@ -32,6 +32,10 @@ class LoansModule extends VuexModule {
     return this.loanState.loans;
   }
 
+  get allAsArray() {
+    return Object.keys(this.loanState.loans).map( (id) => this.loanState.loans[parseInt(id)]);
+  }
+
   @Action({rawError: true})
   public fetchAll() {
     return new Promise((resolve, reject) => {
@@ -41,7 +45,6 @@ class LoansModule extends VuexModule {
           resolve();
         })
         .catch((error: any) => {
-          this.setFailure(error);
           reject(error);
         });
     });
@@ -56,7 +59,6 @@ class LoansModule extends VuexModule {
           resolve(response);
         })
         .catch((error: any) => {
-          this.setFailure(error);
           reject(error);
         });
     });
@@ -71,7 +73,6 @@ class LoansModule extends VuexModule {
           resolve(response);
         })
         .catch((error: any) => {
-          this.setFailure(error);
           reject(error);
         });
     });
@@ -86,7 +87,6 @@ class LoansModule extends VuexModule {
           resolve(response);
         })
         .catch((error: any) => {
-          this.setFailure(error);
           reject(error);
         });
     });
@@ -98,15 +98,11 @@ class LoansModule extends VuexModule {
   }
 
   @Mutation
-  private setFailure(payload: any) {
-    this.loanState.failure = payload;
-  }
-
-  @Mutation
   private removeLoan(loanId: string) {
     Vue.delete(this.loanState.loans, loanId);
   }
   @Mutation
+
   private convertLoanList(payload: Loan[]) {
     const list = convertList(payload, 'id');
     this.loanState.loans = list;
