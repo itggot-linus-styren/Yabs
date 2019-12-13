@@ -1,6 +1,8 @@
 <template>
   <div>
-    <h1 class="display-2">Books</h1>
+    <h1 class="display-2">
+      Books
+    </h1>
     <CreateBookFormComponent />
     <RecentBook />
   </div>
