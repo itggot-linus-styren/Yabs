@@ -1,18 +1,32 @@
-<template lang="pug">
-    div
-      p(v-if="!currentUser") Du är inte inloggad
-      .view(v-else)
-          .left
-              h1 {{currentUser.name}}
-              h1 {{currentUser.role}} - {{currentUser.klass}}
-              img(:src="`http://localhost:3000/${currentUser.photo_path}`")
-          .right
-              .header
-                  AddLoan
-                  .loanText
-                      h1 Lån
-              .myCard
-                  RecentLoan
+<template>
+  <v-card v-if="!usersModule.currentUser">
+    <v-card-text>
+      Du är inte inloggad
+    </v-card-text>
+  </v-card>
+  <v-container v-else>
+    <v-row>
+      <v-col col="12">
+        <v-card>
+          <v-card-title>{{ usersModule.currentUser.name }}</v-card-title>
+          <v-card-subtitle>{{ usersModule.currentUser.role }} - {{ usersModule.currentUser.klass }}</v-card-subtitle>
+          <img v-if="usersModule.currentUser.photo_path" :src="`http://localhost:3000/${usersModule.currentUser.photo_path}`">
+        </v-card>
+      </v-col>
+    </v-row>
+    <v-row>
+      <v-col col="12">
+        <v-card>
+          <v-card-actions>
+            <v-card-title>Lån</v-card-title>
+            <v-spacer />
+            <AddLoan />
+          </v-card-actions>
+          <RecentLoan />
+        </v-card>
+      </v-col>
+    </v-row>
+  </v-container>
 </template>
 
 <script lang="ts">
@@ -20,63 +34,17 @@ import { Component, Vue, Watch } from 'vue-property-decorator';
 import CigCanvas from '@/components/CigCanvas.vue';
 import AddLoan from '@/components/AddLoan.vue';
 import RecentLoan from '@/components/RecentLoan.vue';
-import { User, UserObject } from '../store/modules/users';
-import { Getter } from '../decorators';
+import UsersModule, { User } from '../store/modules/UsersModule';
+import { VuexModule } from 'vuex-module-decorators';
 
 @Component({
-    components: {
-        CigCanvas,
-        AddLoan,
-        RecentLoan,
-    },
+  components: {
+    CigCanvas,
+    AddLoan,
+    RecentLoan,
+  },
 })
 export default class Profile extends Vue {
-  @Getter('users/all') public users!: UserObject;
-
-  public currentUser: User | null = null;
-
-  public created() {
-    this.$store.dispatch('users/all').then(() => {
-      const users: any[] = Object.entries(this.users);
-      if (users) { this.currentUser = users.find(([k, user]) => user.uid === +this.$route.params.id)[1]; }
-    });
-  }
+  private usersModule: VuexModule = UsersModule;
 }
 </script>
-
-<style lang="sass" scoped>
-    .myCard
-        width: 100%
-        height: 90%
-        overflow-y: auto
-        position: relative
-        min-width: 0
-        background-color: #fff
-        background-clip: border-box
-        border: 1px solid rgba(0, 0, 0, 0.125)
-        border-radius: 0.25rem
-        display: flex
-        flex-direction: row
-        justify-content: center
-
-    .header
-        display: flex
-        flex-direction: row
-        justify-content: flex-end
-        margin-bottom: 10px
-
-    .header h1
-        margin: 0
-
-    .loanText
-        height: inherit
-        width: auto
-        display: flex
-        flex-direction: column
-        justify-content: center
-        margin-left: 5%
-        margin-right: 5%
-
-    .right
-        padding-top: 2%
-</style>

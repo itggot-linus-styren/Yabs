@@ -1,20 +1,26 @@
-<template lang="pug">
-    b-card.card(bg-variant='light')
-        b-table(:sort-by.sync='sortBy', :sort-desc.sync='sortDesc', :items='items', :fields='fields')
-
+<template>
+  <b-card
+    class="card"
+    bg-variant="light"
+  >
+    <b-table
+      :sort-by.sync="sortBy"
+      :sort-desc.sync="sortDesc"
+      :items="items"
+      :fields="fields"
+    />
+  </b-card>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Getter } from '../decorators';
-import { TitleObject } from '../store/modules/titles';
+import TitlesModule from '../store/modules/TitlesModule';
 
 @Component
 export default class RecentTitel extends Vue {
-  @Getter('titles/all') public titles!: TitleObject;
-  public sortBy = 'Title';
-  public sortDesc = false;
-  public fields = [
+  public sortBy: string = 'Title';
+  public sortDesc: boolean = false;
+  public fields: object[] = [
     { key: 'name', sortable: false, label: 'Titel' },
     { key: 'cost', sortable: false, label: 'Kostnad' },
     { key: 'title_type', sortable: false, label: 'Typ' },
@@ -22,15 +28,15 @@ export default class RecentTitel extends Vue {
   ];
 
   get items() {
-    return Object.entries(this.titles)
-      .filter(([k, v]) => {
-        return !v.returned_at;
+    return Object.entries(TitlesModule.all)
+      .filter(([key, value]) => {
+        return !value.returned_at;
       })
-      .map(([k, v]) => Object.assign(v, { '.key': k }));
+      .map(([key, value]) => Object.assign(value, { '.key': key }));
   }
 
   public created() {
-    this.$store.dispatch('titles/all');
+    TitlesModule.fetchAll();
   }
 }
 </script>

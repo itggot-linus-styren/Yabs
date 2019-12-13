@@ -1,19 +1,17 @@
-<template lang="pug">
-    b-card.card(bg-variant='light')
-        b-table(:sort-by.sync='sortBy', :sort-desc.sync='sortDesc', :items='items', :fields='fields')
-
+<template>
+    <b-table :sort-by.sync="sortBy" :sort-desc.sync="sortDesc"
+             :items="items" :fields="fields" />
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { Getter } from '../decorators';
+import LoansModule from '../store/modules/LoansModule';
 
 @Component
 export default class RecentLoan extends Vue {
-  @Getter('loans/all') public loans: any;
-  public sortBy = 'Utgångsdatum';
-  public sortDesc = false;
-  public fields = [
+  public sortBy: string = 'Utgångsdatum';
+  public sortDesc: boolean = false;
+  public fields: object[] = [
     { key: 'loaned_by.name', sortable: false, label: 'Lånad av' },
     { key: 'lent_by.name', sortable: false, label: 'Utlånad av' },
     { key: 'book.title.name', sortable: false, label: 'Boktitel' },
@@ -21,20 +19,17 @@ export default class RecentLoan extends Vue {
   ];
 
   get items() {
-    return Object.entries(this.loans)
-      .filter(([k, v]) => {
+    return Object.entries(LoansModule.all)
+      .filter(([key, value]) => {
         // @ts-ignore: returned at
-        return !v.returned_at;
+        return !value.returned_at;
       })
-      .map(([k, v]) => Object.assign(v, { '.key': k }));
+      .map(([key, value]) => Object.assign(value, { '.key': key }));
   }
 
   public created() {
-    console.log('IM PRETTY!1');
-    console.log(this.$store);
-    this.$store
-      .dispatch('loans/all')
-      .then((loans: any) => this.$emit('loans-loaded', loans))
+    LoansModule.fetchAll()
+      .then(() => this.$emit('loans-loaded', LoansModule.all))
       .catch((failure: any) => console.log(failure));
   }
 }
@@ -42,7 +37,5 @@ export default class RecentLoan extends Vue {
 
 <style lang="sass" scoped>
     .card
-        width: 100%
-        height: 100%
         overflow-y: auto
 </style>
