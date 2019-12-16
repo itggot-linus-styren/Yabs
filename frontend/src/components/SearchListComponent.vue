@@ -44,7 +44,7 @@ export default class SearchListComponent extends Vue {
   public search: string = '';
   @Prop() public headers!: IHeader[];
   @Prop() public items!: any[]; // Please fix generic types.
-  @Prop({default: false}) public useActions: boolean;
+  @Prop() public useActions: boolean = false;
   @Prop() public routePath!: string;
 
   // Adds the header "Actions" if useActions is true.
