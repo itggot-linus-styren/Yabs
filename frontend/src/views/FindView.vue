@@ -74,7 +74,7 @@ import ListComponent from '@/components/ListComponent.vue';
     ListComponent
   },
 })
-export default class Test extends Vue {
+export default class FindView extends Vue {
   users:boolean = false;
   loans:boolean = false;
   books:boolean = false;
