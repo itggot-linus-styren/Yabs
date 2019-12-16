@@ -13,21 +13,26 @@
             dense
             rounded
           >
-            <router-link
-              v-for="item in items"
-              :key="item.title"
-              :to="item.path"
-              class="d-flex router-link"
+            <v-list-item-group
+              active-class="deep-purple--text text--accent-4"
+              :value="0"
             >
-              <v-list-item link>
-                <v-list-item-icon>
-                  <v-icon>{{ item.icon }}</v-icon>
-                </v-list-item-icon>
-                <v-list-item-content>
-                  <v-list-item-title :data-cy="item.title" >{{ item.title }}</v-list-item-title>
-                </v-list-item-content>
-              </v-list-item>
-            </router-link>
+              <router-link
+                v-for="item in items"
+                :key="item.title"
+                :to="item.path"
+                class="d-flex router-link"
+              >
+                <v-list-item link :active="item.active">
+                  <v-list-item-icon>
+                    <v-icon>{{ item.icon }}</v-icon>
+                  </v-list-item-icon>
+                  <v-list-item-content>
+                    <v-list-item-title :data-cy="item.title" >{{ item.title }}</v-list-item-title>
+                  </v-list-item-content>
+                </v-list-item>
+              </router-link>
+            </v-list-item-group>
           </v-list>
         </v-navigation-drawer>
       </v-card>
@@ -53,7 +58,7 @@ import { Vue, Component, Prop } from 'vue-property-decorator';
 })
 export default class AdminView extends Vue {
   private items: any = [
-    { title: 'Dashboard', icon: 'dashboard', path: '/admin' },
+    { title: 'Dashboard', icon: 'dashboard', path: '/admin'},
     { title: 'Loans', icon: 'library_books', path: '/admin/loans' },
     { title: 'Titles', icon: 'title', path: '/admin/titles' },
     { title: 'Books', icon: 'book', path: '/admin/books' },
