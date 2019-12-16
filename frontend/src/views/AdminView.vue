@@ -14,7 +14,6 @@
             rounded
           >
             <v-list-item-group
-              active-class="deep-purple--text text--accent-4"
               :value="0"
             >
               <router-link
