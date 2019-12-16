@@ -1,6 +1,8 @@
+import baseVisit from '../helper';
+
 context('Going to the first page', () => {
     beforeEach(() => {
-        cy.visit('localhost:3000');
+        baseVisit();
     })
 
     it('Click on "Admin" on first page and loan out an existing book', () => {

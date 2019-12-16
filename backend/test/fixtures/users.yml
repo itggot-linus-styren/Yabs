@@ -4,16 +4,16 @@ user_1954282603:
   name: Låneservice Johanneberg
   email: johanneberg.laneservice@ga.ntig.se
   klass: ej
-  role: Elev
+  role: 1
   google_token: '101173758873354282603'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-12 13:16:34.077313000 Z
+    utc: &1 2019-12-16 13:06:10.139498000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-12 13:16:34.077313000 Z
+    utc: &3 2019-12-16 13:06:10.139498000 Z
     zone: *2
     time: *3
 
@@ -22,16 +22,16 @@ user_1968097915:
   name: Alex Henryz
   email: alex.henryz@elev.ga.ntig.se
   klass: TE4
-  role: Elev
+  role: 1
   google_token: '101834530373768097915'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-12 13:16:36.526248000 Z
+    utc: &1 2019-12-16 13:06:13.040586000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-12 13:16:36.526248000 Z
+    utc: &3 2019-12-16 13:06:13.040586000 Z
     zone: *2
     time: *3
 
@@ -40,15 +40,15 @@ user_1900009211:
   name: Max Frogemar
   email: max.frogemar@elev.ga.ntig.se
   klass: 1A
-  role: Elev
+  role: 1
   google_token: '113517219641300009211'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-12 13:16:38.413294000 Z
+    utc: &1 2019-12-16 13:06:14.913226000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-12 13:16:38.413294000 Z
+    utc: &3 2019-12-16 13:06:14.913226000 Z
     zone: *2
     time: *3
