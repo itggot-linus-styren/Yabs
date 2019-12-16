@@ -13,7 +13,7 @@
         <v-col>
           <router-link
             class="link row-btn"
-            to="/users"
+            :to="'/users/'+ usersModule.currentUserID"
           >
             <v-btn
               class="row-btn"
@@ -95,6 +95,7 @@ export default class Start extends Vue {
   public size: string = 'lg';
   public primary: string = 'primary';
   public loading: boolean = true;
+  private usersModule = UsersModule;
 
   public created() {
     if(UsersModule.currentUserID){
