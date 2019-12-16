@@ -1,9 +1,21 @@
-<template lang="pug">
-    .root
-        v-btn(@click="getAllCanvases") Ladda ned alla kort
-        .card
-            .grid-container
-                CigCanvas.canvas(@imageSent='onImageReceived($event)' v-for="(image, index) in images" :key="index" :image="image" :sendCanvas="sendCanvas")
+<template>
+  <div class="root">
+    <v-btn @click="getAllCanvases">
+      Ladda ned alla kort
+    </v-btn>
+    <div class="cig-card">
+      <div class="grid-container">
+        <CigCanvas
+          v-for="(image, index) in images"
+          :key="index"
+          class="canvas"
+          :image="image"
+          :send-canvas="sendCanvas"
+          @imageSent="onImageReceived($event)"
+        />
+      </div>
+    </div>
+  </div>
 </template>
 
 <script lang="ts">
@@ -59,7 +71,8 @@ export default class CanvasContainer extends Vue {
         height: 100%
         width: 100%
 
-    .card
+    .cig-card
+        margin-top: 20px
         width: 100%
         height: 100%
         overflow-y: auto

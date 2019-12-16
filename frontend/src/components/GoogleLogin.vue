@@ -1,28 +1,41 @@
-<template lang="pug">
-  div
-    a.text-warning(v-if="usersModule.currentUser" href="#" @click="signOut();") SIGN OUT
-    div#signin2
+<template>
+  <v-btn
+    class="ml-2"
+    text
+    color="grey"
+  >
+    <div id="signin2" />
+  </v-btn>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import UsersModule from '../store/modules/UsersModule';
+import { VuexModule } from 'vuex-module-decorators';
 
 @Component
 export default class GoogleLogin extends Vue {
-  public usersModule = UsersModule;
+  public usersModule: VuexModule = UsersModule;
 
   public mounted() {
+    this.renderLoginButton();
+  }
+
+  public renderLoginButton() {
+
     // @ts-ignore: gapi
     gapi.signin2.render('signin2', {
       scope: 'profile email',
-      width: 240,
+      width: 200,
       height: 50,
-      longtitle: true,
+      longtitle: false,
       theme: 'dark',
       onsuccess: this.onSignIn,
       onfailure: this.onFailure,
     });
+  }
+  public updated() {
+    this.renderLoginButton();
   }
 
   public onSignIn(googleUser: any) {
@@ -45,7 +58,6 @@ export default class GoogleLogin extends Vue {
     // TODO: show this in a notification
     console.error(error);
   }
-
   public signOut() {
     // @ts-ignore: gapi
     const auth2 = gapi.auth2.getAuthInstance();
@@ -53,6 +65,7 @@ export default class GoogleLogin extends Vue {
       UsersModule.signOut();
     });
   }
+
 }
 </script>
 

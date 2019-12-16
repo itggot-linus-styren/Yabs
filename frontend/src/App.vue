@@ -1,15 +1,35 @@
 <template>
   <v-app>
-    <HeaderNav />
-    <router-view />
+    <NavbarComponent />
+    <div class="main">
+      <v-content>
+        <router-view />
+      </v-content>
+    </div>
   </v-app>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+import NavbarComponent from '@/components/NavbarComponent.vue';
+
+@Component({
+  components: {
+    NavbarComponent,
+  },
+})
+export default class App extends Vue {}
+</script>
 
 <style lang="sass">
 
 .app
   width: 100vw
   height: 100vh
+
+.main
+  margin-top: 66px
+  padding: 50px !important
 
 .app .view
   position: absolute
@@ -34,6 +54,7 @@
   padding: 5%
   padding-left: 0px
 
+
 @media only screen and (max-width: 808px)
   .app .view
     flex-direction: column
@@ -44,16 +65,5 @@
     flex-direction: row
     justify-content: center
     padding: 0px
+  
 </style>
-
-<script lang="ts">
-import { Component, Vue } from 'vue-property-decorator';
-import HeaderNav from '@/components/HeaderNav.vue';
-
-@Component({
-  components: {
-    HeaderNav,
-  },
-})
-export default class App extends Vue {}
-</script>

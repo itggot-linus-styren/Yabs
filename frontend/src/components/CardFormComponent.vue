@@ -1,11 +1,21 @@
-<template lang="pug">
-    div
-        v-card(bg-variant='light')
-            //- lable(for="file", name="file") Välj en eller flera billder/zipfiler
-            input.input-file(multiple type="file" id="file" name="file" accept="image/*, .zip" @change="onFileSelect")
-            br
-            br
-            v-btn(@click='submit' variant='primary') Lägg till
+<template>
+  <div>
+    <v-file-input
+      id="file"
+      class="input-file"
+      multiple
+      outlined
+      accept="image/*, .zip"
+      @change="onFileSelect"
+    />
+    <v-btn
+      color="primary"
+      large
+      @click="submit"
+    >
+      Lägg till
+    </v-btn>
+  </div>
 </template>
 
 <script lang="ts">
@@ -14,7 +24,7 @@ import UsersModule from '../store/modules/UsersModule';
 import JSZip from 'jszip';
 
 @Component
-export default class CigForm extends Vue {
+export default class CardFormComponent extends Vue {
   public files: File[] = [];
 
   public created() {
@@ -25,9 +35,7 @@ export default class CigForm extends Vue {
     this.$emit('sendImages', this.files);
   }
 
-  public onFileSelect(event: any) {
-    const fileList: File[] = event.srcElement.files;
-
+  public onFileSelect(fileList: File[]) {
     for (const fileObject of fileList) {
       if (fileObject.type === 'application/zip') {
         this.extractFiles(fileObject);
