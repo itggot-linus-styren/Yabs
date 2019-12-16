@@ -14,10 +14,14 @@ export interface IBook {
   title_id: number,
   status: string
 }
-
 interface BookCollection {
   [id: number]: IBook;
 }
+
+interface BookCollection {
+  [id: string]: Book;
+}
+
 
 
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})
@@ -26,6 +30,10 @@ class BooksModule extends VuexModule {
 
   get all() {
     return this.bookState.books;
+  }
+
+  get allAsArray() {
+    return Object.keys(this.bookState.books).map((id) => this.bookState.books[id]);
   }
 
   @Action({rawError: true})

@@ -4,58 +4,62 @@
     @submit="onSubmit"
     @reset="onReset"
   >
-    <v-card bg-variant="light">
-      <v-item-group
-        vertical=""
-        label-class="text-sm-right"
-        label-for="nestedBid"
-      >
-        <v-text-field
-          id="nestedBid"
-          v-model="form.name"
-          placeholder="Namn"
-        />
-      </v-item-group>
-      <v-item-group
-        vertical=""
-        label-class="text-sm-right"
-        label-for="nestedBid"
-      >
-        <v-text-field
-          id="nestedBid"
-          v-model="form.cost"
-          placeholder="Kostnad"
-        />
-      </v-item-group>
-      <v-item-group
-        vertical=""
-        label-class="text-sm-right"
-        label-for="nestedBid"
-      >
-        <v-text-field
-          id="nestedBid"
-          v-model="form.isbn"
-          placeholder="isbn"
-        />
-      </v-item-group>
-      <v-select
-        v-model="form.title_type"
-        :items="options"
-        label="Välj typ av titel"
+    <v-item-group
+      vertical=""
+      label-class="text-sm-right"
+      label-for="nestedBid"
+    >
+      <v-text-field
+        id="nestedBid"
+        v-model="form.name"
+        label="Namn"
+        outlined
       />
-      <v-btn
-        type="submit"
-        color="primary"
-      >
-        Lägg till
-      </v-btn>
-      <v-btn
-        type="reset"
-        color="error"
-      >
-        Rensa Fältet
-      </v-btn>
-    </v-card>
+    </v-item-group>
+    <v-item-group
+      vertical=""
+      label-class="text-sm-right"
+      label-for="nestedBid"
+    >
+      <v-text-field
+        id="nestedBid"
+        v-model="form.cost"
+        label="Kostnad"
+        outlined
+      />
+    </v-item-group>
+    <v-item-group
+      vertical=""
+      label-class="text-sm-right"
+      label-for="nestedBid"
+    >
+      <v-text-field
+        id="nestedBid"
+        v-model="form.isbn"
+        label="isbn"
+        outlined
+      />
+    </v-item-group>
+    <v-select
+      v-model="form.title_type"
+      :items="options"
+      label="Välj typ av titel"
+      outlined
+    />
+    <v-btn
+      type="submit"
+      color="primary"
+      class="mr-4"
+      large
+    >
+      Lägg till
+    </v-btn>
+    <v-btn
+      type="reset"
+      large
+    >
+      Rensa Fältet
+    </v-btn>
   </v-form>
 </template>
 

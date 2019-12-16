@@ -1,6 +1,8 @@
 <template>
   <div class="view">
-    <h1 class="display-2">Dashboard</h1>
+    <h1 class="display-2">
+      Dashboard
+    </h1>
   </div>
 </template>
 
@@ -8,5 +10,5 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component
-export default class Admin extends Vue {}
+export default class AdminDashboardView extends Vue {}
 </script>
