@@ -5,7 +5,7 @@
       <div style="margin-right: 50px">
         <CardFormComponent @sendImages="onSendImages($event)" />  
       </div>
-      <div>
+      <div v-if="images.length > 0">
         <CanvasContainer :images="images" />
       </div>
     </div>
