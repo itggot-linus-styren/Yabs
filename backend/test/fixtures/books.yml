@@ -4,11 +4,7 @@ book_5000:
   barcode: '5000'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-<<<<<<< HEAD
-    utc: &1 2019-12-12 13:16:41.316730000 Z
-=======
-    utc: &1 2019-12-16 14:11:24.153498000 Z
->>>>>>> 2707b11... Google API with books works now
+    utc: &1 2019-12-16 14:38:59.569815000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -22,11 +18,7 @@ book_5002:
   barcode: '5002'
   status: Broken
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-<<<<<<< HEAD
-    utc: &1 2019-12-12 13:16:41.362402000 Z
-=======
-    utc: &1 2019-12-16 14:11:24.202151000 Z
->>>>>>> 2707b11... Google API with books works now
+    utc: &1 2019-12-16 14:38:59.602452000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -40,11 +32,7 @@ book_5003:
   barcode: '5003'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-<<<<<<< HEAD
-    utc: &1 2019-12-12 13:16:41.366977000 Z
-=======
-    utc: &1 2019-12-16 14:11:24.205375000 Z
->>>>>>> 2707b11... Google API with books works now
+    utc: &1 2019-12-16 14:38:59.616243000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -58,11 +46,7 @@ book_5004:
   barcode: '5004'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-<<<<<<< HEAD
-    utc: &1 2019-12-12 13:16:41.370439000 Z
-=======
-    utc: &1 2019-12-16 14:11:24.209087000 Z
->>>>>>> 2707b11... Google API with books works now
+    utc: &1 2019-12-16 14:38:59.621974000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -76,11 +60,7 @@ book_5005:
   barcode: '5005'
   status: Broken
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-<<<<<<< HEAD
-    utc: &1 2019-12-12 13:16:41.374817000 Z
-=======
-    utc: &1 2019-12-16 14:11:24.216053000 Z
->>>>>>> 2707b11... Google API with books works now
+    utc: &1 2019-12-16 14:38:59.626978000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -94,11 +74,7 @@ book_5006:
   barcode: '5006'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-<<<<<<< HEAD
-    utc: &1 2019-12-12 13:16:41.379059000 Z
-=======
-    utc: &1 2019-12-16 14:11:24.221510000 Z
->>>>>>> 2707b11... Google API with books works now
+    utc: &1 2019-12-16 14:38:59.631919000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -112,11 +88,7 @@ book_5007:
   barcode: '5007'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-<<<<<<< HEAD
-    utc: &1 2019-12-12 13:16:41.383040000 Z
-=======
-    utc: &1 2019-12-16 14:11:24.225396000 Z
->>>>>>> 2707b11... Google API with books works now
+    utc: &1 2019-12-16 14:38:59.637376000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -130,39 +102,7 @@ book_5008:
   barcode: '5008'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-<<<<<<< HEAD
-    utc: &1 2019-12-12 13:16:41.387997000 Z
-    zone: &2 !ruby/object:ActiveSupport::TimeZone
-      name: Etc/UTC
-    time: *1
-  updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
-    zone: *2
-    time: *1
-
-book_0001:
-  title_id: 1
-  barcode: '0001'
-  status: OK
-  created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-11 15:54:38.911996000 Z
-    zone: &2 !ruby/object:ActiveSupport::TimeZone
-      name: Etc/UTC
-    time: *1
-  updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
-    zone: *2
-    time: *1
-
-book_0002:
-  title_id: 1
-  barcode: '0002'
-  status: OK
-  created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-11 15:54:38.923594000 Z
-=======
-    utc: &1 2019-12-16 14:11:24.230014000 Z
->>>>>>> 2707b11... Google API with books works now
+    utc: &1 2019-12-16 14:38:59.641642000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1

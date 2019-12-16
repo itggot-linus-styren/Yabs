@@ -6,11 +6,7 @@ loan_1:
   book_id: '5000'
   returned_at: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-<<<<<<< HEAD
-    utc: &1 2019-12-12 13:16:41.336859000 Z
-=======
-    utc: &1 2019-12-16 14:11:24.184660000 Z
->>>>>>> 2707b11... Google API with books works now
+    utc: &1 2019-12-16 14:38:59.587556000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -18,26 +14,16 @@ loan_1:
     utc: *1
     zone: *2
     time: *1
-<<<<<<< HEAD
-  expiration_date: 2019-12-12
-=======
   expiration_date: 2019-12-16
->>>>>>> 2707b11... Google API with books works now
 
 loan_2:
   id: 2
   loaned_by_id: 1900009211
   lent_by_id: 1954282603
   book_id: '1001'
-<<<<<<< HEAD
-  returned_at: 2019-12-12
-  created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-12 13:16:41.354560000 Z
-=======
   returned_at: 2019-12-16
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-16 14:11:24.192784000 Z
->>>>>>> 2707b11... Google API with books works now
+    utc: &1 2019-12-16 14:38:59.595725000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -45,8 +31,4 @@ loan_2:
     utc: *1
     zone: *2
     time: *1
-<<<<<<< HEAD
-  expiration_date: 2019-12-12
-=======
   expiration_date: 2019-12-16
->>>>>>> 2707b11... Google API with books works now
