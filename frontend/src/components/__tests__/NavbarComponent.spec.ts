@@ -2,9 +2,14 @@ import NavbarComponent from '@/components/NavbarComponent.vue';
 
 import { Wrapper } from '@vue/test-utils';
 import { shallowFactory } from '@/helpers/testFactoryHelpers';
-import UsersModule from '@/store/modules/UsersModule';
+import Vue from 'vue';
+import vuetify from 'vuetify';
 
 describe('NavbarComponent.vue', () => {
+
+  beforeEach(() => {
+    Vue.use(vuetify);
+  });
 
   const injectRouterStubs = {stubs: ['router-link', 'router-view']};
 
