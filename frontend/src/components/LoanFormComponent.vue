@@ -5,69 +5,44 @@
       @submit="onSubmit"
       @reset="onReset"
     >
-        <v-item-group
-          vertical=""
-          label-class="text-sm-right"
-          label-for="nestedUid"
-        >
-          <v-text-field
-            id="nestedUid"
-            v-model="form.loaned_by_id"
-            label="Elevens Streckkod"
-            outlined
-          />
-          <v-item-group
-            vertical=""
-            label-class="text-sm-right"
-            label-for="nestedBid"
-          >
-            <v-text-field
-              id="nestedBid"
-              v-model="form.book_id"
-              data-cy="book_barcode"
-              placeholder="Bokens Streckkod"
-            />
-          </v-item-group>
-          <v-btn
-            data-cy="loanOutBook"
-            type="submit"
-            variant="primary"
-          >
-            Låna Ut
-          </v-btn>
-          <v-btn
-            type="reset"
-            variant="danger"
-          >
-            Rensa Fälten
-          </v-btn>
-        </v-item-group>
-        <v-item-group
-          vertical=""
-          label-class="text-sm-right"
-          label-for="nestedBid"
-        >
-          <v-text-field
-            id="nestedBid"
-            v-model="form.book_id"
-            label="Bokens Streckkod"
-            outlined
-          />
-        </v-item-group>
-        <v-btn
-          type="submit"
-          color="primary"
-          class="mr-4"
-          large
-        >
-          Låna Ut
-        </v-btn>
-        <v-btn
-          type="reset"
-          large
-        >
-          Rensa Fälten
-        </v-btn>
+      <v-item-group
+        vertical=""
+        label-class="text-sm-right"
+        label-for="nestedUid"
+      >
+        <v-text-field
+          id="nestedUid"
+          v-model="form.loaned_by_id"
+          label="Elevens Streckkod"
+          outlined
+        />
+      </v-item-group>
+      <v-item-group
+        vertical=""
+        label-class="text-sm-right"
+        label-for="nestedBid"
+      >
+        <v-text-field
+          id="nestedBid"
+          v-model="form.book_id"
+          label="Bokens Streckkod"
+          outlined
+        />
+      </v-item-group>
+      <v-btn
+        type="submit"
+        color="primary"
+        class="mr-4"
+        large
+      >
+        Låna Ut
+      </v-btn>
+      <v-btn
+        type="reset"
+        large
+      >
+        Rensa Fälten
+      </v-btn>
     </v-form>
   </div>
 </template>
