@@ -3,14 +3,12 @@
         <v-text-field
             label="Regular"
             single-line
-            clearable
             v-model="title"
             readonly
         ></v-text-field>
         <v-text-field
             label="Regular"
             single-line
-            clearable
             v-model="barcode"
             readonly
         ></v-text-field>
@@ -20,18 +18,18 @@
           label="Overflow Btn"
         ></v-overflow-btn>
 
-        <v-btn color="primary">Update Book</v-btn>
+        <v-btn color="primary" type="submit">Update Book</v-btn>
 
     </v-card>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import BooksModule, {IBook} from '../store/modules/BooksModule';
+import BooksModule, {Book} from '../store/modules/BooksModule';
 
 
 @Component
-export default class BookStatuscomponent extends Vue {
+export default class BookStatusComponent extends Vue {
     @Prop({default: 'Lolita'}) private title: string;
     @Prop({default: 0}) private title_id: number;
     @Prop({default: ''}) private barcode: string;
@@ -40,7 +38,7 @@ export default class BookStatuscomponent extends Vue {
     private statuses = ['Loaned', 'Available', 'Damaged', 'Lost']
     
 
-    private form: IBook = {
+    private form: Book = {
       status: this.status,
       title_id: this.title_id,
       barcode: this.barcode

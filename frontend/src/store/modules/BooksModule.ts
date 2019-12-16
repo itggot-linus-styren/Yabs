@@ -9,15 +9,17 @@ interface BookState {
   failure: any;
 }
 
-export interface IBook {
+export interface Book {
   barcode: string,
   title_id: number,
   status: string
 }
-interface BookCollection {
-  [id: number]: IBook;
-}
 
+export interface GResponse {
+  kind: string,
+  items: [],
+  totalItems: number
+}
 interface BookCollection {
   [id: string]: Book;
 }
@@ -52,11 +54,25 @@ class BooksModule extends VuexModule {
   }
 
   @Action({rawError: true})
+  public fetchSingle(barcode: string): Promise<any> {
+    return new Promise((resolve, reject) => {
+      BooksAPI.single(barcode)
+        .then((response: any) => {
+          resolve();
+        })
+        .catch((error: any) => {
+          this.setfailure(error);
+          reject(error);
+        });
+    });
+  }
+
+  @Action({rawError: true})
   public create(request: any) {
     return new Promise((resolve, reject) => {
       BooksAPI.create(request)
         .then((response: any) => {
-          this.setBook(response);
+          this.setBooks(response);
           resolve(response);
         })
         .catch((error: any) => {
@@ -67,11 +83,11 @@ class BooksModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public update(request: IBook) {
+  public update(request: Book) {
     return new Promise((resolve, reject) => {
       BooksAPI.update(request)
         .then((response: any) => {
-          this.setBook(response);
+          this.setBooks(response);
           resolve(response);
         })
         .catch((error: any) => {
@@ -97,7 +113,7 @@ class BooksModule extends VuexModule {
   }
 
   @Mutation
-  private setBook(payload: any) {
+  private setBooks(payload: any) {
     Vue.set(this.bookState.books, payload.barcode, payload);
   }
 
