@@ -15,9 +15,9 @@
         </v-btn>
       </v-toolbar-items>
       <v-spacer />
-      <v-toolbar-items v-if="usersModule.userState && usersModule.userState.currentUser">
+      <v-toolbar-items v-if="usersModule.currentUser">
         <v-btn
-          :to="'/users/'+ usersModule.currentUser.currentUser"
+          :to="'/users/'+ usersModule.currentUserID"
           text
         >
           <v-icon class="px-3">

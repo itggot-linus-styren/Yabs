@@ -97,8 +97,10 @@ export default class Start extends Vue {
   public loading: boolean = true;
 
   public created() {
-    UsersModule.fetchAll();
-    LoansModule.fetchAll();
+    if(UsersModule.currentUserID){
+      UsersModule.fetchAll();
+      LoansModule.fetchAll();
+    }
   }
 }
 </script>
