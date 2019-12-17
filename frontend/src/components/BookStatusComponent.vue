@@ -41,7 +41,9 @@ export default class BookStatusComponent extends Vue {
     private form: Book = {
       status: this.status,
       title_id: this.title_id,
-      barcode: this.barcode
+      barcode: this.barcode,
+      created_at: "",
+      updated_at: ""
     };
   
 

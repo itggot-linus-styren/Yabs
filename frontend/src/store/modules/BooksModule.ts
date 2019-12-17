@@ -17,11 +17,6 @@ export interface Book {
   updated_at: string
 }
 
-export interface GResponse {
-  kind: string,
-  items: [],
-  totalItems: number
-}
 interface BookCollection {
   [id: string]: Book;
 }
