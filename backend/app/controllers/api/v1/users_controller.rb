@@ -12,9 +12,9 @@ class Api::V1::UsersController < ApplicationController
   # controller for showing the user and also authorises in the same method, returns the
   # json object instance @user
 
-  def show
+  def show    
     authorize @user
-    render json: @user
+    render json: @users
   end
 
   # this is the update controller for users which basically takes the image parameters and 
@@ -23,7 +23,6 @@ class Api::V1::UsersController < ApplicationController
   def update
     authorize @user
     if params[:image]
-      p params[:image]
       @user.profile_image.attach(params[:image])
       @user.photo_path = rails_blob_path(@user.profile_image, disposition: "inline")
       @user.save
