@@ -9,6 +9,7 @@ import {
 import store from '..';
 import UsersAPI from '../../api/users';
 import convertList from '../../helpers/convertArrayToNested';
+
 export interface User {
   created_at: string;
   email: string;
@@ -23,26 +24,22 @@ export interface User {
 
 export interface UserCollection { [uid: number]: User; }
 
-export interface UserState {
-  users: UserCollection;
-  currentUser: any;
-  failure: any;
-}
-
-@Module({dynamic: true, namespaced: true, name: 'UsersModule', store, preserveState: true})
+@Module({dynamic: true, namespaced: true, name: 'UsersModule', store})
 class UsersModule extends VuexModule {
-  private userState: UserState = {users: {}, currentUser: null, failure: null};
+  private _failure: any = null;
+  public _users: UserCollection = {};
+  private _currentUser: any = null;
 
   get currentUserID(): number {
-    return this.userState.currentUser;
+    return this._currentUser;
   }
 
   get all(): UserCollection {
-    return this.userState.users;
+    return this._users;
   }
 
   get currentUser(): User {
-    return this.all[this.userState.currentUser];
+    return this._users[this._currentUser];
   }
 
   @Action({rawError: true})
@@ -50,7 +47,6 @@ class UsersModule extends VuexModule {
     return new Promise((resolve, reject) => {
       UsersAPI.all()
         .then((response: User[]) => {
-          console.log(response);
           this.convertUserList(response);
           resolve();
         })
@@ -81,6 +77,7 @@ class UsersModule extends VuexModule {
       UsersAPI.signIn(request)
         .then((response: any) => {
           this.setCurrentUser(response);
+          this.fetchAll();
           resolve(response);
         })
         .catch((error: any) => {
@@ -105,12 +102,12 @@ class UsersModule extends VuexModule {
 
   @Mutation
   public setUser(payload: any): void {
-    Vue.set(this.userState.users, payload.uid, payload);
+    Vue.set(this._users, payload.uid, payload);
   }
 
   @Mutation
   public setCurrentUser(payload: any): void {
-    Vue.set(this.userState, 'currentUser', payload.uid);
+    this._currentUser = payload.uid;
   }
 
   @Mutation
@@ -121,7 +118,7 @@ class UsersModule extends VuexModule {
   @Mutation
   public convertUserList(payload: User[]): void {
     const list = convertList(payload, 'uid');
-    Vue.set(this.userState, 'users', list);
+    this._users = list;
   }
 }
 

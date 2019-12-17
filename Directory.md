@@ -59,12 +59,18 @@ Administratörer (personal) ska kunna
     * Boken blir då automagiskt utlånad till eleven enligt återlämningsdatumet som ställts in tidigare.
 * Smidigt kunna ta reda på vem en specifik bok tillhör.
 * Smidigt kunna lämna tillbaks böcker.
+* Titlar skall kopplas till ämnen där viss personal är ansvarig över.
 
 * Smidigt kunna låna ut en enstaka bok åt en enskild elev.
 
 Elever ska
 
 * smidigt kunna se vilka böcker man lånat, och relevant information kopplat till lånen.
+
+Ämnesansvariga ska
+
+* smidigt se information kring titlar inom de ämnen de är ansvariga över (kan vara flera).
+* rektor är automagiskt ämnesansvarig för alla ämnen.
 
 Systemet ska även kunna
 

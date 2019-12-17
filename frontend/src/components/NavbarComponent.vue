@@ -15,9 +15,9 @@
         </v-btn>
       </v-toolbar-items>
       <v-spacer />
-      <v-toolbar-items v-if="usersModule.userState && usersModule.userState.currentUser">
+      <v-toolbar-items v-if="usersModule.currentUser">
         <v-btn
-          :to="'/users/'+ usersModule.currentUser.currentUser"
+          :to="'/users/'+ usersModule.currentUserID"
           text
         >
           <v-icon class="px-3">
@@ -52,6 +52,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import GoogleLogin from '@/components/GoogleLogin.vue';
 import UsersModule from '../store/modules/UsersModule';
+import { VuexModule } from 'vuex-module-decorators';
 
 @Component({
   components: {
@@ -59,8 +60,8 @@ import UsersModule from '../store/modules/UsersModule';
   },
 })
 export default class NavbarComponent extends Vue {
-  public usersModule = UsersModule;
-  public signOut() {
+  public usersModule: VuexModule = UsersModule;
+  public signOut(): void {
     try {
       // @ts-ignore: gapi
       const auth2 = gapi.auth2.getAuthInstance();

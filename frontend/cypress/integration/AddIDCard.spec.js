@@ -1,6 +1,8 @@
+import baseVisit from '../helper';
+
 context('Going to the add page', () => {
     beforeEach(() => {
-        cy.visit('localhost:3000/admin');
+        baseVisit('/admin')
     })
 
     it('Going to "Cards" in menu', () => {
