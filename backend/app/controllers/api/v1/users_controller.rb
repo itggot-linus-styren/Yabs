@@ -14,7 +14,7 @@ class Api::V1::UsersController < ApplicationController
 
   def show    
     authorize @user
-    render json: @users
+    render json: @user
   end
 
   # this is the update controller for users which basically takes the image parameters and 
