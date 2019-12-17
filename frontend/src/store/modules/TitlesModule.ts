@@ -34,21 +34,17 @@ export interface TitleForm {
 
 export interface TitleCollection { [id: number]: Title; }
 
-export interface TitleState {
-  titles: TitleCollection;
-  failure: any;
-}
-
 @Module({dynamic: true, namespaced: true, name: 'TitlesModule', store})
 class TitlesModule extends VuexModule {
-  private titleState: TitleState = {titles: {}, failure: null};
+  private _failure: any = null;
+  private _titles: TitleCollection = {};
 
   get all() {
-    return this.titleState.titles;
+    return this._titles;
   }
 
   get allAsArray() {
-    return Object.keys(this.titleState.titles).map( (id) => this.titleState.titles[parseInt(id, 10)]);
+    return Object.keys(this._titles).map( (id) => this._titles[Number(id)]);
   }
 
   @Action({rawError: true})
@@ -126,23 +122,23 @@ class TitlesModule extends VuexModule {
 
   @Mutation
   private setTitle(payload: any) {
-    Vue.set(this.titleState.titles, payload.id, payload);
+    Vue.set(this._titles, payload.id, payload);
   }
 
   @Mutation
   private removeTitle(titleId: string) {
-    Vue.delete(this.titleState.titles, titleId);
+    Vue.delete(this._titles, titleId);
   }
 
   @Mutation
   private setFailure(payload: any) {
-    this.titleState.failure = payload;
+    this._failure = payload;
   }
 
   @Mutation
   private convertTitleList(payload: Title[]) {
     const list = convertList(payload, 'id');
-    this.titleState.titles = list;
+    this._titles = list;
   }
 }
 

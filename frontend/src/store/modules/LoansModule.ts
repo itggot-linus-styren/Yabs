@@ -19,21 +19,17 @@ export interface Loan {
 }
 export interface LoanCollection {[id: number]: Loan; }
 
-export interface LoanState {
-  loans: LoanCollection;
-  failure: any;
-}
-
 @Module({dynamic: true, namespaced: true, name: 'LoansModule', store})
 class LoansModule extends VuexModule {
-  private loanState: LoanState = {loans: {}, failure: null};
+  private _loans: LoanCollection = {};
+  private _failure: any = null;
 
   get all() {
-    return this.loanState.loans;
+    return this._loans;
   }
 
   get allAsArray() {
-    return Object.keys(this.loanState.loans).map( (id) => this.loanState.loans[parseInt(id)]);
+    return Object.keys(this._loans).map( (id) => this._loans[parseInt(id)]);
   }
 
   @Action({rawError: true})
@@ -51,7 +47,7 @@ class LoansModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public create(request: any) {
+  public create(request: any): Promise<Loan> {
     return new Promise((resolve, reject) => {
       LoansAPI.create(request)
         .then((response: any) => {
@@ -94,18 +90,18 @@ class LoansModule extends VuexModule {
 
   @Mutation
   private setLoan(payload: any):void {
-    Vue.set(this.loanState.loans, payload.id, payload);
+    Vue.set(this._loans, payload.id, payload);
   }
 
   @Mutation
   private removeLoan(loanId: string): void {
-    Vue.delete(this.loanState.loans, loanId);
+    Vue.delete(this._loans, loanId);
   }
 
   @Mutation
   private convertLoanList(payload: Loan[]): void {
     const list = convertList(payload, 'id');
-    this.loanState.loans = list;
+    this._loans = list;
   }
 
   @Mutation
