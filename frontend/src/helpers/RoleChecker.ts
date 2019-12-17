@@ -3,7 +3,7 @@ import UsersModule, { User } from '../store/modules/UsersModule';
 export default class RoleChecker {
 
   private static checkPermission(user: User, required: number): boolean {
-    return user && (user.role & required) == required || (user.role > required);
+    return user && ((user.role & required) == required || (user.role > required));
   }
   
   static isPrincipal(): boolean {
