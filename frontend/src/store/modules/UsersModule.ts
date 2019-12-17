@@ -9,6 +9,7 @@ import {
 import store from '..';
 import UsersAPI from '../../api/users';
 import convertList from '../../helpers/convertArrayToNested';
+import RoleChecker from '@/helpers/roleChecker';
 
 export interface User {
   created_at: string; //eslint-disable-line camelcase
@@ -44,14 +45,13 @@ class UsersModule extends VuexModule {
 
   get roleAsText(): string {
     if (!this.currentUser) {return ''; }
-    const roleNum = this.currentUser.role;
     let output: string = '';
-    if (roleNum == 1) {output = 'Elev'; 
-    } else if (roleNum >= 32) {output = 'Rektor';
-    } else if (roleNum >= 16) {output = 'Administratör';
-    } else if (roleNum >= 8) {output = 'Vaktmästare';
-    } else if (roleNum >= 4) {output = 'Lärare';
-    } else if (roleNum >= 2) {output = 'Elevhälsoteam'; }
+    if (RoleChecker.isStudent()) {output = 'Elev'; 
+    } else if (RoleChecker.isPrincipal()) {output = 'Rektor';
+    } else if (RoleChecker.isAdmin()) {output = 'Administratör';
+    } else if (RoleChecker.isCaretaker()) {output = 'Vaktmästare';
+    } else if (RoleChecker.isTeacher()) {output = 'Lärare';
+    } else if (RoleChecker.isStudentHealth()) {output = 'Elevhälsoteam'; }
     return output;
   }
 
