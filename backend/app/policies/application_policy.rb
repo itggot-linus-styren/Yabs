@@ -3,7 +3,7 @@ class ApplicationPolicy
   
 
   def initialize(user, record)
-    @user = User.find(1954282603)
+    @user = user
     @record = record
   end
 
