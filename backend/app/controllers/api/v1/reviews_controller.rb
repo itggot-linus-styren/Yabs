@@ -5,7 +5,7 @@ class Api::V1::ReviewsController < ApplicationController
         render json: Review.all
     end
 
-    def
+    def show
         render json: @review
     end
 
