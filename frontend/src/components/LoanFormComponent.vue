@@ -83,6 +83,9 @@ interface Form {
   book_id: number | string;
 }
 
+
+// loan form component is used to user interface for the user to create a loan and is later 
+// authorized by the pundit dependency 
 @Component
 export default class LoanFormComponent extends Vue {
   public form: Form = {
@@ -91,6 +94,11 @@ export default class LoanFormComponent extends Vue {
     book_id: ''
   };
   public show: boolean = true;
+
+
+  // Eventlistener that does not reload the page when executed, sets the lent by id to the 
+  // current user that has been logged in and then rerenders the loan form for the 
+  // user to recreate a loan 
 
   public onSubmit(evt: Event) {
     evt.preventDefault();
@@ -101,6 +109,9 @@ export default class LoanFormComponent extends Vue {
         .catch((failure: any) => console.log(failure));
     }
   }
+
+  // this is the Eventlistener for the user to reset the form if the user has entered the 
+  // wrong information about the loan
 
   public onReset(evt: Event) {
     evt.preventDefault();

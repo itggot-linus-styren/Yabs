@@ -12,6 +12,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import TitlesModule from '../store/modules/TitlesModule';
 import { VuexModule } from 'vuex-module-decorators';
 
+
+// list component that inherits the information about the titles from the titles module
+// and the headers that are created in the headers object
+
 @Component
 export default class TitleListComponent extends Vue {
   private titlesModule: VuexModule = TitlesModule;

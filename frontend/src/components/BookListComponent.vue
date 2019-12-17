@@ -1,3 +1,8 @@
+<!--
+  This vue template takes all the books and places them into an array due to the prop
+  "items" from the parent component.
+-->
+
 <template>
   <v-data-table
     :headers="headers"
@@ -15,6 +20,10 @@ import { VuexModule } from 'vuex-module-decorators';
 @Component
 export default class BookListComponent extends Vue {
   private booksModule: VuexModule = BooksModule;
+  
+  // these headers are the headers for the table created in the template and are filled 
+  // with the information passed from the BooksModule
+  
   public headers: object[] = [
     { text: 'Titel', value: 'title.name', sortable: false },
     { text: 'Status', value: 'status', sortable: false },

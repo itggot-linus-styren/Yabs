@@ -23,17 +23,29 @@ import { Component, Watch, Prop, Vue } from 'vue-property-decorator';
 import UsersModule from '../store/modules/UsersModule';
 import JSZip from 'jszip';
 
+// Component for the card form for the user to insert information about them such as
+// role, name and uid
+
 @Component
 export default class CardFormComponent extends Vue {
   public files: File[] = [];
 
+  // Constructor for instantiating the class and fetching all the users from the userModule
   public created() {
     UsersModule.fetchAll();
   }
 
+  // Eventlistener that emits the informations about that specific event higher up in the 
+  // component tree
+
   public submit() {
     this.$emit('sendImages', this.files);
   }
+
+
+  // Eventlistener that takes a list of instances of the object File and checks the type
+  // of the file and confirms that it is a zip file and then extracts the content to render
+  // else simply pushes the content into the instance this.files
 
   public onFileSelect(fileList: File[]) {
     for (const fileObject of fileList) {
@@ -45,12 +57,20 @@ export default class CardFormComponent extends Vue {
     }
   }
 
+  // LoadFileData takes three arguments, a list of files, the index of the list of files
+  // and the data of that file as the third argument. It then loads the file by creating 
+  // a new file with the correct data, "files[fileIndex].name" to get the correct name.
+
   public loadFileData(files: any[], fileIndex: number, fileData: any) {
     const file = new File([fileData], files[fileIndex].name, {
       type: 'image/jpeg',
     });
     this.files.push(file);
   }
+
+  // loadFiles takes a extracted zip file and loops through the content in order to 
+  // make sure that the zip file has support for MACOSX then inserts the content into the
+  // load file data in order to make the format correct
 
   public loadFiles(extZip: any) {
     const files: any = Object.values(extZip.files);
@@ -65,6 +85,9 @@ export default class CardFormComponent extends Vue {
       }
     }
   }
+
+  // extract files method takes a zip file and creates a new instance of the class JSZip
+  // and then asyncronasily loads the files into the instance of loadFiles
 
   public extractFiles(zip: any) {
     const newZip = new JSZip();

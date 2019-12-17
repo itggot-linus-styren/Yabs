@@ -1,3 +1,8 @@
+<!--
+    as shown in the template, this view is based of the components listed as 
+    elements below so for more information, take a look at those documented components
+ -->
+
 <template>
   <div>
     <h1 class="display-2">
@@ -26,7 +31,14 @@ import LoansModule from '../store/modules/LoansModule';
     LoanListComponent
   }
 })
+
+// this component is the parent view of the components LoanListComponent and LoanFormComponent
+// which is declared in the template
+
 export default class AdminLoansView extends Vue {
+
+  // the class is instantiated by the constructor created by fetching all the loans from the
+  // loans module
   private created() {
     LoansModule.fetchAll();
   }

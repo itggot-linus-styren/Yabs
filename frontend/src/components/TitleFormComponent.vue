@@ -67,6 +67,10 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import TitlesModule, { TitleForm } from '../store/modules/TitlesModule';
 
+
+// this is the child component of the earlier named parent element and catches the information
+// passed down the component tree to render the table 
+
 @Component
 export default class TitleFormComponent extends Vue {
   public form: TitleForm = {
@@ -83,6 +87,9 @@ export default class TitleFormComponent extends Vue {
     { value: 'Skönlitteratur', text: 'Skönlitteratur' },
   ];
 
+  // on this eventlistener the titlesmodule recreates the form when the submit has been
+  // successfull
+
   public onSubmit(evt: Event) {
     evt.preventDefault();
     if (!!this.form.name && !!this.form.cost && !! this.form.isbn && !!this.form.title_type) {
@@ -91,6 +98,9 @@ export default class TitleFormComponent extends Vue {
         .catch((failure: any) => console.log(failure));
     }
   }
+
+  // onReset eventlistener is used to reset the form if the user has written in the wrong
+  // information about the title
 
   public onReset(evt: Event) {
     evt.preventDefault();

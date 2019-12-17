@@ -17,9 +17,14 @@ import { VuexModule } from 'vuex-module-decorators';
 export default class GoogleLogin extends Vue {
   public usersModule: VuexModule = UsersModule;
 
+  // mounted is a getter to reveive the information about the renderloginbutton
+
   public mounted() {
     this.renderLoginButton();
   }
+
+  // renderLoginButton is used to set the information about the button without having to 
+  // include any css, which is forbidden in this project, based on the class signin2 
 
   public renderLoginButton() {
 
@@ -34,9 +39,15 @@ export default class GoogleLogin extends Vue {
       onfailure: this.onFailure,
     });
   }
+
+  // getter to get the updated version of the instance renderLoginButton
   public updated() {
     this.renderLoginButton();
   }
+
+  // onSignIn takes a user from the google Api and sets the users profile with the information
+  // fetched from the google api but also takes the token that is generated and setting it
+  // to the id token so that the authentication is made possbile
 
   public onSignIn(googleUser: any) {
     const profile = googleUser.getBasicProfile();
@@ -54,10 +65,16 @@ export default class GoogleLogin extends Vue {
       });
   }
 
+  // onfailure is a standard method used to render the error message when a process has failed
+
   public onFailure(error: any) {
     // TODO: show this in a notification
     console.error(error);
   }
+
+  // signOut takes the the authentication instance and then log out the user that matches
+  // that description
+  
   public signOut() {
     // @ts-ignore: gapi
     const auth2 = gapi.auth2.getAuthInstance();

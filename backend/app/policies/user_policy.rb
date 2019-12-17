@@ -2,8 +2,10 @@ class UserPolicy < ApplicationPolicy
     attr_reader :user
     class Scope < Scope
 
-        # Defines the scope of the policy, admins are granted access to everything and 
-        # Other People are only entitled to objects that they have created based on loaned_ny
+    # Defines the scope of the policy, admins are granted access to everything and 
+    # Other People are only entitled to objects that they have created based on 
+    # uid (user id)
+    
       def resolve
         if user&.admin?
           scope.all
