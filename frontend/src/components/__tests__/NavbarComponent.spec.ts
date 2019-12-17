@@ -2,14 +2,8 @@ import NavbarComponent from '@/components/NavbarComponent.vue';
 
 import { Wrapper } from '@vue/test-utils';
 import { shallowFactory } from '@/helpers/testFactoryHelpers';
-import Vue from 'vue';
-import vuetify from 'vuetify';
 
 describe('NavbarComponent.vue', () => {
-
-  beforeEach(() => {
-    Vue.use(vuetify);
-  });
 
   const injectRouterStubs = {stubs: ['router-link', 'router-view']};
 
@@ -18,7 +12,6 @@ describe('NavbarComponent.vue', () => {
 
     expect(wrapper.html()).toMatch('Yabs');
   });
-
 
   it('renders correctly', () => {
     const wrapper: Wrapper<NavbarComponent> = shallowFactory(NavbarComponent, injectRouterStubs);

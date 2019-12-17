@@ -7,7 +7,7 @@ import {
   createLocalVue,
 } from '@vue/test-utils';
 import Vue from 'vue';
-import BootstrapVue from 'bootstrap-vue';
+import Vuetify from 'vuetify';
 import Vuex from 'vuex';
 import {cloneDeep} from 'lodash';
 import users from '@/store/modules/UsersModule';
@@ -19,7 +19,7 @@ export function factory<V extends Vue>(
 ): Wrapper<V> {
   const localVue = createLocalVue();
 
-  localVue.use(BootstrapVue);
+  localVue.use(Vuetify);
   localVue.use(Vuex);
 
   const storeConfig = {
