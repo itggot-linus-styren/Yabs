@@ -42,14 +42,16 @@
 
           <LoanListComponent 
             v-if="loans"
+            :items-per-page="15"
           />
           <BookListComponent 
             v-if="books"
             :use-actions="true"
-            :route-path="'books'"
+            :items-per-page="15"
           />
           <UserListComponent 
             v-if="users"
+            :items-per-page="15"
           />
         </v-card>
       </v-col>

@@ -46,6 +46,7 @@ export default class ListComponent extends Vue {
   @Prop() public items!: object[]; // Please fix generic types.
   @Prop({ default: false }) public useActions!: boolean;
   @Prop() public routePath!: string;
+  @Prop() public routeSpecifier!: string;
   @Prop({ default: 5 }) public itemsPerPage!: number;
 
   public search: string = '';
@@ -70,10 +71,14 @@ export default class ListComponent extends Vue {
     return result;
   }
 
-  // Routes the user to a new page using the information passed down from the parent component.
-  route(event: Event, item: { routeSpecifier: string}): void {
+  // Routes the user to host:port/${routePath}/${item[routeSpecifier]},
+  // where "routePath" specifies the type of item and "routeSpecifier" is an identifier for the specific item.
+  // Example: host:port/${"books"}/${item["id"]}
+  route(event: Event, item: any): void {
     event.preventDefault();
-    this.$router.push(`/${this.routePath}/${item.routeSpecifier}`);
+    if(item[this.routeSpecifier]) {
+      this.$router.push(`/${this.routePath}/${item[this.routeSpecifier]}`);
+    }
   }
 }
 </script>

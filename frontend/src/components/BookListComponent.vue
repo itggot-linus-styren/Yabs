@@ -2,6 +2,8 @@
   <ListComponent
     :headers="headers"
     :items="booksModule.allAsArray"
+    :route-path="'books'"
+    :route-specifier="'barcode'"
     class="elevation-1"
     v-bind="$attrs"
   />
