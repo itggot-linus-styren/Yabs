@@ -8,12 +8,12 @@ user_1954282603:
   google_token: '101173758873354282603'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-16 13:06:10.139498000 Z
+    utc: &1 2019-12-17 10:06:49.866452000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-16 13:06:10.139498000 Z
+    utc: &3 2019-12-17 10:06:49.866452000 Z
     zone: *2
     time: *3
 
@@ -26,29 +26,29 @@ user_1968097915:
   google_token: '101834530373768097915'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-16 13:06:13.040586000 Z
+    utc: &1 2019-12-17 10:06:52.649445000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-16 13:06:13.040586000 Z
+    utc: &3 2019-12-17 10:06:52.649445000 Z
     zone: *2
     time: *3
 
-user_1900009211:
-  uid: 1900009211
-  name: Max Frogemar
-  email: max.frogemar@elev.ga.ntig.se
-  klass: 1A
+user_1975529089:
+  uid: 1975529089
+  name: Max Gustafsson
+  email: max.gustafsson@elev.ga.ntig.se
+  klass: 3B
   role: 1
-  google_token: '113517219641300009211'
+  google_token: '110102009585975529089'
   photo_path: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-16 13:06:14.913226000 Z
+    utc: &1 2019-12-17 10:06:54.957333000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &3 2019-12-16 13:06:14.913226000 Z
+    utc: &3 2019-12-17 10:06:54.957333000 Z
     zone: *2
     time: *3
