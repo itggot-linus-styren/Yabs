@@ -2,7 +2,6 @@
   <ListComponent
     :headers="headers"
     :items="titlesModule.allAsArray"
-    :items-per-page="5"
     class="elevation-1"
   />
 </template>
@@ -21,10 +20,10 @@ import ListComponent from '@/components/ListComponent.vue';
 export default class TitleListComponent extends Vue {
   private titlesModule: VuexModule = TitlesModule;
   private headers: object[] = [
-    { text: 'Titel', value: 'name', sortable: false },
-    { text: 'Kostnad', value: 'cost', sortable: false },
-    { text: 'Typ', values: 'title_type', sortable: false },
-    { text: 'ISBN', values: 'isbn', sortable: false },
+    { text: 'Titel', value: 'name' },
+    { text: 'Kostnad', value: 'cost' },
+    { text: 'Typ', values: 'title_type' },
+    { text: 'ISBN', values: 'isbn' },
   ];
 }
 </script>

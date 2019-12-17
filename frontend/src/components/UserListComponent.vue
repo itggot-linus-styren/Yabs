@@ -20,7 +20,7 @@ import ListComponent from '@/components/ListComponent.vue';
 })
 export default class LoanListComponent extends Vue {
   private usersModule: VuexModule = UsersModule;
-  private userHeaders: object[] = [
+  private headers: object[] = [
     { text: 'Namn', value: 'name' },
     { text: 'Email', value: 'email' },
     { text: 'Klass', value: 'klass' },

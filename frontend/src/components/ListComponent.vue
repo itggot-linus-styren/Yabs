@@ -40,26 +40,21 @@ interface Header {
   sortable?: boolean;
 }
 
-interface Item {
-  routeSpecifier: string
-}
-
 @Component({})
 export default class ListComponent extends Vue {
-  public search: string = '';
   @Prop() public headers!: Header[];
   @Prop() public items!: object[]; // Please fix generic types.
   @Prop({ default: false }) public useActions!: boolean;
   @Prop() public routePath!: string;
-  @Prop({ default: 10 }) public itemsPerPage!: number;
+  @Prop({ default: 5 }) public itemsPerPage!: number;
+
+  public search: string = '';
 
   // Adds the header "Actions" if useActions is true.
   created(): void {
     if(this.useActions && !this.contains(this.headers, 'Actions') ) {
       this.headers.push({ text: 'Actions', value: 'action', sortable: false });
     }
-
-    console.log(this.$attrs);
   }
 
   // Returns true if the headers array contains an object with the given header text/title.
@@ -76,7 +71,7 @@ export default class ListComponent extends Vue {
   }
 
   // Routes the user to a new page using the information passed down from the parent component.
-  route(event: Event, item: Item): void {
+  route(event: Event, item: { routeSpecifier: string}): void {
     event.preventDefault();
     this.$router.push(`/${this.routePath}/${item.routeSpecifier}`);
   }

@@ -60,10 +60,12 @@
 <script lang="ts">
 import {Vue, Component, Prop} from 'vue-property-decorator';
 
-import LoansModule from '../store/modules/LoansModule';
 import BookListComponent from '@/components/BookListComponent.vue';
 import UserListComponent from '@/components/UserListComponent.vue';
 import LoanListComponent from '@/components/LoanListComponent.vue';
+import BooksModule from '@/store/modules/BooksModule';
+import UsersModule from '@/store/modules/UsersModule';
+import LoansModule from '@/store/modules/LoansModule';
 
 @Component({
   components: {
@@ -76,6 +78,12 @@ export default class FindView extends Vue {
   users:boolean = false;
   loans:boolean = false;
   books:boolean = false;
+
+  private created(): void {
+    BooksModule.fetchAll();
+    UsersModule.fetchAll();
+    LoansModule.fetchAll();
+  }
 
   // // MOCKUP DATA (Can be removed when fetch function in implemented)
   // mockupLoans: object[] = [
