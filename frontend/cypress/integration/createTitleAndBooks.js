@@ -1,17 +1,15 @@
-describe('This test will create a title and a book', () => {
-  it('Opens the website', () => {
-    cy.visit('http://localhost:8080/admin');
-  });
+import baseVisit from '../helper';
 
-  // it('Login with Google'), () => {
-  //   cy.get('[id=not_signed_inow8rarn26wvu]')
-  // }
+describe('This test will create a title and a book', () => {
+  it('Goes to the webbpage', () => {
+    baseVisit('/admin');
+  });
 
   it('Open up the title view', () => {
     cy.get('[data-cy=Titles]').click();
   });
 
-  it('Creates a title and then reset the fields', () => {
+  it('Creates a title and reset the fields when added', () => {
     cy.get('[data-cy=name]').type('Book made from Test');
     cy.get('[data-cy=cost]').type('2912');
     cy.get('[data-cy=isbn]').type('420-420');
@@ -21,24 +19,15 @@ describe('This test will create a title and a book', () => {
     cy.get('[data-cy=reset]').click();
   });
     
-  // it('Open up the book', () => {
-  //   cy.get('[id=ddown1__BV_toggle_]').click();
-  //   cy.get('[data-cy=book]').click();
-  // });
+  it('Open up the book view', () => {
+    cy.get('[data-cy=Books]').click();
+  });
 
-  // it('Creates a book', () => {
-  //   cy.get('[data-cy=titlename]').type('Book made from Test');
-  //   cy.get('div').contains('Book made from Test').click();
-  //   cy.get('[data-cy=barcode]').click().type('232133131');
-  //   cy.get('[data-cy=status]').type('ok');
-  //   cy.get('[data-cy=addBook]').click();
-  // });
-
-  // it('Creates a book and reset the fields', () => {
-  //   cy.get('[data-cy=titlename]').type('Book made from Test');
-  //   cy.get('div').contains('Book made from Test').click();
-  //   cy.get('[data-cy=barcode]').click().type('232133131');
-  //   cy.get('[data-cy=status]').type('ok');
-  //   cy.get('[data-cy=resetbookfield]').click();
-  // });
+  it('Creates a book', () => {
+    cy.get('[data-cy=barcode]').click().type('212');
+    cy.get('[data-cy=chooseTitle]').click();
+    cy.get('div').contains('Alice in Wonderland').click();
+    cy.get('[data-cy=status]').type('Stolen');
+    cy.get('[data-cy=addBook]').click();
+  });
 });

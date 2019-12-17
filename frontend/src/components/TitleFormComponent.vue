@@ -40,7 +40,7 @@
         v-model="form.isbn"
         label="isbn"
         outlined
-        data-cy=isbn
+        data-cy="isbn"
       />
     </v-item-group>
     <v-select
