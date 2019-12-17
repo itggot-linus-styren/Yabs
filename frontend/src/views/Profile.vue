@@ -9,7 +9,7 @@
       <v-col col="12">
         <v-card>
           <v-card-title>{{ usersModule.currentUser.name }}</v-card-title>
-          <v-card-subtitle>{{ usersModule.currentUser.role }} - {{ usersModule.currentUser.klass }}</v-card-subtitle>
+          <v-card-subtitle>{{ usersModule.roleAsText }} - {{ usersModule.currentUser.klass }}</v-card-subtitle>
           <img
             v-if="usersModule.currentUser.photo_path"
             :src="`http://localhost:3000/${usersModule.currentUser.photo_path}`"
@@ -51,7 +51,7 @@ import LoansModule from '../store/modules/LoansModule';
 export default class Profile extends Vue {
   private usersModule: VuexModule = UsersModule;
 
-  private created() {
+  private created(): void {
     LoansModule.fetchAll();
   }
 }

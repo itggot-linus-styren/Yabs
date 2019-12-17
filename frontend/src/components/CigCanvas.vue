@@ -57,7 +57,7 @@ export default class CigCanvas extends Vue {
 
   public name: string = '';
   public barcode: string = '';
-  public role: string = '';
+  public role: number = 0;
   public email: string = '';
   public width: number = 0;
   public height: number = 0;
