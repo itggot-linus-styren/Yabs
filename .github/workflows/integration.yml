@@ -51,7 +51,7 @@ jobs:
       run: |
         cd frontend
         yarn install
-        yarn build
+        yarn build --silent
     - uses: actions/cache@v1
       id: cache
       with:
@@ -91,7 +91,7 @@ jobs:
     - name: Run e2e tests
       run: |
         cd frontend
-        yarn cypress run
+        yarn cypress run -e env=test
     - uses: actions/upload-artifact@v1
       if: failure()
       with:
