@@ -4,7 +4,6 @@ import {
   VueClass,
   Wrapper,
   ThisTypedMountOptions,
-  createLocalVue,
 } from '@vue/test-utils';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
@@ -17,10 +16,9 @@ export function factory<V extends Vue>(
   options?: ThisTypedMountOptions<V>,
   mountFunc: any = mount,
 ): Wrapper<V> {
-  const localVue = createLocalVue();
 
-  localVue.use(Vuetify);
-  localVue.use(Vuex);
+  Vue.use(Vuetify);
+  Vue.use(Vuex);
 
   const storeConfig = {
     modules: {
@@ -31,7 +29,6 @@ export function factory<V extends Vue>(
   const store = new Vuex.Store(cloneDeep(storeConfig));
 
   return mountFunc(component, {
-    localVue,
     store,
     ...options,
   });
