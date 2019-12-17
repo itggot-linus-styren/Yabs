@@ -12,7 +12,9 @@ interface BookState {
 export interface Book {
   barcode: string,
   title_id: number,
-  status: string
+  status: string,
+  created_at: string,
+  updated_at: string
 }
 
 export interface GResponse {
@@ -54,7 +56,7 @@ class BooksModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public fetchSingle(barcode: string): Promise<any> {
+  public fetchSingle(barcode: string): Promise<Book> {
     return new Promise((resolve, reject) => {
       BooksAPI.single(barcode)
         .then((response: any) => {

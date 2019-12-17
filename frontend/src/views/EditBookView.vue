@@ -1,8 +1,7 @@
 <template>
 <div>
-    <!-- Set in image given from google isbn by using book.volumeInfo.imageLinks.small or medium at the end -->
     <v-img
-        src="https://bad.src/not/valid"
+        :src="title.cover"
         lazy-src="https://picsum.photos/id/11/100/60"
         aspect-ratio="1"
         class="grey lighten-2"
@@ -19,15 +18,16 @@
         </v-row>
     </template>
     </v-img>
-    <BookStatusComponent :title="book.volumeInfo.title" :status="result.status" :barcode="result.barcode" />
+    <BookStatusComponent :title="title.name" :status="book.status" :barcode="book.barcode" />
 </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import BooksModule, {GResponse} from '../store/modules/BooksModule';
+import BooksModule, {Book} from '../store/modules/BooksModule';
 import BookStatusComponent from '../components/BookStatusComponent'
 import key from '../config/api.config'
+import TitlesModule, {Title} from '../store/modules/TitlesModule';
 
 
 @Component({
@@ -36,16 +36,13 @@ import key from '../config/api.config'
     }
 })
 export default class EditBook extends Vue {
-    private result: {};
-    private isbn: GResponse;
-    private book: {};
+    private book: Book;
+    private title: Title;
     
     private async created(){
-        this.result = BooksModule.fetchSingle(this.$route.params.id)
+        this.book = BooksModule.fetchSingle(this.$route.params.id)
 
-        this.isbn = await fetch(`https://www.googleapis.com/books/v1/volumes?q=isbn:${this.result.isbn}&key=${key}`)
-
-        this.book = this.isbn.items[0]
+        this.title = TitlesModule.fetchSingle(this.book.title_id)
     }
     
 }
