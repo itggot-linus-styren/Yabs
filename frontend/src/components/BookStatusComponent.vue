@@ -35,7 +35,7 @@ export default class BookStatusComponent extends Vue {
     @Prop({default: ''}) private barcode: string;
     @Prop({default: 'Available'}) private status: string;
 
-    private statuses = ['Loaned', 'Available', 'Damaged', 'Lost']
+    private statuses = ['Damaged', 'Lost', 'Sabotaged', 'Notes in book']
     
 
     private form: Book = {
