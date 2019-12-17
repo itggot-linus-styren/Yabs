@@ -34,17 +34,21 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 
-interface IHeader {
+interface Header {
   text: string;
   value: string;
   sortable?: boolean;
 }
 
+interface Item {
+  routeSpecifier: string
+}
+
 @Component({})
 export default class ListComponent extends Vue {
   public search: string = '';
-  @Prop() public headers!: IHeader[];
-  @Prop() public items!: any[]; // Please fix generic types.
+  @Prop() public headers!: Header[];
+  @Prop() public items!: object[]; // Please fix generic types.
   @Prop({ default: false }) public useActions!: boolean;
   @Prop() public routePath!: string;
   @Prop({ default: 10 }) public itemsPerPage!: number;
@@ -54,11 +58,13 @@ export default class ListComponent extends Vue {
     if(this.useActions && !this.contains(this.headers, 'Actions') ) {
       this.headers.push({ text: 'Actions', value: 'action', sortable: false });
     }
+
+    console.log(this.$attrs);
   }
 
   // Returns true if the headers array contains an object with the given header text/title.
   // Use this instead of the includes function when checking if the list "headers" contain the defined headerText. 
-  contains(headers: IHeader[], headerText: string): boolean {
+  contains(headers: Header[], headerText: string): boolean {
     let i = 0;
     let result = false;
     while(i < headers.length) {
@@ -70,7 +76,7 @@ export default class ListComponent extends Vue {
   }
 
   // Routes the user to a new page using the information passed down from the parent component.
-  route(event: Event, item: any): void {
+  route(event: Event, item: Item): void {
     event.preventDefault();
     this.$router.push(`/${this.routePath}/${item.routeSpecifier}`);
   }

@@ -38,6 +38,10 @@ class UsersModule extends VuexModule {
     return this._users;
   }
 
+  get allAsArray() {
+    return Object.keys(this._users).map( (id) => this._users[Number(id)]);
+  }
+
   get currentUser(): User {
     return this._users[this._currentUser];
   }

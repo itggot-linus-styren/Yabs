@@ -1,16 +1,15 @@
 <template>
   <ListComponent
     :headers="headers"
-    :items="booksModule.allAsArray"
+    :items="usersModule.allAsArray"
     :items-per-page="5"
     class="elevation-1"
-    v-bind="$attrs"
   />
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import BooksModule from '../store/modules/BooksModule';
+import UsersModule from '../store/modules/UsersModule';
 import { VuexModule } from 'vuex-module-decorators';
 import ListComponent from '@/components/ListComponent.vue';
 
@@ -19,12 +18,12 @@ import ListComponent from '@/components/ListComponent.vue';
     ListComponent
   }
 })
-export default class BookListComponent extends Vue {
-  private booksModule: VuexModule = BooksModule;
-  public headers: object[] = [
-    { text: 'Titel', value: 'title.name', sortable: false },
-    { text: 'Status', value: 'status', sortable: false },
-    { text: 'Sträckkod', value: 'barcode', sortable: false },
+export default class LoanListComponent extends Vue {
+  private usersModule: VuexModule = UsersModule;
+  private userHeaders: object[] = [
+    { text: 'Namn', value: 'name' },
+    { text: 'Email', value: 'email' },
+    { text: 'Klass', value: 'klass' },
   ];
 }
 </script>
