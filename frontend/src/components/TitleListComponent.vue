@@ -2,7 +2,6 @@
   <ListComponent
     :headers="headers"
     :items="titlesModule.allAsArray"
-    :items-per-page="5"
     class="elevation-1"
   />
 </template>
@@ -13,18 +12,24 @@ import TitlesModule from '../store/modules/TitlesModule';
 import { VuexModule } from 'vuex-module-decorators';
 import ListComponent from '@/components/ListComponent.vue';
 
+
+
+// The TitleListComponent inherits the information about the titles from the titles module
+// and the headers that are created in the headers object
+
 @Component({
   components: {
     ListComponent
   }
 })
+
 export default class TitleListComponent extends Vue {
   private titlesModule: VuexModule = TitlesModule;
   private headers: object[] = [
-    { text: 'Titel', value: 'name', sortable: false },
-    { text: 'Kostnad', value: 'cost', sortable: false },
-    { text: 'Typ', value: 'title_type', sortable: false },
-    { text: 'ISBN', value: 'isbn', sortable: false },
+    { text: 'Titel', value: 'name' },
+    { text: 'Kostnad', value: 'cost' },
+    { text: 'Typ', value: 'title_type' },
+    { text: 'ISBN', value: 'isbn' },
   ];
 }
 </script>

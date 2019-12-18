@@ -12,8 +12,8 @@
       >
         <v-text-field
           id="nestedUid"
-          data-cy="student_barcode"
           v-model="form.loaned_by_id"
+          data-cy="student_barcode"
           label="Elevens Streckkod"
           outlined
         />
@@ -61,6 +61,8 @@ interface Form {
   book_id: number | string;
 }
 
+// loan form component is used to user interface for the user to create a loan and is later 
+// authorized by the pundit dependency 
 @Component
 export default class LoanFormComponent extends Vue {
   public form: Form = {
@@ -70,7 +72,12 @@ export default class LoanFormComponent extends Vue {
   };
   public show: boolean = true;
 
+  // Eventlistener that does not reload the page when executed, sets the lent by id to the 
+  // current user that has been logged in and then rerenders the loan form for the 
+  // user to recreate a loan 
+
   public onSubmit(evt: Event): void {
+
     evt.preventDefault();
     this.form.lent_by_id = UsersModule.currentUserID;
     if (!!this.form.lent_by_id && !!this.form.loaned_by_id && !!this.form.book_id) {
@@ -80,7 +87,12 @@ export default class LoanFormComponent extends Vue {
     }
   }
 
+
+  // this is the Eventlistener for the user to reset the form if the user has entered the 
+  // wrong information about the loan
+
   public onReset(evt: Event): void {
+
     evt.preventDefault();
     this.form.loaned_by_id = '';
     this.form.book_id = '';

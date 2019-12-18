@@ -13,45 +13,46 @@ import convertNested from '@/helpers/convertNestedToArray';
 
 export interface Title {
   cost: number;
-  created_at: string;
+  created_at: string; //eslint-disable-line camelcase
   id: number;
   isbn: string;
   name: string;
-  title_type: string;
-  updated_at: string;
+  title_type: string; //eslint-disable-line camelcase
+  updated_at: string; //eslint-disable-line camelcase
 }
 
 export interface TitleForm {
+  id: number;
   name: string;
   cost: string;
   isbn: string;
-  title_type: string;
+  title_type: string; //eslint-disable-line camelcase
 }
 
 export interface TitleCollection { [id: number]: Title; }
 
 @Module({dynamic: true, namespaced: true, name: 'TitlesModule', store})
 class TitlesModule extends VuexModule {
-  private _failure: any = null;
+  private _failure: object = {};
   private _titles: TitleCollection = {};
 
-  get all() {
+  get all(): TitleCollection {
     return this._titles;
   }
 
-  get allAsArray() {
+  get allAsArray(): Title[] {
     return convertNested(this._titles);
   }
 
   @Action({rawError: true})
-  public fetchAll() {
+  public fetchAll(): Promise<TitleCollection> {
     return new Promise((resolve, reject) => {
       TitlesAPI.all()
-        .then((response: any) => {
+        .then((response: Title[]) => {
           this.convertTitleList(response);
           resolve();
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setFailure(error);
           reject(error);
         });
@@ -59,14 +60,14 @@ class TitlesModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public create(request: TitleForm) {
+  public create(request: TitleForm): Promise<Title> {
     return new Promise((resolve, reject) => {
       TitlesAPI.create(request)
-        .then((response: any) => {
+        .then((response: Title) => {
           this.setTitle(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setFailure(error);
           reject(error);
         });
@@ -74,14 +75,14 @@ class TitlesModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public update(request: any) {
+  public update(request: TitleForm): Promise<Title> {
     return new Promise((resolve, reject) => {
       TitlesAPI.update(request)
-        .then((response: any) => {
+        .then((response: Title) => {
           this.setTitle(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setFailure(error);
           reject(error);
         });
@@ -89,14 +90,14 @@ class TitlesModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public delete(request: any) {
+  public delete(request: Title): Promise<number> {
     return new Promise((resolve, reject) => {
       TitlesAPI.delete(request)
-        .then((response: any) => {
+        .then((response: number) => {
           this.removeTitle(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setFailure(error);
           reject(error);
         });
@@ -104,22 +105,22 @@ class TitlesModule extends VuexModule {
   }
 
   @Mutation
-  private setTitle(payload: any) {
+  private setTitle(payload: Title): void {
     Vue.set(this._titles, payload.id, payload);
   }
 
   @Mutation
-  private removeTitle(titleId: string) {
+  private removeTitle(titleId: number): void {
     Vue.delete(this._titles, titleId);
   }
 
   @Mutation
-  private setFailure(payload: any) {
+  private setFailure(payload: object): void {
     this._failure = payload;
   }
 
   @Mutation
-  private convertTitleList(payload: Title[]) {
+  private convertTitleList(payload: Title[]): void {
     const list = convertList(payload, 'id');
     this._titles = list;
   }

@@ -59,6 +59,10 @@ import { VuexModule } from 'vuex-module-decorators';
     GoogleLogin,
   },
 })
+
+// This is the NavbarComponent and has one single method that tries to sign out the user
+// if the user is logged in
+
 export default class NavbarComponent extends Vue {
   public usersModule: VuexModule = UsersModule;
   

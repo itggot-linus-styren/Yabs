@@ -6,7 +6,7 @@ loan_1:
   book_id: '5000'
   returned_at: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-17 10:07:03.146429000 Z
+    utc: &1 2019-12-18 10:33:36.895809000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -14,16 +14,16 @@ loan_1:
     utc: *1
     zone: *2
     time: *1
-  expiration_date: 2019-12-17
+  expiration_date: 2019-12-18
 
 loan_2:
   id: 2
   loaned_by_id: 1975529089
   lent_by_id: 1954282603
   book_id: '1001'
-  returned_at: 2019-12-17
+  returned_at: 2019-12-18
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-17 10:07:03.155066000 Z
+    utc: &1 2019-12-18 10:33:36.904990000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -31,4 +31,4 @@ loan_2:
     utc: *1
     zone: *2
     time: *1
-  expiration_date: 2019-12-17
+  expiration_date: 2019-12-18
