@@ -1,5 +1,16 @@
 import UsersModule, { User } from '../store/modules/UsersModule';
 
+interface Roles { [bitValue: number]: string}
+
+const roles: Roles = {
+  1: 'Elev',
+  2: 'Elevhälsoteam',
+  4: 'Lärare',
+  8: 'Vaktmästare',
+  16: 'Administratör',
+  32: 'Rektor'
+};
+
 export default class RoleChecker {
 
   private static checkPermission(user: User, required: number): boolean {
@@ -28,5 +39,15 @@ export default class RoleChecker {
 
   static isStudent(): boolean {
     return UsersModule.currentUser && (UsersModule.currentUser.role & 1) == 1;
+  }
+
+  static roleAsText(): string {
+    if (!UsersModule.currentUser) {return ''; }
+    for(const bitValue of Object.keys(roles).reverse()) {
+      if (UsersModule.currentUser.role >= Number(bitValue)) {
+        return roles[Number(bitValue)];
+      }
+    }
+    return '';
   }
 }

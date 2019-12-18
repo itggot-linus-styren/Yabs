@@ -43,18 +43,6 @@ class UsersModule extends VuexModule {
     return this._users[this._currentUser];
   }
 
-  get roleAsText(): string {
-    if (!this.currentUser) {return ''; }
-    let output: string = '';
-    if (RoleChecker.isStudent()) {output = 'Elev'; 
-    } else if (RoleChecker.isPrincipal()) {output = 'Rektor';
-    } else if (RoleChecker.isAdmin()) {output = 'Administratör';
-    } else if (RoleChecker.isCaretaker()) {output = 'Vaktmästare';
-    } else if (RoleChecker.isTeacher()) {output = 'Lärare';
-    } else if (RoleChecker.isStudentHealth()) {output = 'Elevhälsoteam'; }
-    return output;
-  }
-
   @Action({rawError: true})
   public fetchAll(): Promise<object> {
     return new Promise((resolve, reject) => {
