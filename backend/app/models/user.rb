@@ -1,6 +1,7 @@
 class User < ApplicationRecord
   self.primary_key = 'uid'
   has_one_attached :profile_image
+  has_many :reviews, dependent: :destroy
 
   # Rektor
   def principal?

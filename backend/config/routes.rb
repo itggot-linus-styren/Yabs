@@ -5,6 +5,7 @@ Rails.application.routes.draw do
       resources :loans
       resources :books
       resources :titles
+      resources :reviews
 
       resources :auth, only: [:index, :create, :destroy]
     end
