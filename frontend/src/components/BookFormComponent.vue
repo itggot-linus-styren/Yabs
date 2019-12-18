@@ -37,8 +37,8 @@
     </v-btn>
     <v-btn
       large
-      @click.prevent="onReset"
       data-cy="reset"
+      @click.prevent="onReset"
     >
       Rensa fält
     </v-btn>

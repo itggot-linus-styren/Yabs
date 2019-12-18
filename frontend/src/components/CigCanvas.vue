@@ -1,12 +1,17 @@
 <template>
-  <v-card justify="center" align="center" id="canvas-container">
+  <v-card
+    id="canvas-container"
+    justify="center"
+    align="center"
+  >
     <div
       id="canvasContainer"
       ref="canvasContainer"
     >
-      <canvas height="500"
+      <canvas
         id="canvas"
         ref="canvas"
+        height="500"
       />
     </div>
     <v-form>
@@ -15,10 +20,16 @@
           v-model="name"
           :items="userNames"
         />
-        <v-btn class="btn" @click="savePicture">
+        <v-btn
+          class="btn"
+          @click="savePicture"
+        >
           Spara Bild
         </v-btn>
-        <v-btn class="btn" @click="downloadCanvas">
+        <v-btn
+          class="btn"
+          @click="downloadCanvas"
+        >
           Ladda ned kort
         </v-btn>
       </v-item-group>

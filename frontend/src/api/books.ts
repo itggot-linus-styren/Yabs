@@ -1,13 +1,12 @@
 import axios from 'axios';
+import { Book, BookForm } from '@/store/modules/BooksModule';
 
 const headers = {
   'Content-Type': 'application/json',
 };
 
 export default {
-
-  async all() {
-
+  async all(): Promise<Book[]> {
     try {
       const response = await axios.get('http://localhost:3000/api/v1/books',
         { headers, withCredentials: true });
@@ -15,10 +14,8 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
-  async create(request: any) {
-
+  async create(request: BookForm): Promise<Book> {
     try {
       const response = await axios.post('http://localhost:3000/api/v1/books', request, {
         headers: {
@@ -30,10 +27,8 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
-  async update(request: any) {
-
+  async update(request: BookForm): Promise<Book> {
     try {
       const response = await axios.patch(`http://localhost:3000/api/v1/books/${request.barcode}`, request,
         { headers, withCredentials: true });
@@ -41,10 +36,8 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
-  async delete(request: any) {
-
+  async delete(request: Book): Promise<string> {
     try {
       const response = await axios.delete(`http://localhost:3000/api/v1/books/${request.barcode}`,
         { headers, withCredentials: true });
@@ -52,6 +45,5 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
 };

@@ -12,8 +12,8 @@
       >
         <v-text-field
           id="nestedUid"
-          data-cy="student_barcode"
           v-model="form.loaned_by_id"
+          data-cy="student_barcode"
           label="Elevens Streckkod"
           outlined
         />

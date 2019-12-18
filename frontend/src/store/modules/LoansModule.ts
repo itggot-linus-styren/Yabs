@@ -6,95 +6,103 @@ import convertList from '../../helpers/convertArrayToNested';
 
 export interface Loan {
   book: object;
-  book_id: number;
-  created_at: string;
-  expiration_date: string;
+  book_id: number; //eslint-disable-line camelcase
+  created_at: string; //eslint-disable-line camelcase
+  expiration_date: string; //eslint-disable-line camelcase
   id: number;
-  lent_by: object;
-  lent_by_id: number;
-  loaned_by: object;
-  loaned_by_id: number;
-  returned_at: string|null;
-  updated_at: string;
+  lent_by: object; //eslint-disable-line camelcase
+  lent_by_id: number; //eslint-disable-line camelcase
+  loaned_by: object; //eslint-disable-line camelcase
+  loaned_by_id: number; //eslint-disable-line camelcase
+  returned_at: string|null; //eslint-disable-line camelcase
+  updated_at: string; //eslint-disable-line camelcase
 }
+
+export interface LoanForm {
+  id: number;
+  book_id: number; //eslint-disable-line camelcase
+  lent_by_id: number; //eslint-disable-line camelcase
+  loaned_by_id: number; //eslint-disable-line camelcase
+}
+
 export interface LoanCollection {[id: number]: Loan; }
 
 @Module({dynamic: true, namespaced: true, name: 'LoansModule', store})
 class LoansModule extends VuexModule {
   private _loans: LoanCollection = {};
-  private _failure: any = null;
+  private _failure: object = {};
 
-  get all() {
+  get all(): LoanCollection {
     return this._loans;
   }
 
-  get allAsArray() {
+  get allAsArray(): Loan[] {
     return Object.keys(this._loans).map( (id) => this._loans[parseInt(id)]);
   }
 
   @Action({rawError: true})
-  public fetchAll() {
+  public fetchAll(): Promise<LoanCollection> {
     return new Promise((resolve, reject) => {
       LoansAPI.all()
-        .then((response: any) => {
+        .then((response: Loan[]) => {
           this.convertLoanList(response);
-          resolve();
+          resolve(this._loans);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           reject(error);
         });
     });
   }
 
   @Action({rawError: true})
-  public create(request: any): Promise<Loan> {
+  public create(request: LoanForm): Promise<Loan> {
     return new Promise((resolve, reject) => {
       LoansAPI.create(request)
-        .then((response: any) => {
+        .then((response: Loan) => {
           this.setLoan(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           reject(error);
         });
     });
   }
 
   @Action({rawError: true})
-  public update(request: any) {
+  public update(request: LoanForm): Promise<Loan> {
     return new Promise((resolve, reject) => {
       LoansAPI.update(request)
-        .then((response: any) => {
+        .then((response: Loan) => {
           this.setLoan(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           reject(error);
         });
     });
   }
 
   @Action({rawError: true})
-  public delete(request: any) {
+  public delete(request: Loan): Promise<number> {
     return new Promise((resolve, reject) => {
       LoansAPI.delete(request)
-        .then((response: any) => {
+        .then((response: number) => {
           this.removeLoan(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           reject(error);
         });
     });
   }
 
   @Mutation
-  private setLoan(payload: any):void {
+  private setLoan(payload: Loan):void {
     Vue.set(this._loans, payload.id, payload);
   }
 
   @Mutation
-  private removeLoan(loanId: string): void {
+  private removeLoan(loanId: number): void {
     Vue.delete(this._loans, loanId);
   }
 
@@ -105,7 +113,7 @@ class LoansModule extends VuexModule {
   }
 
   @Mutation
-  private setFailure(payload: any): void {
+  private setFailure(payload: object): void {
     //should enable e2e CI pipeline
   }
 }
