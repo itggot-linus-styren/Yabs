@@ -119,6 +119,6 @@ when "user"
 when "review"
     fixtures_review
 else
-    p "Error: Unsupported fixture flagg"
+    p "Error: Unsupported fixture flag"
 end
 
