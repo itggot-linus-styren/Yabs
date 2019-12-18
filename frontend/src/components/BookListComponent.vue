@@ -2,8 +2,10 @@
   <ListComponent
     :headers="headers"
     :items="booksModule.allAsArray"
-    :items-per-page="5"
+    :route-path="'books'"
+    :route-specifier="'barcode'"
     class="elevation-1"
+    v-bind="$attrs"
   />
 </template>
 
@@ -21,9 +23,9 @@ import ListComponent from '@/components/ListComponent.vue';
 export default class BookListComponent extends Vue {
   private booksModule: VuexModule = BooksModule;
   public headers: object[] = [
-    { text: 'Titel', value: 'title.name', sortable: false },
-    { text: 'Status', value: 'status', sortable: false },
-    { text: 'Sträckkod', value: 'barcode', sortable: false },
+    { text: 'Titel', value: 'title.name' },
+    { text: 'Status', value: 'status' },
+    { text: 'Sträckkod', value: 'barcode' },
   ];
 }
 </script>

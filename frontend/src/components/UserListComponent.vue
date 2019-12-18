@@ -1,14 +1,15 @@
 <template>
   <ListComponent
     :headers="headers"
-    :items="loansModule.allAsArray"
+    :items="usersModule.allAsArray"
+    :items-per-page="5"
     class="elevation-1"
   />
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import LoansModule from '../store/modules/LoansModule';
+import UsersModule from '../store/modules/UsersModule';
 import { VuexModule } from 'vuex-module-decorators';
 import ListComponent from '@/components/ListComponent.vue';
 
@@ -18,12 +19,11 @@ import ListComponent from '@/components/ListComponent.vue';
   }
 })
 export default class LoanListComponent extends Vue {
-  private loansModule: VuexModule = LoansModule;
+  private usersModule: VuexModule = UsersModule;
   private headers: object[] = [
-    { text: 'Lånad av', value: 'loaned_by.name' },
-    { text: 'Utlånad av', value: 'lent_by.name' },
-    { text: 'Boktitel', value: 'book.title.name' },
-    { text: 'Utgångsdatum', value: 'expiration_date' },
+    { text: 'Namn', value: 'name' },
+    { text: 'Email', value: 'email' },
+    { text: 'Klass', value: 'klass' },
   ];
 }
 </script>
