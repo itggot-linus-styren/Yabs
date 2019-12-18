@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Book, BookForm } from '@/store/modules/BooksModule';
+import { Book, BookForm } from '@/types';
 
 const headers = {
   'Content-Type': 'application/json',

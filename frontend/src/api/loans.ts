@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Loan, LoanForm } from '@/store/modules/LoansModule';
+import { Loan, LoanForm } from '@/types';
 
 const headers = {
   'Content-Type': 'application/json',

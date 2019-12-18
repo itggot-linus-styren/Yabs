@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Title, TitleForm } from '@/store/modules/TitlesModule';
+import { Title, TitleForm } from '@/types';
 
 const headers = {
   'Content-Type': 'application/json',

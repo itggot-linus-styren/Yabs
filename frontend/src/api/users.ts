@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { User, UserForm } from '@/store/modules/UsersModule';
+import { User, UserForm } from '@/types';
 
 export default {
 

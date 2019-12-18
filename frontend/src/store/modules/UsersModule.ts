@@ -7,33 +7,10 @@ import {
   Mutation,
 } from 'vuex-module-decorators';
 import store from '..';
+import { User, UserForm, UserCollection } from '@/types';
 import UsersAPI from '../../api/users';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';
-
-export interface User {
-  created_at: string; //eslint-disable-line camelcase
-  email: string;
-  google_token: string; //eslint-disable-line camelcase
-  klass: string;
-  name: string;
-  photo_path: string; //eslint-disable-line camelcase
-  role: number;
-  uid: number;
-  updated_at: string; //eslint-disable-line camelcase
-}
-
-export interface UserForm {
-  email: string;
-  google_token: string; //eslint-disable-line camelcase
-  klass: string;
-  name: string;
-  photo_path: string; //eslint-disable-line camelcase
-  role: number;
-  uid: number;
-}
-
-export interface UserCollection { [uid: number]: User; }
 
 @Module({dynamic: true, namespaced: true, name: 'UsersModule', store})
 class UsersModule extends VuexModule {

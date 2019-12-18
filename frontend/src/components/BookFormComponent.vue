@@ -48,7 +48,8 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import TitlesModule from '../store/modules/TitlesModule';
-import BooksModule, { BookForm } from '../store/modules/BooksModule';
+import BooksModule from '../store/modules/BooksModule';
+import { BookForm } from '../types';
 import { VuexModule } from 'vuex-module-decorators';
 
 // This is the component for the book form which includes all the information for the book

@@ -52,7 +52,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import LoansModule, { Loan, LoanForm } from '../store/modules/LoansModule';
+import LoansModule from '../store/modules/LoansModule';
+import { Loan, LoanForm } from '../types';
 import UsersModule from '../store/modules/UsersModule';
 
 // loan form component is used to user interface for the user to create a loan and is later 
