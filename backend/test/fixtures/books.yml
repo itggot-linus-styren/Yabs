@@ -4,109 +4,123 @@ book_5000:
   barcode: '5000'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 10:33:36.873185000 Z
+    utc: &1 2019-12-18 14:23:28.051051000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2019-12-18 14:23:28.051051000 Z
     zone: *2
+    time: *3
+
+book_1001:
+  title_id: 3
+  barcode: '1001'
+  status: OK
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2019-12-18 14:23:28.056364000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
     time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2019-12-18 14:23:28.056364000 Z
+    zone: *2
+    time: *3
 
 book_5002:
   title_id: 1
   barcode: '5002'
   status: Broken
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 10:33:40.459715000 Z
+    utc: &1 2019-12-18 14:23:28.112119000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2019-12-18 14:23:28.112119000 Z
     zone: *2
-    time: *1
+    time: *3
 
 book_5003:
   title_id: 1
   barcode: '5003'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 10:33:40.465982000 Z
+    utc: &1 2019-12-18 14:23:28.117257000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2019-12-18 14:23:28.117257000 Z
     zone: *2
-    time: *1
+    time: *3
 
 book_5004:
   title_id: 2
   barcode: '5004'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 10:33:40.486053000 Z
+    utc: &1 2019-12-18 14:23:28.123696000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2019-12-18 14:23:28.123696000 Z
     zone: *2
-    time: *1
+    time: *3
 
 book_5005:
   title_id: 2
   barcode: '5005'
   status: Broken
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 10:33:40.492905000 Z
+    utc: &1 2019-12-18 14:23:28.129886000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2019-12-18 14:23:28.129886000 Z
     zone: *2
-    time: *1
+    time: *3
 
 book_5006:
   title_id: 3
   barcode: '5006'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 10:33:40.507037000 Z
+    utc: &1 2019-12-18 14:23:28.134007000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2019-12-18 14:23:28.134007000 Z
     zone: *2
-    time: *1
+    time: *3
 
 book_5007:
   title_id: 4
   barcode: '5007'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 10:33:40.514782000 Z
+    utc: &1 2019-12-18 14:23:28.138721000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2019-12-18 14:23:28.138721000 Z
     zone: *2
-    time: *1
+    time: *3
 
 book_5008:
   title_id: 4
   barcode: '5008'
   status: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 10:33:40.522068000 Z
+    utc: &1 2019-12-18 14:23:28.142569000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2019-12-18 14:23:28.142569000 Z
     zone: *2
-    time: *1
+    time: *3
