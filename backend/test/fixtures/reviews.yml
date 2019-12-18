@@ -4,7 +4,7 @@ review_1:
   score: 3
   review: I didn't particulary like this book.
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 10:05:22.551804000 Z
+    utc: &1 2019-12-18 10:33:40.451666000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
