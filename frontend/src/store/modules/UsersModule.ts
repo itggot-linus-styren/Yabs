@@ -9,40 +9,37 @@ import {
 import store from '..';
 import UsersAPI from '../../api/users';
 import convertList from '../../helpers/convertArrayToNested';
+
 export interface User {
-  created_at: string;
+  created_at: string; //eslint-disable-line camelcase
   email: string;
-  google_token: string;
+  google_token: string; //eslint-disable-line camelcase
   klass: string;
   name: string;
-  photo_path: string;
-  role: string;
+  photo_path: string; //eslint-disable-line camelcase
+  role: number;
   uid: number;
-  updated_at: string;
+  updated_at: string; //eslint-disable-line camelcase
 }
 
 export interface UserCollection { [uid: number]: User; }
 
-export interface UserState {
-  users: UserCollection;
-  currentUser: any;
-  failure: any;
-}
-
-@Module({dynamic: true, namespaced: true, name: 'UsersModule', store, preserveState: true})
+@Module({dynamic: true, namespaced: true, name: 'UsersModule', store})
 class UsersModule extends VuexModule {
-  private userState: UserState = {users: {}, currentUser: null, failure: null};
+  private _failure: object = {};
+  public _users: UserCollection = {};
+  private _currentUser: number = 0;
 
   get currentUserID(): number {
-    return this.userState.currentUser;
+    return this._currentUser;
   }
 
   get all(): UserCollection {
-    return this.userState.users;
+    return this._users;
   }
 
   get currentUser(): User {
-    return this.all[this.userState.currentUser];
+    return this._users[this._currentUser];
   }
 
   @Action({rawError: true})
@@ -50,40 +47,42 @@ class UsersModule extends VuexModule {
     return new Promise((resolve, reject) => {
       UsersAPI.all()
         .then((response: User[]) => {
-          console.log(response);
           this.convertUserList(response);
-          resolve();
+          resolve(this._users);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
+          this.setFailure(error);
           reject(error);
         });
     });
   }
 
   @Action({rawError: true})
-  public update(request: any) {
+  public update(request: object): Promise<object> {
     return new Promise((resolve, reject) => {
       UsersAPI.update(request)
-        .then((response: any) => {
+        .then((response: User) => {
           this.setUser(response);
           this.setCurrentUser(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           reject(error);
         });
     });
   }
 
   @Action({rawError: true})
-  public signIn(request: any) {
+  public signIn(request: string): Promise<object> {
     return new Promise((resolve, reject) => {
       UsersAPI.signIn(request)
-        .then((response: any) => {
+        .then((response: User) => {
           this.setCurrentUser(response);
+          this.fetchAll();
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
+          this.setFailure(error);
           reject(error);
         });
     });
@@ -93,35 +92,36 @@ class UsersModule extends VuexModule {
   public signOut(): Promise<object> {
     return new Promise((resolve, reject) => {
       UsersAPI.signOut()
-        .then((response: any) => {
+        .then((response: User) => {
           this.setCurrentUser(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           reject(error);
         });
     });
   }
 
   @Mutation
-  public setUser(payload: any): void {
-    Vue.set(this.userState.users, payload.uid, payload);
+  public setUser(payload: User): void {
+    Vue.set(this._users, payload.uid, payload);
   }
 
   @Mutation
-  public setCurrentUser(payload: any): void {
-    Vue.set(this.userState, 'currentUser', payload.uid);
+  public setCurrentUser(payload: User): void {
+    this._currentUser = payload.uid;
   }
 
   @Mutation
-  public setFailure(payload: any): void {
+  public setFailure(payload: object): void {
+    console.log(payload);
     // This should fix end to end tests(yarn build)
   }
 
   @Mutation
   public convertUserList(payload: User[]): void {
     const list = convertList(payload, 'uid');
-    Vue.set(this.userState, 'users', list);
+    this._users = list;
   }
 }
 

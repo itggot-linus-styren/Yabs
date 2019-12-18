@@ -19,7 +19,7 @@
         <v-col>
           <router-link
             class="link row-btn"
-            to="/users"
+            :to="'/users/'+ usersModule.currentUserID"
           >
             <v-btn
               class="row-btn"
@@ -105,6 +105,7 @@ export default class Start extends Vue {
   public size: string = 'lg';
   public primary: string = 'primary';
   public loading: boolean = true;
+  private usersModule = UsersModule;
 
   // The users module is imported and used in order to get information about the current user
   // but also so that the possibility for a user to monitor its soon expiring loans.
@@ -113,8 +114,10 @@ export default class Start extends Vue {
   // by fetching all the information from the two modules
 
   public created() {
-    UsersModule.fetchAll();
-    LoansModule.fetchAll();
+    if(UsersModule.currentUserID){
+      UsersModule.fetchAll();
+      LoansModule.fetchAll();
+    }
   }
 }
 </script>

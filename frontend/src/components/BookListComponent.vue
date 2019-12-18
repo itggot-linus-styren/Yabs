@@ -4,7 +4,7 @@
 -->
 
 <template>
-  <v-data-table
+  <ListComponent
     :headers="headers"
     :items="booksModule.allAsArray"
     :items-per-page="5"
@@ -16,8 +16,13 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import BooksModule from '../store/modules/BooksModule';
 import { VuexModule } from 'vuex-module-decorators';
+import ListComponent from '@/components/ListComponent.vue';
 
-@Component
+@Component({
+  components: {
+    ListComponent
+  }
+})
 export default class BookListComponent extends Vue {
   private booksModule: VuexModule = BooksModule;
   

@@ -5,6 +5,7 @@
         <v-card>
           <v-chip-group mandatory>
             <v-chip
+              v-if="!RoleChecker.isStudent()"
               v-model="users"
               class="ma-2"
               color="success"
@@ -40,19 +41,19 @@
             </v-chip>
           </v-chip-group>
 
-          <SearchListComponent 
+          <ListComponent 
             v-if="loans"
             :items="mockupLoans" 
             :headers="loanHeaders"
           />
-          <SearchListComponent 
+          <ListComponent 
             v-if="books"
             :items="mockupBooks" 
             :headers="bookHeaders"
             :use-actions="true"
             :route-path="'books'"
           />
-          <SearchListComponent 
+          <ListComponent 
             v-if="users"
             :items="mockupUsers" 
             :headers="userHeaders"
@@ -67,14 +68,16 @@
 import {Vue, Component, Prop} from 'vue-property-decorator';
 
 import LoansModule from '../store/modules/LoansModule';
-import SearchListComponent from '@/components/SearchListComponent.vue';
+import ListComponent from '@/components/ListComponent.vue';
+import RoleChecker from '../helpers/RoleChecker';
 
 @Component({
   components: {
-    SearchListComponent
+    ListComponent
   },
 })
-export default class Test extends Vue {
+export default class FindView extends Vue {
+  private RoleChecker: RoleChecker = RoleChecker;
   users:boolean = false;
   loans:boolean = false;
   books:boolean = false;
