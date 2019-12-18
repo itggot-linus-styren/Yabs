@@ -1,5 +1,5 @@
-import UsersModule from '../modules/UsersModule';
-import RoleChecker from '../../helpers/RoleChecker';
+import UsersModule from '@/store/modules/UsersModule';
+import RoleChecker from '../RoleChecker';
 
 describe('RoleChecker.ts', () => {
   it('translate roles correctly', () => {

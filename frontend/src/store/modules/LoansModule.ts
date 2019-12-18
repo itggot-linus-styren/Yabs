@@ -2,7 +2,8 @@ import Vue from 'vue';
 import {VuexModule, Module, getModule, Action, Mutation} from 'vuex-module-decorators';
 import store from '..';
 import LoansAPI from '../../api/loans';
-import convertList from '../../helpers/convertArrayToNested';
+import convertList from '@/helpers/convertArrayToNested';
+import convertNested from '@/helpers/convertNestedToArray';
 
 export interface Loan {
   book: object;
@@ -37,7 +38,7 @@ class LoansModule extends VuexModule {
   }
 
   get allAsArray(): Loan[] {
-    return Object.keys(this._loans).map( (id) => this._loans[parseInt(id)]);
+    return convertNested(this._loans);
   }
 
   @Action({rawError: true})
