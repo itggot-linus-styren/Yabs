@@ -84,7 +84,7 @@ interface Form {
 }
 
 
-// loan form component is used to user interface for the user to create a loan and is later 
+// The LoanFormComponent is used to user interface for the user to create a loan and is later 
 // authorized by the pundit dependency 
 @Component
 export default class LoanFormComponent extends Vue {
@@ -110,7 +110,7 @@ export default class LoanFormComponent extends Vue {
     }
   }
 
-  // this is the Eventlistener for the user to reset the form if the user has entered the 
+  // This is the Eventlistener for the user to reset the form if the user has entered the 
   // wrong information about the loan
 
   public onReset(evt: Event) {

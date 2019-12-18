@@ -3,7 +3,7 @@
 class Api::V1::TitlesController < ApplicationController
   before_action :set_title, only: [:show, :update, :destroy]
 
-  # This is the index method toe render a JSON object with all titles 
+  # This is the index method to render a JSON object with all titles 
   # which shows all titles available.
   # This specific controller is not being authorized
 
@@ -11,7 +11,7 @@ class Api::V1::TitlesController < ApplicationController
     render json: Title.all
   end
 
-  # This is the show method and also generates the Json object of instance of the class
+  # This is the show method which generates the JSON object of instance of the class
   # title
 
   def show
@@ -19,7 +19,7 @@ class Api::V1::TitlesController < ApplicationController
   end
 
   # Create method which instantiates the title class with the right parameters,
-  # saves it to the db and then renders all json object of the instance title
+  # saves it to the db and then renders all JSON object of the instance title
 
   def create
     @title = Title.new(title_params)
@@ -31,7 +31,7 @@ class Api::V1::TitlesController < ApplicationController
     end
   end
 
-  # Update method for the titles and updates with specific params then renders json object
+  # Update method for the titles and updates with specific params then renders JSON object
   # of the updated instance of class title
 
   def update

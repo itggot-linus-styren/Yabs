@@ -59,7 +59,7 @@ import UsersModule from '../store/modules/UsersModule';
   },
 })
 
-// this is the navbarcomponent and has one single method that tries to sign out the user
+// This is the NavbarComponent and has one single method that tries to sign out the user
 // if the user is logged in
 
 export default class NavbarComponent extends Vue {

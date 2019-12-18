@@ -40,7 +40,8 @@ export default class GoogleLogin extends Vue {
     });
   }
 
-  // getter to get the updated version of the instance renderLoginButton
+  // Getter to get the updated version of the instance renderLoginButton
+
   public updated() {
     this.renderLoginButton();
   }
@@ -68,13 +69,15 @@ export default class GoogleLogin extends Vue {
   // onfailure is a standard method used to render the error message when a process has failed
 
   public onFailure(error: any) {
+
     // TODO: show this in a notification
+
     console.error(error);
   }
 
   // signOut takes the the authentication instance and then log out the user that matches
   // that description
-  
+
   public signOut() {
     // @ts-ignore: gapi
     const auth2 = gapi.auth2.getAuthInstance();

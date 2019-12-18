@@ -37,9 +37,9 @@
 </template>
 
 <!-- 
-  There are some uncommon imports in this file such as JQuery, resize and JsBarcode. Jquery
-  is a JS library for manipulating the dom easier and resize is used to manipulate pixel width 
-  on images, Jsbarcode is a dependency used for interpreting the barcode information on the 
+  There are some uncommon imports in this file such as resize and JsBarcode. Resize is used
+  to manipulate pixel width on images, Jsbarcode is a dependency
+  used for interpreting the barcode information on the 
   cards
 --> 
 
@@ -71,8 +71,10 @@ export default class CigCanvas extends Vue {
   public size: number = 1;
   public context: any = null;
 
-  // method userNames is used in order to filter out the users that are not deleted to verify
+  
+  // Method userNames is used in order to filter out the users that are not deleted to verify
   // that the user that you are trying to render on the card is an actual active user
+  
 
   public get userNames() {
     return Object.entries(UsersModule.all)
@@ -82,6 +84,7 @@ export default class CigCanvas extends Vue {
 
   // checkUserData is used to fill the instances of the class with information from the 
   // UsersModule so that the card has the right inforamtion
+
   public checkUserData() { // TODO: don't compare name to find the user. Instead compare the uid.
     for (const user in UsersModule.all) {
       if (this.name === UsersModule.all[user].name) {
@@ -92,8 +95,10 @@ export default class CigCanvas extends Vue {
     }
   }
 
-  // the generate Canvas does exactly what its called and uses the resize dependency 
+  
+  // The generate Canvas does exactly what its called and uses the resize dependency 
   // to cut the canvas into a good format
+
 
   public generateCanvas() {
     this.getCanvasContainerSize();
@@ -113,8 +118,10 @@ export default class CigCanvas extends Vue {
     }
   }
 
-  // sets the instance of the height and width to the client hight and width to standardise
+  
+  // Sets the instance of the height and width to the client hight and width to standardise 
   // the structure of the canvas
+  
 
   public getCanvasContainerSize() {
     const canvasContainer: any = this.$refs.canvasContainer;
@@ -122,7 +129,9 @@ export default class CigCanvas extends Vue {
     this.height = canvasContainer.clientHeight;
   }
 
-  // set canvas size basically does the same thing but sets the dimensions to 2d 
+  
+  // Set canvas size basically does the same thing but sets the dimensions to 2d 
+
 
   public setCanvasSize() {
     const htmlCanvasElement: HTMLCanvasElement | any = this.$refs.canvas;
@@ -132,8 +141,10 @@ export default class CigCanvas extends Vue {
     htmlCanvasElement.height = this.height;
   }
 
-  // the draw image instantiates new classes of the image based on the barcode and also 
-  // on the extracted zip file that is the profile image
+  /* 
+  The drawImages method instantiates new classes of the image based on the barcode and also 
+  on the extracted zip file that is the profile image
+  */ 
 
   public drawImages() {
     const barcode = new Image();
@@ -192,8 +203,10 @@ export default class CigCanvas extends Vue {
     }, 200);
   }
 
-  // draw text method renders the text on the canvas in order to style it and also get
-  // good fonts and such
+  /* 
+  The drawText method renders the text on the canvas in order to style it and also get
+  good fonts and such
+  */ 
 
   public drawText() {
     const firstFontSize = this.width / 10;
@@ -216,11 +229,13 @@ export default class CigCanvas extends Vue {
     );
   }
 
-  // this is a watch action that monitors the send the instance sendCanvas to see if the 
-  // boolean is being mutated in any way and also blobs the image to send it via the 
-  // emit method built in Vue to the parent component
+  /* 
+  This is a watch action that monitors the send the instance sendCanvas to see if the 
+  boolean is being mutated in any way and also blobs the image to send it via the 
+  emit method built in Vue to the parent component
+  */
 
-  
+
   @Watch('sendCanvas')
   public sendThisCanvas() {
     const zip = new JSZip();
@@ -230,7 +245,7 @@ export default class CigCanvas extends Vue {
     });
   }
 
-  // the download canvas method is used to download and also save the donwloaded zip to
+  // The downloadCanvas method is used to download and also save the donwloaded zip to
   // the new instance of a JSZIP to later blob it so that it can be used in Vue
 
   public downloadCanvas() {
@@ -268,7 +283,8 @@ export default class CigCanvas extends Vue {
     this.generateCanvas();
   }
 
-  // this is also a getter to receive information simply from the generate canvas instance
+  // This is a getter to receive information simply from the generate canvas instance
+
   public mounted() {
     this.generateCanvas();
   }

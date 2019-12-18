@@ -31,6 +31,7 @@ export default class CardFormComponent extends Vue {
   public files: File[] = [];
 
   // Constructor for instantiating the class and fetching all the users from the userModule
+
   public created() {
     UsersModule.fetchAll();
   }
@@ -41,7 +42,6 @@ export default class CardFormComponent extends Vue {
   public submit() {
     this.$emit('sendImages', this.files);
   }
-
 
   // Eventlistener that takes a list of instances of the object File and checks the type
   // of the file and confirms that it is a zip file and then extracts the content to render
@@ -57,7 +57,7 @@ export default class CardFormComponent extends Vue {
     }
   }
 
-  // LoadFileData takes three arguments, a list of files, the index of the list of files
+  // loadFileData takes three arguments, a list of files, the index of the list of files
   // and the data of that file as the third argument. It then loads the file by creating 
   // a new file with the correct data, "files[fileIndex].name" to get the correct name.
 
@@ -86,7 +86,7 @@ export default class CardFormComponent extends Vue {
     }
   }
 
-  // extract files method takes a zip file and creates a new instance of the class JSZip
+  // The extractFiles method takes a zip file and creates a new instance of the class JSZip
   // and then asyncronasily loads the files into the instance of loadFiles
 
   public extractFiles(zip: any) {

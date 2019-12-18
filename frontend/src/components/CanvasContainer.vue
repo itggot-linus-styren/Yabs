@@ -32,7 +32,6 @@ import JSZip from 'jszip';
 
 // This is the canvas container component for the cards for the users (students)
 
-
 export default class CanvasContainer extends Vue {
   @Prop({ default: [] }) public images!: File[];
 
@@ -45,7 +44,7 @@ export default class CanvasContainer extends Vue {
     this.sendCanvas = !this.sendCanvas;
   }
 
-// The onImageReceived mehthod takes an image and then compares it to the instance of images 
+// The onImageReceived method takes an image and then compares it to the instance of images 
 // and if they are the same length, the ZIP file of that image is being downloaded 
 // through the donwloadAll method using the JSZIP dependency.
 

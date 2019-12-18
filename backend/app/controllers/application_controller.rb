@@ -8,8 +8,8 @@ class ApplicationController < ActionController::Base
 
   rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
-  # this method sets the current user based on sessions user id or if the environment is test
-  # sets the current user to the first of the instance users
+  # This method sets the current user based on sessions user id or if the environment is test
+  # Sets the current user to the first of the instance users
 
   def current_user
     return User.first if Rails.env.test?
@@ -17,7 +17,7 @@ class ApplicationController < ActionController::Base
     User.find_by(uid: session[:current_user_id])
   end
 
-  # show basically renders the standard app html file
+  # Show basically renders the standard app html file
 
   def show
     render file: "public/app.html"
@@ -25,6 +25,7 @@ class ApplicationController < ActionController::Base
 
   # Standard method for users that try to access routes and resources that they are not
   # granted access too 
+  
   private
 
   def user_not_authorized(exception)

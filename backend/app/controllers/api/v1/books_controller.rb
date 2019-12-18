@@ -3,12 +3,13 @@
 class Api::V1::BooksController < ApplicationController
   before_action :set_book, only: [:show, :update, :destroy]
 
-  # index method, gets all instances of book and renders it
+  # Index method, gets all instances of book and renders it
+
   def index
     render json: Book.all
   end
 
-  # show method, gets specific instance of book and renders it
+  # Show method, gets specific instance of book and renders it
   
   def show
     render json: @book
@@ -44,16 +45,19 @@ class Api::V1::BooksController < ApplicationController
     @book.destroy
   end
 
-  # this is the private set book method to find the current instance of 
+  # This is the private set book method to find the current instance of 
   # book based on the given id
 
   private
+
     # Use callbacks to share common setup or constraints between actions.
+
     def set_book
       @book = Book.find(params[:id])
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
+
     def book_params
       params.require(:book).permit(:title_id, :barcode, :status)
     end

@@ -68,7 +68,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import TitlesModule, { TitleForm } from '../store/modules/TitlesModule';
 
 
-// this is the child component of the earlier named parent element and catches the information
+// This is the child component of the earlier named parent element and catches the information
 // passed down the component tree to render the table 
 
 @Component
@@ -87,7 +87,7 @@ export default class TitleFormComponent extends Vue {
     { value: 'Skönlitteratur', text: 'Skönlitteratur' },
   ];
 
-  // on this eventlistener the titlesmodule recreates the form when the submit has been
+  // The onSubmit eventlistener calls the titlesmodule and recreates the form when the submit has been
   // successfull
 
   public onSubmit(evt: Event) {
