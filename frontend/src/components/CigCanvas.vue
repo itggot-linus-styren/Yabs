@@ -13,7 +13,7 @@
       <v-item-group>
         <v-autocomplete
           v-model="name"
-          :data="userNames"
+          :items="userNames"
         />
         <v-btn class="btn" @click="savePicture">
           Spara Bild
@@ -64,7 +64,7 @@ export default class CigCanvas extends Vue {
   public size: number = 1;
   public context: CanvasRenderingContext2D | null = null;
 
-  public get userNames(): Object {
+  private get userNames(): string[] {
     return Object.entries(UsersModule.all)
       .filter(([key, user]) => !user.name.includes('Deleted User'))
       .map(([key, user]) => user.name);
