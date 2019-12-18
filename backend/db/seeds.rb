@@ -13,6 +13,11 @@ ActiveSupport.on_load(:active_job) do
 end
 DataFetchJob.perform_now
 
+p_sub = Subject.create(name: "Programming")
+s_sub = Subject.create(name: "Swedish")
+e_sub = Subject.create(name: "English")
+lib_sub = Subject.create(name: "Skönlitteratur")
+
 alice_google = GoogleBooks::API.search('isbn:0763645680').first
 # Create titles of both book types
 title_alice = Title.create(name: "Alice in Wonderland", isbn: "0763645680", 
@@ -22,12 +27,13 @@ title_alice = Title.create(name: "Alice in Wonderland", isbn: "0763645680",
     authors: alice_google.authors.to_s,
     cover: alice_google.covers[:large],
     page_count: alice_google.page_count,
-    published_date: alice_google.published_date
+    published_date: alice_google.published_date,
+    subject: lib_sub
 )
-title_lotr = Title.create(name: "The Fellowship of the Ring", isbn: "9780547928210", cost: 100, title_type: "Skönlitteratur")
+title_lotr = Title.create(name: "The Fellowship of the Ring", isbn: "9780547928210", cost: 100, title_type: "Skönlitteratur", subject: lib_sub)
 
-title_cc = Title.create(name: "Clean Code", isbn: "9780132350884", cost: 300, title_type: "Kurslitteratur")
-title_tomtens_jul = Title.create(name: "Tomtens jul", isbn: "9781999985462", cost: 60, title_type: "Kurslitteratur")
+title_cc = Title.create(name: "Clean Code", isbn: "9780132350884", cost: 300, title_type: "Kurslitteratur", subject: p_sub)
+title_tomtens_jul = Title.create(name: "Tomtens jul", isbn: "9781999985462", cost: 60, title_type: "Kurslitteratur", subject: s_sub)
 
 # Create books to be loaned
 book_alice = Book.create(barcode: "5000", status: "OK", title: title_alice)
