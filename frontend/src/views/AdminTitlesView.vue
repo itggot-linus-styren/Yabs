@@ -35,7 +35,7 @@ export default class AdminTitlesView extends Vue {
   // The created() function is the constructor in vue and instantiates the class by fetching
   // all the titles from the backend
 
-  private created() {
+  private created(): void {
     TitlesModule.fetchAll();
   }
 }

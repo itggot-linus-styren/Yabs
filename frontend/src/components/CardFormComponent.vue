@@ -21,7 +21,7 @@
 <script lang="ts">
 import { Component, Watch, Prop, Vue } from 'vue-property-decorator';
 import UsersModule from '../store/modules/UsersModule';
-import JSZip from 'jszip';
+import JSZip, { JSZipObject } from 'jszip';
 
 // Component for the card form for the user to insert information about them such as
 // role, name and uid
@@ -32,14 +32,14 @@ export default class CardFormComponent extends Vue {
 
   // Constructor for instantiating the class and fetching all the users from the userModule
 
-  public created() {
+  public created(): void {
     UsersModule.fetchAll();
   }
 
   // Eventlistener that emits the informations about that specific event higher up in the 
   // component tree
 
-  public submit() {
+  public submit(): void {
     this.$emit('sendImages', this.files);
   }
 
@@ -47,7 +47,7 @@ export default class CardFormComponent extends Vue {
   // of the file and confirms that it is a zip file and then extracts the content to render
   // else simply pushes the content into the instance this.files
 
-  public onFileSelect(fileList: File[]) {
+  public onFileSelect(fileList: File[]): void {
     for (const fileObject of fileList) {
       if (fileObject.type === 'application/zip') {
         this.extractFiles(fileObject);
@@ -61,7 +61,7 @@ export default class CardFormComponent extends Vue {
   // and the data of that file as the third argument. It then loads the file by creating 
   // a new file with the correct data, "files[fileIndex].name" to get the correct name.
 
-  public loadFileData(files: any[], fileIndex: number, fileData: any) {
+  public loadFileData(files: JSZipObject[], fileIndex: number, fileData: BlobPart): void {
     const file = new File([fileData], files[fileIndex].name, {
       type: 'image/jpeg',
     });
@@ -72,14 +72,14 @@ export default class CardFormComponent extends Vue {
   // make sure that the zip file has support for MACOSX then inserts the content into the
   // load file data in order to make the format correct
 
-  public loadFiles(extZip: any) {
-    const files: any = Object.values(extZip.files);
+  public loadFiles(extZip: JSZip): void {
+    const files: JSZipObject[] = Object.values(extZip.files);
     for (let i = 0; i < files.length; i++) {
       if (files[i].name.includes('__MACOSX/') === false) {
         extZip.files[files[i].name]
           .async('blob')
-          .then((fileData: any) => this.loadFileData(files, i, fileData))
-          .catch((error: any) => {
+          .then((fileData: BlobPart) => this.loadFileData(files, i, fileData))
+          .catch((error: object) => {
             console.log('Error2: ' + error);
           });
       }
@@ -89,13 +89,13 @@ export default class CardFormComponent extends Vue {
   // The extractFiles method takes a zip file and creates a new instance of the class JSZip
   // and then asyncronasily loads the files into the instance of loadFiles
 
-  public extractFiles(zip: any) {
+  public extractFiles(zip: File): void {
     const newZip = new JSZip();
 
     newZip
       .loadAsync(zip)
       .then(this.loadFiles)
-      .catch((error: any) => {
+      .catch((error: object) => {
         console.log('Error1: ' + error);
       });
   }

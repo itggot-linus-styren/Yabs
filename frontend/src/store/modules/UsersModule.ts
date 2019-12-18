@@ -73,7 +73,7 @@ class UsersModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public update(request: UserForm): Promise<User> {
+  public update(request: FormData): Promise<User> {
     return new Promise((resolve, reject) => {
       UsersAPI.update(request)
         .then((response: User) => {

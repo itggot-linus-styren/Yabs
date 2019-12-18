@@ -22,7 +22,7 @@ export interface Title {
 }
 
 export interface TitleForm {
-  id: number;
+  id?: number;
   name: string;
   cost: string;
   isbn: string;

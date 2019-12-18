@@ -38,11 +38,11 @@ export default class AdminCardsViews extends Vue {
   // The on send images getter takes the image from the event target and sets it to the instance
   // of the image
 
-  private onSendImages(images: File[]) {
+  private onSendImages(images: File[]): void {
     this.images = images;
   }
 
-  private created() {
+  private created(): void {
     UsersModule.fetchAll();
   }
   
