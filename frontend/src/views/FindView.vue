@@ -5,6 +5,7 @@
         <v-card>
           <v-chip-group mandatory>
             <v-chip
+              v-if="!RoleChecker.isStudent()"
               v-model="users"
               class="ma-2"
               color="success"
@@ -68,6 +69,7 @@ import LoanListComponent from '@/components/LoanListComponent.vue';
 import BooksModule from '@/store/modules/BooksModule';
 import UsersModule from '@/store/modules/UsersModule';
 import LoansModule from '@/store/modules/LoansModule';
+import RoleChecker from '../helpers/RoleChecker';
 
 @Component({
   components: {
@@ -77,6 +79,7 @@ import LoansModule from '@/store/modules/LoansModule';
   },
 })
 export default class FindView extends Vue {
+  private RoleChecker: RoleChecker = RoleChecker;
   users:boolean = false;
   loans:boolean = false;
   books:boolean = false;

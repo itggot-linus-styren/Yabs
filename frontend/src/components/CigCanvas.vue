@@ -13,7 +13,7 @@
       <v-item-group>
         <v-autocomplete
           v-model="name"
-          :data="userNames"
+          :items="userNames"
         />
         <v-btn class="btn" @click="savePicture">
           Spara Bild
@@ -57,14 +57,14 @@ export default class CigCanvas extends Vue {
 
   public name: string = '';
   public barcode: string = '';
-  public role: string = '';
+  public role: number = 0;
   public email: string = '';
   public width: number = 0;
   public height: number = 0;
   public size: number = 1;
   public context: CanvasRenderingContext2D | null = null;
 
-  public get userNames(): Object {
+  private get userNames(): string[] {
     return Object.entries(UsersModule.all)
       .filter(([key, user]) => !user.name.includes('Deleted User'))
       .map(([key, user]) => user.name);
@@ -88,14 +88,14 @@ export default class CigCanvas extends Vue {
 
       setTimeout(() => {
         const bg = this.$refs.bg as HTMLImageElement;
-        if (bg) {
+        if (bg && this.context) {
           this.context.drawImage(bg, 0, 0, this.width, this.height);
-        }
 
         const logo = this.$refs.logo as HTMLImageElement;
         this.context.drawImage(logo, this.width / 2 - 75, 25);
         this.drawText();
         this.drawImages();
+        }
       }, 200);
     }
   }
@@ -127,69 +127,74 @@ export default class CigCanvas extends Vue {
     }
 
     setTimeout(() => {
-      this.context.save();
-      this.context.beginPath();
-      this.context.arc(
-        this.width / 4 + this.width / 4,
-        this.height / 4 + this.width / 4,
-        this.width / 4,
-        0,
-        Math.PI * 2,
-        true,
-      );
-      this.context.closePath();
-      this.context.clip();
+      if (this.context){
+        this.context.save();
+        this.context.beginPath();
+        this.context.arc(
+          this.width / 4 + this.width / 4,
+          this.height / 4 + this.width / 4,
+          this.width / 4,
+          0,
+          Math.PI * 2,
+          true,
+        );
+      
+        this.context.closePath();
+        this.context.clip();
+  
+        this.context.drawImage(
+          profileImage,
+          this.width / 4,
+          this.height / 4,
+          this.width / 2,
+          this.width / 1.5,
+        );
 
-      this.context.drawImage(
-        profileImage,
-        this.width / 4,
-        this.height / 4,
-        this.width / 2,
-        this.width / 1.5,
-      );
+        this.context.beginPath();
+        this.context.arc(
+          this.width / 4,
+          this.height / 4,
+          this.width / 2,
+          0,
+          Math.PI * 2,
+          true,
+        );
+        this.context.clip();
+        this.context.closePath();
+        this.context.restore();
 
-      this.context.beginPath();
-      this.context.arc(
-        this.width / 4,
-        this.height / 4,
-        this.width / 2,
-        0,
-        Math.PI * 2,
-        true,
-      );
-      this.context.clip();
-      this.context.closePath();
-      this.context.restore();
-
-      this.context.drawImage(
-        barcode,
-        this.width / 4,
-        this.width * 1.15,
-        this.width / 2,
-        this.width / 3,
-      );
+        this.context.drawImage(
+          barcode,
+          this.width / 4,
+          this.width * 1.15,
+          this.width / 2,
+          this.width / 3,
+        );
+      }
     }, 200);
   }
 
   public drawText(): void {
-    const firstFontSize = this.width / 10;
-    const secondFontSize = this.width / 20;
+    if (this.context){
+      const firstFontSize = this.width / 10;
+      const secondFontSize = this.width / 20;
 
-    this.context.font = firstFontSize + 'px Arial';
-    this.context.textAlign = 'center';
-    this.context.fillStyle = '#ffffff';
-    this.context.fillText(
-      this.name,
-      this.width / 2,
-      this.height / 2 + this.height / 8,
-      this.width,
-    );
-    this.context.fillText(
-      this.role,
-      this.width / 2,
-      this.height / 1.7 + this.height / 8,
-      this.width,
-    );
+      this.context.font = firstFontSize + 'px Arial';
+      this.context.textAlign = 'center';
+      this.context.fillStyle = '#ffffff';
+      this.context.fillText(
+        this.name,
+        this.width / 2,
+        this.height / 2 + this.height / 8,
+        this.width,
+      );
+      this.context.fillText(
+        this.role,
+        this.width / 2,
+        this.height / 1.7 + this.height / 8,
+        this.width,
+      );
+    }
   }
 
   @Watch('sendCanvas')
@@ -205,10 +210,12 @@ export default class CigCanvas extends Vue {
     const zip = new JSZip();
     const canvas = this.$refs.canvas as HTMLCanvasElement;
     canvas.toBlob((blob) => {
-      zip.file(this.name + '.png', blob);
-      zip.generateAsync({ type: 'blob' }).then((zipBlob) => {
-        FileSaver.saveAs(zipBlob, 'cards.zip');
-      });
+      if (blob){
+        zip.file(this.name + '.png', blob);
+        zip.generateAsync({ type: 'blob' }).then((zipBlob) => {
+          FileSaver.saveAs(zipBlob, 'cards.zip');
+        });
+      }
     });
   }
 

@@ -11,24 +11,24 @@ import UsersAPI from '../../api/users';
 import convertList from '../../helpers/convertArrayToNested';
 
 export interface User {
-  created_at: string;
+  created_at: string; //eslint-disable-line camelcase
   email: string;
-  google_token: string;
+  google_token: string; //eslint-disable-line camelcase
   klass: string;
   name: string;
-  photo_path: string;
-  role: string;
+  photo_path: string; //eslint-disable-line camelcase
+  role: number;
   uid: number;
-  updated_at: string;
+  updated_at: string; //eslint-disable-line camelcase
 }
 
 export interface UserCollection { [uid: number]: User; }
 
 @Module({dynamic: true, namespaced: true, name: 'UsersModule', store})
 class UsersModule extends VuexModule {
-  private _failure: any = null;
+  private _failure: object = {};
   public _users: UserCollection = {};
-  private _currentUser: any = null;
+  private _currentUser: number = 0;
 
   get currentUserID(): number {
     return this._currentUser;
@@ -52,39 +52,41 @@ class UsersModule extends VuexModule {
       UsersAPI.all()
         .then((response: User[]) => {
           this.convertUserList(response);
-          resolve();
+          resolve(this._users);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
+          this.setFailure(error);
           reject(error);
         });
     });
   }
 
   @Action({rawError: true})
-  public update(request: any) {
+  public update(request: object): Promise<object> {
     return new Promise((resolve, reject) => {
       UsersAPI.update(request)
-        .then((response: any) => {
+        .then((response: User) => {
           this.setUser(response);
           this.setCurrentUser(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           reject(error);
         });
     });
   }
 
   @Action({rawError: true})
-  public signIn(request: any) {
+  public signIn(request: string): Promise<object> {
     return new Promise((resolve, reject) => {
       UsersAPI.signIn(request)
-        .then((response: any) => {
+        .then((response: User) => {
           this.setCurrentUser(response);
           this.fetchAll();
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
+          this.setFailure(error);
           reject(error);
         });
     });
@@ -94,28 +96,29 @@ class UsersModule extends VuexModule {
   public signOut(): Promise<object> {
     return new Promise((resolve, reject) => {
       UsersAPI.signOut()
-        .then((response: any) => {
+        .then((response: User) => {
           this.setCurrentUser(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           reject(error);
         });
     });
   }
 
   @Mutation
-  public setUser(payload: any): void {
+  public setUser(payload: User): void {
     Vue.set(this._users, payload.uid, payload);
   }
 
   @Mutation
-  public setCurrentUser(payload: any): void {
+  public setCurrentUser(payload: User): void {
     this._currentUser = payload.uid;
   }
 
   @Mutation
-  public setFailure(payload: any): void {
+  public setFailure(payload: object): void {
+    console.log(payload);
     // This should fix end to end tests(yarn build)
   }
 
