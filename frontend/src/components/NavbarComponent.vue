@@ -89,12 +89,14 @@ a:focus {
   outline: 0;
   border: none;
   -moz-outline-style: none;
+  outline-style: none;
 }
 button:active,
 button:focus {
   outline: 0 !important;
   border: none !important;
   -moz-outline-style: none;
+  outline-style: none;
 }
 
 input:-webkit-autofill {

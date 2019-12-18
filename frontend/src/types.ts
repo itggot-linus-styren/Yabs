@@ -48,7 +48,7 @@ interface Title {
 }
 
 interface TitleForm {
-  id: number;
+  id?: number;
   name: string;
   cost: string;
   isbn: string;
@@ -68,7 +68,7 @@ interface Book {
 
 interface BookForm {
   barcode: string;
-  title_id: string; //eslint-disable-line camelcase
+  title_id: number; //eslint-disable-line camelcase
   status: string;
 }
 
@@ -89,7 +89,7 @@ interface Loan {
 }
 
 interface LoanForm {
-  id: number;
+  id?: number;
   book_id: number; //eslint-disable-line camelcase
   lent_by_id: number; //eslint-disable-line camelcase
   loaned_by_id: number; //eslint-disable-line camelcase
