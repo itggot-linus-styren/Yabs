@@ -51,6 +51,9 @@ import TitlesModule from '../store/modules/TitlesModule';
 import BooksModule from '../store/modules/BooksModule';
 import { VuexModule } from 'vuex-module-decorators';
 
+// This is the component for the book form which includes all the information for the book
+// form and therfore alternatives for the user to choose from
+
 @Component
 export default class BookFormComponent extends Vue {
   private form: {} = {
@@ -58,13 +61,23 @@ export default class BookFormComponent extends Vue {
     title_id: 0,
     status: '',
   };
+
+  // This is defining the title module as a module in order to use the module in the vue
+  // components
+
   private titlesModule: VuexModule = TitlesModule;
+
+  // Submit is the event listener that takes the event and prevents the site to reload when
+  // the method is run and also creates the book with the inforamtion from the form instance
 
   private onSubmit(evt: Event) {
     evt.preventDefault();
     BooksModule.create(this.form);
     this.onReset();
   }
+
+  // Reset method to take the form based on the properties defined in the component 
+  // BookFormComponent
 
   private onReset() {
     this.form = {

@@ -27,12 +27,26 @@ import JSZip from 'jszip';
     CigCanvas,
   },
 })
+
+// This is the canvas container component for the cards for the users (students)
+
 export default class CanvasContainer extends Vue {
   @Prop({ default: [] }) public images!: File[];
 
   public sendCanvas: boolean = false;
   public imageBlobs: Blob[] = [];
+  
+// Eventlistener GetAllCanvases is simply used in order to fetch all the canvases. 
 
+  public getAllCanvases() {
+    this.sendCanvas = !this.sendCanvas;
+  }
+
+// The onImageReceived method takes an image and then compares it to the instance of images 
+// and if they are the same length, the ZIP file of that image is being downloaded 
+// through the donwloadAll method using the JSZIP dependency.
+
+  public onImageReceived(image: any) {
   public getAllCanvases(): void {
     this.sendCanvas = !this.sendCanvas;
   }

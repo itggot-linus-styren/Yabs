@@ -12,11 +12,18 @@ import LoansModule from '../store/modules/LoansModule';
 import { VuexModule } from 'vuex-module-decorators';
 import ListComponent from '@/components/ListComponent.vue';
 
+
+
+// This component is used as a Parent element and therefore has the headers object to 
+// send down the component tree using props in Vue and in this specific example, sending 
+// down the headers for the loan table
+
 @Component({
   components: {
     ListComponent
   }
 })
+
 export default class LoanListComponent extends Vue {
   private loansModule: VuexModule = LoansModule;
   private headers: object[] = [

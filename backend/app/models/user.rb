@@ -32,4 +32,6 @@ class User < ApplicationRecord
     self.role & 1 == 1
   end
 
+  # Ämnesansvarig kommer snart
+
 end

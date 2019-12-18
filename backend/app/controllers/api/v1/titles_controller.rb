@@ -1,14 +1,26 @@
+# THIS CONTROLLER IS NOT BEING AUTHORISED WITH PUNDIT
+
 require 'google_books'
 class Api::V1::TitlesController < ApplicationController
   before_action :set_title, only: [:show, :update, :destroy]
+
+  # This is the index method to render a JSON object with all titles 
+  # which shows all titles available.
+  # This specific controller is not being authorized
 
   def index
     render json: Title.all
   end
 
+  # This is the show method which generates the JSON object of instance of the class
+  # title
+
   def show
     render json: @title
   end
+
+  # Create method which instantiates the title class with the right parameters,
+  # saves it to the db and then renders all JSON object of the instance title
 
   def create
     book_data = GoogleBooks::API.search("isbn:#{title_params['isbn']}").first
@@ -30,6 +42,9 @@ class Api::V1::TitlesController < ApplicationController
     end
   end
 
+  # Update method for the titles and updates with specific params then renders JSON object
+  # of the updated instance of class title
+
   def update
     if @title.update(title_params)
       render json: @title
@@ -38,10 +53,16 @@ class Api::V1::TitlesController < ApplicationController
     end
   end
 
+  # Destroy, destroys the single target instance and then renders the 
+  # rest instances of title
+
   def destroy
     @title.destroy
     render json: @title
   end
+
+  # Set title method, find the current title and sets the title to that instance in order
+  # to execute given method on correct title
 
   private
     # Use callbacks to share common setup or constraints between actions.
