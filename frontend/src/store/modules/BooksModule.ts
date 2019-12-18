@@ -3,7 +3,8 @@ import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-dec
 import store from '..';
 import BooksAPI from '../../api/books';
 import { Title } from './TitlesModule';
-import convertList from '../../helpers/convertArrayToNested';
+import convertList from '@/helpers/convertArrayToNested';
+import convertNested from '@/helpers/convertNestedToArray';
 
 interface BookCollection {
   [id: string]: Book;
@@ -27,7 +28,7 @@ class BooksModule extends VuexModule {
   }
 
   get allAsArray() {
-    return Object.keys(this._books).map((id) => this._books[id]);
+    return convertNested(this._books);
   }
 
   @Action({rawError: true})

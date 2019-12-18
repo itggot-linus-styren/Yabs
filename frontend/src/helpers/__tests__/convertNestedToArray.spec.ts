@@ -14,7 +14,7 @@ describe('convertNestedToArray.ts', () => {
       {id: '3', name: 'Lord of the rings'},
     ];
 
-    expect(convert(nested, 'id')).toEqual(array);
+    expect(convert(nested)).toEqual(array);
   });
 });
   

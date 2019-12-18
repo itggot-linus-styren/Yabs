@@ -8,7 +8,8 @@ import {
 } from 'vuex-module-decorators';
 import store from '..';
 import UsersAPI from '../../api/users';
-import convertList from '../../helpers/convertArrayToNested';
+import convertList from '@/helpers/convertArrayToNested';
+import convertNested from '@/helpers/convertNestedToArray';
 
 export interface User {
   created_at: string; //eslint-disable-line camelcase
@@ -36,6 +37,10 @@ class UsersModule extends VuexModule {
 
   get all(): UserCollection {
     return this._users;
+  }
+
+  get allAsArray(): User[] {
+    return convertNested(this._users);
   }
 
   get currentUser(): User {

@@ -8,7 +8,8 @@ import {
 } from 'vuex-module-decorators';
 import store from '..';
 import TitlesAPI from '../../api/titles';
-import convertList from '../../helpers/convertArrayToNested';
+import convertList from '@/helpers/convertArrayToNested';
+import convertNested from '@/helpers/convertNestedToArray';
 
 export interface Title {
   cost: number;
@@ -39,7 +40,7 @@ class TitlesModule extends VuexModule {
   }
 
   get allAsArray() {
-    return Object.keys(this._titles).map( (id) => this._titles[Number(id)]);
+    return convertNested(this._titles);
   }
 
   @Action({rawError: true})
