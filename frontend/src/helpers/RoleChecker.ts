@@ -13,28 +13,29 @@ const roles: Roles = {
 
 export default class RoleChecker {
 
-  private static checkPermission(user: User, required: number): boolean {
+  private static checkPermission(required: number): boolean {
+    const user = UsersModule.currentUser;
     return user && ((user.role & required) == required || (user.role > required));
   }
   
   static isPrincipal(): boolean {
-    return this.checkPermission(UsersModule.currentUser, 32);
+    return this.checkPermission(32);
   }
 
   static isAdmin(): boolean {
-    return this.checkPermission(UsersModule.currentUser, 16);
+    return this.checkPermission(16);
   }
 
   static isCaretaker(): boolean {
-    return this.checkPermission(UsersModule.currentUser, 8);
+    return this.checkPermission(8);
   }
 
   static isTeacher(): boolean {
-    return this.checkPermission(UsersModule.currentUser, 4);
+    return this.checkPermission(4);
   }
 
   static isStudentHealth(): boolean {
-    return this.checkPermission(UsersModule.currentUser, 2);
+    return this.checkPermission(2);
   }
 
   static isStudent(): boolean {

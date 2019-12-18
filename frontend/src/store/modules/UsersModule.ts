@@ -9,7 +9,6 @@ import {
 import store from '..';
 import UsersAPI from '../../api/users';
 import convertList from '../../helpers/convertArrayToNested';
-import RoleChecker from '@/helpers/roleChecker';
 
 export interface User {
   created_at: string; //eslint-disable-line camelcase
