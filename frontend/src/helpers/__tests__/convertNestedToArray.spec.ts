@@ -16,5 +16,9 @@ describe('convertNestedToArray.ts', () => {
 
     expect(convert(nested)).toEqual(array);
   });
+
+  it('convert empty nested object to empty array', () => {
+    expect(convert({})).toEqual([]);
+  });
 });
   

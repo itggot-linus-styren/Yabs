@@ -16,5 +16,10 @@ describe('convertArrayToNested.ts', () => {
 
     expect(convert(array, 'id')).toEqual(nested);
   });
+
+  it('convert empty array to empty object', () => {
+    expect(convert([], 'id')).toEqual({});
+  });
+
 });
   
