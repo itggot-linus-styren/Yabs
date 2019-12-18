@@ -22,6 +22,16 @@ export interface User {
   updated_at: string; //eslint-disable-line camelcase
 }
 
+export interface UserForm {
+  email: string;
+  google_token: string; //eslint-disable-line camelcase
+  klass: string;
+  name: string;
+  photo_path: string; //eslint-disable-line camelcase
+  role: number;
+  uid: number;
+}
+
 export interface UserCollection { [uid: number]: User; }
 
 @Module({dynamic: true, namespaced: true, name: 'UsersModule', store})
@@ -43,7 +53,7 @@ class UsersModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public fetchAll(): Promise<object> {
+  public fetchAll(): Promise<UserCollection> {
     return new Promise((resolve, reject) => {
       UsersAPI.all()
         .then((response: User[]) => {
@@ -58,7 +68,7 @@ class UsersModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public update(request: object): Promise<object> {
+  public update(request: UserForm): Promise<User> {
     return new Promise((resolve, reject) => {
       UsersAPI.update(request)
         .then((response: User) => {
@@ -73,7 +83,7 @@ class UsersModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public signIn(request: string): Promise<object> {
+  public signIn(request: string): Promise<User> {
     return new Promise((resolve, reject) => {
       UsersAPI.signIn(request)
         .then((response: User) => {
@@ -89,7 +99,7 @@ class UsersModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public signOut(): Promise<object> {
+  public signOut(): Promise<User> {
     return new Promise((resolve, reject) => {
       UsersAPI.signOut()
         .then((response: User) => {
