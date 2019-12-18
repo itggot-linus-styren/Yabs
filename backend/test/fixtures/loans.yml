@@ -6,7 +6,7 @@ loan_1:
   book_id: '5000'
   returned_at: 
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 09:51:17.731738000 Z
+    utc: &1 2019-12-18 10:05:22.512195000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
@@ -23,7 +23,7 @@ loan_2:
   book_id: '1001'
   returned_at: 2019-12-18
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 09:51:17.737509000 Z
+    utc: &1 2019-12-18 10:05:22.529305000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1

@@ -53,6 +53,12 @@ title_cc.dump_fixture
 title_lotr.dump_fixture
 title_tomtens_jul.dump_fixture
 
+review_alice = Review.new(score: 3, review: "I didn't particulary like this book.")
+review_alice.title = title_alice
+review_alice.user = loan_alice.loaned_by
+review_alice.save
+review_alice.dump_fixture(append=false)
+
 # Create the rest of the books
 Book.create(barcode: "5002", status: "Broken", title: title_alice).dump_fixture
 Book.create(barcode: "5003", status: "OK", title: title_alice).dump_fixture
