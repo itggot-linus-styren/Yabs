@@ -1,4 +1,4 @@
-import axios, { AxiosError } from 'axios';
+import axios from 'axios';
 import { User, UserForm } from '@/store/modules/UsersModule';
 
 export default {
