@@ -13,7 +13,7 @@
       <v-item-group>
         <v-autocomplete
           v-model="name"
-          :data="userNames"
+          :items="userNames"
         />
         <v-btn class="btn" @click="savePicture">
           Spara Bild
@@ -64,7 +64,7 @@ export default class CigCanvas extends Vue {
 
   public name: string = '';
   public barcode: string = '';
-  public role: string = '';
+  public role: number = 0;
   public email: string = '';
   public width: number = 0;
   public height: number = 0;
@@ -72,10 +72,11 @@ export default class CigCanvas extends Vue {
   public context: CanvasRenderingContext2D | null = null;
 
 
+
   // Method userNames is used in order to filter out the users that are not deleted to verify
   // that the user that you are trying to render on the card is an actual active user
 
-  public get userNames(): Object {
+  private get userNames(): string[] {
 
     return Object.entries(UsersModule.all)
       .filter(([key, user]) => !user.name.includes('Deleted User'))

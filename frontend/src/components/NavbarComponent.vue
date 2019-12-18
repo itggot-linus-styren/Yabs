@@ -65,6 +65,7 @@ import { VuexModule } from 'vuex-module-decorators';
 
 export default class NavbarComponent extends Vue {
   public usersModule: VuexModule = UsersModule;
+  
   public signOut(): void {
     try {
       // @ts-ignore: gapi

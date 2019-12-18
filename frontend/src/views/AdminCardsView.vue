@@ -24,6 +24,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import CardFormComponent from '@/components/CardFormComponent.vue';
 import CanvasContainer from '@/components/CanvasContainer.vue';
+import UsersModule from '../store/modules/UsersModule';
 
 @Component({
   components: {
@@ -32,13 +33,17 @@ import CanvasContainer from '@/components/CanvasContainer.vue';
   }
 })
 export default class AdminCardsViews extends Vue {
-
   public images: File[] = [];
 
-  // the on send images getter takes the imge from the event target and sets it to the instance
+  // The on send images getter takes the image from the event target and sets it to the instance
   // of the image
-  public onSendImages(images: any[]) {
+
+  private onSendImages(images: File[]) {
     this.images = images;
+  }
+
+  private created() {
+    UsersModule.fetchAll();
   }
   
 }
