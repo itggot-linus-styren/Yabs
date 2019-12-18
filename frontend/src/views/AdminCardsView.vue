@@ -29,7 +29,7 @@ import UsersModule from '../store/modules/UsersModule';
 export default class AdminCardsViews extends Vue {
   private images: File[] = [];
 
-  private onSendImages(images: any[]) {
+  private onSendImages(images: File[]) {
     this.images = images;
   }
 
