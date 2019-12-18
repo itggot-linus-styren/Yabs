@@ -29,9 +29,9 @@ export default {
       return Promise.reject(error);
     }
   },
-  async update(request: UserForm): Promise<User> {
+  async update(request: FormData): Promise<User> {
     try {
-      const response = await axios.patch(`http://localhost:3000/api/v1/users/${request.uid}`, request, {
+      const response = await axios.patch(`http://localhost:3000/api/v1/users/${request.get('uid')}`, request, {
         headers: {
           'Content-Type': 'multipart/form-data',
         },

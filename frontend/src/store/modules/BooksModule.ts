@@ -20,7 +20,7 @@ export interface Book {
 
 export interface BookForm {
   barcode: string;
-  title_id: string; //eslint-disable-line camelcase
+  title_id: number; //eslint-disable-line camelcase
   status: string;
 }
 

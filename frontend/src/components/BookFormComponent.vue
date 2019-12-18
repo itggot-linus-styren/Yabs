@@ -48,7 +48,7 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import TitlesModule from '../store/modules/TitlesModule';
-import BooksModule from '../store/modules/BooksModule';
+import BooksModule, { BookForm } from '../store/modules/BooksModule';
 import { VuexModule } from 'vuex-module-decorators';
 
 // This is the component for the book form which includes all the information for the book
@@ -56,9 +56,9 @@ import { VuexModule } from 'vuex-module-decorators';
 
 @Component
 export default class BookFormComponent extends Vue {
-  private form: {} = {
+  private form: BookForm = {
     barcode: '',
-    title_id: 0,
+    title_id: 0, //eslint-disable-line camelcase
     status: '',
   };
 
@@ -70,7 +70,7 @@ export default class BookFormComponent extends Vue {
   // Submit is the event listener that takes the event and prevents the site to reload when
   // the method is run and also creates the book with the inforamtion from the form instance
 
-  private onSubmit(evt: Event) {
+  private onSubmit(evt: Event): void {
     evt.preventDefault();
     BooksModule.create(this.form);
     this.onReset();
@@ -79,10 +79,10 @@ export default class BookFormComponent extends Vue {
   // Reset method to take the form based on the properties defined in the component 
   // BookFormComponent
 
-  private onReset() {
+  private onReset(): void {
     this.form = {
       barcode: '',
-      title_id: 0,
+      title_id: 0, //eslint-disable-line camelcase
       status: '',
     };
   }

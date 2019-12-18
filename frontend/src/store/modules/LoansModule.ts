@@ -20,7 +20,7 @@ export interface Loan {
 }
 
 export interface LoanForm {
-  id: number;
+  id?: number;
   book_id: number; //eslint-disable-line camelcase
   lent_by_id: number; //eslint-disable-line camelcase
   loaned_by_id: number; //eslint-disable-line camelcase

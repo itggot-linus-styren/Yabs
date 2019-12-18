@@ -73,7 +73,7 @@ export default class AdminView extends Vue {
   // The items object is used to fill the tables with the right column and row information
   // so that the user can choose from the different links
   
-  private items: any = [
+  private items: object[] = [
     { title: 'Dashboard', icon: 'dashboard', path: '/admin'},
     { title: 'Loans', icon: 'library_books', path: '/admin/loans' },
     { title: 'Titles', icon: 'title', path: '/admin/titles' },
