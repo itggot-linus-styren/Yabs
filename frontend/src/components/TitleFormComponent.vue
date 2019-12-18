@@ -71,7 +71,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import TitlesModule, { TitleForm } from '../store/modules/TitlesModule';
+import TitlesModule from '../store/modules/TitlesModule';
+import { TitleForm } from '../types';
 
 
 // This is the child component of the earlier named parent element and catches the information

@@ -1,32 +1,10 @@
 import Vue from 'vue';
 import {VuexModule, Module, getModule, Action, Mutation} from 'vuex-module-decorators';
 import store from '..';
+import { Loan, LoanForm, LoanCollection } from '@/types';
 import LoansAPI from '../../api/loans';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';
-
-export interface Loan {
-  book: object;
-  book_id: number; //eslint-disable-line camelcase
-  created_at: string; //eslint-disable-line camelcase
-  expiration_date: string; //eslint-disable-line camelcase
-  id: number;
-  lent_by: object; //eslint-disable-line camelcase
-  lent_by_id: number; //eslint-disable-line camelcase
-  loaned_by: object; //eslint-disable-line camelcase
-  loaned_by_id: number; //eslint-disable-line camelcase
-  returned_at: string|null; //eslint-disable-line camelcase
-  updated_at: string; //eslint-disable-line camelcase
-}
-
-export interface LoanForm {
-  id: number;
-  book_id: number; //eslint-disable-line camelcase
-  lent_by_id: number; //eslint-disable-line camelcase
-  loaned_by_id: number; //eslint-disable-line camelcase
-}
-
-export interface LoanCollection {[id: number]: Loan; }
 
 @Module({dynamic: true, namespaced: true, name: 'LoansModule', store})
 class LoansModule extends VuexModule {

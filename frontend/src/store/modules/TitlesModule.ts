@@ -7,29 +7,10 @@ import {
   Mutation,
 } from 'vuex-module-decorators';
 import store from '..';
+import { Title, TitleForm, TitleCollection } from '@/types';
 import TitlesAPI from '../../api/titles';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';
-
-export interface Title {
-  cost: number;
-  created_at: string; //eslint-disable-line camelcase
-  id: number;
-  isbn: string;
-  name: string;
-  title_type: string; //eslint-disable-line camelcase
-  updated_at: string; //eslint-disable-line camelcase
-}
-
-export interface TitleForm {
-  id: number;
-  name: string;
-  cost: string;
-  isbn: string;
-  title_type: string; //eslint-disable-line camelcase
-}
-
-export interface TitleCollection { [id: number]: Title; }
 
 @Module({dynamic: true, namespaced: true, name: 'TitlesModule', store})
 class TitlesModule extends VuexModule {

@@ -52,7 +52,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import LoansModule, { Loan } from '../store/modules/LoansModule';
+import LoansModule from '../store/modules/LoansModule';
+import { Loan } from '../types';
 import UsersModule from '../store/modules/UsersModule';
 
 interface Form {
