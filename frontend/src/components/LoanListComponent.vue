@@ -1,5 +1,5 @@
 <template>
-  <v-data-table
+  <ListComponent
     :headers="headers"
     :items="loansModule.allAsArray"
     :items-per-page="5"
@@ -11,20 +11,27 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import LoansModule from '../store/modules/LoansModule';
 import { VuexModule } from 'vuex-module-decorators';
+import ListComponent from '@/components/ListComponent.vue';
+
 
 
 // This component is used as a Parent element and therefore has the headers object to 
 // send down the component tree using props in Vue and in this specific example, sending 
 // down the headers for the loan table
 
-@Component
+@Component({
+  components: {
+    ListComponent
+  }
+})
+
 export default class LoanListComponent extends Vue {
   private loansModule: VuexModule = LoansModule;
   private headers: object[] = [
-    { text: 'Lånad av', key: 'loaned_by.name', sortable: false },
-    { text: 'Utlånad av', key: 'lent_by.name', sortable: false },
-    { text: 'Boktitel', key: 'book.title.name', sortable: false },
-    { text: 'Utgångsdatum', key: 'expiration_date', sortable: false },
+    { text: 'Lånad av', value: 'loaned_by.name', sortable: false },
+    { text: 'Utlånad av', value: 'lent_by.name', sortable: false },
+    { text: 'Boktitel', value: 'book.title.name', sortable: false },
+    { text: 'Utgångsdatum', value: 'expiration_date', sortable: false },
   ];
 }
 </script>

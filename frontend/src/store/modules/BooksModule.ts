@@ -5,11 +5,6 @@ import BooksAPI from '../../api/books';
 import { Title } from './TitlesModule';
 import convertList from '../../helpers/convertArrayToNested';
 
-interface BookState {
-  books: BookCollection;
-  failure: any;
-}
-
 interface BookCollection {
   [id: string]: Book;
 }
@@ -24,14 +19,15 @@ interface Book {
 
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})
 class BooksModule extends VuexModule {
-  private bookState: BookState = {books: {}, failure: null};
+  private _books: BookCollection = {};
+  private _failure: any = null;
 
   get all() {
-    return this.bookState.books;
+    return this._books;
   }
 
   get allAsArray() {
-    return Object.keys(this.bookState.books).map((id) => this.bookState.books[id]);
+    return Object.keys(this._books).map((id) => this._books[id]);
   }
 
   @Action({rawError: true})
@@ -96,22 +92,22 @@ class BooksModule extends VuexModule {
 
   @Mutation
   private setBook(payload: any) {
-    Vue.set(this.bookState.books, payload.barcode, payload);
+    Vue.set(this._books, payload.barcode, payload);
   }
 
   @Mutation
   private removeBook(bookId: string) {
-    Vue.delete(this.bookState.books, bookId);
+    Vue.delete(this._books, bookId);
   }
 
   @Mutation
   private setfailure(payload: any) {
-    this.bookState.failure = payload;
+    this._failure = payload;
   }
   @Mutation
   private convertBookList(payload: any) {
     const list = convertList(payload, 'barcode');
-    this.bookState.books = list;
+    this._books = list;
   }
 }
 

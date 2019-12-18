@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <v-card justify="center" align="center" id="canvas-container">
     <div
       id="canvasContainer"
       ref="canvasContainer"
     >
-      <canvas
+      <canvas height="500"
         id="canvas"
         ref="canvas"
       />
@@ -15,10 +15,10 @@
           v-model="name"
           :data="userNames"
         />
-        <v-btn @click="savePicture">
+        <v-btn class="btn" @click="savePicture">
           Spara Bild
         </v-btn>
-        <v-btn @click="downloadCanvas">
+        <v-btn class="btn" @click="downloadCanvas">
           Ladda ned kort
         </v-btn>
       </v-item-group>
@@ -33,13 +33,13 @@
       src="../assets/logo.png"
       hidden="hidden"
     >
-  </div>
+  </v-card>
 </template>
 
 <!-- 
-  There are some uncommon imports in this file such as JQuery, resize and JsBarcode. Jquery
-  is a JS library for manipulating the dom easier and resize is used to manipulate pixel width 
-  on images, Jsbarcode is a dependency used for interpreting the barcode information on the 
+  There are some uncommon imports in this file such as resize and JsBarcode. 
+  resize is used to manipulate pixel width on images,
+  Jsbarcode is a dependency used for interpreting the barcode information on the 
   cards
 --> 
 
@@ -69,20 +69,26 @@ export default class CigCanvas extends Vue {
   public width: number = 0;
   public height: number = 0;
   public size: number = 1;
-  public context: any = null;
+  public context: CanvasRenderingContext2D | null = null;
 
-  // method userNames is used in order to filter out the users that are not deleted to verify
+
+  // Method userNames is used in order to filter out the users that are not deleted to verify
   // that the user that you are trying to render on the card is an actual active user
 
-  public get userNames() {
+  public get userNames(): Object {
+
     return Object.entries(UsersModule.all)
       .filter(([key, user]) => !user.name.includes('Deleted User'))
       .map(([key, user]) => user.name);
   }
 
+
   // checkUserData is used to fill the instances of the class with information from the 
   // UsersModule so that the card has the right inforamtion
-  public checkUserData() { // TODO: don't compare name to find the user. Instead compare the uid.
+
+
+  public checkUserData(): void { // TODO: don't compare name to find the user. Instead compare the uid.
+
     for (const user in UsersModule.all) {
       if (this.name === UsersModule.all[user].name) {
         this.barcode = user;
@@ -92,20 +98,24 @@ export default class CigCanvas extends Vue {
     }
   }
 
+
   // the generate Canvas does exactly what its called and uses the resize dependency 
   // to cut the canvas into a good format
 
-  public generateCanvas() {
+  public generateCanvas(): void {
+
     this.getCanvasContainerSize();
     this.setCanvasSize();
     if (this.context !== null) {
       this.context.clearRect(0, 0, this.width, this.height);
 
       setTimeout(() => {
-        const bg: any = this.$refs.bg;
-        this.context.drawImage(bg, 0, 0, this.width, this.height);
+        const bg = this.$refs.bg as HTMLImageElement;
+        if (bg) {
+          this.context.drawImage(bg, 0, 0, this.width, this.height);
+        }
 
-        const logo: any = this.$refs.logo;
+        const logo = this.$refs.logo as HTMLImageElement;
         this.context.drawImage(logo, this.width / 2 - 75, 25);
         this.drawText();
         this.drawImages();
@@ -113,29 +123,41 @@ export default class CigCanvas extends Vue {
     }
   }
 
+
   // sets the instance of the height and width to the client hight and width to standardise
   // the structure of the canvas
 
   public getCanvasContainerSize() {
     const canvasContainer: any = this.$refs.canvasContainer;
+
+  public getCanvasContainerSize(): void {
+    const canvasContainer = this.$refs.canvasContainer as HTMLDivElement;
+
     this.width = canvasContainer.clientWidth;
     this.height = canvasContainer.clientHeight;
   }
+
 
   // set canvas size basically does the same thing but sets the dimensions to 2d 
 
   public setCanvasSize() {
     const htmlCanvasElement: HTMLCanvasElement | any = this.$refs.canvas;
+
+  public setCanvasSize(): void {
+    const htmlCanvasElement = this.$refs.canvas as HTMLCanvasElement;
+
     this.context = htmlCanvasElement.getContext('2d');
 
     htmlCanvasElement.width = this.width;
     htmlCanvasElement.height = this.height;
   }
 
+
   // the draw image instantiates new classes of the image based on the barcode and also 
   // on the extracted zip file that is the profile image
 
-  public drawImages() {
+  public drawImages(): void {
+
     const barcode = new Image();
     const profileImage = new Image();
 
@@ -192,10 +214,12 @@ export default class CigCanvas extends Vue {
     }, 200);
   }
 
+
   // draw text method renders the text on the canvas in order to style it and also get
   // good fonts and such
 
-  public drawText() {
+  public drawText(): void {
+
     const firstFontSize = this.width / 10;
     const secondFontSize = this.width / 20;
 
@@ -222,71 +246,75 @@ export default class CigCanvas extends Vue {
 
   
   @Watch('sendCanvas')
-  public sendThisCanvas() {
+  public sendThisCanvas(): void {
     const zip = new JSZip();
-    const canvas: HTMLCanvasElement | any = this.$refs.canvas;
-    canvas.toBlob((blob: any) => {
+    const canvas = this.$refs.canvas as HTMLCanvasElement;
+    canvas.toBlob((blob) => {
       this.$emit('imageSent', blob);
     });
   }
 
+
   // the download canvas method is used to download and also save the donwloaded zip to
   // the new instance of a JSZIP to later blob it so that it can be used in Vue
 
-  public downloadCanvas() {
+  public downloadCanvas(): void {
+
     const zip = new JSZip();
-    const canvas: HTMLCanvasElement | any = this.$refs.canvas;
-    canvas.toBlob((blob: any) => {
+    const canvas = this.$refs.canvas as HTMLCanvasElement;
+    canvas.toBlob((blob) => {
       zip.file(this.name + '.png', blob);
-      zip.generateAsync({ type: 'blob' }).then((zipBlob: any) => {
+      zip.generateAsync({ type: 'blob' }).then((zipBlob) => {
         FileSaver.saveAs(zipBlob, 'cards.zip');
       });
     });
   }
 
+
   // savePicture method instantiates a new object of FormData to send the uid and the image
   // so that the new picture so that it later can be updated and watched by the earlier 
   // mentioned watch action 
 
-  public savePicture() {
+  public savePicture(): void {
+
     const formData = new FormData();
     formData.append('uid', this.barcode);
     formData.append('image', this.image as Blob);
-    UsersModule.update(formData).then((response: any) => {
+    UsersModule.update(formData).then((response) => {
       console.log('user updated profile!');
-    }).catch((error: any) => {
+    }).catch((error) => {
       // TODO: show in notification to user
       console.error(error);
     });
   }
 
+
   // onNameInput is a getter to receive the information stored in the instance of checkUserData
   // and the generate Canvas 
 
-  public onNameInput() {
+  public onNameInput(): void {
+
     this.checkUserData();
     this.generateCanvas();
   }
 
+
   // this is also a getter to receive information simply from the generate canvas instance
   public mounted() {
+
+  public mounted(): void {
+
     this.generateCanvas();
   }
 }
 </script>
 
-<style lang="sass" scoped>
-    #canvasContainer
-        width: 19vw
-        height: 29.64vw
-        display: flex !important
-        margin-bottom: 1%
-        margin-right: 1%
-        justify-self: center
-
-    @media only screen and (max-width: 808px)
-        #canvasContainer
-            width: 38vw
-            height: 59.28vw
-
+<style lang="css" scoped>
+  #canvas-container{
+    padding: 10px;
+    margin: 5px;
+  }
+  .btn{
+    margin: 5px;
+  }
 </style>
