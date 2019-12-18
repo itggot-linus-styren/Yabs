@@ -10,8 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_17_121041) do
-
+ActiveRecord::Schema.define(version: 2019_12_18_094942) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -62,8 +61,10 @@ ActiveRecord::Schema.define(version: 2019_12_17_121041) do
     t.string "review"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
-    t.integer "titles_id"
-    t.index ["titles_id"], name: "index_reviews_on_titles_id"
+    t.string "user_id", null: false
+    t.integer "title_id"
+    t.index ["title_id"], name: "index_reviews_on_title_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "titles", force: :cascade do |t|
@@ -94,5 +95,4 @@ ActiveRecord::Schema.define(version: 2019_12_17_121041) do
   end
 
   add_foreign_key "active_storage_attachments", "active_storage_blobs", column: "blob_id"
-  add_foreign_key "reviews", "titles", column: "titles_id"
 end
