@@ -1,10 +1,10 @@
 <template>
-  <div>
+  <v-card justify="center" align="center" id="canvas-container">
     <div
       id="canvasContainer"
       ref="canvasContainer"
     >
-      <canvas
+      <canvas height="500"
         id="canvas"
         ref="canvas"
       />
@@ -15,10 +15,10 @@
           v-model="name"
           :items="userNames"
         />
-        <v-btn @click="savePicture">
+        <v-btn class="btn" @click="savePicture">
           Spara Bild
         </v-btn>
-        <v-btn @click="downloadCanvas">
+        <v-btn class="btn" @click="downloadCanvas">
           Ladda ned kort
         </v-btn>
       </v-item-group>
@@ -33,7 +33,7 @@
       src="../assets/logo.png"
       hidden="hidden"
     >
-  </div>
+  </v-card>
 </template>
 
 <script lang="ts">
@@ -57,12 +57,12 @@ export default class CigCanvas extends Vue {
 
   public name: string = '';
   public barcode: string = '';
-  public role: string = '';
+  public role: number = 0;
   public email: string = '';
   public width: number = 0;
   public height: number = 0;
   public size: number = 1;
-  public context: any = null;
+  public context: CanvasRenderingContext2D | null = null;
 
   private get userNames(): string[] {
     return Object.entries(UsersModule.all)
@@ -70,7 +70,7 @@ export default class CigCanvas extends Vue {
       .map(([key, user]) => user.name);
   }
 
-  public checkUserData() { // TODO: don't compare name to find the user. Instead compare the uid.
+  public checkUserData(): void { // TODO: don't compare name to find the user. Instead compare the uid.
     for (const user in UsersModule.all) {
       if (this.name === UsersModule.all[user].name) {
         this.barcode = user;
@@ -80,17 +80,19 @@ export default class CigCanvas extends Vue {
     }
   }
 
-  public generateCanvas() {
+  public generateCanvas(): void {
     this.getCanvasContainerSize();
     this.setCanvasSize();
     if (this.context !== null) {
       this.context.clearRect(0, 0, this.width, this.height);
 
       setTimeout(() => {
-        const bg: any = this.$refs.bg;
-        this.context.drawImage(bg, 0, 0, this.width, this.height);
+        const bg = this.$refs.bg as HTMLImageElement;
+        if (bg) {
+          this.context.drawImage(bg, 0, 0, this.width, this.height);
+        }
 
-        const logo: any = this.$refs.logo;
+        const logo = this.$refs.logo as HTMLImageElement;
         this.context.drawImage(logo, this.width / 2 - 75, 25);
         this.drawText();
         this.drawImages();
@@ -98,21 +100,21 @@ export default class CigCanvas extends Vue {
     }
   }
 
-  public getCanvasContainerSize() {
-    const canvasContainer: any = this.$refs.canvasContainer;
+  public getCanvasContainerSize(): void {
+    const canvasContainer = this.$refs.canvasContainer as HTMLDivElement;
     this.width = canvasContainer.clientWidth;
     this.height = canvasContainer.clientHeight;
   }
 
-  public setCanvasSize() {
-    const htmlCanvasElement: HTMLCanvasElement | any = this.$refs.canvas;
+  public setCanvasSize(): void {
+    const htmlCanvasElement = this.$refs.canvas as HTMLCanvasElement;
     this.context = htmlCanvasElement.getContext('2d');
 
     htmlCanvasElement.width = this.width;
     htmlCanvasElement.height = this.height;
   }
 
-  public drawImages() {
+  public drawImages(): void {
     const barcode = new Image();
     const profileImage = new Image();
 
@@ -169,7 +171,7 @@ export default class CigCanvas extends Vue {
     }, 200);
   }
 
-  public drawText() {
+  public drawText(): void {
     const firstFontSize = this.width / 10;
     const secondFontSize = this.width / 20;
 
@@ -191,60 +193,54 @@ export default class CigCanvas extends Vue {
   }
 
   @Watch('sendCanvas')
-  public sendThisCanvas() {
+  public sendThisCanvas(): void {
     const zip = new JSZip();
-    const canvas: HTMLCanvasElement | any = this.$refs.canvas;
-    canvas.toBlob((blob: any) => {
+    const canvas = this.$refs.canvas as HTMLCanvasElement;
+    canvas.toBlob((blob) => {
       this.$emit('imageSent', blob);
     });
   }
 
-  public downloadCanvas() {
+  public downloadCanvas(): void {
     const zip = new JSZip();
-    const canvas: HTMLCanvasElement | any = this.$refs.canvas;
-    canvas.toBlob((blob: any) => {
+    const canvas = this.$refs.canvas as HTMLCanvasElement;
+    canvas.toBlob((blob) => {
       zip.file(this.name + '.png', blob);
-      zip.generateAsync({ type: 'blob' }).then((zipBlob: any) => {
+      zip.generateAsync({ type: 'blob' }).then((zipBlob) => {
         FileSaver.saveAs(zipBlob, 'cards.zip');
       });
     });
   }
 
-  public savePicture() {
+  public savePicture(): void {
     const formData = new FormData();
     formData.append('uid', this.barcode);
     formData.append('image', this.image as Blob);
-    UsersModule.update(formData).then((response: any) => {
+    UsersModule.update(formData).then((response) => {
       console.log('user updated profile!');
-    }).catch((error: any) => {
+    }).catch((error) => {
       // TODO: show in notification to user
       console.error(error);
     });
   }
 
-  public onNameInput() {
+  public onNameInput(): void {
     this.checkUserData();
     this.generateCanvas();
   }
 
-  public mounted() {
+  public mounted(): void {
     this.generateCanvas();
   }
 }
 </script>
 
-<style lang="sass" scoped>
-    #canvasContainer
-        width: 19vw
-        height: 29.64vw
-        display: flex !important
-        margin-bottom: 1%
-        margin-right: 1%
-        justify-self: center
-
-    @media only screen and (max-width: 808px)
-        #canvasContainer
-            width: 38vw
-            height: 59.28vw
-
+<style lang="css" scoped>
+  #canvas-container{
+    padding: 10px;
+    margin: 5px;
+  }
+  .btn{
+    margin: 5px;
+  }
 </style>
