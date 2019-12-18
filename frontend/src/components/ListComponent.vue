@@ -62,7 +62,7 @@ export default class ListComponent extends Vue {
 
   public search: string = '';
 
-/**
+  /**
  * @constructor
  * Adds the header "Actions" into headers if useActions is true.
  */
@@ -72,7 +72,7 @@ export default class ListComponent extends Vue {
     }
   }
 
-/**
+  /**
  * Checks if the given array contains a header containing the text "text"
  * 
  * @param {Header[]} headers - Is the array of Header objects to be searched. (See Header interface)
