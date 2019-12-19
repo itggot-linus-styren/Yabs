@@ -1,4 +1,5 @@
-import UsersModule, { User } from '../store/modules/UsersModule';
+import UsersModule from '../store/modules/UsersModule';
+import { User } from '@/types';
 
 interface Roles { [bitValue: number]: string}
 
@@ -14,7 +15,7 @@ const roles: Roles = {
 export default class RoleChecker {
 
   private static checkPermission(required: number): boolean {
-    const user = UsersModule.currentUser;
+    const user: User = UsersModule.currentUser;
     return user && ((user.role & required) == required || (user.role > required));
   }
   
