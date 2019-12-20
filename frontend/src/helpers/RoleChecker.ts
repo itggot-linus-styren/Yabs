@@ -43,10 +43,10 @@ export default class RoleChecker {
     return UsersModule.currentUser && (UsersModule.currentUser.role & 1) == 1;
   }
 
-  static roleAsText(): string {
-    if (!UsersModule.currentUser) {return ''; }
+  static roleAsText(user: User = UsersModule.currentUser): string {
+    if (!user) {return ''; }
     for(const bitValue of Object.keys(roles).reverse()) {
-      if (UsersModule.currentUser.role >= Number(bitValue)) {
+      if (user.role >= Number(bitValue)) {
         return roles[Number(bitValue)];
       }
     }
