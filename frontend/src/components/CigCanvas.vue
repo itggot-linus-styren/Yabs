@@ -19,6 +19,7 @@
         <v-autocomplete
           v-model="name"
           :items="userNames"
+          @change="onNameInput"
         />
         <v-btn
           class="btn"
@@ -63,7 +64,7 @@ import FileSaver from 'file-saver';
 import resize from 'vue-resize-directive';
 import { setTimeout } from 'timers';
 import UsersModule from '../store/modules/UsersModule';
-import { User } from '@/types'
+import { User } from '@/types';
 
 @Component({
   directives: {
