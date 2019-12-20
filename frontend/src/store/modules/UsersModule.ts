@@ -7,7 +7,7 @@ import {
   Mutation,
 } from 'vuex-module-decorators';
 import store from '..';
-import { User, UserForm, UserCollection } from '@/types';
+import { User, UserCollection } from '@/types';
 import UsersAPI from '../../api/users';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';

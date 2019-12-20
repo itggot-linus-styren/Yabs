@@ -19,6 +19,7 @@
         <v-autocomplete
           v-model="name"
           :items="userNames"
+          @change="onNameInput"
         />
         <v-btn
           class="btn"
@@ -63,6 +64,7 @@ import FileSaver from 'file-saver';
 import resize from 'vue-resize-directive';
 import { setTimeout } from 'timers';
 import UsersModule from '../store/modules/UsersModule';
+import { User } from '@/types';
 
 @Component({
   directives: {
@@ -221,10 +223,10 @@ export default class CigCanvas extends Vue {
   // good fonts and such
 
   public drawText(): void {
-    const firstFontSize = this.width / 10;
-    const secondFontSize = this.width / 20;
-    
-    if(this.context) {
+    if (this.context){
+      const firstFontSize = this.width / 10;
+      const secondFontSize = this.width / 20;
+
       this.context.font = firstFontSize + 'px Arial';
       this.context.textAlign = 'center';
       this.context.fillStyle = '#ffffff';
@@ -240,7 +242,7 @@ export default class CigCanvas extends Vue {
         this.height / 1.7 + this.height / 8,
         this.width,
       );
-    }
+    } 200;
   }
 
   /* 
@@ -282,9 +284,9 @@ export default class CigCanvas extends Vue {
     const formData = new FormData();
     formData.append('uid', this.barcode);
     formData.append('image', this.image as Blob);
-    UsersModule.update(formData).then((response) => {
+    UsersModule.update(formData).then((response: User) => {
       console.log('user updated profile!');
-    }).catch((error) => {
+    }).catch((error: object) => {
       // TODO: show in notification to user
       console.error(error);
     });
