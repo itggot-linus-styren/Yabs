@@ -20,7 +20,7 @@ export default new Router({
     {
       path: '/books/:id',
       name: 'edit book',
-      component: views.Edit,
+      component: views.EditBook,
     },
     {
       path: '/admin',

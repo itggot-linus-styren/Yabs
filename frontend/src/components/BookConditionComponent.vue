@@ -22,7 +22,7 @@
       label="Regular"
       single-line
     />
-    <v-btn
+    <v-btn 
       color="primary"
       type="submit"
     >
@@ -34,28 +34,27 @@
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import BooksModule from '../store/modules/BooksModule';
-import { Book, Title } from '@/types';
+import { Book, BookForm } from '@/types';
 
 @Component
 export default class BookStatusComponent extends Vue {
-  @Prop({default: 'No Data'}) private title: string;
-  @Prop({default: 0}) private title_id: number;
-  @Prop({default: ''}) private barcode: string;
-  @Prop({default: 'Unavailable'}) private status: string;
+  @Prop({default: 'No Data'}) private title!: string;
+  @Prop({default: 0}) private title_id!: number; //eslint-disable-line camelcase
+  @Prop({default: ''}) private barcode!: string;
+  @Prop({default: 'Unavailable'}) private status!: string;
   @Prop({default: ''}) private note: string;
 
-  private statuses = ['Damaged', 'OK', 'Other'];
+  private statuses: string[] = ['Damaged', 'OK', 'Other'];
 
 
-  private form: Book = {
-    barcode: this.barcode,
+  private form: BookForm = {
     condition: this.status,
-    note: this.note,
-    title_id: this.title_id,
+    title_id: this.title_id, //eslint-disable-line camelcase
+    barcode: this.barcode
   };
 
 
-  private onSubmit(evt: Event) {
+  private onSubmit(evt: Event): void {
     evt.preventDefault();
     BooksModule.update(this.form);
     alert('Book Updated');
