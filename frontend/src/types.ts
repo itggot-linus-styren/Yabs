@@ -58,9 +58,10 @@ interface TitleForm {
 interface TitleCollection { [id: number]: Title; }
 
 interface Book {
-  barcode: number;
+  barcode: string;
   created_at: string; //eslint-disable-line camelcase
   condition: string;
+  note: string;
   title_id: number; //eslint-disable-line camelcase
   updated_at: string; //eslint-disable-line camelcase
   title: Title;
