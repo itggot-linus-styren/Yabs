@@ -2,7 +2,7 @@ import Vue from 'vue';
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators';
 import store from '..';
 import { Book, BookForm, BookCollection } from '@/types';
-import BooksAPI from '../../api/books';
+import BooksAPI from '../../services/api/books';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';
 
