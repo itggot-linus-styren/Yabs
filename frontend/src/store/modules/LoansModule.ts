@@ -2,7 +2,7 @@ import Vue from 'vue';
 import {VuexModule, Module, getModule, Action, Mutation} from 'vuex-module-decorators';
 import store from '..';
 import { Loan, LoanForm, LoanCollection } from '@/types';
-import LoansAPI from '../../api/loans';
+import LoansAPI from '../../services/api/loans';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';
 
