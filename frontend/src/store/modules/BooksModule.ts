@@ -4,15 +4,11 @@ import store from '..';
 import BooksAPI from '../../api/books';
 import convertList from '../../helpers/convertArrayToNested';
 
-interface BookState {
-  books: BookCollection;
-  failure: any;
-}
 
 export interface Book {
   barcode: string,
   title_id: number,
-  status: string,
+  condition: string,
   created_at: string,
   updated_at: string
 }

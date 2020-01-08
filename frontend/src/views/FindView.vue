@@ -87,7 +87,7 @@ export default class FindView extends Vue {
   ];
   bookHeaders: object[] = [
     { text: 'Titel', value: 'title' },
-    { text: 'Status', value: 'status' },
+    { text: 'Condition', value: 'condition' },
     { text: 'Barcode', value: 'barcode' },
   ];
   userHeaders: object[] = [
@@ -162,19 +162,19 @@ export default class FindView extends Vue {
     {
       title: 'The Hobbit',
       barcode: '123123bleh31231',
-      status: 'One book to rule them all',
+      condition: 'One book to rule them all',
       routeSpecifier: '123123bleh31231'
     },
     {
       title: 'Lord of the flies',
       barcode: '1337',
-      status: 'flew away',
+      condition: 'flew away',
       routeSpecifier: '1337'
     },
     {
       title: 'nallepuupupupup',
       barcode: '80085',
-      status: 'Stroke',
+      condition: 'Stroke',
       routeSpecifier: '80085'
     }
   ];

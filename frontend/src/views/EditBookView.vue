@@ -18,21 +18,21 @@
         </v-row>
     </template>
     </v-img>
-    <BookStatusComponent :title="title.name" :status="book.status" :barcode="book.barcode" />
+    <BookConditionComponent :title="title.name" :condition="book.condition" :barcode="book.barcode" />
 </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import BooksModule, {Book} from '../store/modules/BooksModule';
-import BookStatusComponent from '../components/BookStatusComponent'
+import BookConditionComponent from '../components/BookConditionComponent'
 import key from '../config/api.config'
 import TitlesModule, {Title} from '../store/modules/TitlesModule';
 
 
 @Component({
     components: {
-        BookStatusComponent
+        BookConditionComponent
     }
 })
 export default class EditBook extends Vue {

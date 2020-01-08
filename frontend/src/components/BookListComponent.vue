@@ -22,7 +22,7 @@ export default class BookListComponent extends Vue {
   private booksModule: VuexModule = BooksModule;
   public headers: object[] = [
     { text: 'Titel', value: 'title.name', sortable: false },
-    { text: 'Status', value: 'status', sortable: false },
+    { text: 'Condition', value: 'condition', sortable: false },
     { text: 'Sträckkod', value: 'barcode', sortable: false },
   ];
 }

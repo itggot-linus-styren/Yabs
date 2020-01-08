@@ -19,12 +19,12 @@
       data-cy="chooseTitle"
     />
     <v-text-field
-      v-model="form.status"
-      label="Status: tex 'ok', 'framsida saknas'"
+      v-model="form.condition"
+      label="condition: tex 'ok', 'framsida saknas'"
       autocomplete="off"
       required
       outlined
-      data-cy="status"
+      data-cy="condition"
     />
     <v-btn
       class="mr-4"
@@ -56,7 +56,7 @@ export default class BookFormComponent extends Vue {
   private form: {} = {
     barcode: '',
     title_id: 0,
-    status: '',
+    condition: '',
   };
   private titlesModule: VuexModule = TitlesModule;
 
@@ -70,7 +70,7 @@ export default class BookFormComponent extends Vue {
     this.form = {
       barcode: '',
       title_id: 0,
-      status: '',
+      condition: '',
     };
   }
 }
