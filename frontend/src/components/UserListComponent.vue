@@ -3,6 +3,9 @@
     :headers="headers"
     :items="usersModule.allAsArray"
     :items-per-page="5"
+    :route-path="routePath"
+    :route-specifier="routeSpecifier"
+    :use-actions="true"
     class="elevation-1"
   />
 </template>
@@ -25,6 +28,8 @@ export default class LoanListComponent extends Vue {
     { text: 'Email', value: 'email' },
     { text: 'Klass', value: 'klass' },
   ];
+  private routePath: string = 'users';
+  private routeSpecifier: string = 'uid'; // Placeholder
 }
 </script>
 
