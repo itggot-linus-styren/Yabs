@@ -1,25 +1,32 @@
 <template>
-<div>
+  <div>
     <v-img
-        :src="title.cover"
-        lazy-src="https://picsum.photos/id/11/100/60"
-        aspect-ratio="1"
-        class="grey lighten-2"
-        max-width="500"
-        max-height="300"
-      >
-        <template v-slot:placeholder>
+      :src="book.title.cover"
+      lazy-src="https://picsum.photos/id/11/100/60"
+      aspect-ratio="1"
+      class="grey lighten-2"
+      max-width="500"
+      max-height="300"
+    >
+      <template v-slot:placeholder>
         <v-row
-            class="fill-height ma-0"
-            align="center"
-            justify="center"
+          class="fill-height ma-0"
+          align="center"
+          justify="center"
         >
-            <v-progress-circular indeterminate color="grey lighten-5"></v-progress-circular>
+          <v-progress-circular 
+            indeterminate 
+            color="grey lighten-5" 
+          />
         </v-row>
-    </template>
+      </template>
     </v-img>
-    <BookConditionComponent :title="title.name" :condition="book.condition" :barcode="book.barcode" />
-</div>
+    <BookConditionComponent 
+      :title="book.title.name" 
+      :condition="book.condition" 
+      :barcode="book.barcode"
+    />
+  </div>
 </template>
 
 <script lang="ts">
@@ -30,19 +37,18 @@ import TitlesModule from '../store/modules/TitlesModule';
 import { Title, Book } from '@/types';
 
 @Component({
-    components: {
-        BookConditionComponent
-    }
+  components: {
+    BookConditionComponent
+  }
 })
 export default class EditBook extends Vue {
-    private book: Book;
-    private title: Title;
+  private book: Book | null = null;
 
-    private async created(){
-        this.book = BooksModule.fetchSingle(this.$route.params.id)
-
-        this.title = TitlesModule.fetchSingle(this.book.title_id)
-    }
+  private async created(): Promise<void> {
+    BooksModule.fetchSingle(this.$route.params.id).then((response: Book) => {
+      this.book = response;
+    });
+  }
 
 }
 </script>

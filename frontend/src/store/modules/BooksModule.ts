@@ -40,10 +40,10 @@ class BooksModule extends VuexModule {
   public fetchSingle(barcode: string): Promise<Book> {
     return new Promise((resolve, reject) => {
       BooksAPI.single(barcode)
-        .then((response: any) => {
-          resolve();
+        .then((response: Book) => {
+          resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setfailure(error);
           reject(error);
         });
@@ -51,7 +51,7 @@ class BooksModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public create(request: any) {
+  public create(request: BookForm): Promise<Book> {
     return new Promise((resolve, reject) => {
       BooksAPI.create(request)
         .then((response: Book) => {
