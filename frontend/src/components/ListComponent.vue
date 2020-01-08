@@ -103,7 +103,7 @@ export default class ListComponent extends Vue {
    * 
    *    This could potentially result in the the user routing to "locahost:8080/books/1001".
    */
-  route(event: Event, item: any): void {
+  route(event: Event, item: any): void { //eslint-disable-line @typescript-eslint/no-explicit-any
     event.preventDefault();
     if(item[this.routeSpecifier]) {
       this.$router.push(`/${this.routePath}/${item[this.routeSpecifier]}`);

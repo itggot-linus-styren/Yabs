@@ -19,14 +19,14 @@ export default class GoogleLogin extends Vue {
 
   // mounted is a getter to reveive the information about the renderloginbutton
 
-  public mounted() {
+  public mounted(): void {
     this.renderLoginButton();
   }
 
   // renderLoginButton is used to set the information about the button without having to 
   // include any css, which is forbidden in this project, based on the class signin2 
 
-  public renderLoginButton() {
+  public renderLoginButton(): void {
 
     // @ts-ignore: gapi
     gapi.signin2.render('signin2', {
@@ -42,7 +42,7 @@ export default class GoogleLogin extends Vue {
 
   // Getter to get the updated version of the instance renderLoginButton
 
-  public updated() {
+  public updated(): void {
     this.renderLoginButton();
   }
 
@@ -50,25 +50,26 @@ export default class GoogleLogin extends Vue {
   // fetched from the google api but also takes the token that is generated and setting it
   // to the id token so that the authentication is made possbile
 
-  public onSignIn(googleUser: any) {
+  public onSignIn(googleUser: any): void { //eslint-disable-line @typescript-eslint/no-explicit-any
+    console.log(typeof googleUser);
     const profile = googleUser.getBasicProfile();
-    const id_token = googleUser.getAuthResponse().id_token;
+    const idToken: string = googleUser.getAuthResponse().id_token;
     console.log('ID: ' + profile.getId()); // Do not send to your backend! Use an ID token instead.
     console.log('Name: ' + profile.getName());
     console.log('Image URL: ' + profile.getImageUrl());
     console.log('Email: ' + profile.getEmail()); // This is null if the 'email' scope is not present.
-    UsersModule.signIn(id_token)
-      .then((response: any) => {
+    UsersModule.signIn(idToken)
+      .then((response: object) => {
         console.log(response);
       })
-      .catch((error: any) => {
+      .catch((error: object) => {
         this.signOut();
       });
   }
 
   // onfailure is a standard method used to render the error message when a process has failed
 
-  public onFailure(error: any) {
+  public onFailure(error: object): void {
 
     // TODO: show this in a notification
 
@@ -78,7 +79,7 @@ export default class GoogleLogin extends Vue {
   // signOut takes the the authentication instance and then log out the user that matches
   // that description
 
-  public signOut() {
+  public signOut(): void {
     // @ts-ignore: gapi
     const auth2 = gapi.auth2.getAuthInstance();
     auth2.signOut().then(() => {
