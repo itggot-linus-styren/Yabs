@@ -27,7 +27,7 @@ describe('This test will create a title and a book', () => {
     cy.get('[data-cy=barcode]').click().type('212');
     cy.get('[data-cy=chooseTitle]').click();
     cy.get('div').contains('Alice in Wonderland').click();
-    cy.get('[data-cy=status]').type('Stolen');
+    cy.get('[data-cy=condition]').type('Stolen');
     cy.get('[data-cy=addBook]').click();
   });
 });
