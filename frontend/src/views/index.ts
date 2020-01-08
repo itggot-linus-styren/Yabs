@@ -1,5 +1,5 @@
 import Start from './Start.vue';
-import Profile from './Profile.vue';
+import Profile from './ProfileView.vue';
 import AdminView from './AdminView.vue';
 import AdminDashboardView from './AdminDashboardView.vue';
 import AdminBooksView from './AdminBooksView.vue';
