@@ -52,23 +52,18 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import LoansModule, { Loan } from '../store/modules/LoansModule';
+import LoansModule from '../store/modules/LoansModule';
+import { Loan, LoanForm } from '../types';
 import UsersModule from '../store/modules/UsersModule';
-
-interface Form {
-  lent_by_id: number | string;
-  loaned_by_id: number | string;
-  book_id: number | string;
-}
 
 // loan form component is used to user interface for the user to create a loan and is later 
 // authorized by the pundit dependency 
 @Component
 export default class LoanFormComponent extends Vue {
-  public form: Form = {
-    lent_by_id: '',
-    loaned_by_id: '',
-    book_id: ''
+  public form: LoanForm = {
+    lent_by_id: 0, //eslint-disable-line camelcase
+    loaned_by_id: 0, //eslint-disable-line camelcase
+    book_id: 0 //eslint-disable-line camelcase
   };
   public show: boolean = true;
 
@@ -79,7 +74,7 @@ export default class LoanFormComponent extends Vue {
   public onSubmit(evt: Event): void {
 
     evt.preventDefault();
-    this.form.lent_by_id = UsersModule.currentUserID;
+    this.form.lent_by_id = UsersModule.currentUserID; //eslint-disable-line camelcase
     if (!!this.form.lent_by_id && !!this.form.loaned_by_id && !!this.form.book_id) {
       LoansModule.create(this.form)
         .then((payload: Loan) => this.$emit('loan-added', payload))
@@ -92,10 +87,9 @@ export default class LoanFormComponent extends Vue {
   // wrong information about the loan
 
   public onReset(evt: Event): void {
-
     evt.preventDefault();
-    this.form.loaned_by_id = '';
-    this.form.book_id = '';
+    this.form.loaned_by_id = 0; //eslint-disable-line camelcase
+    this.form.book_id = 0; //eslint-disable-line camelcase
     this.show = false;
     this.$nextTick(() => {
       this.show = true;

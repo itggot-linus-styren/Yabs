@@ -1,5 +1,6 @@
 *.rbc
 capybara-*.html
+api.config.ts
 .rspec
 backend/storage
 backend/log

@@ -2,111 +2,125 @@
 book_5000:
   title_id: 1
   barcode: '5000'
-  status: OK
+  condition: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 15:03:57.940717000 Z
+    utc: &1 2020-01-08 11:26:01.604636000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2020-01-08 11:26:01.604636000 Z
     zone: *2
+    time: *3
+
+book_1001:
+  title_id: 3
+  barcode: '1001'
+  condition: OK
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2020-01-08 11:26:01.609523000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
     time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2020-01-08 11:26:01.609523000 Z
+    zone: *2
+    time: *3
 
 book_5002:
   title_id: 1
   barcode: '5002'
-  status: Broken
+  condition: Broken
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 15:03:58.001974000 Z
+    utc: &1 2020-01-08 11:26:01.648954000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2020-01-08 11:26:01.648954000 Z
     zone: *2
-    time: *1
+    time: *3
 
 book_5003:
   title_id: 1
   barcode: '5003'
-  status: OK
+  condition: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 15:03:58.007001000 Z
+    utc: &1 2020-01-08 11:26:01.654027000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2020-01-08 11:26:01.654027000 Z
     zone: *2
-    time: *1
+    time: *3
 
 book_5004:
   title_id: 2
   barcode: '5004'
-  status: OK
+  condition: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 15:03:58.011818000 Z
+    utc: &1 2020-01-08 11:26:01.658698000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2020-01-08 11:26:01.658698000 Z
     zone: *2
-    time: *1
+    time: *3
 
 book_5005:
   title_id: 2
   barcode: '5005'
-  status: Broken
+  condition: Broken
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 15:03:58.016789000 Z
+    utc: &1 2020-01-08 11:26:01.662976000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2020-01-08 11:26:01.662976000 Z
     zone: *2
-    time: *1
+    time: *3
 
 book_5006:
   title_id: 3
   barcode: '5006'
-  status: OK
+  condition: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 15:03:58.021687000 Z
+    utc: &1 2020-01-08 11:26:01.667489000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2020-01-08 11:26:01.667489000 Z
     zone: *2
-    time: *1
+    time: *3
 
 book_5007:
   title_id: 4
   barcode: '5007'
-  status: OK
+  condition: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 15:03:58.026575000 Z
+    utc: &1 2020-01-08 11:26:01.671705000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2020-01-08 11:26:01.671705000 Z
     zone: *2
-    time: *1
+    time: *3
 
 book_5008:
   title_id: 4
   barcode: '5008'
-  status: OK
+  condition: OK
   created_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: &1 2019-12-18 15:03:58.030852000 Z
+    utc: &1 2020-01-08 11:26:01.675338000 Z
     zone: &2 !ruby/object:ActiveSupport::TimeZone
       name: Etc/UTC
     time: *1
   updated_at: !ruby/object:ActiveSupport::TimeWithZone
-    utc: *1
+    utc: &3 2020-01-08 11:26:01.675338000 Z
     zone: *2
-    time: *1
+    time: *3

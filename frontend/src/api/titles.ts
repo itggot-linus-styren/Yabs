@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { Title, TitleForm } from '@/store/modules/TitlesModule';
+import { Title, TitleForm } from '@/types';
 
 const headers = {
   'Content-Type': 'application/json',
@@ -14,6 +14,18 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
+  },
+
+  async single(id: number) {
+
+    try {
+      const response = await axios.get(`http://localhost:3000/api/v1/titles/${id}`, 
+        {headers, withCredentials: true});
+      return Promise.resolve(response.data);
+    } catch (error) {
+      return Promise.reject(error)
+    }
+
   },
   async create(request: TitleForm): Promise<Title> {
     try {

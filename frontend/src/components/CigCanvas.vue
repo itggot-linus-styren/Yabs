@@ -19,6 +19,7 @@
         <v-autocomplete
           v-model="name"
           :items="userNames"
+          @change="onNameInput"
         />
         <v-btn
           class="btn"
@@ -63,6 +64,7 @@ import FileSaver from 'file-saver';
 import resize from 'vue-resize-directive';
 import { setTimeout } from 'timers';
 import UsersModule from '../store/modules/UsersModule';
+import { User } from '@/types';
 
 @Component({
   directives: {
@@ -122,11 +124,11 @@ export default class CigCanvas extends Vue {
         const bg = this.$refs.bg as HTMLImageElement;
         if (bg && this.context) {
           this.context.drawImage(bg, 0, 0, this.width, this.height);
-
-        const logo = this.$refs.logo as HTMLImageElement;
-        this.context.drawImage(logo, this.width / 2 - 75, 25);
-        this.drawText();
-        this.drawImages();
+          
+          const logo = this.$refs.logo as HTMLImageElement;
+          this.context.drawImage(logo, this.width / 2 - 75, 25);
+          this.drawText();
+          this.drawImages();
         }
       }, 200);
     }
@@ -152,7 +154,6 @@ export default class CigCanvas extends Vue {
     htmlCanvasElement.width = this.width;
     htmlCanvasElement.height = this.height;
   }
-
 
   // the draw image instantiates new classes of the image based on the barcode and also 
   // on the extracted zip file that is the profile image
@@ -218,6 +219,9 @@ export default class CigCanvas extends Vue {
     }, 200);
   }
 
+  // draw text method renders the text on the canvas in order to style it and also get
+  // good fonts and such
+
   public drawText(): void {
     if (this.context){
       const firstFontSize = this.width / 10;
@@ -233,39 +237,12 @@ export default class CigCanvas extends Vue {
         this.width,
       );
       this.context.fillText(
-        this.role,
+        this.role.toString(),
         this.width / 2,
         this.height / 1.7 + this.height / 8,
         this.width,
       );
-    }, 200);
-  }
-
-
-  // draw text method renders the text on the canvas in order to style it and also get
-  // good fonts and such
-
-  public drawText(): void {
-
-      const firstFontSize = this.width / 10;
-      const secondFontSize = this.width / 20;
-
-      this.context.font = firstFontSize + 'px Arial';
-      this.context.textAlign = 'center';
-      this.context.fillStyle = '#ffffff';
-      this.context.fillText(
-        this.name,
-        this.width / 2,
-        this.height / 2 + this.height / 8,
-        this.width,
-      );
-      this.context.fillText(
-        this.role,
-        this.width / 2,
-        this.height / 1.7 + this.height / 8,
-        this.width,
-      );
-    }
+    } 200;
   }
 
   /* 
@@ -273,7 +250,6 @@ export default class CigCanvas extends Vue {
   boolean is being mutated in any way and also blobs the image to send it via the 
   emit method built in Vue to the parent component
   */
-
 
   @Watch('sendCanvas')
   public sendThisCanvas(): void {
@@ -284,12 +260,10 @@ export default class CigCanvas extends Vue {
     });
   }
 
-
   // the download canvas method is used to download and also save the donwloaded zip to
   // the new instance of a JSZIP to later blob it so that it can be used in Vue
 
   public downloadCanvas(): void {
-
     const zip = new JSZip();
     const canvas = this.$refs.canvas as HTMLCanvasElement;
     canvas.toBlob((blob) => {
@@ -302,50 +276,44 @@ export default class CigCanvas extends Vue {
     });
   }
 
-
   // savePicture method instantiates a new object of FormData to send the uid and the image
   // so that the new picture so that it later can be updated and watched by the earlier 
   // mentioned watch action 
 
   public savePicture(): void {
-
     const formData = new FormData();
     formData.append('uid', this.barcode);
     formData.append('image', this.image as Blob);
-    UsersModule.update(formData).then((response) => {
+    UsersModule.update(formData).then((response: User) => {
       console.log('user updated profile!');
-    }).catch((error) => {
+    }).catch((error: object) => {
       // TODO: show in notification to user
       console.error(error);
     });
   }
 
-
   // onNameInput is a getter to receive the information stored in the instance of checkUserData
   // and the generate Canvas 
 
   public onNameInput(): void {
-
     this.checkUserData();
     this.generateCanvas();
   }
 
-
   // this is also a getter to receive information simply from the generate canvas instance
 
   public mounted(): void {
-
     this.generateCanvas();
   }
 }
 </script>
 
 <style lang="css" scoped>
-  #canvas-container{
-    padding: 10px;
-    margin: 5px;
-  }
-  .btn{
-    margin: 5px;
-  }
+#canvas-container{
+  padding: 10px;
+  margin: 5px;
+}
+.btn{
+  margin: 5px;
+}
 </style>

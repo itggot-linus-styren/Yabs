@@ -1,28 +1,11 @@
 import Vue from 'vue';
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators';
 import store from '..';
+import { Book, BookForm, BookCollection } from '@/types';
 import BooksAPI from '../../api/books';
-import { Title } from './TitlesModule';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';
 
-interface BookCollection {
-  [id: string]: Book;
-}
-export interface Book {
-  barcode: number;
-  created_at: string; //eslint-disable-line camelcase
-  status: string;
-  title_id: number; //eslint-disable-line camelcase
-  updated_at: string; //eslint-disable-line camelcase
-  title: Title;
-}
-
-export interface BookForm {
-  barcode: string;
-  title_id: string; //eslint-disable-line camelcase
-  status: string;
-}
 
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})
 class BooksModule extends VuexModule {
@@ -54,7 +37,21 @@ class BooksModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public create(request: BookForm): Promise<Book> {
+  public fetchSingle(barcode: string): Promise<Book> {
+    return new Promise((resolve, reject) => {
+      BooksAPI.single(barcode)
+        .then((response: any) => {
+          resolve();
+        })
+        .catch((error: any) => {
+          this.setfailure(error);
+          reject(error);
+        });
+    });
+  }
+
+  @Action({rawError: true})
+  public create(request: any) {
     return new Promise((resolve, reject) => {
       BooksAPI.create(request)
         .then((response: Book) => {

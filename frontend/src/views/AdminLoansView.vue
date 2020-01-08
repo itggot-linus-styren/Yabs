@@ -40,7 +40,7 @@ export default class AdminLoansView extends Vue {
   // The class is instantiated by the constructor created by fetching all the loans from the
   // loans module
   
-  private created() {
+  private created(): void {
     LoansModule.fetchAll();
   }
 }
