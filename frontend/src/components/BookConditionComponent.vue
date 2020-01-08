@@ -22,7 +22,7 @@
       label="Regular"
       single-line
     />
-    <v-btn 
+    <v-btn
       color="primary"
       type="submit"
     >
@@ -42,7 +42,7 @@ export default class BookStatusComponent extends Vue {
   @Prop({default: 0}) private title_id!: number; //eslint-disable-line camelcase
   @Prop({default: ''}) private barcode!: string;
   @Prop({default: 'Unavailable'}) private status!: string;
-  @Prop({default: ''}) private note: string;
+  @Prop({default: ''}) private note!: string;
 
   private statuses: string[] = ['Damaged', 'OK', 'Other'];
 
