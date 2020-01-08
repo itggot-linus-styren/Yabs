@@ -33,7 +33,7 @@ export default class BookListComponent extends Vue {
   
   public headers: object[] = [
     { text: 'Titel', value: 'title.name' },
-    { text: 'Status', value: 'status' },
+    { text: 'Skick', value: 'condition' },
     { text: 'Sträckkod', value: 'barcode' },
   ];
 }

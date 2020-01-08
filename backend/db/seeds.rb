@@ -30,8 +30,8 @@ title_cc = Title.create(name: "Clean Code", isbn: "9780132350884", cost: 300, ti
 title_tomtens_jul = Title.create(name: "Tomtens jul", isbn: "9781999985462", cost: 60, title_type: "Kurslitteratur")
 
 # Create books to be loaned
-book_alice = Book.create(barcode: "5000", status: "OK", title: title_alice)
-book_cc = Book.create(barcode: "1001", status: "OK", title: title_cc)
+book_alice = Book.create(barcode: "5000", condition: "OK", title: title_alice)
+book_cc = Book.create(barcode: "1001", condition: "OK", title: title_cc)
 
 # Create a loans
 loan_alice = Loan.new(expiration_date: Date.current)
@@ -42,7 +42,7 @@ loan_alice.save
 
 loan_cc = Loan.new(expiration_date: Date.current)
 loan_cc.lent_by = User.find_by_name("Låneservice Johanneberg")
-loan_cc.loaned_by = User.all.sample
+loan_cc.loaned_by = User.find(2075529089)
 loan_cc.book = book_cc
 loan_cc.returned_at = Date.current
 loan_cc.save
@@ -54,13 +54,13 @@ review_alice.save
 
 
 # Create the rest of the books
-Book.create(barcode: "5002", status: "Broken", title: title_alice)
-Book.create(barcode: "5003", status: "OK", title: title_alice)
-Book.create(barcode: "5004", status: "OK", title: title_lotr)
-Book.create(barcode: "5005", status: "Broken", title: title_lotr)
-Book.create(barcode: "5006", status: "OK", title: title_cc)
-Book.create(barcode: "5007", status: "OK", title: title_tomtens_jul)
-Book.create(barcode: "5008", status: "OK", title: title_tomtens_jul)
+Book.create(barcode: "5002", condition: "Broken", title: title_alice)
+Book.create(barcode: "5003", condition: "OK", title: title_alice)
+Book.create(barcode: "5004", condition: "OK", title: title_lotr)
+Book.create(barcode: "5005", condition: "Broken", title: title_lotr)
+Book.create(barcode: "5006", condition: "OK", title: title_cc)
+Book.create(barcode: "5007", condition: "OK", title: title_tomtens_jul)
+Book.create(barcode: "5008", condition: "OK", title: title_tomtens_jul)
 
 # Create fixtures
 def fixtures_title()
