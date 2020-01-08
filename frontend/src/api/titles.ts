@@ -23,7 +23,7 @@ export default {
         {headers, withCredentials: true});
       return Promise.resolve(response.data);
     } catch (error) {
-      return Promise.reject(error)
+      return Promise.reject(error);
     }
 
   },

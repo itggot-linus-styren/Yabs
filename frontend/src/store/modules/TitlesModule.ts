@@ -49,8 +49,8 @@ class TitlesModule extends VuexModule {
         .catch((error: any) => {
           this.setFailure(Error);
           reject(error);
-        })
-    })
+        });
+    });
   }
 
   @Action({rawError: true})
