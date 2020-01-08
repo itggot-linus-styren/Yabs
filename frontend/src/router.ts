@@ -18,6 +18,11 @@ export default new Router({
       component: views.Profile,
     },
     {
+      path: '/books/:id',
+      name: 'edit book',
+      component: views.EditBook,
+    },
+    {
       path: '/admin',
       name: 'admin',
       component: views.AdminView,

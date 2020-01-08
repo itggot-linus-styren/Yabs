@@ -8,7 +8,7 @@ import {
 } from 'vuex-module-decorators';
 import store from '..';
 import { User, UserCollection } from '@/types';
-import UsersAPI from '../../api/users';
+import UsersAPI from '../../services/api/users';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';
 

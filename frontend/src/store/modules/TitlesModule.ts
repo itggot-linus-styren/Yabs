@@ -8,7 +8,7 @@ import {
 } from 'vuex-module-decorators';
 import store from '..';
 import { Title, TitleForm, TitleCollection } from '@/types';
-import TitlesAPI from '../../api/titles';
+import TitlesAPI from '../../services/api/titles';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';
 
@@ -35,6 +35,19 @@ class TitlesModule extends VuexModule {
         })
         .catch((error: object) => {
           this.setFailure(error);
+          reject(error);
+        });
+    });
+  }
+  @Action({rawError: true})
+  public fetchSingle(id: number): Promise<Title> {
+    return new Promise((resolve, reject) => {
+      TitlesAPI.single(id)
+        .then((response: Title) => {
+          resolve();
+        })
+        .catch((error: object) => {
+          this.setFailure(Error);
           reject(error);
         });
     });

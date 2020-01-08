@@ -41,16 +41,16 @@
             </v-chip>
           </v-chip-group>
 
-          <LoanListComponent 
+          <LoanListComponent
             v-if="loans"
             :items-per-page="15"
           />
-          <BookListComponent 
+          <BookListComponent
             v-if="books"
             :use-actions="true"
             :items-per-page="15"
           />
-          <UserListComponent 
+          <UserListComponent
             v-if="users"
             :items-per-page="15"
           />
@@ -89,5 +89,6 @@ export default class FindView extends Vue {
     UsersModule.fetchAll();
     LoansModule.fetchAll();
   }
+
 }
 </script>

@@ -2,9 +2,10 @@ import Vue from 'vue';
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators';
 import store from '..';
 import { Book, BookForm, BookCollection } from '@/types';
-import BooksAPI from '../../api/books';
+import BooksAPI from '../../services/api/books';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';
+
 
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})
 class BooksModule extends VuexModule {
@@ -27,6 +28,20 @@ class BooksModule extends VuexModule {
         .then((response: Book[]) => {
           this.convertBookList(response);
           resolve(this._books);
+        })
+        .catch((error: object) => {
+          this.setfailure(error);
+          reject(error);
+        });
+    });
+  }
+
+  @Action({rawError: true})
+  public fetchSingle(barcode: string): Promise<Book> {
+    return new Promise((resolve, reject) => {
+      BooksAPI.single(barcode)
+        .then((response: Book) => {
+          resolve(response);
         })
         .catch((error: object) => {
           this.setfailure(error);

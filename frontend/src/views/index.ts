@@ -7,5 +7,6 @@ import AdminCardsView from './AdminCardsView.vue';
 import AdminLoansView from './AdminLoansView.vue';
 import AdminTitlesView from './AdminTitlesView.vue';
 import Find from './FindView.vue';
+import EditBook from './EditBookView.vue';
 
-export { Start, Profile, AdminView, AdminDashboardView, AdminBooksView, AdminCardsView, AdminLoansView, AdminTitlesView, Find };
+export { Start, Profile, AdminView, AdminDashboardView, AdminBooksView, AdminCardsView, AdminLoansView, AdminTitlesView, Find, EditBook };
