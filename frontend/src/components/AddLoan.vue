@@ -109,7 +109,6 @@ export default class AddLoan extends Vue {
   }
 
   public focusRef(ref: any): void { //eslint-disable-line @typescript-eslint/no-explicit-any
-    console.log(typeof ref);
     /* Some references may be a component, functional component, or plain element */
     /* This handles that check before focusing, assuming a focus() method exists */
     /* We do this in a double nextTick to ensure components have updated & popover positioned first */
