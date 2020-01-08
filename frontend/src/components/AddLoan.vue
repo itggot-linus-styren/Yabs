@@ -69,20 +69,15 @@ import { Component, Watch, Prop, Vue } from 'vue-property-decorator';
 export default class AddLoan extends Vue {
   public input: string = '';
   public inputState: boolean | null = null;
-  public options: any = [
-    { text: '- Choose 1 -', value: '' },
-    'Red',
-    'Green',
-    'Blue',
-  ];
+ 
   public inputReturn: string = '';
   public popoverShow: boolean = false;
 
-  public onClose() {
+  public onClose(): void {
     this.popoverShow = false;
   }
 
-  public onOk() {
+  public onOk(): void {
     if (!this.input) {
       this.inputState = false;
     }
@@ -93,7 +88,7 @@ export default class AddLoan extends Vue {
     }
   }
 
-  public onShow() {
+  public onShow(): void {
     /* This is called just before the popover is shown */
     /* Reset our popover "form" variables */
     this.input = '';
@@ -101,19 +96,20 @@ export default class AddLoan extends Vue {
     this.inputReturn = '';
   }
 
-  public onShown() {
+  public onShown(): void {
     /* Called just after the popover has been shown */
     /* Transfer focus to the first input */
     this.focusRef(this.$refs.input);
   }
 
-  public onHidden() {
+  public onHidden(): void {
     /* Called just after the popover has finished hiding */
     /* Bring focus back to the button */
     this.focusRef(this.$refs.button);
   }
 
-  public focusRef(ref: any) {
+  public focusRef(ref: any): void { //eslint-disable-line @typescript-eslint/no-explicit-any
+    console.log(typeof ref);
     /* Some references may be a component, functional component, or plain element */
     /* This handles that check before focusing, assuming a focus() method exists */
     /* We do this in a double nextTick to ensure components have updated & popover positioned first */
@@ -125,7 +121,7 @@ export default class AddLoan extends Vue {
   }
 
   @Watch('input')
-  public onInputChange(val: any, oldVal: any) {
+  public onInputChange(val: string, oldVal: string): void {
     if (val) {
       this.inputState = true;
     }
