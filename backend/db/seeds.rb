@@ -118,6 +118,8 @@ when "user"
     fixtures_user
 when "review"
     fixtures_review
+when nil
+    #do nothing
 else
     p "Error: Unsupported fixture flag"
 end
