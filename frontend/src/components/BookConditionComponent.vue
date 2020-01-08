@@ -25,8 +25,8 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import BooksModule, {Book} from '../store/modules/BooksModule';
-
+import BooksModule from '../store/modules/BooksModule';
+import { Book } from '@/types';
 
 @Component
 export default class BookStatusComponent extends Vue {
@@ -36,7 +36,7 @@ export default class BookStatusComponent extends Vue {
     @Prop({default: 'Unavailable'}) private status: string;
 
     private statuses = ['Damaged', 'OK', 'Other']
-    
+
 
     private form: Book = {
       condition: this.status,
@@ -45,7 +45,7 @@ export default class BookStatusComponent extends Vue {
       created_at: "",
       updated_at: ""
     };
-  
+
 
     private onSubmit(evt: Event) {
       evt.preventDefault();

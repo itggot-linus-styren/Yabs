@@ -41,16 +41,16 @@
             </v-chip>
           </v-chip-group>
 
-          <LoanListComponent 
+          <LoanListComponent
             v-if="loans"
             :items-per-page="15"
           />
-          <BookListComponent 
+          <BookListComponent
             v-if="books"
             :use-actions="true"
             :items-per-page="15"
           />
-          <UserListComponent 
+          <UserListComponent
             v-if="users"
             :items-per-page="15"
           />
@@ -101,89 +101,6 @@ export default class FindView extends Vue {
     { text: 'Klass', value: 'klass' },
   ];
 
-  // MOCKUP DATA (Can be removed when fetch function in implemented)
-  mockupLoans: object[] = [
-    {
-      loanedBy: 'Simon Johannesson',
-      book: 'The Hobbit',
-      lentBy: 'Daniel Berg',
-      expirationDate: '01-01-2019'
-    },
-    {
-      loanedBy: 'Eric Persson',
-      book: 'Lord of the flies',
-      lentBy: 'David Lundholm',
-      expirationDate: '01-01-2019'
-    },
-    {
-      loanedBy: 'Filip Gustavsson',
-      book: 'The hitchhiker\'s guide to the galaxy',
-      lentBy: 'Fredrik Kronhamn',
-      expirationDate: '01-01-2019'
-    },
-    {
-      loanedBy: 'Alex henryz',
-      book: 'Moby Dick',
-      lentBy: 'Daniel Berg',
-      expirationDate: '01-01-2019'
-    },
-    {
-      loanedBy: 'Linus Styrén',
-      book: 'Harry Potter 3',
-      lentBy: 'David Lundholm',
-      expirationDate: '01-01-2019'
-    }
-  ];
-
-  mockupUsers: object[] = [
-    {
-      name: 'Simon Johannesson',
-      email: 'The.Hobbit@gmail.ru',
-      klass: '1983',
-    },
-    {
-      name: 'Eric Persson',
-      email: 'The.Hobbit@gmail.su',
-      klass: 'TE212344',
-    },
-    {
-      name: 'Filip Gustavsson',
-      email: 'The.Hobbit@gmail.eu',
-      klass: 'DB',
-    },
-    {
-      name: 'Alex henryz',
-      email: 'The.Hobbit@gmail.pu',
-      klass: '3Cypress',
-    },
-    {
-      name: 'Walter',
-      email: 'fire@trucklover.com',
-      klass: '28a',
-    },
-  ];
-
-  mockupBooks: object[] = [
-    {
-      title: 'The Hobbit',
-      barcode: '123123bleh31231',
-      condition: 'One book to rule them all',
-      routeSpecifier: '123123bleh31231'
-    },
-    {
-      title: 'Lord of the flies',
-      barcode: '1337',
-      condition: 'flew away',
-      routeSpecifier: '1337'
-    },
-    {
-      title: 'nallepuupupupup',
-      barcode: '80085',
-      condition: 'Stroke',
-      routeSpecifier: '80085'
-    }
-  ];
-  
   private created(): void {
     BooksModule.fetchAll();
     UsersModule.fetchAll();

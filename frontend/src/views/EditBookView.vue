@@ -24,11 +24,10 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import BooksModule, {Book} from '../store/modules/BooksModule';
-import BookConditionComponent from '../components/BookConditionComponent'
-import key from '../config/api.config'
-import TitlesModule, {Title} from '../store/modules/TitlesModule';
-
+import BooksModule from '../store/modules/BooksModule';
+import BookConditionComponent from '../components/BookConditionComponent.vue'
+import TitlesModule from '../store/modules/TitlesModule';
+import { Title, Book } from '@/types';
 
 @Component({
     components: {
@@ -38,12 +37,12 @@ import TitlesModule, {Title} from '../store/modules/TitlesModule';
 export default class EditBook extends Vue {
     private book: Book;
     private title: Title;
-    
+
     private async created(){
         this.book = BooksModule.fetchSingle(this.$route.params.id)
 
         this.title = TitlesModule.fetchSingle(this.book.title_id)
     }
-    
+
 }
 </script>

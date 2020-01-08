@@ -54,8 +54,8 @@ class BooksModule extends VuexModule {
   public create(request: any) {
     return new Promise((resolve, reject) => {
       BooksAPI.create(request)
-        .then((response: any) => {
-          this.setBooks(response);
+        .then((response: Book) => {
+          this.setBook(response);
           resolve(response);
         })
         .catch((error: object) => {
