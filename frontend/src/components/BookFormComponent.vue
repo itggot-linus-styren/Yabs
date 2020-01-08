@@ -19,12 +19,12 @@
       data-cy="chooseTitle"
     />
     <v-text-field
-      v-model="form.status"
-      label="Status: tex 'ok', 'framsida saknas'"
+      v-model="form.condition"
+      label="condition: tex 'ok', 'framsida saknas'"
       autocomplete="off"
       required
       outlined
-      data-cy="status"
+      data-cy="condition"
     />
     <v-btn
       class="mr-4"
@@ -60,7 +60,7 @@ export default class BookFormComponent extends Vue {
   private form: BookForm = {
     barcode: '',
     title_id: 0, //eslint-disable-line camelcase
-    status: '',
+    condition: '',
   };
 
   // This is defining the title module as a module in order to use the module in the vue
@@ -84,7 +84,7 @@ export default class BookFormComponent extends Vue {
     this.form = {
       barcode: '',
       title_id: 0, //eslint-disable-line camelcase
-      status: '',
+      condition: '',
     };
   }
 }

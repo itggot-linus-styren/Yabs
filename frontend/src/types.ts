@@ -60,7 +60,7 @@ interface TitleCollection { [id: number]: Title; }
 interface Book {
   barcode: number;
   created_at: string; //eslint-disable-line camelcase
-  status: string;
+  condition: string;
   title_id: number; //eslint-disable-line camelcase
   updated_at: string; //eslint-disable-line camelcase
   title: Title;
@@ -69,7 +69,7 @@ interface Book {
 interface BookForm {
   barcode: string;
   title_id: number; //eslint-disable-line camelcase
-  status: string;
+  condition: string;
 }
 
 interface BookCollection { [id: string]: Book; }

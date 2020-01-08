@@ -41,16 +41,16 @@
             </v-chip>
           </v-chip-group>
 
-          <LoanListComponent 
+          <LoanListComponent
             v-if="loans"
             :items-per-page="15"
           />
-          <BookListComponent 
+          <BookListComponent
             v-if="books"
             :use-actions="true"
             :items-per-page="15"
           />
-          <UserListComponent 
+          <UserListComponent
             v-if="users"
             :items-per-page="15"
           />
@@ -84,10 +84,28 @@ export default class FindView extends Vue {
   loans:boolean = false;
   books:boolean = false;
 
+  loanHeaders: object[] = [
+    { text: 'Utlånad till', value: 'loanedBy' },
+    { text: 'Utlånad av', value: 'lentBy' },
+    { text: 'Material', value: 'book' },
+    { text: 'Utgångsdatum', value: 'expirationDate' },
+  ];
+  bookHeaders: object[] = [
+    { text: 'Titel', value: 'title' },
+    { text: 'Condition', value: 'condition' },
+    { text: 'Barcode', value: 'barcode' },
+  ];
+  userHeaders: object[] = [
+    { text: 'Namn', value: 'name' },
+    { text: 'Email', value: 'email' },
+    { text: 'Klass', value: 'klass' },
+  ];
+
   private created(): void {
     BooksModule.fetchAll();
     UsersModule.fetchAll();
     LoansModule.fetchAll();
   }
+
 }
 </script>

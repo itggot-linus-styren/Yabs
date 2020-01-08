@@ -6,6 +6,7 @@ import BooksAPI from '../../api/books';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';
 
+
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})
 class BooksModule extends VuexModule {
   private _books: BookCollection = {};
@@ -36,7 +37,21 @@ class BooksModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public create(request: BookForm): Promise<Book> {
+  public fetchSingle(barcode: string): Promise<Book> {
+    return new Promise((resolve, reject) => {
+      BooksAPI.single(barcode)
+        .then((response: any) => {
+          resolve();
+        })
+        .catch((error: any) => {
+          this.setfailure(error);
+          reject(error);
+        });
+    });
+  }
+
+  @Action({rawError: true})
+  public create(request: any) {
     return new Promise((resolve, reject) => {
       BooksAPI.create(request)
         .then((response: Book) => {

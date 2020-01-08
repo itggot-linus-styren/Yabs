@@ -15,7 +15,19 @@ export default {
       return Promise.reject(error);
     }
   },
+
+  async single(id: string) {
+
+    try {
+      const response = await axios.get(`http://localhost:3000/api/v1/books/${id}`,
+        { headers, withCredentials: true});
+      return Promise.resolve(response.data);
+    } catch (error) {
+      return Promise.reject(error);
+    }
+  },
   async create(request: BookForm): Promise<Book> {
+
     try {
       const response = await axios.post('http://localhost:3000/api/v1/books', request, {
         headers: {
