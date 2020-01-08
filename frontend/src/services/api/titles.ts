@@ -15,8 +15,8 @@ export default class TitlesAPI extends APIRequest {
     return new Promise((res, rej) => {
       this.Get<Title>(`v1/titles/${id}`)
         .then((resp) => {res(resp); })
-        .catch((err) => {rej(err); })
-    })
+        .catch((err) => {rej(err); });
+    });
   }
 
   static create(request: TitleForm): Promise<Title> {

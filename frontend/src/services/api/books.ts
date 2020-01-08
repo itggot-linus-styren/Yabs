@@ -16,7 +16,7 @@ export default class BooksAPI extends APIRequest {
       this.Get<Book>(`v1/books/${id}`)
         .then((resp) => {res(resp); })
         .catch((err) => {rej(err); });
-    })
+    });
   }
 
   static create(request: BookForm): Promise<Book> {
