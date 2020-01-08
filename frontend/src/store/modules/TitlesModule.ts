@@ -43,14 +43,14 @@ class TitlesModule extends VuexModule {
   public fetchSingle(id: number): Promise<Title> {
     return new Promise((resolve, reject) => {
       TitlesAPI.single(id)
-        .then((response: any) => {
+        .then((response: Title) => {
           resolve();
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setFailure(Error);
           reject(error);
-        })
-    })
+        });
+    });
   }
 
   @Action({rawError: true})
