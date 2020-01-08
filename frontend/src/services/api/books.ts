@@ -11,6 +11,14 @@ export default class BooksAPI extends APIRequest {
     });
   }
 
+  static single(id: string): Promise<Book> {
+    return new Promise((res, rej) => {
+      this.Get<Book>(`v1/books/${id}`)
+        .then((resp) => {res(resp); })
+        .catch((err) => {rej(err); });
+    })
+  }
+
   static create(request: BookForm): Promise<Book> {
     return new Promise((res, rej) => {
       this.Post<Book>('v1/books', request)
