@@ -8,7 +8,7 @@ import {
 } from 'vuex-module-decorators';
 import store from '..';
 import { Title, TitleForm, TitleCollection } from '@/types';
-import TitlesAPI from '../../api/titles';
+import TitlesAPI from '../../services/api/titles';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';
 
