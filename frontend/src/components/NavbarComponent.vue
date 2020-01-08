@@ -59,8 +59,13 @@ import { VuexModule } from 'vuex-module-decorators';
     GoogleLogin,
   },
 })
+
+// This is the NavbarComponent and has one single method that tries to sign out the user
+// if the user is logged in
+
 export default class NavbarComponent extends Vue {
   public usersModule: VuexModule = UsersModule;
+  
   public signOut(): void {
     try {
       // @ts-ignore: gapi
@@ -84,12 +89,14 @@ a:focus {
   outline: 0;
   border: none;
   -moz-outline-style: none;
+  outline-style: none;
 }
 button:active,
 button:focus {
   outline: 0 !important;
   border: none !important;
   -moz-outline-style: none;
+  outline-style: none;
 }
 
 input:-webkit-autofill {

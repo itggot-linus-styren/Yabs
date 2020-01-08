@@ -5,6 +5,7 @@
         <v-card>
           <v-chip-group mandatory>
             <v-chip
+              v-if="!RoleChecker.isStudent()"
               v-model="users"
               class="ma-2"
               color="success"
@@ -40,22 +41,18 @@
             </v-chip>
           </v-chip-group>
 
-          <ListComponent 
+          <LoanListComponent 
             v-if="loans"
-            :items="mockupLoans" 
-            :headers="loanHeaders"
+            :items-per-page="15"
           />
-          <ListComponent 
+          <BookListComponent 
             v-if="books"
-            :items="mockupBooks" 
-            :headers="bookHeaders"
             :use-actions="true"
-            :route-path="'books'"
+            :items-per-page="15"
           />
-          <ListComponent 
+          <UserListComponent 
             v-if="users"
-            :items="mockupUsers" 
-            :headers="userHeaders"
+            :items-per-page="15"
           />
         </v-card>
       </v-col>
@@ -66,15 +63,23 @@
 <script lang="ts">
 import {Vue, Component, Prop} from 'vue-property-decorator';
 
-import LoansModule from '../store/modules/LoansModule';
-import ListComponent from '@/components/ListComponent.vue';
+import BookListComponent from '@/components/BookListComponent.vue';
+import UserListComponent from '@/components/UserListComponent.vue';
+import LoanListComponent from '@/components/LoanListComponent.vue';
+import BooksModule from '@/store/modules/BooksModule';
+import UsersModule from '@/store/modules/UsersModule';
+import LoansModule from '@/store/modules/LoansModule';
+import RoleChecker from '../helpers/RoleChecker';
 
 @Component({
   components: {
-    ListComponent
+    BookListComponent,
+    UserListComponent,
+    LoanListComponent
   },
 })
 export default class FindView extends Vue {
+  private RoleChecker: RoleChecker = RoleChecker;
   users:boolean = false;
   loans:boolean = false;
   books:boolean = false;
@@ -178,5 +183,12 @@ export default class FindView extends Vue {
       routeSpecifier: '80085'
     }
   ];
+  
+  private created(): void {
+    BooksModule.fetchAll();
+    UsersModule.fetchAll();
+    LoansModule.fetchAll();
+  }
+
 }
 </script>

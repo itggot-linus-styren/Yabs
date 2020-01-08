@@ -26,8 +26,16 @@ import TitleListComponent from '@/components/TitleListComponent.vue';
     TitleListComponent
   }
 })
+
+// This component is a parent view for the components TitleFormComponent and the
+// TitleListComponent
+
 export default class AdminTitlesView extends Vue {
-  private created() {
+
+  // The created() function is the constructor in vue and instantiates the class by fetching
+  // all the titles from the backend
+
+  private created(): void {
     TitlesModule.fetchAll();
   }
 }

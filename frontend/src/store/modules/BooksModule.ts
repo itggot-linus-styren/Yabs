@@ -1,46 +1,35 @@
 import Vue from 'vue';
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators';
 import store from '..';
+import { Book, BookForm, BookCollection } from '@/types';
 import BooksAPI from '../../api/books';
-import convertList from '../../helpers/convertArrayToNested';
-
-
-export interface Book {
-  barcode: string,
-  title_id: number,
-  condition: string,
-  created_at: string,
-  updated_at: string
-}
-
-interface BookCollection {
-  [id: string]: Book;
-}
-
+import convertList from '@/helpers/convertArrayToNested';
+import convertNested from '@/helpers/convertNestedToArray';
 
 
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})
 class BooksModule extends VuexModule {
   private _books: BookCollection = {};
-  private _failure: any = null;
+  private _failure: object = {};
 
-  get all() {
+  get all(): BookCollection {
     return this._books;
   }
 
-  get allAsArray() {
-    return Object.keys(this._books).map((id) => this._books[id]);
+
+  get allAsArray(): Book[] {
+    return convertNested(this._books);
   }
 
   @Action({rawError: true})
-  public fetchAll() {
+  public fetchAll(): Promise<BookCollection> {
     return new Promise((resolve, reject) => {
       BooksAPI.all()
-        .then((response: any) => {
+        .then((response: Book[]) => {
           this.convertBookList(response);
-          resolve();
+          resolve(this._books);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setfailure(error);
           reject(error);
         });
@@ -69,7 +58,7 @@ class BooksModule extends VuexModule {
           this.setBooks(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setfailure(error);
           reject(error);
         });
@@ -77,14 +66,14 @@ class BooksModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public update(request: Book) {
+  public update(request: BookForm): Promise<Book> {
     return new Promise((resolve, reject) => {
       BooksAPI.update(request)
-        .then((response: any) => {
-          this.setBooks(response);
+        .then((response: Book) => {
+          this.setBook(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setfailure(error);
           reject(error);
         });
@@ -92,14 +81,14 @@ class BooksModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public delete(request: any) {
+  public delete(request: Book): Promise<string> {
     return new Promise((resolve, reject) => {
       BooksAPI.delete(request)
-        .then((response: any) => {
+        .then((response: string) => {
           this.removeBook(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setfailure(error);
           reject(error);
         });
@@ -107,22 +96,21 @@ class BooksModule extends VuexModule {
   }
 
   @Mutation
-
-  private setBooks(payload: any) {
-    Vue.set(this.bookState.books, payload.barcode, payload);
+  private setBook(payload: Book): void {
+    Vue.set(this._books, payload.barcode, payload);
   }
 
   @Mutation
-  private removeBook(bookId: string) {
+  private removeBook(bookId: string): void {
     Vue.delete(this._books, bookId);
   }
 
   @Mutation
-  private setfailure(payload: any) {
+  private setfailure(payload: object): void {
     this._failure = payload;
   }
   @Mutation
-  private convertBookList(payload: any) {
+  private convertBookList(payload: Book[]): void {
     const list = convertList(payload, 'barcode');
     this._books = list;
   }

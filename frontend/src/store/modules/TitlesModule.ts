@@ -7,55 +7,33 @@ import {
   Mutation,
 } from 'vuex-module-decorators';
 import store from '..';
+import { Title, TitleForm, TitleCollection } from '@/types';
 import TitlesAPI from '../../api/titles';
-import convertList from '../../helpers/convertArrayToNested';
-
-export interface Title {
-  cost: number;
-  created_at: string;
-  id: number;
-  isbn: string;
-  name: string;
-  title_type: string;
-  updated_at: string;
-  description: string;
-  authors: string;
-  page_count: number;
-  published_date: string
-  cover: string;
-}
-
-export interface TitleForm {
-  name: string;
-  cost: string;
-  isbn: string;
-  title_type: string;
-}
-
-export interface TitleCollection { [id: number]: Title; }
+import convertList from '@/helpers/convertArrayToNested';
+import convertNested from '@/helpers/convertNestedToArray';
 
 @Module({dynamic: true, namespaced: true, name: 'TitlesModule', store})
 class TitlesModule extends VuexModule {
-  private _failure: any = null;
+  private _failure: object = {};
   private _titles: TitleCollection = {};
 
-  get all() {
+  get all(): TitleCollection {
     return this._titles;
   }
 
-  get allAsArray() {
-    return Object.keys(this._titles).map( (id) => this._titles[Number(id)]);
+  get allAsArray(): Title[] {
+    return convertNested(this._titles);
   }
 
   @Action({rawError: true})
-  public fetchAll() {
+  public fetchAll(): Promise<TitleCollection> {
     return new Promise((resolve, reject) => {
       TitlesAPI.all()
-        .then((response: any) => {
+        .then((response: Title[]) => {
           this.convertTitleList(response);
           resolve();
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setFailure(error);
           reject(error);
         });
@@ -76,14 +54,14 @@ class TitlesModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public create(request: TitleForm) {
+  public create(request: TitleForm): Promise<Title> {
     return new Promise((resolve, reject) => {
       TitlesAPI.create(request)
-        .then((response: any) => {
+        .then((response: Title) => {
           this.setTitle(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setFailure(error);
           reject(error);
         });
@@ -91,14 +69,14 @@ class TitlesModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public update(request: any) {
+  public update(request: TitleForm): Promise<Title> {
     return new Promise((resolve, reject) => {
       TitlesAPI.update(request)
-        .then((response: any) => {
+        .then((response: Title) => {
           this.setTitle(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setFailure(error);
           reject(error);
         });
@@ -106,14 +84,14 @@ class TitlesModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public delete(request: any) {
+  public delete(request: Title): Promise<number> {
     return new Promise((resolve, reject) => {
       TitlesAPI.delete(request)
-        .then((response: any) => {
+        .then((response: number) => {
           this.removeTitle(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setFailure(error);
           reject(error);
         });
@@ -121,22 +99,22 @@ class TitlesModule extends VuexModule {
   }
 
   @Mutation
-  private setTitle(payload: any) {
+  private setTitle(payload: Title): void {
     Vue.set(this._titles, payload.id, payload);
   }
 
   @Mutation
-  private removeTitle(titleId: string) {
+  private removeTitle(titleId: number): void {
     Vue.delete(this._titles, titleId);
   }
 
   @Mutation
-  private setFailure(payload: any) {
+  private setFailure(payload: object): void {
     this._failure = payload;
   }
 
   @Mutation
-  private convertTitleList(payload: Title[]) {
+  private convertTitleList(payload: Title[]): void {
     const list = convertList(payload, 'id');
     this._titles = list;
   }

@@ -3,9 +3,13 @@ name: Integration
 on:
   schedule:
   - cron: "0 0 * * *"
+  push:
+    branches: 
+      - develop
 
 jobs:
   cc:
+    if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
 
     steps:
@@ -79,6 +83,8 @@ jobs:
         cd backend
         bundle exec bin/rails db:schema:load
     - name: Load fixtures to database
+      env:
+        RAILS_ENV: test
       run: |
         cd backend
         bundle exec bin/rails db:fixtures:load

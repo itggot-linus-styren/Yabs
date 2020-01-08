@@ -1,9 +1,9 @@
 import axios from 'axios';
+import { User, UserForm } from '@/types';
 
 export default {
 
-  async all() {
-
+  async all(): Promise<User[]> {
     try {
       const response = await axios.get('http://localhost:3000/api/v1/users', {
         headers: {
@@ -15,9 +15,8 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
-  async get(id: string) {
+  async get(id: string): Promise<User> {
     try {
       const response = await axios.get(`http://localhost:3000/api/v1/users/${id}`, {
         headers: {
@@ -29,10 +28,8 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
-  async update(request: any) {
-
+  async update(request: FormData): Promise<User> {
     try {
       const response = await axios.patch(`http://localhost:3000/api/v1/users/${request.get('uid')}`, request, {
         headers: {
@@ -44,12 +41,10 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
-  async signIn(idToken: string) {
-
+  async signIn(idToken: string): Promise<User> {
     try {
-      const response = await axios.post('http://localhost:3000/api/v1/auth', {id_token: idToken}, {
+      const response = await axios.post('http://localhost:3000/api/v1/auth', {id_token: idToken}, { //eslint-disable-line camelcase
         headers: {
           'Content-Type': 'application/json',
         },
@@ -59,9 +54,8 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
-  async signOut() {
+  async signOut(): Promise<User> {
     try {
       const response = await axios.delete('http://localhost:3000/api/v1/auth/0', {
         withCredentials: true,

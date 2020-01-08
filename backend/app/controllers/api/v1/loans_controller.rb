@@ -15,7 +15,7 @@ class Api::V1::LoansController < ApplicationController
     render json: @loan
   end
 
-  # this is the show metod simply outputting the instance of the json object @loan based
+  # this is the create metod simply outputting the instance of the json object @loan based
   # on if the loan is able to save or not and has
   # authorization through the authorize method built in pundit
 

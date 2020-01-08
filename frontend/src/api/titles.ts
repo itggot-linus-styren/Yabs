@@ -1,13 +1,12 @@
 import axios from 'axios';
+import { Title, TitleForm } from '@/types';
 
 const headers = {
   'Content-Type': 'application/json',
 };
 
 export default {
-
-  async all() {
-
+  async all(): Promise<Title[]> {
     try {
       const response = await axios.get('http://localhost:3000/api/v1/titles',
         {headers, withCredentials: true});
@@ -15,8 +14,8 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
+
   async single(id: number) {
 
     try {
@@ -28,8 +27,7 @@ export default {
     }
 
   },
-  async create(request: any) {
-
+  async create(request: TitleForm): Promise<Title> {
     try {
       const response = await axios.post('http://localhost:3000/api/v1/titles', request,
         {headers, withCredentials: true});
@@ -37,10 +35,8 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
-  async update(request: any) {
-
+  async update(request: TitleForm): Promise<Title> {
     try {
       const response = await axios.patch(`http://localhost:3000/api/v1/titles/${request.id}`, request,
         {headers, withCredentials: true});
@@ -48,10 +44,8 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
-  async delete(request: any) {
-
+  async delete(request: Title): Promise<number> {
     try {
       const response = await axios.delete(`http://localhost:3000/api/v1/titles/${request.id}`,
         {headers, withCredentials: true});
@@ -59,6 +53,5 @@ export default {
     } catch (error) {
       return Promise.reject(error);
     }
-
   },
 };

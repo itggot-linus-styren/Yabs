@@ -1,3 +1,9 @@
+<!--
+  This template has some events and eventlisteners that are created and listed below such
+  as the sendimages and is the parent component to the cardformcomponent and the canvas
+  container component
+ -->
+
 <template>
   <div>
     <h1 class="display-2">
@@ -18,6 +24,7 @@
 import { Vue, Component, Prop } from 'vue-property-decorator';
 import CardFormComponent from '@/components/CardFormComponent.vue';
 import CanvasContainer from '@/components/CanvasContainer.vue';
+import UsersModule from '../store/modules/UsersModule';
 
 @Component({
   components: {
@@ -26,11 +33,17 @@ import CanvasContainer from '@/components/CanvasContainer.vue';
   }
 })
 export default class AdminCardsViews extends Vue {
-
   public images: File[] = [];
 
-  public onSendImages(images: any[]) {
+  // The on send images getter takes the image from the event target and sets it to the instance
+  // of the image
+
+  private onSendImages(images: File[]): void {
     this.images = images;
+  }
+
+  private created(): void {
+    UsersModule.fetchAll();
   }
   
 }
