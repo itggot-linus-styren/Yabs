@@ -1,7 +1,11 @@
 <template>
-  <v-form @submit="onSubmit">
+  <v-form
+    data-jest="form"
+    @submit="onSubmit"
+  >
     <v-text-field
       v-model="form.barcode"
+      data-jest="barcode"
       label="Barcode"
       autocomplete="off"
       required
@@ -20,6 +24,7 @@
     />
     <v-text-field
       v-model="form.condition"
+      data-jest="condition"
       label="condition: tex 'ok', 'framsida saknas'"
       autocomplete="off"
       required
