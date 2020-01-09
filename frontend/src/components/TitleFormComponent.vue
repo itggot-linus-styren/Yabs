@@ -1,6 +1,7 @@
 <template>
   <v-form
     v-if="show"
+    data-jest="form"
     @submit="onSubmit"
     @reset="onReset"
   >
@@ -12,6 +13,7 @@
       <v-text-field
         id="nestedBid"
         v-model="form.name"
+        data-jest="name"
         label="Namn"
         outlined
         data-cy="name"
@@ -25,6 +27,7 @@
       <v-text-field
         id="nestedBid"
         v-model="form.cost"
+        data-jest="cost"
         label="Kostnad"
         outlined
         data-cy="cost"
@@ -38,6 +41,7 @@
       <v-text-field
         id="nestedBid"
         v-model="form.isbn"
+        data-jest="isbn"
         label="isbn"
         outlined
         data-cy="isbn"
@@ -45,6 +49,7 @@
     </v-item-group>
     <v-select
       v-model="form.title_type"
+      data-jest="titleType"
       :items="options"
       label="Välj typ av titel"
       outlined

@@ -16,7 +16,15 @@ export function factory<V extends Vue>(
   options?: ThisTypedMountOptions<V>,
   mountFunc: any = mount,
 ): Wrapper<V> {
-
+  const vuetify = new Vuetify({
+    mocks: {
+      $vuetify: {
+        lang: {
+          t: (val: string) => val,
+        },
+      },
+    },
+  });
   Vue.use(Vuetify);
   Vue.use(Vuex);
 
@@ -31,6 +39,7 @@ export function factory<V extends Vue>(
   return mountFunc(component, {
     store,
     ...options,
+    vuetify
   });
 }
 

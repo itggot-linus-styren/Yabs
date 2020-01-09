@@ -1,7 +1,11 @@
 <template>
-  <v-form @submit="onSubmit">
+  <v-form
+    data-jest="form"
+    @submit="onSubmit"
+  >
     <v-text-field
       v-model="form.barcode"
+      data-jest="barcode"
       label="Barcode"
       autocomplete="off"
       required
@@ -20,6 +24,7 @@
     />
     <v-text-field
       v-model="form.status"
+      data-jest="status"
       label="Status: tex 'ok', 'framsida saknas'"
       autocomplete="off"
       required
@@ -37,8 +42,8 @@
     </v-btn>
     <v-btn
       large
-      @click.prevent="onReset"
       data-cy="reset"
+      @click.prevent="onReset"
     >
       Rensa fält
     </v-btn>

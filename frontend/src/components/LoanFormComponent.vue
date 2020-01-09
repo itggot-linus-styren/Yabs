@@ -2,6 +2,7 @@
   <div>
     <v-form
       v-if="show"
+      data-jest="form"
       @submit="onSubmit"
       @reset="onReset"
     >
@@ -12,8 +13,9 @@
       >
         <v-text-field
           id="nestedUid"
-          data-cy="student_barcode"
           v-model="form.loaned_by_id"
+          data-jest="student_barcode"
+          data-cy="student_barcode"
           label="Elevens Streckkod"
           outlined
         />
@@ -26,6 +28,7 @@
         <v-text-field
           id="nestedBid"
           v-model="form.book_id"
+          data-jest="book_barcode"
           data-cy="book_barcode"
           label="Bokens Streckkod"
           outlined
