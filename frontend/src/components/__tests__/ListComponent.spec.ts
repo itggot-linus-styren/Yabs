@@ -7,20 +7,20 @@ describe('ListComponent.vue', () => {
   const books = [
     {
       barcode: 1111,
-      created_at: '',
+      created_at: '', //eslint-disable-line camelcase
       status: 'OK',
-      title_id: 1,
-      updated_at: '',
+      title_id: 1, //eslint-disable-line camelcase
+      updated_at: '', //eslint-disable-line camelcase
       title: {
         name: 'Title1'
       }
     },
     {
       barcode: 2222,
-      created_at: '',
+      created_at: '', //eslint-disable-line camelcase
       status: 'OK',
-      title_id: 2,
-      updated_at: '',
+      title_id: 2, //eslint-disable-line camelcase
+      updated_at: '', //eslint-disable-line camelcase
       title: {
         name: 'Title2'
       }

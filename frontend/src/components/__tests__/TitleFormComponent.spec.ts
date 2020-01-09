@@ -26,7 +26,7 @@ describe('TitleFormComponent.vue', () => {
 
     expect(TitlesModule.create).toHaveBeenCalledWith({
       name: 'Title1',
-      title_type: 'Kurslitteratur',
+      title_type: 'Kurslitteratur', //eslint-disable-line camelcase
       cost: '20',
       isbn: '1234567891',
     });

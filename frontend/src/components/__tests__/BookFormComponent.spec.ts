@@ -17,8 +17,8 @@ describe('BookFormComponent.vue', () => {
 
     expect(BooksModule.create).toHaveBeenCalledWith({
       barcode: '1234',
-      title_id: 0,
-      conditition: 'ok',
+      title_id: 0, //eslint-disable-line camelcase
+      condition: 'ok',
     });
   });
 });

@@ -20,7 +20,7 @@ export function factory<V extends Vue>(
     mocks: {
       $vuetify: {
         lang: {
-          t: (val: string) => val,
+          t: (val: string): any => val, //eslint-disable-line @typescript-eslint/no-explicit-any
         },
       },
     },
