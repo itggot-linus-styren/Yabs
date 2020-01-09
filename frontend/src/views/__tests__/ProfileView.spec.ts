@@ -19,7 +19,7 @@ describe('ProfileView.vue', () => {
 
   it('Notifes you if you are not logged in', () => {
     const wrapper: Wrapper<ProfileView> = shallowFactory(ProfileView);
-    UsersModule.setCurrentUser(baseUser);
+    UsersModule.setCurrentUser(baseUser.uid);
 
     expect(wrapper.text()).toMatch('inte inloggad');
   });
@@ -33,7 +33,7 @@ describe('ProfileView.vue', () => {
     baseUser.klass = 'TE4';
     UsersModule.setUser(baseUser);
 
-    UsersModule.setCurrentUser(baseUser);
+    UsersModule.setCurrentUser(baseUser.uid);
 
     expect(wrapper.text()).toMatch('Elev');
     expect(wrapper.text()).toMatch('Test Jestsson');

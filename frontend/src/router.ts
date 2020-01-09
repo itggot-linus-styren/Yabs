@@ -23,6 +23,7 @@ export default new Router({
       name: 'edit book',
       component: views.EditBook,
       beforeEnter: (to, from, next) => { //eslint-disable-line @typescript-eslint/explicit-function-return-type
+        // 1 is a student, and we don't like students.
         if (RoleChecker.checkPermission(2)) {
           next();
         } else {

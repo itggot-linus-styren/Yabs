@@ -16,7 +16,7 @@ describe('RoleChecker.ts', () => {
 
   it('translates current user roles correctly', () => {
     UsersModule.setUser(baseUser);
-    UsersModule.setCurrentUser(baseUser);
+    UsersModule.setCurrentUser(baseUser.uid);
     expect(RoleChecker.roleAsText()).toBe('Elev');
 
     baseUser.role = 32;
