@@ -1,5 +1,4 @@
 Rails.application.routes.draw do
-  resources :subjects
   namespace :api do
     namespace :v1 do
       resources :users
@@ -7,6 +6,7 @@ Rails.application.routes.draw do
       resources :books
       resources :titles
       resources :reviews
+      resources :subjects
 
       resources :auth, only: [:index, :create, :destroy]
     end

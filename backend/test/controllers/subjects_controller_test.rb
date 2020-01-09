@@ -2,47 +2,37 @@ require 'test_helper'
 
 class SubjectsControllerTest < ActionDispatch::IntegrationTest
   setup do
-    @subject = subjects(:one)
+    @subject = subjects(:subject_1)
   end
 
   test "should get index" do
-    get subjects_url
-    assert_response :success
-  end
-
-  test "should get new" do
-    get new_subject_url
+    get api_v1_subjects_url, as: :json
     assert_response :success
   end
 
   test "should create subject" do
     assert_difference('Subject.count') do
-      post subjects_url, params: { subject: {  } }
+      post api_v1_subjects_url, params: { subject: { name: @subject.name } }, as: :json
     end
 
-    assert_redirected_to subject_url(Subject.last)
+    assert_response 200
   end
 
   test "should show subject" do
-    get subject_url(@subject)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_subject_url(@subject)
+    get api_v1_subject_url(@subject), as: :json
     assert_response :success
   end
 
   test "should update subject" do
-    patch subject_url(@subject), params: { subject: {  } }
-    assert_redirected_to subject_url(@subject)
+    patch api_v1_subject_url(@subject), params: { subject: { name: @subject.name } }, as: :json
+    assert_response 200
   end
 
   test "should destroy subject" do
     assert_difference('Subject.count', -1) do
-      delete subject_url(@subject)
+      delete api_v1_subject_url(@subject), as: :json
     end
 
-    assert_redirected_to subjects_url
+    assert_response 200
   end
 end

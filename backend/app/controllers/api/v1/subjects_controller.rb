@@ -10,6 +10,7 @@ class Api::V1::SubjectsController < ApplicationController
   # GET /subjects/1
   # GET /subjects/1.json
   def show
+    render json: @subject
   end
 
   # POST /subjects
@@ -17,24 +18,20 @@ class Api::V1::SubjectsController < ApplicationController
   def create
     @subject = Subject.new(subject_params)
 
-    respond_to do |format|
-      if @subject.save
-        format.json { render :show, status: :created, location: @subject }
-      else
-        format.json { render json: @subject.errors, status: :unprocessable_entity }
-      end
+    if @subject.save
+      render json: @subject
+    else
+      render json: @subject.errors, status: :unprocessable_entity
     end
   end
 
   # PATCH/PUT /subjects/1
   # PATCH/PUT /subjects/1.json
   def update
-    respond_to do |format|
-      if @subject.update(subject_params)
-        format.json { render :show, status: :ok, location: @subject }
-      else
-        format.json { render json: @subject.errors, status: :unprocessable_entity }
-      end
+    if @subject.update(subject_params)
+      render json: @subject
+    else
+      render json: @subject.errors, status: :unprocessable_entity
     end
   end
 
@@ -42,6 +39,7 @@ class Api::V1::SubjectsController < ApplicationController
   # DELETE /subjects/1.json
   def destroy
     @subject.destroy
+    render json: @subject
   end
 
   private
@@ -52,6 +50,6 @@ class Api::V1::SubjectsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subject_params
-      params.fetch(:subject, {})
+      params.require(:subject).permit(:name)
     end
 end

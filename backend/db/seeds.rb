@@ -13,9 +13,9 @@ ActiveSupport.on_load(:active_job) do
 end
 DataFetchJob.perform_now
 
-p_sub = Subject.create(name: "Programming")
-s_sub = Subject.create(name: "Swedish")
-e_sub = Subject.create(name: "English")
+p_sub = Subject.create(name: "Programmering")
+s_sub = Subject.create(name: "Svenska")
+e_sub = Subject.create(name: "Engelska")
 lib_sub = Subject.create(name: "Skönlitteratur")
 
 p_user = User.find_by_name("Daniel Berg")
@@ -82,6 +82,14 @@ def fixtures_title()
     end
 end
 
+def fixtures_subjects()
+    subjects = Subject.all.to_a
+    subjects.shift.dump_fixture(append = false)
+    for subject in subjects do
+        subject.dump_fixture
+    end
+end
+
 def fixtures_book()
     books = Book.all.to_a
     books.shift.dump_fixture(append = false)
@@ -114,6 +122,7 @@ end
 
 case ENV["fixture"]
 when "all"
+    fixtures_subjects
     fixtures_book
     fixtures_loan
     fixtures_review
@@ -129,6 +138,8 @@ when "user"
     fixtures_user
 when "review"
     fixtures_review
+when "subject"
+    fixtures_subjects
 when nil
     #do nothing
 else
