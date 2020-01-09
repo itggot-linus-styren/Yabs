@@ -18,6 +18,11 @@ s_sub = Subject.create(name: "Swedish")
 e_sub = Subject.create(name: "English")
 lib_sub = Subject.create(name: "Skönlitteratur")
 
+p_user = User.find_by_name("Daniel Berg")
+e_user = User.find_by_name("Jimmy Löfgren")
+Responsibility.create(subject: p_sub, user: p_user)
+Responsibility.create(subject: e_sub, user: e_user)
+
 alice_google = GoogleBooks::API.search('isbn:0763645680').first
 # Create titles of both book types
 title_alice = Title.create(name: "Alice in Wonderland", isbn: "0763645680", 
@@ -56,7 +61,7 @@ loan_cc.save
 review_alice = Review.new(score: 3, review: "I didn't particulary like this book.")
 review_alice.title = title_alice
 review_alice.user = loan_alice.loaned_by
-review_alice.save
+review_alice.save   
 
 
 # Create the rest of the books
