@@ -31,7 +31,7 @@ class LoanPolicy < ApplicationPolicy
   # person who created the loan in order to see the information about it
 
   def show?
-    user&.admin? || user&.uid == record&.lent_by_id
+    user&.admin? || user&.uid == record&.lent_by_id || user&.uid == record&.loaned_by_id
   end
     
   # This is the policy for deleting loans, only available for admins that have originally

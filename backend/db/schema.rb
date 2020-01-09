@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2019_12_16_135730) do
+ActiveRecord::Schema.define(version: 2020_01_08_130007) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -36,9 +36,10 @@ ActiveRecord::Schema.define(version: 2019_12_16_135730) do
   create_table "books", id: false, force: :cascade do |t|
     t.integer "title_id"
     t.string "barcode", null: false
-    t.string "status"
+    t.string "condition"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "notes"
     t.index ["barcode"], name: "index_books_on_barcode", unique: true
     t.index ["title_id"], name: "index_books_on_title_id"
   end
@@ -54,6 +55,17 @@ ActiveRecord::Schema.define(version: 2019_12_16_135730) do
     t.index ["book_id"], name: "index_loans_on_book_id"
     t.index ["lent_by_id"], name: "index_loans_on_lent_by_id"
     t.index ["loaned_by_id"], name: "index_loans_on_loaned_by_id"
+  end
+
+  create_table "reviews", force: :cascade do |t|
+    t.integer "score"
+    t.string "review"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.string "user_id", null: false
+    t.integer "title_id"
+    t.index ["title_id"], name: "index_reviews_on_title_id"
+    t.index ["user_id"], name: "index_reviews_on_user_id"
   end
 
   create_table "titles", force: :cascade do |t|

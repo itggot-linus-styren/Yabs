@@ -28,7 +28,11 @@ import TitlesModule from '../store/modules/TitlesModule';
   }
 })
 export default class AdminBooksView extends Vue {
-  private created() {
+
+  // created() is the constructor of the admin books view that instantiates the class by
+  // fetching all the books and all the titles
+  
+  private created(): void {
     BooksModule.fetchAll();
     TitlesModule.fetchAll();
   }

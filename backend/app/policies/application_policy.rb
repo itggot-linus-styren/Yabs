@@ -1,3 +1,6 @@
+# Application policy is the main policy that all other policies inherit their authorization 
+# methods from (This is built in Pundit, see other policies for clarification)
+
 class ApplicationPolicy
   attr_reader :user, :record
   

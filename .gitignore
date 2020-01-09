@@ -1,5 +1,6 @@
 *.rbc
 capybara-*.html
+api.config.ts
 .rspec
 backend/storage
 backend/log
@@ -16,6 +17,10 @@ pickle-email-*.html
 coverage/
 .vscode/
 **/*.DS_Store
+
+#Cypress videos and screenshots
+frontend/cypress/videos/**
+frontend/cypress/screenshots/**
 
 
 # TODO Comment out this rule if you are OK with secrets being uploaded to the repo

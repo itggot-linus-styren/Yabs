@@ -30,8 +30,8 @@ title_cc = Title.create(name: "Clean Code", isbn: "9780132350884", cost: 300, ti
 title_tomtens_jul = Title.create(name: "Tomtens jul", isbn: "9781999985462", cost: 60, title_type: "Kurslitteratur")
 
 # Create books to be loaned
-book_alice = Book.create(barcode: "5000", status: "OK", title: title_alice)
-book_cc = Book.create(barcode: "1001", status: "OK", title: title_cc)
+book_alice = Book.create(barcode: "5000", condition: "OK", title: title_alice)
+book_cc = Book.create(barcode: "1001", condition: "OK", title: title_cc)
 
 # Create a loans
 loan_alice = Loan.new(expiration_date: Date.current)
@@ -42,34 +42,85 @@ loan_alice.save
 
 loan_cc = Loan.new(expiration_date: Date.current)
 loan_cc.lent_by = User.find_by_name("Låneservice Johanneberg")
-loan_cc.loaned_by = User.first
+loan_cc.loaned_by = User.find(2075529089)
 loan_cc.book = book_cc
 loan_cc.returned_at = Date.current
 loan_cc.save
 
-book_alice.dump_fixture(append=false)
-title_alice.dump_fixture(append=false)
-title_cc.dump_fixture
-title_lotr.dump_fixture
-title_tomtens_jul.dump_fixture
+review_alice = Review.new(score: 3, review: "I didn't particulary like this book.")
+review_alice.title = title_alice
+review_alice.user = loan_alice.loaned_by
+review_alice.save
+
 
 # Create the rest of the books
-Book.create(barcode: "5002", status: "Broken", title: title_alice).dump_fixture
-Book.create(barcode: "5003", status: "OK", title: title_alice).dump_fixture
-Book.create(barcode: "5004", status: "OK", title: title_lotr).dump_fixture
-Book.create(barcode: "5005", status: "Broken", title: title_lotr).dump_fixture
-Book.create(barcode: "5006", status: "OK", title: title_cc).dump_fixture
-Book.create(barcode: "5007", status: "OK", title: title_tomtens_jul).dump_fixture
-Book.create(barcode: "5008", status: "OK", title: title_tomtens_jul).dump_fixture
+Book.create(barcode: "5002", condition: "Broken", title: title_alice)
+Book.create(barcode: "5003", condition: "OK", title: title_alice)
+Book.create(barcode: "5004", condition: "OK", title: title_lotr)
+Book.create(barcode: "5005", condition: "Broken", title: title_lotr)
+Book.create(barcode: "5006", condition: "OK", title: title_cc)
+Book.create(barcode: "5007", condition: "OK", title: title_tomtens_jul)
+Book.create(barcode: "5008", condition: "OK", title: title_tomtens_jul)
 
 # Create fixtures
-loan_alice.dump_fixture(append=false)
-loan_alice.lent_by.dump_fixture(append=false)
-loan_alice.loaned_by.dump_fixture(append=true)
+def fixtures_title()
+    titles = Title.all.to_a
+    titles.shift.dump_fixture(append = false)
+    for title in titles do
+        title.dump_fixture
+    end
+end
 
-loan_cc.dump_fixture
-loan_cc.loaned_by.dump_fixture
+def fixtures_book()
+    books = Book.all.to_a
+    books.shift.dump_fixture(append = false)
+    for book in books do
+        book.dump_fixture
+    end
+end
 
+def fixtures_loan()
+    loans = Loan.all.to_a
+    loans.shift.dump_fixture(append = false)
+    for loan in loans do
+        loan.dump_fixture
+    end
+end
 
+def fixtures_user()
+    Loan.find(1).lent_by.dump_fixture(append=false)
+    Loan.find(1).loaned_by.dump_fixture
+    Loan.find(2).loaned_by.dump_fixture
+end
 
+def fixtures_review()
+    reviews = Review.all.to_a
+    reviews.shift.dump_fixture(append = false)
+    for review in reviews do
+        review.dump_fixture
+    end
+end
+
+case ENV["fixture"]
+when "all"
+    fixtures_book
+    fixtures_loan
+    fixtures_review
+    fixtures_title
+    fixtures_user
+when "book"
+    fixtures_book
+when "title"
+    fixtures_title
+when "loan"
+    fixtures_loan
+when "user"
+    fixtures_user
+when "review"
+    fixtures_review
+when nil
+    #do nothing
+else
+    p "Error: Unsupported fixture flag"
+end
 

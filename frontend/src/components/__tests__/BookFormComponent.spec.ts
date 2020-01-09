@@ -12,13 +12,13 @@ describe('BookFormComponent.vue', () => {
     const wrapper: Wrapper<BookFormComponent> = factory(BookFormComponent);
 
     wrapper.find('[data-jest=\'barcode\']').setValue('1234');
-    wrapper.find('[data-jest=\'status\']').setValue('ok');
+    wrapper.find('[data-jest=\'condition\']').setValue('ok');
     wrapper.find('[data-jest=\'form\']').trigger('submit');
 
     expect(BooksModule.create).toHaveBeenCalledWith({
       barcode: '1234',
       title_id: 0,
-      status: 'ok',
+      conditition: 'ok',
     });
   });
 });

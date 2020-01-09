@@ -1,3 +1,9 @@
+<!-- 
+  This is the Start and root view for all of the application and includes three links, "Profil", "Admin"
+  and "Hitta". It fetches all the loans and all the users from their modules in order to 
+  render them in the bottom of the page
+ -->
+
 <template>
   <div class="view">
     <div id="left" />
@@ -76,6 +82,10 @@
   </div>
 </template>
 
+<!-- 
+  Since this is the starting page, many modules are imported but also one component called 
+  LoanListComponent in order to render the loans that soon are to expire
+-->
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import LoanListComponent from '@/components/LoanListComponent.vue';
@@ -84,6 +94,7 @@ import UsersModule from '../store/modules/UsersModule';
 import TitlesModule from '../store/modules/TitlesModule';
 import LoansModule from '../store/modules/LoansModule';
 import BooksModule from '../store/modules/BooksModule';
+import { VuexModule } from 'vuex-module-decorators';
 
 @Component({
   components: {
@@ -95,9 +106,15 @@ export default class Start extends Vue {
   public size: string = 'lg';
   public primary: string = 'primary';
   public loading: boolean = true;
-  private usersModule = UsersModule;
+  private usersModule: VuexModule = UsersModule;
 
-  public created() {
+  // The users module is imported and used in order to get information about the current user
+  // but also so that the possibility for a user to monitor its soon expiring loans.
+  // The Loans Module is imported so that we can fetch all info about the loans and since
+  // there is a relation between loans and users the constructor instantiates the class
+  // by fetching all the information from the two modules
+
+  public created(): void {
     if(UsersModule.currentUserID){
       UsersModule.fetchAll();
       LoansModule.fetchAll();

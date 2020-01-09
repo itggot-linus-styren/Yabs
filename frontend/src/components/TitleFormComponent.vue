@@ -76,7 +76,12 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import TitlesModule, { TitleForm } from '../store/modules/TitlesModule';
+import TitlesModule from '../store/modules/TitlesModule';
+import { Title, TitleForm } from '../types';
+
+
+// This is the child component of the earlier named parent element and catches the information
+// passed down the component tree to render the table 
 
 @Component
 export default class TitleFormComponent extends Vue {
@@ -84,7 +89,7 @@ export default class TitleFormComponent extends Vue {
     name: '',
     cost: '',
     isbn: '',
-    title_type: '',
+    title_type: '', //eslint-disable-line camelcase
   };
   public show: boolean = true;
 
@@ -94,16 +99,22 @@ export default class TitleFormComponent extends Vue {
     { value: 'Skönlitteratur', text: 'Skönlitteratur' },
   ];
 
-  public onSubmit(evt: Event) {
+  // The onSubmit eventlistener calls the titlesmodule and recreates the form when the submit has been
+  // successfull
+
+  public onSubmit(evt: Event): void {
     evt.preventDefault();
     if (!!this.form.name && !!this.form.cost && !! this.form.isbn && !!this.form.title_type) {
       TitlesModule.create(this.form)
-        .then((title: any) => this.$emit('title-added', title))
-        .catch((failure: any) => console.log(failure));
+        .then((title: Title) => this.$emit('title-added', title))
+        .catch((failure: object) => console.log(failure));
     }
   }
 
-  public onReset(evt: Event) {
+  // onReset eventlistener is used to reset the form if the user has written in the wrong
+  // information about the title
+
+  public onReset(evt: Event): void {
     evt.preventDefault();
     this.form.name = '';
     this.form.cost = '';

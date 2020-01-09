@@ -1,9 +1,16 @@
+<!--
+  This vue template takes all the books and places them into an array due to the prop
+  "items" from the parent component.
+-->
+
 <template>
   <ListComponent
     :headers="headers"
     :items="booksModule.allAsArray"
-    :items-per-page="5"
+    :route-path="'books'"
+    :route-specifier="'barcode'"
     class="elevation-1"
+    v-bind="$attrs"
   />
 </template>
 
@@ -20,10 +27,14 @@ import ListComponent from '@/components/ListComponent.vue';
 })
 export default class BookListComponent extends Vue {
   private booksModule: VuexModule = BooksModule;
+  
+  // these headers are the headers for the table created in the template and are filled 
+  // with the information passed from the BooksModule
+  
   public headers: object[] = [
-    { text: 'Titel', value: 'title.name', sortable: false },
-    { text: 'Status', value: 'status', sortable: false },
-    { text: 'Sträckkod', value: 'barcode', sortable: false },
+    { text: 'Titel', value: 'title.name' },
+    { text: 'Skick', value: 'condition' },
+    { text: 'Sträckkod', value: 'barcode' },
   ];
 }
 </script>

@@ -14,7 +14,7 @@ import users from '@/store/modules/UsersModule';
 export function factory<V extends Vue>(
   component: VueClass<V>,
   options?: ThisTypedMountOptions<V>,
-  mountFunc: any = mount,
+  mountFunc: Function = mount,
 ): Wrapper<V> {
   const vuetify = new Vuetify({
     mocks: {
@@ -52,7 +52,7 @@ export function shallowFactory<V extends Vue>(
   return factory(component, options, shallowMount);
 }
 
-export type IRouterFactory<V extends Vue> = [jest.Mock<any, any>, Wrapper<V>];
+export type IRouterFactory<V extends Vue> = [jest.Mock<any, any>, Wrapper<V>]; //eslint-disable-line @typescript-eslint/no-explicit-any
 export function routerFactory<V extends Vue>(
   component: VueClass<V>,
   options?: ThisTypedMountOptions<V>,

@@ -1,44 +1,35 @@
 import Vue from 'vue';
 import { VuexModule, Module, Action, Mutation, getModule } from 'vuex-module-decorators';
 import store from '..';
-import BooksAPI from '../../api/books';
-import { Title } from './TitlesModule';
-import convertList from '../../helpers/convertArrayToNested';
+import { Book, BookForm, BookCollection } from '@/types';
+import BooksAPI from '../../services/api/books';
+import convertList from '@/helpers/convertArrayToNested';
+import convertNested from '@/helpers/convertNestedToArray';
 
-interface BookCollection {
-  [id: string]: Book;
-}
-interface Book {
-  barcode: number;
-  created_at: string;
-  status: string;
-  title_id: number;
-  updated_at: string;
-  title: Title;
-}
 
 @Module({dynamic: true, namespaced: true, name: 'BooksModule', store})
 class BooksModule extends VuexModule {
   private _books: BookCollection = {};
-  private _failure: any = null;
+  private _failure: object = {};
 
-  get all() {
+  get all(): BookCollection {
     return this._books;
   }
 
-  get allAsArray() {
-    return Object.keys(this._books).map((id) => this._books[id]);
+
+  get allAsArray(): Book[] {
+    return convertNested(this._books);
   }
 
   @Action({rawError: true})
-  public fetchAll() {
+  public fetchAll(): Promise<BookCollection> {
     return new Promise((resolve, reject) => {
       BooksAPI.all()
-        .then((response: any) => {
+        .then((response: Book[]) => {
           this.convertBookList(response);
-          resolve();
+          resolve(this._books);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setfailure(error);
           reject(error);
         });
@@ -46,14 +37,28 @@ class BooksModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public create(request: any) {
+  public fetchSingle(barcode: string): Promise<Book> {
+    return new Promise((resolve, reject) => {
+      BooksAPI.single(barcode)
+        .then((response: Book) => {
+          resolve(response);
+        })
+        .catch((error: object) => {
+          this.setfailure(error);
+          reject(error);
+        });
+    });
+  }
+
+  @Action({rawError: true})
+  public create(request: BookForm): Promise<Book> {
     return new Promise((resolve, reject) => {
       BooksAPI.create(request)
-        .then((response: any) => {
+        .then((response: Book) => {
           this.setBook(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setfailure(error);
           reject(error);
         });
@@ -61,14 +66,14 @@ class BooksModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public update(request: any) {
+  public update(request: BookForm): Promise<Book> {
     return new Promise((resolve, reject) => {
       BooksAPI.update(request)
-        .then((response: any) => {
+        .then((response: Book) => {
           this.setBook(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setfailure(error);
           reject(error);
         });
@@ -76,14 +81,14 @@ class BooksModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public delete(request: any) {
+  public delete(request: Book): Promise<string> {
     return new Promise((resolve, reject) => {
       BooksAPI.delete(request)
-        .then((response: any) => {
+        .then((response: string) => {
           this.removeBook(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           this.setfailure(error);
           reject(error);
         });
@@ -91,21 +96,21 @@ class BooksModule extends VuexModule {
   }
 
   @Mutation
-  private setBook(payload: any) {
+  private setBook(payload: Book): void {
     Vue.set(this._books, payload.barcode, payload);
   }
 
   @Mutation
-  private removeBook(bookId: string) {
+  private removeBook(bookId: string): void {
     Vue.delete(this._books, bookId);
   }
 
   @Mutation
-  private setfailure(payload: any) {
+  private setfailure(payload: object): void {
     this._failure = payload;
   }
   @Mutation
-  private convertBookList(payload: any) {
+  private convertBookList(payload: Book[]): void {
     const list = convertList(payload, 'barcode');
     this._books = list;
   }

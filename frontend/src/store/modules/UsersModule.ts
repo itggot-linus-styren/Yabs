@@ -7,28 +7,16 @@ import {
   Mutation,
 } from 'vuex-module-decorators';
 import store from '..';
-import UsersAPI from '../../api/users';
-import convertList from '../../helpers/convertArrayToNested';
-
-export interface User {
-  created_at: string;
-  email: string;
-  google_token: string;
-  klass: string;
-  name: string;
-  photo_path: string;
-  role: string;
-  uid: number;
-  updated_at: string;
-}
-
-export interface UserCollection { [uid: number]: User; }
+import { User, UserCollection } from '@/types';
+import UsersAPI from '../../services/api/users';
+import convertList from '@/helpers/convertArrayToNested';
+import convertNested from '@/helpers/convertNestedToArray';
 
 @Module({dynamic: true, namespaced: true, name: 'UsersModule', store})
 class UsersModule extends VuexModule {
-  private _failure: any = null;
+  private _failure: object = {};
   public _users: UserCollection = {};
-  private _currentUser: any = null;
+  private _currentUser: number = 0;
 
   get currentUserID(): number {
     return this._currentUser;
@@ -38,80 +26,87 @@ class UsersModule extends VuexModule {
     return this._users;
   }
 
+  get allAsArray(): User[] {
+    return convertNested(this._users);
+  }
+
   get currentUser(): User {
     return this._users[this._currentUser];
   }
 
   @Action({rawError: true})
-  public fetchAll(): Promise<object> {
+  public fetchAll(): Promise<UserCollection> {
     return new Promise((resolve, reject) => {
       UsersAPI.all()
         .then((response: User[]) => {
           this.convertUserList(response);
-          resolve();
+          resolve(this._users);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
+          this.setFailure(error);
           reject(error);
         });
     });
   }
 
   @Action({rawError: true})
-  public update(request: any) {
+  public update(request: FormData): Promise<User> {
     return new Promise((resolve, reject) => {
       UsersAPI.update(request)
-        .then((response: any) => {
+        .then((response: User) => {
           this.setUser(response);
           this.setCurrentUser(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           reject(error);
         });
     });
   }
 
   @Action({rawError: true})
-  public signIn(request: any) {
+  public signIn(request: string): Promise<User> {
     return new Promise((resolve, reject) => {
       UsersAPI.signIn(request)
-        .then((response: any) => {
+        .then((response: User) => {
           this.setCurrentUser(response);
           this.fetchAll();
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
+          this.setFailure(error);
           reject(error);
         });
     });
   }
 
   @Action({rawError: true})
-  public signOut(): Promise<object> {
+  public signOut(): Promise<User> {
     return new Promise((resolve, reject) => {
       UsersAPI.signOut()
-        .then((response: any) => {
+        .then((response: User) => {
           this.setCurrentUser(response);
           resolve(response);
         })
-        .catch((error: any) => {
+        .catch((error: object) => {
           reject(error);
         });
     });
   }
 
   @Mutation
-  public setUser(payload: any): void {
+  public setUser(payload: User): void {
     Vue.set(this._users, payload.uid, payload);
   }
 
   @Mutation
-  public setCurrentUser(payload: any): void {
+  public setCurrentUser(payload: User): void {
     this._currentUser = payload.uid;
   }
 
   @Mutation
-  public setFailure(payload: any): void {
+  public setFailure(payload: object): void {
+    console.log(payload);
     // This should fix end to end tests(yarn build)
   }
 
