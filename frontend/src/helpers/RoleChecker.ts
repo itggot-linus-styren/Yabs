@@ -14,9 +14,9 @@ const roles: Roles = {
 
 export default class RoleChecker {
 
-  private static checkPermission(required: number): boolean {
+  static checkPermission(required: number): boolean {
     const user: User = UsersModule.currentUser;
-    return user && ((user.role & required) == required || (user.role > required));
+    return !!user && ((user.role & required) == required || (user.role > required));
   }
   
   static isPrincipal(): boolean {

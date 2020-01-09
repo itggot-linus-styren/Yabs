@@ -12,7 +12,7 @@ import UsersAPI from '../../services/api/users';
 import convertList from '@/helpers/convertArrayToNested';
 import convertNested from '@/helpers/convertNestedToArray';
 
-@Module({dynamic: true, namespaced: true, name: 'UsersModule', store})
+@Module({dynamic: true, namespaced: true, name: 'UsersModule', store, preserveState: true})
 class UsersModule extends VuexModule {
   private _failure: object = {};
   public _users: UserCollection = {};
@@ -55,7 +55,7 @@ class UsersModule extends VuexModule {
       UsersAPI.update(request)
         .then((response: User) => {
           this.setUser(response);
-          this.setCurrentUser(response);
+          this.setCurrentUser(response.uid);
           resolve(response);
         })
         .catch((error: object) => {
@@ -69,7 +69,7 @@ class UsersModule extends VuexModule {
     return new Promise((resolve, reject) => {
       UsersAPI.signIn(request)
         .then((response: User) => {
-          this.setCurrentUser(response);
+          this.setCurrentUser(response.uid);
           this.fetchAll();
           resolve(response);
         })
@@ -85,7 +85,7 @@ class UsersModule extends VuexModule {
     return new Promise((resolve, reject) => {
       UsersAPI.signOut()
         .then((response: User) => {
-          this.setCurrentUser(response);
+          this.setCurrentUser(0);
           resolve(response);
         })
         .catch((error: object) => {
@@ -100,8 +100,8 @@ class UsersModule extends VuexModule {
   }
 
   @Mutation
-  public setCurrentUser(payload: User): void {
-    this._currentUser = payload.uid;
+  public setCurrentUser(payload: number): void {
+    this._currentUser = payload;
   }
 
   @Mutation

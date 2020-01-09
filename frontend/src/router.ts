@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Router from 'vue-router';
 import * as views from '@/views';
+import RoleChecker from './helpers/RoleChecker';
 
 Vue.use(Router);
 
@@ -21,6 +22,13 @@ export default new Router({
       path: '/books/:id',
       name: 'edit book',
       component: views.EditBook,
+      beforeEnter: (to, from, next) => { //eslint-disable-line @typescript-eslint/explicit-function-return-type
+        if (RoleChecker.checkPermission(2)) {
+          next();
+        } else {
+          next(from);
+        }
+      },
     },
     {
       path: '/admin',
@@ -32,13 +40,19 @@ export default new Router({
         {path: 'titles', component: views.AdminTitlesView},
         {path: 'books', component: views.AdminBooksView},
         {path: 'cards', component: views.AdminCardsView},
-
-      ]
+      ],
+      beforeEnter: (to, from, next) => { //eslint-disable-line @typescript-eslint/explicit-function-return-type        
+        if (RoleChecker.checkPermission(2)) {
+          next();
+        } else {
+          next(from);
+        }
+      },
     },
     {
       path: '/find',
       name: 'find',
       component: views.Find,
-    }
-  ],
-});
+    }  
+  ],  
+});  
