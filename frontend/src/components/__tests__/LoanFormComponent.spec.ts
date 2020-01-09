@@ -24,12 +24,10 @@ describe('LoanFormComponent.vue', () => {
     wrapper.find('[data-jest=\'book_barcode\']').setValue('1234');
     wrapper.find('[data-jest=\'form\']').trigger('submit');
    
-
     expect(LoansModule.create).toHaveBeenCalledWith({
       loaned_by_id: '123', //eslint-disable-line camelcase
       book_id: '1234', //eslint-disable-line camelcase
       lent_by_id: 123, //eslint-disable-line camelcase
-      
     });
   });
 });
