@@ -147,7 +147,7 @@ jobs:
         bundle exec bin/rails s &
     - name: run API tests
       run:
-        npx newman run https://www.getpostman.com/collections/$COLLECTION_UID?apikey=$POSTMAN_KEY
+        npx newman run https://www.getpostman.com/collections/$COLLECTION_UID_YABS?apikey=$POSTMAN_KEY
       env:
-        COLLECTION_UID: ${{secrets.COLLECTION_UID}}
+        COLLECTION_UID_YABS: ${{secrets.COLLECTION_UID_YABS}}
         POSTMAN_KEY: ${{secrets.POSTMAN_KEY}}
