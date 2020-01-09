@@ -20,6 +20,7 @@ title_1:
   cover: http://books.google.com/books/content?id=sw0UwPjaw80C&printsec=frontcover&img=1&zoom=3&source=gbs_api
   page_count: !ruby/object:BigDecimal 27:0.95e2
   published_date: '2009'
+  subject_id: 4
 
 title_2:
   id: 2
@@ -41,6 +42,7 @@ title_2:
   cover: 
   page_count: 
   published_date: 
+  subject_id: 1
 
 title_3:
   id: 3
@@ -62,6 +64,7 @@ title_3:
   cover: 
   page_count: 
   published_date: 
+  subject_id: 4
 
 title_4:
   id: 4
@@ -83,3 +86,4 @@ title_4:
   cover: 
   page_count: 
   published_date: 
+  subject_id: 2

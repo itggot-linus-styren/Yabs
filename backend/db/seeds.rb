@@ -13,6 +13,16 @@ ActiveSupport.on_load(:active_job) do
 end
 DataFetchJob.perform_now
 
+p_sub = Subject.create(name: "Programmering")
+s_sub = Subject.create(name: "Svenska")
+e_sub = Subject.create(name: "Engelska")
+lib_sub = Subject.create(name: "Skönlitteratur")
+
+p_user = User.find_by_name("Daniel Berg")
+e_user = User.find_by_name("Jimmy Löfgren")
+Responsibility.create(subject: p_sub, user: p_user)
+Responsibility.create(subject: e_sub, user: e_user)
+
 alice_google = GoogleBooks::API.search('isbn:0763645680').first
 # Create titles of both book types
 title_alice = Title.create(name: "Alice in Wonderland", isbn: "0763645680", 
@@ -22,12 +32,13 @@ title_alice = Title.create(name: "Alice in Wonderland", isbn: "0763645680",
     authors: alice_google.authors.to_s,
     cover: alice_google.covers[:large],
     page_count: alice_google.page_count,
-    published_date: alice_google.published_date
+    published_date: alice_google.published_date,
+    subject: lib_sub
 )
-title_lotr = Title.create(name: "The Fellowship of the Ring", isbn: "9780547928210", cost: 100, title_type: "Skönlitteratur")
+title_lotr = Title.create(name: "The Fellowship of the Ring", isbn: "9780547928210", cost: 100, title_type: "Skönlitteratur", subject: lib_sub)
 
-title_cc = Title.create(name: "Clean Code", isbn: "9780132350884", cost: 300, title_type: "Kurslitteratur")
-title_tomtens_jul = Title.create(name: "Tomtens jul", isbn: "9781999985462", cost: 60, title_type: "Kurslitteratur")
+title_cc = Title.create(name: "Clean Code", isbn: "9780132350884", cost: 300, title_type: "Kurslitteratur", subject: p_sub)
+title_tomtens_jul = Title.create(name: "Tomtens jul", isbn: "9781999985462", cost: 60, title_type: "Kurslitteratur", subject: s_sub)
 
 # Create books to be loaned
 book_alice = Book.create(barcode: "5000", condition: "OK", title: title_alice)
@@ -50,7 +61,7 @@ loan_cc.save
 review_alice = Review.new(score: 3, review: "I didn't particulary like this book.")
 review_alice.title = title_alice
 review_alice.user = loan_alice.loaned_by
-review_alice.save
+review_alice.save   
 
 
 # Create the rest of the books
@@ -68,6 +79,14 @@ def fixtures_title()
     titles.shift.dump_fixture(append = false)
     for title in titles do
         title.dump_fixture
+    end
+end
+
+def fixtures_subjects()
+    subjects = Subject.all.to_a
+    subjects.shift.dump_fixture(append = false)
+    for subject in subjects do
+        subject.dump_fixture
     end
 end
 
@@ -103,6 +122,7 @@ end
 
 case ENV["fixture"]
 when "all"
+    fixtures_subjects
     fixtures_book
     fixtures_loan
     fixtures_review
@@ -118,6 +138,8 @@ when "user"
     fixtures_user
 when "review"
     fixtures_review
+when "subject"
+    fixtures_subjects
 when nil
     #do nothing
 else
