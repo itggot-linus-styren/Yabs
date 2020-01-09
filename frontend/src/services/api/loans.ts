@@ -1,5 +1,6 @@
 import { Loan, LoanForm } from '@/types';
 import APIRequest from './APIRequest';
+import axios from 'axios';
 
 export default class LoansAPI extends APIRequest {
 
@@ -27,11 +28,22 @@ export default class LoansAPI extends APIRequest {
     });
   }
 
-  static delete(request: Loan): Promise<number> {
+  static async delete(request: Loan): Promise<number> {
     return new Promise((res, rej) => {
       this.Delete<number>(`v1/loans/${request.id}`)
         .then((resp) => {res(resp); })
         .catch((err) => {rej(err); });
     });
+    // try {
+    //   const response = await axios.delete(`http://localhost:3000/api/v1/loans/${request.id}`, {
+    //     headers: {
+    //       'Content-Type': 'application/json',
+    //     },
+    //     withCredentials: true,
+    //   });
+    //   return Promise.resolve(response.data.id);
+    // } catch (error) {
+    //   return Promise.reject(error);
+    // }
   }
 }

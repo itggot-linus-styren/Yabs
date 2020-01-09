@@ -39,6 +39,11 @@ export default new Router({
       path: '/find',
       name: 'find',
       component: views.Find,
+    },
+    {
+      path: '/library',
+      name: 'library',
+      component: views.Library,
     }
   ],
 });

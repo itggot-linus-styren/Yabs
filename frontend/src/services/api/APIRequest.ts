@@ -13,7 +13,7 @@ export default class APIRequest {
   private static action<T>(verb: Function, request: string, payload?: any, options?: AxiosRequestConfig): Promise<T> { //eslint-disable-line @typescript-eslint/no-explicit-any
     return new Promise((resolve, reject) => {
       options = Object.assign(baseSettings, options);
-      if (verb == axios.get) {
+      if (verb == axios.get || verb == axios.delete) {
         payload = Object.assign(options, payload);
       }
       verb(baseURL+request, payload, options)
@@ -50,9 +50,9 @@ export default class APIRequest {
     });
   }
 
-  static Delete<T>(request: string, payload?: any, options?: AxiosRequestConfig): Promise<T> { //eslint-disable-line @typescript-eslint/no-explicit-any
+  static Delete<T>(request: string, options?: AxiosRequestConfig): Promise<T> { //eslint-disable-line @typescript-eslint/no-explicit-any
     return new Promise((res, rej) => {
-      this.action<T>(axios.delete, request, payload, options)
+      this.action<T>(axios.delete, request, {}, options)
         .then((resp) => {res(resp); })
         .catch((err) => {rej(err); });
     });

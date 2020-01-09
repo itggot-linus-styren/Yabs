@@ -49,7 +49,7 @@ class Api::V1::LoansController < ApplicationController
   def destroy
     authorize @loan
     @loan.destroy
-    render json: @loan
+    render json: @loan.id
   end
 
   # this is the private set loan method to find the current loan based on the given params
