@@ -23,7 +23,7 @@
       <template v-slot:item.actions="{ item }">
         <v-btn 
           color="primary"
-          @click="updateRoles(staffUsers[item.uid])"
+          @click="updateUserRoles(staffUsers[item.uid])"
         >
           Save
         </v-btn>
@@ -57,6 +57,10 @@ export default class AdminUsersVIew extends Vue {
     { text: 'Roller', value: 'role' },
     { text: '', value: 'actions' },
   ];
+  /**
+   * This function filters out all students from the Usersmodule users
+   * and gives the remaining an array with their specified roles.
+   */
   get staffUsers(): UserCollection {
     return convertListToN(UsersModule.allAsArray
       .filter(user => RoleChecker.isStudentHealth(user))
@@ -77,7 +81,7 @@ export default class AdminUsersVIew extends Vue {
     UsersModule.fetchAll();
   }
 
-  private updateRoles(user: User): void {
+  private updateUserRoles(user: User): void {
     if (user.assignedRoles!.length >= 1) {
       user.role = user.assignedRoles!.reduce((acc, num) => acc += Number(num), 0);
       UsersModule.update(user);

@@ -52,7 +52,14 @@ export default class RoleChecker {
     }
     return '';
   }
-
+  
+  /**
+   * This function takes a user and
+   * translates its rolevalue into an array of the 
+   * assigned available roles
+   * 
+   * @param user An object containing a rolevalue
+   */
   static assignedRoles(user: User = UsersModule.currentUser): number[] {
     let roleTotal: number = user.role;
     return Object.keys(RoleChecker.roles()).reverse().reduce((acc, bitValue) => {
