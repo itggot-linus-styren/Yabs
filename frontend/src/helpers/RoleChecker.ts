@@ -59,6 +59,8 @@ export default class RoleChecker {
    * assigned available roles
    * 
    * @param user An object containing a rolevalue
+   * 
+   * @returns {number[]} An array of all the rolevalues assigned to the user, largest first
    */
   static assignedRoles(user: User = UsersModule.currentUser): number[] {
     let roleTotal: number = user.role;
