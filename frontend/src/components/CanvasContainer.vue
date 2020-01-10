@@ -3,7 +3,7 @@
     <v-btn @click="getAllCanvases">
       Ladda ned alla kort
     </v-btn>
-    <div class="cig-card">
+    <div class="cig-card" style="flex-wrap:wrap;">
       <CigCanvas
         v-for="(image, index) in images"
         :key="index"

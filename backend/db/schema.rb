@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2020_01_08_130007) do
+ActiveRecord::Schema.define(version: 2020_01_09_092304) do
 
   create_table "active_storage_attachments", force: :cascade do |t|
     t.string "name", null: false
@@ -57,6 +57,15 @@ ActiveRecord::Schema.define(version: 2020_01_08_130007) do
     t.index ["loaned_by_id"], name: "index_loans_on_loaned_by_id"
   end
 
+  create_table "responsibilities", force: :cascade do |t|
+    t.integer "subject_id"
+    t.integer "user_id"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
+    t.index ["subject_id"], name: "index_responsibilities_on_subject_id"
+    t.index ["user_id"], name: "index_responsibilities_on_user_id"
+  end
+
   create_table "reviews", force: :cascade do |t|
     t.integer "score"
     t.string "review"
@@ -66,6 +75,12 @@ ActiveRecord::Schema.define(version: 2020_01_08_130007) do
     t.integer "title_id"
     t.index ["title_id"], name: "index_reviews_on_title_id"
     t.index ["user_id"], name: "index_reviews_on_user_id"
+  end
+
+  create_table "subjects", force: :cascade do |t|
+    t.string "name"
+    t.datetime "created_at", precision: 6, null: false
+    t.datetime "updated_at", precision: 6, null: false
   end
 
   create_table "titles", force: :cascade do |t|
@@ -80,6 +95,8 @@ ActiveRecord::Schema.define(version: 2020_01_08_130007) do
     t.string "cover"
     t.decimal "page_count"
     t.string "published_date"
+    t.integer "subject_id"
+    t.index ["subject_id"], name: "index_titles_on_subject_id"
   end
 
   create_table "users", id: false, force: :cascade do |t|
