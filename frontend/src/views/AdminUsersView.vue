@@ -78,7 +78,7 @@ export default class AdminUsersVIew extends Vue {
   }
 
   private updateRoles(user: User): void {
-    if (user.assignedRoles!.length > 1) {
+    if (user.assignedRoles!.length >= 1) {
       user.role = user.assignedRoles!.reduce((acc, num) => acc += Number(num), 0);
       UsersModule.update(user);
     }
