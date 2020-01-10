@@ -52,10 +52,9 @@ class UsersModule extends VuexModule {
   @Action({rawError: true})
   public updateImage(request: FormData): Promise<User> {
     return new Promise((resolve, reject) => {
-      UsersAPI.updateImage(request)
+      UsersAPI.update(request)
         .then((response: User) => {
           this.setUser(response);
-          this.setCurrentUser(response);
           resolve(response);
         })
         .catch((error: object) => {
@@ -67,10 +66,9 @@ class UsersModule extends VuexModule {
   @Action({rawError: true})
   public updateUser(request: User): Promise<User> {
     return new Promise((resolve, reject) => {
-      UsersAPI.updateUser(request)
+      UsersAPI.update(request)
         .then((response: User) => {
           this.setUser(response);
-          this.setCurrentUser(response);
           resolve(response);
         })
         .catch((error: object) => {
