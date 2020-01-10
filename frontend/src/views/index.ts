@@ -9,5 +9,6 @@ import AdminTitlesView from './AdminTitlesView.vue';
 import AdminUsersView from './AdminUsersView.vue';
 import Find from './FindView.vue';
 import EditBook from './EditBookView.vue';
+import Library from './LibraryView.vue';
 
-export { Start, Profile, AdminView, AdminDashboardView, AdminBooksView, AdminCardsView, AdminLoansView, AdminTitlesView, AdminUsersView, Find, EditBook };
+export { Start, Profile, AdminView, AdminDashboardView, AdminBooksView, AdminCardsView, AdminLoansView, AdminTitlesView, AdminUsersView, Library, Find, EditBook };

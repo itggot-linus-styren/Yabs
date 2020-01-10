@@ -38,8 +38,9 @@ class LoanPolicy < ApplicationPolicy
   # created the loan (Maybe change this to only be avaiable to the admin)
 
   def destroy?
-    user&.admin? || user&.uid == record&.lent_by_id
+    user&.admin? || 
+    user&.uid == record&.lent_by_id || 
+    (user&.uid == record&.loaned_by_id &&  record.lent_by_id == User.find_by_name("Låneservice Johanneberg").uid)
   end
 end
-
 

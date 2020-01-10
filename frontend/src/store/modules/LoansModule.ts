@@ -41,7 +41,7 @@ class LoansModule extends VuexModule {
           this.setLoan(response);
           resolve(response);
         })
-        .catch((error: object) => {
+        .catch((error: object) => {          
           reject(error);
         });
     });
