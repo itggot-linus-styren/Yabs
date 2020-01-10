@@ -30,7 +30,7 @@ export default class UsersAPI extends APIRequest {
           .then((resp) => {res(resp); })
           .catch((err) => {rej(err); });
       } else {
-        this.Patch<User>(`v1/users/${request['uid']}`, request)
+        this.Patch<User>(`v1/users/${request['uid']}`, {user: request})
           .then((resp) => {res(resp); })
           .catch((err) => {rej(err); });
       }
