@@ -1,6 +1,5 @@
 import { Loan, LoanForm } from '@/types';
 import APIRequest from './APIRequest';
-import axios from 'axios';
 
 export default class LoansAPI extends APIRequest {
 
