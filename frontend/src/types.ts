@@ -23,6 +23,7 @@ interface User {
   role: number;
   uid: number;
   updated_at: string; //eslint-disable-line camelcase
+  assignedRoles?: string[]
 }
 
 interface UserForm {

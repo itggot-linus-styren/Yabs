@@ -27,6 +27,8 @@ class Api::V1::UsersController < ApplicationController
       @user.photo_path = rails_blob_path(@user.profile_image, disposition: "inline")
       @user.save
       render json: @user
+    elsif @user.update(user_params)
+      render json: @user
     else
       render json: @user.errors, status: :unprocessable_entity
     end
@@ -39,5 +41,10 @@ class Api::V1::UsersController < ApplicationController
     # Use callbacks to share common setup or constraints between actions.
     def set_user
       @user = User.find(params[:id])
+    end
+
+     # Never trust parameters from the scary internet, only allow the white list through.
+     def user_params
+      params.require(:user).permit(:role, :uid, :name, :email, :klass, :google_token, :photo_path)
     end
 end
