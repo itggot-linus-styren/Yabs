@@ -4,7 +4,7 @@ on:
   schedule:
   - cron: "0 0 * * *"
   push:
-    branches: 
+    branches:
       - develop
 
 jobs:
@@ -108,3 +108,49 @@ jobs:
       with:
         name: cypress-videos
         path: frontend/cypress/videos
+  api-tests:
+
+    runs-on: macos-latest
+
+    steps:
+    - uses: actions/checkout@v1
+    - uses: actions/cache@v1
+      id: cache
+      with:
+        path: ~/local/rubies
+        key: ${{ runner.os }}-ruby-2.6.3
+    - uses: clupprich/ruby-build-action@master
+      id: ruby
+      with:
+        ruby-version: 2.6.3
+        cache-available: ${{ steps.cache.outputs.cache-hit == 'true' }}
+    - uses: actions/cache@v1
+      with:
+        path: backend/vendor/bundle
+        key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+        restore-keys: |
+          ${{ runner.os }}-gem-
+    - name: Bundle install
+      run: |
+        cd backend
+        gem install bundler:2.0.2
+        bundle install --jobs=4 --retry=3 --path vendor/bundle
+    - name: Load fixtures and schema
+      env:
+        RAILS_ENV: test
+      run: |
+        cd backend
+        bundle exec bin/rails db:schema:load
+        bundle exec bin/rails db:fixtures:load
+    - name: Run rails backend
+      env:
+        RAILS_ENV: test
+      run: |
+        cd backend
+        bundle exec bin/rails s &
+    - name: run API tests
+      run:
+        npx newman run https://api.getpostman.com/collections/$COLLECTION_UID_YABS?apikey=$POSTMAN_KEY
+      env:
+        COLLECTION_UID_YABS: ${{secrets.COLLECTION_UID_YABS}}
+        POSTMAN_KEY: ${{secrets.POSTMAN_KEY}}

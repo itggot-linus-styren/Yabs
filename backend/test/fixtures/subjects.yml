@@ -1,0 +1,52 @@
+
+subject_1:
+  id: 1
+  name: Programming
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2020-01-09 09:59:35.451658000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2020-01-09 09:59:35.451658000 Z
+    zone: *2
+    time: *3
+
+subject_2:
+  id: 2
+  name: Swedish
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2020-01-09 09:59:35.457586000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2020-01-09 09:59:35.457586000 Z
+    zone: *2
+    time: *3
+
+subject_3:
+  id: 3
+  name: English
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2020-01-09 09:59:35.465490000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2020-01-09 09:59:35.465490000 Z
+    zone: *2
+    time: *3
+
+subject_4:
+  id: 4
+  name: Skönlitteratur
+  created_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &1 2020-01-09 09:59:35.472461000 Z
+    zone: &2 !ruby/object:ActiveSupport::TimeZone
+      name: Etc/UTC
+    time: *1
+  updated_at: !ruby/object:ActiveSupport::TimeWithZone
+    utc: &3 2020-01-09 09:59:35.472461000 Z
+    zone: *2
+    time: *3

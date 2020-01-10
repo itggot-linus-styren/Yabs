@@ -3,6 +3,7 @@
     <v-card-title>
       <v-text-field 
         v-model="search"
+        data-jest="search"
         append-icon="search"
         label="Search"
         single-line
@@ -10,6 +11,7 @@
       />
     </v-card-title>
     <v-data-table 
+      data-jest="table"
       :headers="headers"
       :items="items"
       :search="search"

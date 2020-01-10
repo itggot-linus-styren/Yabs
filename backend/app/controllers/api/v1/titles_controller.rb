@@ -72,6 +72,6 @@ class Api::V1::TitlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def title_params
-      params.require(:title).permit(:name, :isbn, :cost, :title_type, :description, :authors, :cover, :page_count, :published_date)
+      params.require(:title).permit(:name, :isbn, :cost, :title_type, :description, :authors, :cover, :page_count, :published_date, :subject_id)
     end
 end

@@ -32,7 +32,7 @@ export default new Router({
         {path: 'titles', component: views.AdminTitlesView},
         {path: 'books', component: views.AdminBooksView},
         {path: 'cards', component: views.AdminCardsView},
-
+        {path: 'users', component: views.AdminUsersView},
       ]
     },
     {

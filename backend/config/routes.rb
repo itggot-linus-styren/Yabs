@@ -6,6 +6,7 @@ Rails.application.routes.draw do
       resources :books
       resources :titles
       resources :reviews
+      resources :subjects
 
       resources :auth, only: [:index, :create, :destroy]
     end
