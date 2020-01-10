@@ -25,14 +25,22 @@ describe('ProfileView.vue', () => {
   });
 
   it('Displays the correct name/role/class', () => {
-    const wrapper: Wrapper<ProfileView> = shallowFactory(ProfileView);
+    const wrapper: Wrapper<ProfileView> = shallowFactory(ProfileView, { mocks: {
+      $route: {
+        params: {
+          id: 1111
+        }
+      }
+    }});
 
     baseUser.role = 1;
     baseUser.uid = 1111;
     baseUser.name = 'Test Jestsson';
     baseUser.klass = 'TE4';
     UsersModule.setUser(baseUser);
-
+    console.log(wrapper.vm.$route.params.id);
+    console.log(UsersModule.all[Number(wrapper.vm.$route.params.id)]);
+  
     UsersModule.setCurrentUser(baseUser);
 
     expect(wrapper.text()).toMatch('Elev');

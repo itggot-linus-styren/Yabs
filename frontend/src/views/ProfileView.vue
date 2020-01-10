@@ -8,8 +8,8 @@
     <v-row>
       <v-col col="12">
         <v-card>
-          <v-card-title>{{ usersModule.currentUser.name }}</v-card-title>
-          <v-card-subtitle>{{ RoleChecker.roleAsText() }} - {{ usersModule.currentUser.klass }}</v-card-subtitle>
+          <v-card-title>{{ usersModule.all[$route.params.id].name }}</v-card-title>
+          <v-card-subtitle>{{ RoleChecker.roleAsText(usersModule.all[$route.params.id]) }} - {{ usersModule.all[$route.params.id].klass }}</v-card-subtitle>
           <img
             v-if="usersModule.currentUser.photo_path"
             :src="`http://localhost:3000/${usersModule.currentUser.photo_path}`"
