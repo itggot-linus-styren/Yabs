@@ -45,9 +45,8 @@ export default class ReturnLoanComponent extends Vue{
   private onSubmit(evt: Event): void {
     evt.preventDefault();
     const targetLoan = LoansModule.allAsArray.find((loan: Loan) => {return loan.book_id == Number(this.scannedBookId);});
-    LoansModule.delete(targetLoan);
-    
-    // LoansModule.delete(this.loan);
+
+    if (targetLoan) {LoansModule.delete(targetLoan);}; 
   }
 
 }
