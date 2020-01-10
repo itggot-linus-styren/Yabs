@@ -135,11 +135,12 @@ jobs:
         cd backend
         gem install bundler:2.0.2
         bundle install --jobs=4 --retry=3 --path vendor/bundle
-    - name: Load fixtures
+    - name: Load fixtures and schema
       env:
         RAILS_ENV: test
       run: |
         cd backend
+        bundle exec bin/rails db:schema:load
         bundle exec bin/rails db:fixtures:load
     - name: Run rails backend
       env:
