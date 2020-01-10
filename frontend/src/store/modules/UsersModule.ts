@@ -50,9 +50,24 @@ class UsersModule extends VuexModule {
   }
 
   @Action({rawError: true})
-  public update(request: FormData): Promise<User> {
+  public updateImage(request: FormData): Promise<User> {
     return new Promise((resolve, reject) => {
-      UsersAPI.update(request)
+      UsersAPI.updateImage(request)
+        .then((response: User) => {
+          this.setUser(response);
+          this.setCurrentUser(response);
+          resolve(response);
+        })
+        .catch((error: object) => {
+          reject(error);
+        });
+    });
+  }
+
+  @Action({rawError: true})
+  public updateUser(request: User): Promise<User> {
+    return new Promise((resolve, reject) => {
+      UsersAPI.updateUser(request)
         .then((response: User) => {
           this.setUser(response);
           this.setCurrentUser(response);

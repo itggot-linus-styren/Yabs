@@ -46,4 +46,9 @@ describe('RoleChecker.ts', () => {
     baseUser.role = 36;
     expect(RoleChecker.roleAsText(baseUser)).toBe('Rektor');
   });
+
+  it('displays all assigned roles', () => {
+    baseUser.role = 20;
+    expect(RoleChecker.assignedRoles(baseUser)).toEqual([16, 4]);
+  });
 });

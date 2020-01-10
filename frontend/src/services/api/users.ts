@@ -19,13 +19,21 @@ export default class UsersAPI extends APIRequest {
     });
   }
 
-  static update(request: FormData): Promise<User> {
+  static updateImage(request: FormData): Promise<User> {
     return new Promise((res, rej) => {
       this.Patch<User>(`v1/users/${request.get('uid')}`, request, {
         headers: {
           'Content-type': 'multipart/form-data'
         }
       })
+        .then((resp) => {res(resp); })
+        .catch((err) => {rej(err); });
+    });
+  }
+
+  static updateUser(request: User): Promise<User> {
+    return new Promise((res, rej) => {
+      this.Patch<User>(`v1/users/${request['uid']}`, request)
         .then((resp) => {res(resp); })
         .catch((err) => {rej(err); });
     });

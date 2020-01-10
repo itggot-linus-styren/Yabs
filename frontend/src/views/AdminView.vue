@@ -78,7 +78,8 @@ export default class AdminView extends Vue {
     { title: 'Loans', icon: 'library_books', path: '/admin/loans' },
     { title: 'Titles', icon: 'title', path: '/admin/titles' },
     { title: 'Books', icon: 'book', path: '/admin/books' },
-    { title: 'Cards', icon: 'account_box', path: '/admin/cards' }
+    { title: 'Cards', icon: 'account_box', path: '/admin/cards' },
+    { title: 'Users', icon: 'group', path: '/admin/users' }
   ];
 }
 </script>
