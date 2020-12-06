@@ -12,3 +12,30 @@ Yabs or yet another booking system is a collection of tools for creating card id
 ## License
 
 Yabs is released under the [MIT License](https://opensource.org/licenses/MIT).
+
+## Installation
+Install dependencies:
+`
+sudo gem install docker-sync
+`
+Install Yabs with:
+`
+docker-compose run backend bundle install
+docker-compose run frontend yarn install
+docker-compose build
+docker-compose run backend rails db:schema:load
+`
+
+Put secrets.yml containing google_client_secrets in backend/config/secrets.yml
+
+## Running
+`
+docker-sync clean
+docker-sync start
+docker-compose up
+`
+
+## Tap into backend container for rails CLI
+`
+docker-compose exec backend bash
+`
