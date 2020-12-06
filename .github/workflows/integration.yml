@@ -13,7 +13,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - name: Checkout develop
       run: git checkout develop
     - uses: actions/setup-node@v1
@@ -45,7 +45,7 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v1
+    - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
@@ -56,7 +56,7 @@ jobs:
         cd frontend
         yarn install
         yarn build --silent
-    - uses: actions/cache@v1
+    - uses: actions/cache@v2
       id: cache
       with:
         path: ~/local/rubies
@@ -66,7 +66,7 @@ jobs:
       with:
         ruby-version: 2.6.3
         cache-available: ${{ steps.cache.outputs.cache-hit == 'true' }}
-    - uses: actions/cache@v1
+    - uses: actions/cache@v2
       with:
         path: backend/vendor/bundle
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
@@ -75,7 +75,6 @@ jobs:
     - name: Bundle install
       run: |
         cd backend
-        gem install bundler:2.0.2
         sudo apt-get -yqq install libsqlite3-dev
         bundle install --jobs=4 --retry=3 --path vendor/bundle
     - name: Load database from schema
@@ -113,8 +112,8 @@ jobs:
     runs-on: macos-latest
 
     steps:
-    - uses: actions/checkout@v1
-    - uses: actions/cache@v1
+    - uses: actions/checkout@v2
+    - uses: actions/cache@v2
       id: cache
       with:
         path: ~/local/rubies
@@ -124,7 +123,7 @@ jobs:
       with:
         ruby-version: 2.6.3
         cache-available: ${{ steps.cache.outputs.cache-hit == 'true' }}
-    - uses: actions/cache@v1
+    - uses: actions/cache@v2
       with:
         path: backend/vendor/bundle
         key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
