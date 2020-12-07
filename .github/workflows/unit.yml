@@ -6,7 +6,8 @@ jobs:
   backend-unit-tests:
 
     runs-on: macos-latest
-
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
@@ -28,7 +29,6 @@ jobs:
     - name: Bundle install
       run: |
         cd backend
-        gem install bundler:2.0.2
         bundle install --jobs=4 --retry=3 --path vendor/bundle
     - name: Load database from schema
       run: |
