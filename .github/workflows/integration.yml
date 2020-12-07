@@ -11,7 +11,8 @@ jobs:
   cc:
     if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
-
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
     - uses: actions/checkout@v2
     - name: Checkout develop
@@ -132,7 +133,6 @@ jobs:
     - name: Bundle install
       run: |
         cd backend
-        gem install bundler:2.0.2
         bundle install --jobs=4 --retry=3 --path vendor/bundle
     - name: Load fixtures and schema
       env:
