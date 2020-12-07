@@ -11,8 +11,6 @@ jobs:
   cc:
     if: github.event_name == 'schedule'
     runs-on: ubuntu-latest
-    env:
-      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
     - uses: actions/checkout@v2
     - name: Checkout develop
@@ -44,7 +42,8 @@ jobs:
         ./cc-test-reporter upload-coverage
   e2e:
     runs-on: ubuntu-latest
-
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
     - uses: actions/checkout@v2
     - uses: actions/setup-node@v1
@@ -109,9 +108,9 @@ jobs:
         name: cypress-videos
         path: frontend/cypress/videos
   api-tests:
-
-    runs-on: macos-latest
-
+    runs-on: ubuntu-latest
+    env:
+      ACTIONS_ALLOW_UNSECURE_COMMANDS: true
     steps:
     - uses: actions/checkout@v2
     - uses: actions/cache@v2
