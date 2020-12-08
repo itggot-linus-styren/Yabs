@@ -15,11 +15,12 @@ Yabs is released under the [MIT License](https://opensource.org/licenses/MIT).
 
 ## Installation
 Install dependencies:
-```bash
+```
 sudo gem install docker-sync
 ```
 Install Yabs with:
-```bash
+```
+docker-sync start
 docker-compose run backend bundle install
 docker-compose run frontend yarn install
 docker-compose build
@@ -29,14 +30,29 @@ docker-compose run backend rails db:seed
 
 Put secrets.yml containing google_client_secrets in backend/config/secrets.yml
 
+## Running unit tests
+Rails fixtures are stored as snapshots. They only need to be updated if changes are done to seed.rb file:
+```
+docker-compose run backend rails db:seed fixture=all
+```
+To run the unit tests:
+```
+docker-compose run backend rake
+docker-compose run frontend yarn test:unit
+```
+
 ## Running
-```bash
+If you haven't started docker-sync yet, do that first:
+```
 docker-sync clean
 docker-sync start
+```
+Finally:
+```
 docker-compose up
 ```
 
 ## Tap into backend container for rails CLI
-```bash
+```
 docker-compose exec backend bash
 ```

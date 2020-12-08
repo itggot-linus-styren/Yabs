@@ -1,3 +1,9 @@
+## Commit signing
+To avoid committing with an email not associated to a user account in Github, commit signing is required. Setup GPG keys using: https://docs.github.com/en/free-pro-team@latest/github/authenticating-to-github/managing-commit-signature-verification
+
+## Github way of working
+To aid planning for developers and POs and for stakeholders to follow progress of project. Follow the following process: https://github.com/jvandemo/github-scrum-workflow
+
 ## Code review
 Code review is the process that happens after a new pull request is created and before the changes are merged to develop. It's a powerful tool for knowledge transfer. Use the following guidelines as a reference: https://github.com/thoughtbot/guides/tree/master/code-review
 

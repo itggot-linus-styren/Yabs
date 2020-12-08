@@ -1,24 +1,28 @@
 ---
-name: Bug report
+name: 🐞 Bug report
 about: Create a report to help us improve
 
 ---
-
-**Describe the bug**
+## 🐞 Bug report
+### Description
 A clear and concise description of what the bug is.
 
-**To Reproduce**
+### Expected behavior
+A clear and concise description of what you expected to happen.
+## 🔬 To Reproduce
 Steps to reproduce the behavior:
 1. Go to '...'
 2. Click on '....'
 3. Scroll down to '....'
 4. See error
 
-**Expected behavior**
-A clear and concise description of what you expected to happen.
+### 🔥 Exception or error
+<pre><code>
+<!-- If the issue is accompanied by an exception or an error, please share it below: -->
+<!-- ✍️-->
 
-**Screenshots**
+</code></pre>
+### 📷 Screenshots
 If applicable, add screenshots to help explain your problem.
-
-**Additional context**
+### 💡 Additional context
 Add any other context about the problem here.
