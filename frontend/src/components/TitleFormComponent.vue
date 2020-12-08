@@ -75,29 +75,33 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { ref, defineComponent } from '@vue/composition-api'
 import TitlesModule from '../store/modules/TitlesModule';
 import { Title, TitleForm } from '../types';
 
 
 // This is the child component of the earlier named parent element and catches the information
-// passed down the component tree to render the table 
+// passed down the component tree to render the table
 
-@Component
-export default class TitleFormComponent extends Vue {
-  public form: TitleForm = {
-    name: '',
-    cost: '',
-    isbn: '',
-    title_type: '', //eslint-disable-line camelcase
-  };
-  public show: boolean = true;
+export default defineComponent({
+  name: "TitleFormComponent",
+  setup() {
+    const form: TitleForm = {
+      name: '',
+      cost: '',
+      isbn: '',
+      title_type: '', //eslint-disable-line camelcase
+    };
 
-  public options: object[] = [
-    { value: 'Kurslitteratur', text: 'Kurslitteratur' },
-    { value: 'Bibloteksbok', text: 'Bibloteksbok' },
-    { value: 'Skönlitteratur', text: 'Skönlitteratur' },
-  ];
+    const show = true;
+
+    const options : object[] = [
+      { value: 'Kurslitteratur', text: 'Kurslitteratur' },
+      { value: 'Bibloteksbok', text: 'Bibloteksbok' },
+      { value: 'Skönlitteratur', text: 'Skönlitteratur' },
+    ];
+  }
+/*
 
   // The onSubmit eventlistener calls the titlesmodule and recreates the form when the submit has been
   // successfull
@@ -122,7 +126,6 @@ export default class TitleFormComponent extends Vue {
     this.show = false;
     this.$nextTick(() => {
       this.show = true;
-    });
-  }
-}
+    });*/
+});
 </script>
