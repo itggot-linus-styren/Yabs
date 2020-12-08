@@ -3,7 +3,7 @@ module.exports = {
   setupFilesAfterEnv: ['<rootDir>/src/jest.setup.ts'],
   collectCoverage: true,
   collectCoverageFrom: [
-    '**/*.{js,vue}',
+    '**/*.{ts,vue}',
     '!**/node_modules/**'
   ],
   coverageReporters: ['lcov'],
