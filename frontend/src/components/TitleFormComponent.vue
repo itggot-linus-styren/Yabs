@@ -2,8 +2,8 @@
   <v-form
     v-if="show"
     data-jest="form"
-    @submit="onSubmit"
-    @reset="onReset"
+    @submit.prevent="onSubmit"
+    @reset.prevent="onReset"
   >
     <v-item-group
       vertical=""
@@ -75,7 +75,8 @@
 </template>
 
 <script lang="ts">
-import { ref, defineComponent } from '@vue/composition-api'
+import Vue from 'vue';
+import { ref, defineComponent, SetupContext } from '@vue/composition-api';
 import TitlesModule from '../store/modules/TitlesModule';
 import { Title, TitleForm } from '../types';
 
@@ -84,16 +85,16 @@ import { Title, TitleForm } from '../types';
 // passed down the component tree to render the table
 
 export default defineComponent({
-  name: "TitleFormComponent",
-  setup() {
-    const form: TitleForm = ref({
+  name: 'TitleFormComponent',
+  setup(_ : object, { root } : SetupContext) {
+    const form = ref({
       name: '',
       cost: '',
       isbn: '',
       title_type: '', //eslint-disable-line camelcase
-    });
+    } as TitleForm);
 
-    const show = true;
+    const show = ref(true);
 
     const options : object[] = [
       { value: 'Kurslitteratur', text: 'Kurslitteratur' },
@@ -104,9 +105,8 @@ export default defineComponent({
     // successfull
 
     function onSubmit(evt: Event): void {
-      evt.preventDefault();
-      if (!!this.form.name && !!this.form.cost && !! this.form.isbn && !!this.form.title_type) {
-        TitlesModule.create(this.form)
+      if (!!form.value.name && !!form.value.cost && !! form.value.isbn && !!form.value.title_type) {
+        TitlesModule.create(form.value)
           .then((title: Title) => this.$emit('title-added', title))
           .catch((failure: object) => console.log(failure));
       }
@@ -116,13 +116,12 @@ export default defineComponent({
     // information about the title
 
     function onReset(evt: Event): void {
-      evt.preventDefault();
-      this.form.name = '';
-      this.form.cost = '';
-      this.form.isbn = '';
-      this.show = false;
-      this.$nextTick(() => {
-        this.show = true;
+      form.value.name = '';
+      form.value.cost = '';
+      form.value.isbn = '';
+      show.value = false;
+      root.$nextTick(() => {
+        show.value = true;
       });
     }
 
