@@ -75,7 +75,6 @@
 </template>
 
 <script lang="ts">
-import Vue from 'vue';
 import { ref, defineComponent, SetupContext } from '@vue/composition-api';
 import TitlesModule from '../store/modules/TitlesModule';
 import { Title, TitleForm } from '../types';
