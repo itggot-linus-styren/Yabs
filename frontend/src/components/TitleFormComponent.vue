@@ -86,12 +86,12 @@ import { Title, TitleForm } from '../types';
 export default defineComponent({
   name: "TitleFormComponent",
   setup() {
-    const form: TitleForm = {
+    const form: TitleForm = ref({
       name: '',
       cost: '',
       isbn: '',
       title_type: '', //eslint-disable-line camelcase
-    };
+    });
 
     const show = true;
 
@@ -100,32 +100,33 @@ export default defineComponent({
       { value: 'Bibloteksbok', text: 'Bibloteksbok' },
       { value: 'Skönlitteratur', text: 'Skönlitteratur' },
     ];
-  }
-/*
+    // The onSubmit eventlistener calls the titlesmodule and recreates the form when the submit has been
+    // successfull
 
-  // The onSubmit eventlistener calls the titlesmodule and recreates the form when the submit has been
-  // successfull
-
-  public onSubmit(evt: Event): void {
-    evt.preventDefault();
-    if (!!this.form.name && !!this.form.cost && !! this.form.isbn && !!this.form.title_type) {
-      TitlesModule.create(this.form)
-        .then((title: Title) => this.$emit('title-added', title))
-        .catch((failure: object) => console.log(failure));
+    function onSubmit(evt: Event): void {
+      evt.preventDefault();
+      if (!!this.form.name && !!this.form.cost && !! this.form.isbn && !!this.form.title_type) {
+        TitlesModule.create(this.form)
+          .then((title: Title) => this.$emit('title-added', title))
+          .catch((failure: object) => console.log(failure));
+      }
     }
+
+    // onReset eventlistener is used to reset the form if the user has written in the wrong
+    // information about the title
+
+    function onReset(evt: Event): void {
+      evt.preventDefault();
+      this.form.name = '';
+      this.form.cost = '';
+      this.form.isbn = '';
+      this.show = false;
+      this.$nextTick(() => {
+        this.show = true;
+      });
+    }
+
+    return { form, show, options, onSubmit, onReset };
   }
-
-  // onReset eventlistener is used to reset the form if the user has written in the wrong
-  // information about the title
-
-  public onReset(evt: Event): void {
-    evt.preventDefault();
-    this.form.name = '';
-    this.form.cost = '';
-    this.form.isbn = '';
-    this.show = false;
-    this.$nextTick(() => {
-      this.show = true;
-    });*/
 });
 </script>
