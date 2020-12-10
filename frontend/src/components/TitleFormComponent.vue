@@ -2,8 +2,8 @@
   <v-form
     v-if="show"
     data-jest="form"
-    @submit="onSubmit"
-    @reset="onReset"
+    @submit.prevent="onSubmit"
+    @reset.prevent="onReset"
   >
     <v-item-group
       vertical=""
@@ -75,54 +75,56 @@
 </template>
 
 <script lang="ts">
-import { Component, Prop, Vue } from 'vue-property-decorator';
+import { ref, defineComponent, SetupContext } from '@vue/composition-api';
 import TitlesModule from '../store/modules/TitlesModule';
 import { Title, TitleForm } from '../types';
 
 
 // This is the child component of the earlier named parent element and catches the information
-// passed down the component tree to render the table 
+// passed down the component tree to render the table
 
-@Component
-export default class TitleFormComponent extends Vue {
-  public form: TitleForm = {
-    name: '',
-    cost: '',
-    isbn: '',
-    title_type: '', //eslint-disable-line camelcase
-  };
-  public show: boolean = true;
+export default defineComponent({
+  name: 'TitleFormComponent',
+  setup(_ : object, { root } : SetupContext) {
+    const form = ref({
+      name: '',
+      cost: '',
+      isbn: '',
+      title_type: '', //eslint-disable-line camelcase
+    } as TitleForm);
 
-  public options: object[] = [
-    { value: 'Kurslitteratur', text: 'Kurslitteratur' },
-    { value: 'Bibloteksbok', text: 'Bibloteksbok' },
-    { value: 'Skönlitteratur', text: 'Skönlitteratur' },
-  ];
+    const show = ref(true);
 
-  // The onSubmit eventlistener calls the titlesmodule and recreates the form when the submit has been
-  // successfull
+    const options : object[] = [
+      { value: 'Kurslitteratur', text: 'Kurslitteratur' },
+      { value: 'Bibloteksbok', text: 'Bibloteksbok' },
+      { value: 'Skönlitteratur', text: 'Skönlitteratur' },
+    ];
+    // The onSubmit eventlistener calls the titlesmodule and recreates the form when the submit has been
+    // successfull
 
-  public onSubmit(evt: Event): void {
-    evt.preventDefault();
-    if (!!this.form.name && !!this.form.cost && !! this.form.isbn && !!this.form.title_type) {
-      TitlesModule.create(this.form)
-        .then((title: Title) => this.$emit('title-added', title))
-        .catch((failure: object) => console.log(failure));
+    function onSubmit(evt: Event): void {
+      if (!Object.values(form.value).some(prop => prop === '')) {
+        TitlesModule.create(form.value)
+          .then((title: Title) => this.$emit('title-added', title))
+          .catch((failure: object) => console.log(failure));
+      }
     }
-  }
 
-  // onReset eventlistener is used to reset the form if the user has written in the wrong
-  // information about the title
+    // onReset eventlistener is used to reset the form if the user has written in the wrong
+    // information about the title
 
-  public onReset(evt: Event): void {
-    evt.preventDefault();
-    this.form.name = '';
-    this.form.cost = '';
-    this.form.isbn = '';
-    this.show = false;
-    this.$nextTick(() => {
-      this.show = true;
-    });
+    function onReset(evt: Event): void {
+      form.value.name = '';
+      form.value.cost = '';
+      form.value.isbn = '';
+      show.value = false;
+      root.$nextTick(() => {
+        show.value = true;
+      });
+    }
+
+    return { form, show, options, onSubmit, onReset };
   }
-}
+});
 </script>
