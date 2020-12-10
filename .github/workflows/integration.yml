@@ -20,8 +20,6 @@ jobs:
     - uses: actions/setup-node@v1
       with:
         node-version: '12.x'
-    - name: Checkout develop
-      run: git checkout develop
     - name: Build frontend
       run: |
         cd frontend
