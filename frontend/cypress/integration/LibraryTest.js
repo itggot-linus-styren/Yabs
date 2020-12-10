@@ -6,7 +6,7 @@ describe('This test checks the rendered content' , () => {
     });
 
     it('Checks scan your book barcode card' , () => {
-        cy.get('[data-cy=FirstCard]')
+        cy.get('[data-cy=returnCard]')
         cy.contains('Scan your book barcode')
         cy.contains('Bokens Streckkod')
         cy.contains('Return')  
@@ -14,14 +14,14 @@ describe('This test checks the rendered content' , () => {
     })
 
     it('Checks scan the book barcode card' , () => {
-        cy.get('[data-cy=SecondCard]')
+        cy.get('[data-cy=libraryLoanCard]')
         cy.contains('Scan the book barcode')
         cy.contains('Bokens Streckkod')
         cy.contains('Låna Ut')    
     })
     
     it('Checks the data tables' , () => {
-        cy.get('[data-cy=DataTable]')
+        cy.get('[data-cy=table]')
         cy.contains('Search')
         cy.contains('Lånad av')
         cy.contains('Utlånad av')

@@ -1,6 +1,6 @@
 <template>
   <div>
-    <v-card data-cy="FirstCard">
+    <v-card data-cy="returnCard">
       <v-card-title>
         Scan your book barcode
       </v-card-title>
