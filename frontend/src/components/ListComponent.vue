@@ -1,5 +1,5 @@
 <template>
-  <v-card>
+  <v-card data-cy="DataTable">
     <v-card-title>
       <v-text-field 
         v-model="search"
