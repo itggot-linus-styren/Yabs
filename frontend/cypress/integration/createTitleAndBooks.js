@@ -25,7 +25,7 @@ describe('This test will create a title and a book', () => {
     cy.get('[data-cy=table]').contains(bookTitle);
 
     cy.get('[data-cy=reset]').click();
-    cy.get('[data-cy=name]').should('have.not.value',bookTitle);
+    cy.get('[data-cy=name]').should('have.not.value', bookTitle);
     cy.get('[data-cy=isbn]').should('have.not.value', isbn);
     cy.get('[data-cy=cost]').should('have.not.value', cost);
   });
