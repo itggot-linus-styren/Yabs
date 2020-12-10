@@ -104,7 +104,7 @@ export default defineComponent({
     // successfull
 
     function onSubmit(evt: Event): void {
-      if (!!form.value.name && !!form.value.cost && !! form.value.isbn && !!form.value.title_type) {
+      if (!Object.values(form.value).some(prop => prop === '')) {
         TitlesModule.create(form.value)
           .then((title: Title) => this.$emit('title-added', title))
           .catch((failure: object) => console.log(failure));
