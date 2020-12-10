@@ -1,11 +1,8 @@
-name: CodeQuality
+name: TestCoverage
 
 on:
   schedule:
   - cron: "0 0 * * *"
-  push:
-    branches:
-      - develop
 
 jobs:
   cc:
