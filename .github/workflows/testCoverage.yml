@@ -37,4 +37,5 @@ jobs:
         echo Upload report to codeclimate
         cd frontend
         ./cc-test-reporter upload-coverage
+
         
