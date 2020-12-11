@@ -30,6 +30,5 @@ describe('This test checks the rendered content' , () => {
         cy.contains('Kostnad')
         cy.contains('Typ')
         cy.contains('ISBN')
-        
     })
 });
