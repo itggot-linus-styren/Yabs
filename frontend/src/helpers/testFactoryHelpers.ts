@@ -5,6 +5,7 @@ import {
   Wrapper,
   ThisTypedMountOptions,
 } from '@vue/test-utils';
+import VueCompositionApi from '@vue/composition-api';
 import Vue from 'vue';
 import Vuetify from 'vuetify';
 import Vuex from 'vuex';
@@ -25,6 +26,8 @@ export function factory<V extends Vue>(
       },
     },
   });
+
+  Vue.use(VueCompositionApi);
   Vue.use(Vuetify);
   Vue.use(Vuex);
 

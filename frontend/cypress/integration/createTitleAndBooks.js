@@ -13,6 +13,7 @@ describe('This test will create a title and a book', () => {
     const bookTitle = 'Book made from Test'
     const isbn = '420-420'
     const cost = '2912'
+    
     cy.get('[data-cy=name]').type(bookTitle);
     cy.get('[data-cy=cost]').type(cost);
     cy.get('[data-cy=isbn]').type(isbn);
@@ -24,7 +25,7 @@ describe('This test will create a title and a book', () => {
     cy.get('[data-cy=table]').contains(bookTitle);
 
     cy.get('[data-cy=reset]').click();
-    cy.get('[data-cy=name]').should('have.not.value',bookTitle);
+    cy.get('[data-cy=name]').should('have.not.value', bookTitle);
     cy.get('[data-cy=isbn]').should('have.not.value', isbn);
     cy.get('[data-cy=cost]').should('have.not.value', cost);
   });
@@ -33,11 +34,20 @@ describe('This test will create a title and a book', () => {
     cy.get('[data-cy=Books]').click();
   });
 
-  it('Creates a book', () => {
-    cy.get('[data-cy=barcode]').click().type('212');
+  it('Creates a new book and validates it presence', () => {
+    const barcode = '222';
+    const bookTitle = 'Alice in Wonderland';
+    const status = 'Stolen';
+
+    cy.get('[data-cy=barcode]').click().type(barcode);
     cy.get('[data-cy=chooseTitle]').click();
-    cy.get('div').contains('Alice in Wonderland').click();
-    cy.get('[data-cy=condition]').type('Stolen');
+    cy.get('div').contains(bookTitle).click();
+    cy.get('[data-cy=condition]').type(status);
     cy.get('[data-cy=addBook]').click();
+
+    cy.get('[data-jest=search]').type(status);
+    cy.get('[data-cy=table]').contains(bookTitle);
+    cy.get('[data-cy=table]').contains(barcode);
+    cy.get('[data-cy=table]').contains(status);
   });
 });
