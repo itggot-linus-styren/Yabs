@@ -10,7 +10,6 @@ describe('This test checks the rendered content' , () => {
         cy.contains('Scan your book barcode')
         cy.contains('Bokens Streckkod')
         cy.contains('Return')  
-        
     })
 
     it('Checks scan the book barcode card' , () => {
