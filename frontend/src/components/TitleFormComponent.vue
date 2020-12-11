@@ -85,7 +85,7 @@ import { Title, TitleForm } from '../types';
 
 export default defineComponent({
   name: 'TitleFormComponent',
-  setup(_ : object, { root } : SetupContext) {
+  setup(_ : object, { root, emit } : SetupContext) {
     const form = ref({
       name: '',
       cost: '',
@@ -106,7 +106,9 @@ export default defineComponent({
     function onSubmit(evt: Event): void {
       if (!Object.values(form.value).some(prop => prop === '')) {
         TitlesModule.create(form.value)
-          .then((title: Title) => this.$emit('title-added', title))
+          .then((title: Title) => {
+            emit('title-added', title);
+          })
           .catch((failure: object) => console.log(failure));
       }
     }

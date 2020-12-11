@@ -3,6 +3,7 @@ import TitleFormComponent from '@/components/TitleFormComponent.vue';
 import { Wrapper} from '@vue/test-utils';
 import { factory } from '@/helpers/testFactoryHelpers';
 import TitlesModule from '@/store/modules/TitlesModule';
+import Vue from 'vue';
 
 jest.mock('@/store/modules/TitlesModule', () => {
   return {
@@ -15,7 +16,7 @@ jest.mock('@/store/modules/TitlesModule', () => {
 describe('TitleFormComponent.vue', () => {
   
   it('calls TitlesModule with correct values', () => {
-    const wrapper: Wrapper<TitleFormComponent> = factory(TitleFormComponent);
+    const wrapper: Wrapper<Vue> = factory(TitleFormComponent);
 
     wrapper.find('[data-jest=\'name\']').setValue('Title1');
     wrapper.find('[data-jest=\'cost\']').setValue('20');
