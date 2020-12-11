@@ -33,8 +33,4 @@ describe('This test checks the rendered content' , () => {
         cy.contains('ISBN')
         
     })
-    
-    
-
-
 });
