@@ -13,7 +13,6 @@ describe('This test will create a title and a book', () => {
     const bookTitle = 'Book made from Test'
     const isbn = '420-420'
     const cost = '2912'
-    
     cy.get('[data-cy=name]').type(bookTitle);
     cy.get('[data-cy=cost]').type(cost);
     cy.get('[data-cy=isbn]').type(isbn);
