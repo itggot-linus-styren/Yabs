@@ -15,7 +15,7 @@ jest.mock('@/store/modules/TitlesModule', () => {
 describe('TitleFormComponent.vue', () => {
   
   it('calls TitlesModule with correct values', () => {
-    const wrapper: Wrapper<TitleFormComponent> = factory(TitleFormComponent);
+    const wrapper: Wrapper<any> = factory(TitleFormComponent); //eslint-disable-line @typescript-eslint/no-implicit-any
 
     wrapper.find('[data-jest=\'name\']').setValue('Title1');
     wrapper.find('[data-jest=\'cost\']').setValue('20');

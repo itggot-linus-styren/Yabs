@@ -106,7 +106,7 @@ export default defineComponent({
     function onSubmit(evt: Event): void {
       if (!Object.values(form.value).some(prop => prop === '')) {
         TitlesModule.create(form.value)
-          .then((title: Title) => this.$emit('title-added', title))
+          .then(function (this: any, title: Title) { this.$emit('title-added', title);}) //eslint-disable-line @typescript-eslint/no-implicit-any
           .catch((failure: object) => console.log(failure));
       }
     }
